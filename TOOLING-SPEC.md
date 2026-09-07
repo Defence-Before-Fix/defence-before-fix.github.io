@@ -139,13 +139,17 @@ acceptable.
 A [Message](SPEC.md#message) that carries its own documentation path resolves that [Message](SPEC.md#message), not the
 [Identifier](SPEC.md#identifier). The mechanism MUST resolve an [Identifier](SPEC.md#identifier) presented alone, because the reader
 who needs it most has the [Identifier](SPEC.md#identifier) from a log, a ticket or a colleague and not the [Message](SPEC.md#message).
+Where the [Identifier](SPEC.md#identifier) is itself a URL, as method clause 3.6 allows, printing it is printing the
+[Identifier](SPEC.md#identifier); what this clause forbids is a path supplied in addition to a shorter [Identifier](SPEC.md#identifier)
+that cannot be looked up on its own.
 
 Where one page documents a family of [Identifiers](SPEC.md#identifier) under a shared prefix, every full
 [Identifier](SPEC.md#identifier) in the family MUST appear on it verbatim, in the installed artefact clause 6.2
-requires resolution to work from and not only in rendered output, or the page MUST state a pattern that
-mechanically determines, for any member, that this page is where it resolves. A prefix alone is neither.
-The audit under clause 10.1 MUST cover every member of the family, so that a member added to the
-[Rule](SPEC.md#rule) and not to the page fails the release.
+requires resolution to work from and not only in rendered output, or the page MUST carry a pattern the
+audit under clause 10.1 can execute, a glob or a regular expression rather than prose, that matches every
+member and no [Identifier](SPEC.md#identifier) outside the family. A prefix alone is neither. That audit MUST apply the
+pattern to every [Identifier](SPEC.md#identifier) printed and confirm it lands on this page, so that a member added to
+the [Rule](SPEC.md#rule) and not to the page fails the release.
 
 **Why**: method specification clause 8.3 requires the [Identifier](SPEC.md#identifier) to resolve without a human. An index
 keyed on anything else does not resolve it. This is the most commonly failed clause in this document
@@ -295,8 +299,10 @@ rather than after it, which is why they are worth stating even as SHOULDs.
 
 ### 10.1 The toolchain MUST fail its own release if a bundled defence lacks resolvable documentation
 
-An automated check, over every [Identifier](SPEC.md#identifier) the [Toolchain](SPEC.md#toolchain) prints from any [Detector](SPEC.md#detector)
-it ships and not over one kind of [Rule](SPEC.md#rule), that blocks its own release. Clause 6.3 names the
+An automated check, over every [Identifier](SPEC.md#identifier) printed by a [Rule](SPEC.md#rule) the [Toolchain](SPEC.md#toolchain) authors or
+bundles as its own [Defence](SPEC.md#defence), whatever kind of [Detector](SPEC.md#detector) carries it, that blocks its own release. A
+third-party [Detector](SPEC.md#detector)'s native catalogue, which the [Toolchain](SPEC.md#toolchain) orchestrates without claiming as its
+own, is outside this audit and inside clause 6.1's resolution all the same. Clause 6.3 names the
 dangling reference as the failure to guard against above all others; this is the guard, and a
 [Toolchain](SPEC.md#toolchain) is not held to less than it holds its [Practitioners](SPEC.md#practitioner) to.
 

@@ -265,7 +265,8 @@ Two bounds apply, and both are checkable during the work rather than matters of 
 **Resolve the lower bound by searching independently, not by judgement.** The [Rule](#rule) is not the only
 way to find [Instances](#instance), and it is the least trustworthy one whilst it is still unproven. Search for
 other [Instances](#instance) by other means, whether that is a text search, reading the code, or asking someone
-who knows the system, and then confirm the [Rule](#rule) catches what those searches found.
+who knows the system, and, once the [Rule](#rule) exists under clause 3.2, confirm it catches what those
+searches found. That confirmation is not one of the techniques.
 
 That search MUST be a comprehensive one, carried out by a person, model or [Agent](#agent) competent to
 carry it out. No fixed technique is prescribed, because what is comprehensive depends entirely on
@@ -286,9 +287,12 @@ spellings of the same token are one technique; asking someone who knows the syst
 A clean run of the [Rule](#rule) is therefore not evidence of saturation either: "the [Rule](#rule) found nothing
 the reading had missed" is one technique and a [Rule](#rule) run, not two techniques, and the stopping
 criterion cannot be applied to it.
-The record MUST name both techniques. Neither may be a run of the [Rule](#rule), or of any check that
-reads the same files by the same kind of logic, and two checks that would miss the same things are
-one technique however each of them is run.
+The record MUST name both techniques, chosen before the [Rule](#rule) is run against the codebase, and
+MUST state what each found that the other could not have checked. A technique counts only if it does
+not invoke the [Detector](#detector) under proof in any configuration and would exist unchanged had the
+[Rule](#rule) never been written; a [Sweep](#sweep)-shaped run of the [Rule](#rule), however comprehensive it looks, is
+never one of the two. Where a later technique shows that two earlier checks shared a blind spot, they
+were one technique, and a third is owed.
 
 That turns the single-[Instance](#instance) case into something checkable rather than a matter of taste. If an
 independent search finds [Instances](#instance) the [Rule](#rule) missed, the [Class](#class) was drawn too narrowly and the [Rule](#rule)
@@ -377,9 +381,12 @@ claim the remediation [Conforms](#conform). How the project merges is its own bu
 what must survive the merge is not.
 
 **A [Narrowing](#narrowing) is proven the other way round, and both ways.** Where the change under proof is
-that the [Rule](#rule) should stop firing on code that does not carry the [Hazard](#hazard), the red run is the [Rule](#rule)
-firing on that code before the change, and a retained [Fixture](#fixture) MUST show it still fires on the case
-that motivated the [Rule](#rule) afterwards.
+that the [Rule](#rule) should stop firing on code that does not carry the [Hazard](#hazard), three things are shown:
+the [Rule](#rule) firing on that code before the change, from a commit still reachable in history and to the
+same standard as a new [Rule](#rule)'s red run; the [Rule](#rule) not firing on it afterwards; and a retained
+[Fixture](#fixture) on which it still fires afterwards, the case that motivated the [Rule](#rule). Where the narrower
+shape was chosen from the outset and no wider [Rule](#rule) was ever built, the before state is a [Fixture](#fixture)
+of the wider pattern the [Rule](#rule) does not catch, retained as the record of what was left out.
 
 **Firing on more than the originating [Defect](#defect) is success.** A [Rule](#rule) that catches the reported
 [Instance](#instance) and forty-nine others has done exactly what it was built to do, and the forty-nine are
@@ -591,8 +598,12 @@ That documentation MUST state three things: what the [Rule](#rule) is about, why
 fix a violation correctly using the project's preferred approach.
 
 A [Practitioner](#practitioner) who finds that an existing [Rule](#rule)'s printed [Identifier](#identifier) does not resolve records
-it as a [Toolchain](#toolchain) gap under clause 3.2. It does not block the remediation, and it does block the
-[Toolchain](#toolchain)'s claim under section 7 until it is fixed.
+it where clause 3.2's gaps are recorded, naming the [Rule](#rule) and the [Identifier](#identifier), with no [Rule](#rule) build of
+their own to attach it to. It does not block the remediation. Where the mechanism cannot resolve
+[Identifiers](#identifier) at all, it is a [Toolchain](#toolchain) gap and blocks the [Toolchain](#toolchain)'s claim under section 7
+until fixed; where the mechanism resolves others and only this [Rule](#rule)'s documentation is missing, it is a
+fault in that [Rule](#rule)'s [Remediation docs](#remediation-docs), owned by whoever wrote the [Rule](#rule), and bears on
+the project's claim rather than the [Toolchain](#toolchain)'s.
 
 **The split between the two is by job, not by length.** The [Message](#message) carries what was detected,
 where, and the [Identifier](#identifier); it is read under interruption by somebody trying to get on with
@@ -651,10 +662,12 @@ they do not.
 - Suppressing an [Instance](#instance), or removing or disabling an existing [Rule](#rule) (clauses 3.4 and 3.5).
 - Accepting a known [Instance](#instance) as unfixed for any reason.
 - Deciding that a [Class](#class) will not be defended at all, where a [Rule](#rule) for it is achievable.
-- Leaving unbuilt an extension of a [Rule](#rule) that the [Hazard](#hazard) reasoning reaches and the [Detector](#detector)
-  can express. That no [Instance](#instance) of the wider shape exists today is the [Practitioner](#practitioner)'s reason not
-  to widen past the reported [Defect](#defect) unasked; it is not authority to exclude the extension, and
-  recording it as a known gap does not change whose decision it is.
+- Leaving unbuilt the next wider [Rule](#rule) that clause 3.1 required the [Practitioner](#practitioner) to name, where
+  it was rejected because no [Instance](#instance) of it exists today rather than because the [Hazard](#hazard) cannot
+  arise there. The absence of an [Instance](#instance) is the [Practitioner](#practitioner)'s reason not to widen unasked; it
+  is not authority to exclude the extension, and recording it as a known gap does not change whose
+  decision it is. This does not reopen a [Class](#class) whose bounds a [Hazard](#hazard) sentence has settled, and
+  it reaches no further than the one wider [Rule](#rule) already on the record.
 
 The dividing line is that the [Practitioner](#practitioner) decides **how the [Defence](#defence) is built** and the [Owner](#owner)
 decides **what the codebase is permitted to keep**. An [Agent](#agent) MUST NOT [Baseline](#baseline), suppress or
