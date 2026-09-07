@@ -286,6 +286,9 @@ spellings of the same token are one technique; asking someone who knows the syst
 A clean run of the [Rule](#rule) is therefore not evidence of saturation either: "the [Rule](#rule) found nothing
 the reading had missed" is one technique and a [Rule](#rule) run, not two techniques, and the stopping
 criterion cannot be applied to it.
+The record MUST name both techniques. Neither may be a run of the [Rule](#rule), or of any check that
+reads the same files by the same kind of logic, and two checks that would miss the same things are
+one technique however each of them is run.
 
 That turns the single-[Instance](#instance) case into something checkable rather than a matter of taste. If an
 independent search finds [Instances](#instance) the [Rule](#rule) missed, the [Class](#class) was drawn too narrowly and the [Rule](#rule)

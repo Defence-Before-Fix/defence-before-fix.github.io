@@ -136,6 +136,10 @@ anything and blocks them anyway, which is the worst combination available.
 Keyed on **the [Identifier](SPEC.md#identifier) exactly as printed**. A command, an index file or a URL are all
 acceptable.
 
+A [Message](SPEC.md#message) that carries its own documentation path resolves that [Message](SPEC.md#message), not the
+[Identifier](SPEC.md#identifier). The mechanism MUST resolve an [Identifier](SPEC.md#identifier) presented alone, because the reader
+who needs it most has the [Identifier](SPEC.md#identifier) from a log, a ticket or a colleague and not the [Message](SPEC.md#message).
+
 Where one page documents a family of [Identifiers](SPEC.md#identifier) under a shared prefix, every full
 [Identifier](SPEC.md#identifier) in the family MUST appear on it verbatim, in the installed artefact clause 6.2
 requires resolution to work from and not only in rendered output, or the page MUST state a pattern that
@@ -291,7 +295,8 @@ rather than after it, which is why they are worth stating even as SHOULDs.
 
 ### 10.1 The toolchain MUST fail its own release if a bundled defence lacks resolvable documentation
 
-An automated check, over its own [Rules](SPEC.md#rule), that blocks its own release. Clause 6.3 names the
+An automated check, over every [Identifier](SPEC.md#identifier) the [Toolchain](SPEC.md#toolchain) prints from any [Detector](SPEC.md#detector)
+it ships and not over one kind of [Rule](SPEC.md#rule), that blocks its own release. Clause 6.3 names the
 dangling reference as the failure to guard against above all others; this is the guard, and a
 [Toolchain](SPEC.md#toolchain) is not held to less than it holds its [Practitioners](SPEC.md#practitioner) to.
 
