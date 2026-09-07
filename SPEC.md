@@ -373,6 +373,11 @@ flattens them into one destroys the proof, so a project whose merge policy does 
 claim the remediation [Conforms](#conform). How the project merges is its own business under section 8;
 what must survive the merge is not.
 
+**A [Narrowing](#narrowing) is proven the other way round, and both ways.** Where the change under proof is
+that the [Rule](#rule) should stop firing on code that does not carry the [Hazard](#hazard), the red run is the [Rule](#rule)
+firing on that code before the change, and a retained [Fixture](#fixture) MUST show it still fires on the case
+that motivated the [Rule](#rule) afterwards.
+
 **Firing on more than the originating [Defect](#defect) is success.** A [Rule](#rule) that catches the reported
 [Instance](#instance) and forty-nine others has done exactly what it was built to do, and the forty-nine are
 the reason the method exists.
@@ -582,6 +587,10 @@ The failure [Message](#message) MUST be terse, and it MUST carry a stable [Ident
 That documentation MUST state three things: what the [Rule](#rule) is about, why it exists, and how to
 fix a violation correctly using the project's preferred approach.
 
+A [Practitioner](#practitioner) who finds that an existing [Rule](#rule)'s printed [Identifier](#identifier) does not resolve records
+it as a [Toolchain](#toolchain) gap under clause 3.2. It does not block the remediation, and it does block the
+[Toolchain](#toolchain)'s claim under section 7 until it is fixed.
+
 **The split between the two is by job, not by length.** The [Message](#message) carries what was detected,
 where, and the [Identifier](#identifier); it is read under interruption by somebody trying to get on with
 something else. The documentation carries the reasoning and the remedy; it is read once, by
@@ -639,6 +648,10 @@ they do not.
 - Suppressing an [Instance](#instance), or removing or disabling an existing [Rule](#rule) (clauses 3.4 and 3.5).
 - Accepting a known [Instance](#instance) as unfixed for any reason.
 - Deciding that a [Class](#class) will not be defended at all, where a [Rule](#rule) for it is achievable.
+- Leaving unbuilt an extension of a [Rule](#rule) that the [Hazard](#hazard) reasoning reaches and the [Detector](#detector)
+  can express. That no [Instance](#instance) of the wider shape exists today is the [Practitioner](#practitioner)'s reason not
+  to widen past the reported [Defect](#defect) unasked; it is not authority to exclude the extension, and
+  recording it as a known gap does not change whose decision it is.
 
 The dividing line is that the [Practitioner](#practitioner) decides **how the [Defence](#defence) is built** and the [Owner](#owner)
 decides **what the codebase is permitted to keep**. An [Agent](#agent) MUST NOT [Baseline](#baseline), suppress or
