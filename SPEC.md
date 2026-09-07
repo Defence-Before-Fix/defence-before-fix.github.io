@@ -252,8 +252,11 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   [Instance](#instance) and the [Practitioner](#practitioner) records that the [Class](#class) is genuinely singular today. A
   [Rule](#rule) that matches exactly one thing is an [Instance](#instance) [Detector](#detector) wearing a [Rule](#rule)'s clothes.
   A [Rule](#rule) drawn to the exact value or name found in the [Defect](#defect) is the same [Narrowing](#narrowing) however
-  it is spelt, and where it stays because the search found nothing wider, the record MUST also name the wider [Rule](#rule)
-  that was considered and state why it was rejected.
+  it is spelt, and where it stays because the search found nothing wider, the record MUST also name the next
+  wider [Rule](#rule), the one with the [Instance](#instance)'s distinguishing detail dropped, and state why it was
+  rejected. That rejection is tested as a [Narrowing](#narrowing) is under clause 3.3: a sentence stating why the
+  [Hazard](#hazard) cannot arise in the code the wider [Rule](#rule) would add, confirmed by search, with uncertainty
+  routed upwards under section 4.
 - **Upper bound.** If the [Rule](#rule) matches code that does not carry the [Hazard](#hazard), the [Class](#class) is drawn
   too broadly and MUST be narrowed. [False positives](#false-positive) destroy a [Defence](#defence)'s credibility faster than a
   missing [Rule](#rule) does. One report on code that does not carry the [Hazard](#hazard) is enough; there is no
@@ -364,6 +367,11 @@ what a reviewer under section 7 checks out to reproduce the proof, and it is the
 [Rule](#rule) fired on real code rather than on a [Fixture](#fixture) alone. Where the [Defence](#defence) and the fix share a
 commit, the red run can only be reconstructed by hand-reverting lines the reviewer has to guess at,
 and the proof rests on that guess.
+Both commits MUST remain individually reachable in the history the reviewer inspects. A merge that
+flattens them into one destroys the proof, so a project whose merge policy does that MUST keep the
+[Defence](#defence) commit reachable by another recorded reference, a tag or the retained branch, or MUST NOT
+claim the remediation [Conforms](#conform). How the project merges is its own business under section 8;
+what must survive the merge is not.
 
 **Firing on more than the originating [Defect](#defect) is success.** A [Rule](#rule) that catches the reported
 [Instance](#instance) and forty-nine others has done exactly what it was built to do, and the forty-nine are
@@ -398,6 +406,8 @@ same means as the project's [Exceptions](#exception), so the [Owner](#owner) see
 [Narrowing](#narrowing) that excludes more code than the [Rule](#rule) still covers MUST be reported to the [Owner](#owner)
 as if it were a [Suppression](#suppression). The sentence remains the test of whether an exclusion is honest;
 the search and the listing are what make a fluent dishonest one visible.
+Where the [Toolchain](#toolchain)'s own listing shows the [Narrowing](#narrowing) with its sentence, that listing is
+the record, and no separate prose is owed for it.
 
 The sentence may turn out to be wrong. The method does not require the [Practitioner](#practitioner) to be
 infallible; it requires the reasoning to be written down where the next reader, or the next
@@ -759,10 +769,15 @@ gives each of the obligations above as a clause with its own reasoning, and adds
 provide so that a project can meet its own. The summary here is normative and sufficient to judge a
 [Toolchain](#toolchain) by; the companion document is where a [Toolchain](#toolchain) author should work from.
 
-A verdict on any of these claims MUST rest on reproduction, not on the report: the reviewer reruns
-the [Defence](#defence) red at the commit that introduced it and green at the final commit, through the
+A verdict on a remediation or a [Defence](#defence) MUST rest on reproduction, not on the report: the reviewer
+reruns the [Defence](#defence) red at the commit that introduced it and green at the final commit, through the
 project's own entry point for accepting changes, and reruns the originating symptom against the fix.
-A report that reads as [Conforming](#conform) has not been shown to be.
+Where the [Rule](#rule) was proven against a [Fixture](#fixture) under clause 3.3, the red run is against the
+retained [Fixture](#fixture). Where the originating symptom cannot be reproduced through the entry point,
+an incident or an observation at production scale, the reviewer says so and verifies the red and green
+runs alone. A verdict on a [Toolchain](#toolchain) or a project rests on the reviewer exercising the clauses
+named above, not on the claimant's report of having done so. A report that reads as [Conforming](#conform)
+has not been shown to be.
 
 A [Toolchain](#toolchain) MAY additionally audit its own [Rules](#rule) against clause 3.6, failing its own release if any
 [Rule](#rule) fails something without resolving to [Remediation docs](#remediation-docs). This is the strongest

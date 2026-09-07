@@ -137,8 +137,11 @@ Keyed on **the [Identifier](SPEC.md#identifier) exactly as printed**. A command,
 acceptable.
 
 Where one page documents a family of [Identifiers](SPEC.md#identifier) under a shared prefix, every full
-[Identifier](SPEC.md#identifier) in the family MUST appear on it verbatim. A prefix is not the string that was printed,
-and a lookup for the printed string that lands nowhere is a failure of this clause however good the page.
+[Identifier](SPEC.md#identifier) in the family MUST appear on it verbatim, in the installed artefact clause 6.2
+requires resolution to work from and not only in rendered output, or the page MUST state a pattern that
+mechanically determines, for any member, that this page is where it resolves. A prefix alone is neither.
+The audit under clause 10.1 MUST cover every member of the family, so that a member added to the
+[Rule](SPEC.md#rule) and not to the page fails the release.
 
 **Why**: method specification clause 8.3 requires the [Identifier](SPEC.md#identifier) to resolve without a human. An index
 keyed on anything else does not resolve it. This is the most commonly failed clause in this document
@@ -183,8 +186,11 @@ diverge from what is enforced, because the thing enforced is what produced it.
 ### 7.3 A project's own defences MUST appear in the listing alongside bundled ones
 
 A [Toolchain](SPEC.md#toolchain)'s [Defences](SPEC.md#defence) against its own source, the ones only its contributors can
-trigger, are that project's own [Defences](SPEC.md#defence) for this purpose, and MUST appear in the listing when the
-[Toolchain](SPEC.md#toolchain) is run on itself, however they are enabled.
+trigger, are that project's own [Defences](SPEC.md#defence) for this purpose, and MUST appear in the same listing
+clause 7.1 requires, meeting its content requirements in full, when the [Toolchain](SPEC.md#toolchain) is run on itself,
+however they are enabled. Where such a [Defence](SPEC.md#defence) is not expressible in the [Toolchain](SPEC.md#toolchain)'s own
+[Detectors](SPEC.md#detector), its entry MAY be sourced from wherever it is enabled, provided the listing stays derived
+under clause 7.2 rather than hand-maintained.
 
 **Why**: the [Practitioner](SPEC.md#practitioner) does not care which package a [Rule](SPEC.md#rule) came from. They care what defends the
 code in front of them, and a listing that covers only what the [Toolchain](SPEC.md#toolchain) ships describes somebody
