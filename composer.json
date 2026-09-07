@@ -1,0 +1,18 @@
+{
+    "name": "longtermsupport/defence-before-fix",
+    "description": "Defence Before Fix: the method and toolchain specifications. Documentation only.",
+    "type": "library",
+    "license": "CC-BY-4.0",
+    "keywords": ["defence-before-fix", "static-analysis", "quality", "specification"],
+    "homepage": "https://github.com/LongTermSupport/defence-before-fix",
+    "authors": [
+        {
+            "name": "Joseph Edmonds",
+            "homepage": "https://ltscommerce.dev"
+        }
+    ],
+    "require": {},
+    "archive": {
+        "exclude": ["/.github", "/_includes", "/_config.yml", "/spec-qa.py", "/package.json"]
+    }
+}
