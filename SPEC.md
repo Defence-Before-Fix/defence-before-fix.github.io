@@ -262,6 +262,16 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   missing [Rule](#rule) does. One report on code that does not carry the [Hazard](#hazard) is enough; there is no
   tolerated rate.
 
+**Both bounds measure breadth within one level; the level itself is tested against the report.**
+Where the [Defect](#defect) was reported as a behaviour, a check that reported clean having run nothing, a
+process that stopped before its work, the [Class](#class) a [Detector](#detector) can read usually sits one level
+below that [Hazard](#hazard): the mechanism of this [Instance](#instance), not the failure the report opens with.
+That [Class](#class) is the right one to build, because no [Detector](#detector) reads "this check still produces
+its signal". It is not the whole answer. The record MUST state whether the reported behaviour is also
+pinned by a check a [Runner](#runner) executes, under section 6, either one added with this remediation or
+an existing one named, and where neither is offered, why not. A [Class](#class) drawn at the mechanism with
+the behaviour left unpinned defends the [Instance](#instance) thoroughly and the report not at all.
+
 **Resolve the lower bound by searching independently, not by judgement.** The [Rule](#rule) is not the only
 way to find [Instances](#instance), and it is the least trustworthy one whilst it is still unproven. Search for
 other [Instances](#instance) by other means, whether that is a text search, reading the code, or asking someone
@@ -298,9 +308,12 @@ were one technique, and a third is owed.
 
 That turns the single-[Instance](#instance) case into something checkable rather than a matter of taste. If an
 independent search finds [Instances](#instance) the [Rule](#rule) missed, the [Class](#class) was drawn too narrowly and the [Rule](#rule)
-MUST be widened until it catches them. If an independent search finds nothing the [Rule](#rule) did not
-already have, then one [Instance](#instance) is a reasonable conclusion rather than an assumption, and the [Rule](#rule)
-is correct as written.
+MUST be widened until it catches them. Fixing those [Instances](#instance) by hand does not discharge the
+widening: they are still [Instances](#instance) the [Rule](#rule) missed, and where the [Practitioner](#practitioner) leaves the
+[Rule](#rule) unwidened because the wider check is harder to build without [False positives](#false-positive), that is
+the [Owner](#owner)'s decision under section 4 and is recorded as one. If an independent search finds nothing
+the [Rule](#rule) did not already have, then one [Instance](#instance) is a reasonable conclusion rather than an
+assumption, and the [Rule](#rule) is correct as written.
 
 **Why**: the [Class](#class) is the unit of work. Everything downstream operates on it, so an error here
 wastes all the effort that follows.
@@ -378,6 +391,11 @@ what a reviewer under section 7 checks out to reproduce the proof, and it is the
 [Rule](#rule) fired on real code rather than on a [Fixture](#fixture) alone. Where the [Defence](#defence) and the fix share a
 commit, the red run can only be reconstructed by hand-reverting lines the reviewer has to guess at,
 and the proof rests on that guess.
+Surviving as a commit means a fresh checkout of that commit reproduces the proof with nothing added.
+Anything the proof depends on that version control does not carry, an empty directory, an ignored
+file, a generated artefact, is state the commit does not contain, and a reviewer under section 7
+reproduces from a fresh checkout rather than from the [Practitioner](#practitioner)'s working tree, so a
+proof that passes only there does not survive.
 Both commits MUST remain individually reachable in the history the reviewer inspects. A merge that
 flattens them into one destroys the proof, so a project whose merge policy does that MUST keep the
 [Defence](#defence) commit reachable by another recorded reference, a tag or the retained branch, or MUST NOT
