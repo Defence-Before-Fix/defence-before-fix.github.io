@@ -9,8 +9,8 @@ method.
 
 First normative version. Six clauses in section 3, decision rights in section 4, conformance in
 section 7, operation under AI-assisted development in section 8. Hardened by eleven cold reads,
-three adversarial critique rounds and three execution tests on real defects in php-qa-ci and
-ts-qa-ci before publication.
+five adversarial critique rounds and six execution tests on real defects in php-qa-ci and
+ts-qa-ci before publication, each test judged by an independent reader against section 7.
 
 ## Toolchain specification (TOOLING-SPEC.md)
 
