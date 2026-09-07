@@ -282,7 +282,9 @@ threshold, and it is the standard clause 3.4 refers back to.
 
 Two techniques are independent when they would miss different things. A text search for the token
 and a reading of the code paths that consume the value are independent; two text searches for two
-spellings of the same token are one technique; asking someone who knows the system is a third. The
+spellings of the same token are one technique; asking someone who knows the system is a third. For a
+[Class](#class) defined by how code is spelt, writing the idiom the other ways it is commonly spelt and checking
+each against the [Rule](#rule) is a technique, because a search for one spelling misses every other. The
 [Rule](#rule) itself is never one of the techniques, because the search exists to check the [Rule](#rule).
 A clean run of the [Rule](#rule) is therefore not evidence of saturation either: "the [Rule](#rule) found nothing
 the reading had missed" is one technique and a [Rule](#rule) run, not two techniques, and the stopping
@@ -345,7 +347,9 @@ There are two kinds of gap and they lead to different work. The language having 
 lacking a mechanism the [toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an
 [Identifier](#identifier) resolver, is a mechanism gap, and it does not put the [Class](#class) out of reach: the
 [Practitioner](#practitioner) builds the [Rule](#rule), uses the substitutes clauses 3.3 and 3.6 already allow, and records
-the mechanism gap alongside it.
+the mechanism gap alongside it. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
+own obligations, such as a [Toolchain](#toolchain) that cannot run its [Defences](#defence) on its own source, is recorded
+against the [Toolchain](#toolchain)'s claim under section 7 as well, because that is the fact its [Owner](#owner) needs.
 
 **What happens next is not waiting.** Once the gap is recorded, the [Defect](#defect) is fixed conventionally
 under section 2, with its reproduction test, and the work moves on. What the record changes is the
@@ -584,6 +588,12 @@ The [Practitioner](#practitioner) MUST run the invocation the project uses to ac
 that invocation covers, and see the [Rule](#rule) reported there. A [Toolchain](#toolchain) that wraps its
 [Detectors](#detector) in its own command is asking for that command to be used, and a [Practitioner](#practitioner)
 who bypasses it has proven the [Rule](#rule) and not the [Defence](#defence).
+
+For a [Bundled defence](TOOLING-SPEC.md#bundled-defence), the project whose entry point demonstrates it is any project the
+[Toolchain](#toolchain) is genuinely installed into, the [Consuming project](TOOLING-SPEC.md#consuming-project) included, since that is
+where the [Rule](#rule) will be enforced. A mechanism gap that stops the [Toolchain](#toolchain) running its own entry
+point on its own source moves the demonstration to such a project; it does not weaken it, and the
+substitutes clause 3.2 allows for proving and for resolution do not extend to this clause.
 
 **Why**: the purpose is that the mistakes of the past become structurally impossible to repeat, and
 a [Warning](#warning) is not structure. A [Warning](#warning) is a suggestion, and suggestions decay under deadline
