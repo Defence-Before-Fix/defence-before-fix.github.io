@@ -339,6 +339,14 @@ removes the only value the word has.
 
 Machine-readably, in whatever form its ecosystem uses to record dependencies.
 
+The same declaration is where a gap against this document is recorded once it is known. A
+[Toolchain](SPEC.md#toolchain) that has learnt, from its own self-audit under section 10 or from a
+[Practitioner](SPEC.md#practitioner)'s report under the method's clause 3.2, that it fails a MUST in sections 4 to 8 or
+section 10 MUST record that gap alongside the version it declares, in the same file or one it names,
+and MUST NOT claim [Conformance](SPEC.md#conform) whilst the record is non-empty. A mechanism gap is by its
+nature one the [Toolchain](SPEC.md#toolchain) could not detect for itself, so the record is the only place its
+[Owner](SPEC.md#owner) and its consumers can learn of it.
+
 **Why**: a [Conformance](SPEC.md#conform) claim in a README is a sentence; a [Conformance](SPEC.md#conform) claim in a lock file is a fact
 about a specific installed artefact, checkable by anyone, including mechanically. It also fixes what
 "[Conforming](SPEC.md#conform)" meant at the point the claim was made, which a claim against a moving document cannot.

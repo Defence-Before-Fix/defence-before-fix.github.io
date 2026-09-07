@@ -262,7 +262,8 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   missing [Rule](#rule) does. One report on code that does not carry the [Hazard](#hazard) is enough; there is no
   tolerated rate.
 
-**Both bounds measure breadth within one level; the level itself is tested against the report.**
+**Both bounds measure breadth within one level; the level itself is a separate question, answered
+against the report.**
 Where the [Defect](#defect) was reported as a behaviour, a check that reported clean having run nothing, a
 process that stopped before its work, the [Class](#class) a [Detector](#detector) can read usually sits one level
 below that [Hazard](#hazard): the mechanism of this [Instance](#instance), not the failure the report opens with.
@@ -293,8 +294,9 @@ threshold, and it is the standard clause 3.4 refers back to.
 Two techniques are independent when they would miss different things. A text search for the token
 and a reading of the code paths that consume the value are independent; two text searches for two
 spellings of the same token are one technique; asking someone who knows the system is a third. For a
-[Class](#class) defined by how code is spelt, writing the idiom the other ways it is commonly spelt and checking
-each against the [Rule](#rule) is a technique, because a search for one spelling misses every other. The
+[Class](#class) defined by how code is spelt, writing the idiom the other ways it is commonly spelt and searching
+the codebase for each of them is a technique, because a search for one spelling misses every other;
+whether the [Rule](#rule) catches those spellings is the confirmation step, not the technique. The
 [Rule](#rule) itself is never one of the techniques, because the search exists to check the [Rule](#rule).
 A clean run of the [Rule](#rule) is therefore not evidence of saturation either: "the [Rule](#rule) found nothing
 the reading had missed" is one technique and a [Rule](#rule) run, not two techniques, and the stopping
@@ -363,6 +365,9 @@ lacking a mechanism the [toolchain specification](TOOLING-SPEC.md) requires, suc
 the mechanism gap alongside it. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
 own obligations, such as a [Toolchain](#toolchain) that cannot run its [Defences](#defence) on its own source, is recorded
 against the [Toolchain](#toolchain)'s claim under section 7 as well, because that is the fact its [Owner](#owner) needs.
+Where that record lives is the [Toolchain](#toolchain)'s own [Conformance](#conform) declaration, under the
+[toolchain specification](TOOLING-SPEC.md)'s clause 11.1; a [Practitioner](#practitioner) who cannot write there reports it by the channel
+section 4 names, as a blocked decision.
 
 **What happens next is not waiting.** Once the gap is recorded, the [Defect](#defect) is fixed conventionally
 under section 2, with its reproduction test, and the work moves on. What the record changes is the
@@ -391,9 +396,11 @@ what a reviewer under section 7 checks out to reproduce the proof, and it is the
 [Rule](#rule) fired on real code rather than on a [Fixture](#fixture) alone. Where the [Defence](#defence) and the fix share a
 commit, the red run can only be reconstructed by hand-reverting lines the reviewer has to guess at,
 and the proof rests on that guess.
-Surviving as a commit means a fresh checkout of that commit reproduces the proof with nothing added.
-Anything the proof depends on that version control does not carry, an empty directory, an ignored
-file, a generated artefact, is state the commit does not contain, and a reviewer under section 7
+Surviving as a commit means a fresh checkout of that commit, followed by the project's own declared
+setup, reproduces the proof. Dependency installation and generation driven by files the commit does
+carry, a manifest, a lockfile, are that setup. Anything else the proof depends on that version control
+does not carry, an empty directory, an ignored file, an artefact placed by hand, is state the commit
+does not contain, and a reviewer under section 7
 reproduces from a fresh checkout rather than from the [Practitioner](#practitioner)'s working tree, so a
 proof that passes only there does not survive.
 Both commits MUST remain individually reachable in the history the reviewer inspects. A merge that
@@ -610,8 +617,11 @@ who bypasses it has proven the [Rule](#rule) and not the [Defence](#defence).
 For a [Bundled defence](TOOLING-SPEC.md#bundled-defence), the project whose entry point demonstrates it is any project the
 [Toolchain](#toolchain) is genuinely installed into, the [Consuming project](TOOLING-SPEC.md#consuming-project) included, since that is
 where the [Rule](#rule) will be enforced. A mechanism gap that stops the [Toolchain](#toolchain) running its own entry
-point on its own source moves the demonstration to such a project; it does not weaken it, and the
-substitutes clause 3.2 allows for proving and for resolution do not extend to this clause.
+point on its own source moves the demonstration to such a project; it does not weaken it. The
+substitutes clause 3.2 allows, for proving under clause 3.3 and for resolution under clause 3.6, do
+not extend to this clause: the demonstration here is through an entry point or it is not made. A
+project created for the purpose, with the [Toolchain](#toolchain) installed into it from the source under
+test, is such a project, so a [Toolchain](#toolchain) with no consumer yet is not excused.
 
 **Why**: the purpose is that the mistakes of the past become structurally impossible to repeat, and
 a [Warning](#warning) is not structure. A [Warning](#warning) is a suggestion, and suggestions decay under deadline
@@ -696,6 +706,10 @@ they do not.
   is not authority to exclude the extension, and recording it as a known gap does not change whose
   decision it is. This does not reopen a [Class](#class) whose bounds a [Hazard](#hazard) sentence has settled, and
   it reaches no further than the one wider [Rule](#rule) already on the record.
+- Leaving a [Rule](#rule) narrower than an independent search under clause 3.1 showed it should be, where
+  the reason is that the wider check is harder to build without [False positives](#false-positive) rather
+  than that the [Hazard](#hazard) is absent from what it would add. The [Instances](#instance) the search found are
+  fixed regardless; what stays with the [Owner](#owner) is the [Class](#class) left partly undefended.
 
 The dividing line is that the [Practitioner](#practitioner) decides **how the [Defence](#defence) is built** and the [Owner](#owner)
 decides **what the codebase is permitted to keep**. An [Agent](#agent) MUST NOT [Baseline](#baseline), suppress or
