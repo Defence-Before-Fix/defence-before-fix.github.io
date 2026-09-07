@@ -1,0 +1,16 @@
+title: Defence Before Fix
+description: A phase that runs before a defect is fixed. The method and toolchain specifications.
+theme: jekyll-theme-primer
+lang: en-GB
+author: Joseph Edmonds
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+relative_links:
+  enabled: true
+  collections: false
+exclude:
+  - spec-qa.py
+  - LICENSE
+  - README.md.orig
+  - .github
