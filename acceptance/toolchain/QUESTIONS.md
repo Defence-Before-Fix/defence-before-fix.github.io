@@ -27,3 +27,8 @@ sections 4 to 6: 4.1, 4.2, 4.3, 4.4, 4.5, 5.1, 5.2, 5.3, 6.1, 6.2, 6.3. For each
 Partial or No and one line of reasoning. Then state whether the toolchain conforms under section
 9, whether it conforms with agent support, and whether section 8 applies to it. Finally, state
 whether the absence of a declaration affects the verdict.
+
+## 4. Confusion
+
+Quote any passage you found confusing on your one reading, with its clause number. Do not say what
+would make it clearer and do not propose any change. Write "none" if there was none.

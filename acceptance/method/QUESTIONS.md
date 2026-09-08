@@ -26,3 +26,8 @@ section 3: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6. For each give Yes, Partial or No and on
 reasoning. Then state whether the remediation conforms under section 7, whether the defence
 alone conforms, and which decision in the fixture, if any, section 4 says was not the
 practitioner's to take.
+
+## 4. Confusion
+
+Quote any passage you found confusing on your one reading, with its clause number. Do not say what
+would make it clearer and do not propose any change. Write "none" if there was none.

@@ -64,3 +64,10 @@ A reader who grades 3.6 Yes because the URL resolves has read the versioning sen
 differently, which counts against the document; a reader who grades 3.4 Yes has misread the
 fixture. A reader who attributes the suppression to 3.3 rather than 3.4 has read the narrowing
 passage of 3.3 as covering it, which is a fair reading and is not marked wrong.
+
+## 4. Confusion
+
+No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
+finding that blocks until the text is changed and a fresh cohort no longer quotes it. What to
+change is the editor's decision; the reader is not asked and any suggestion it volunteers is
+discarded unread.

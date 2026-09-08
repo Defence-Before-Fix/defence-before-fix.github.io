@@ -24,8 +24,10 @@ document, so that marking is mechanical. Each reader answers all of them.
 1. **Restatement.** In their own words, what the document asks of its subject, in at most six
    bullets. Keyed against the list of MUST clauses: a bullet is correct when it names an
    obligation the document actually states.
+
 2. **Load-bearing statements.** Three questions, fixed per document, each asking for one
    sentence and a quotation:
+
    - `SPEC.md`: what a practitioner does before fixing a defect, in order; who may baseline or
      suppress; what "conforms" means for a remediation.
    - `DETECTOR-SPEC.md`: what "conforms" means and whether a tool that predates the document can
@@ -33,38 +35,43 @@ document, so that marking is mechanical. Each reader answers all of them.
      documentation must live.
    - `TOOLING-SPEC.md`: where conformance is measured; how a grade is assigned when parts come
      from different sources; how many grades a project that ships tooling has.
+
 3. **Application.** A fixture case supplied with the questions, graded clause by clause with
    Yes, Partial or No and one line of reasoning. Keyed against the intended verdicts; a divergence
    counts against the document only when the reader's reasoning shows the clause was read
    differently, not when the fixture was misread.
 
-Every question has a keyed answer. The reader is asked to read and answer, nothing more. The
-cohort settles one thing: is the document clear, coherent and comprehensive. A reader getting
+4. **Confusion.** Any passage the reader found confusing on its one reading, quoted with its
+   clause number, and nothing else: not what would make it clearer, not a proposed change.
+
+The cohort settles one thing: is the document clear, coherent and comprehensive. A reader getting
 everything right after one reading proves it; a reader getting confused fails it. The document
 is designed by its editor to resolve the comprehension failures the cohort shows; the cohort is
 the acceptance layer, not the designer.
 
 ## What the cohort is not asked
 
-The cohort is never asked to rate the document, to say which clause it found hard, to say what
-would make a passage clearer, or to suggest any change. A low-strength reader is there to show
-whether the text can be followed; it is not there to design the text, and a document shaped by
-what its weakest reader says it wants is a document designed by that reader. Where a passage is
-unclear, the marked answers show it: a keyed answer missed, or a wrong verdict reasoned from the
-document. That is the only signal this test takes from the cohort, and the editor decides what
-to do about it. Earlier versions of this test carried an ambiguity question and a clarity rating;
-both were removed on the author's instruction for that reason, and neither is reinstated.
+The cohort may point at what it found confusing. It is never asked to rate the document, to say
+what would make a passage clearer, or to suggest any change, and a suggestion it volunteers is
+discarded unread. A low-strength reader is there to show whether the text can be followed; it is
+not there to design the text, and a document shaped by what its weakest reader says it wants is
+a document designed by that reader. The signals this test takes from the cohort are a keyed
+answer missed, a wrong verdict reasoned from the document, and a passage pointed at; what to do
+about any of them is the editor's decision. An earlier version of this test asked the reader
+what would make a clause clearer and for a clarity rating; both were removed on the author's
+instruction for that reason, and neither is reinstated.
 
 ## Pass criteria
 
 The change passes when all of the following hold on a single run:
 
-| Criterion                                       | Threshold                                                                             |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Load-bearing statements (question 2)            | **5 of 5** readers correct on every one                                               |
-| Restatement and application (questions 1 and 3) | **At least 4 of 5** readers correct on each keyed item                                |
-| A wrong answer traceable to the text            | **None.** A miss whose reasoning quotes the document is a finding, whatever the count |
-| Anything missed by one reader                   | Recorded; applied at the editor's discretion; does not block                          |
+| Criterion                                              | Threshold                                                                                                        |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Load-bearing statements (question 2)                   | **5 of 5** readers correct on every one                                                                          |
+| Restatement and application (questions 1 and 3)        | **At least 4 of 5** readers correct on each keyed item                                                           |
+| A wrong answer traceable to the text                   | **None.** A miss whose reasoning quotes the document is a finding, whatever the count                            |
+| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it |
+| Anything from one reader only                          | Recorded; applied at the editor's discretion; does not block                                                     |
 
 The asymmetry is deliberate. A load-bearing statement is the sentence the whole document exists
 to make, and one reader in five getting it wrong means one agent in five will act on the wrong
@@ -79,9 +86,9 @@ the test is working and the text is wrong; the fix is to the text, never to the 
 question, the fixture or the key. A threshold may be raised, a keyed question may be added, and a
 key may be corrected where it misquoted the document; none of those makes a failing run pass. The
 one time a threshold was relaxed, after three runs, the relaxation was reversed on the author's
-instruction and is recorded here so that it is not tried again. Removing the unkeyed questions
-was not a relaxation: it changed what the cohort is asked, not how strictly a keyed answer is
-marked.
+instruction and is recorded here so that it is not tried again. Removing the clarity rating and
+the request for suggestions was not a relaxation: it changed what the cohort is asked, not how
+strictly an answer is marked.
 
 ## After a failure
 

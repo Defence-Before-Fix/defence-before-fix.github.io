@@ -67,3 +67,10 @@ own identifiers in CI is a missed SHOULD, not a further MUST failure; the MUST t
 
 A reader who marks 7.1 No because the comment takes no reason has confused 7.1 with 7.2, which is
 SHOULD; that counts against the document if the reasoning quotes 7.1 or 7.2.
+
+## 4. Confusion
+
+No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
+finding that blocks until the text is changed and a fresh cohort no longer quotes it. What to
+change is the editor's decision; the reader is not asked and any suggestion it volunteers is
+discarded unread.

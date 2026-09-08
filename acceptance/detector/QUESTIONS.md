@@ -25,3 +25,8 @@ Grade Lintomatic 4.2, as described in the fixture, against every MUST clause in 
 4.1, 4.2, 4.3, 5.1, 5.2, 5.3, 5.4, 6.1, 6.2, 6.3, 7.1. For each give Yes, Partial or No and one
 line of reasoning. Then state whether Lintomatic conforms under section 8, and why. Finally,
 state whether clause 6.4 changes the verdict.
+
+## 4. Confusion
+
+Quote any passage you found confusing on your one reading, with its clause number. Do not say what
+would make it clearer and do not propose any change. Write "none" if there was none.

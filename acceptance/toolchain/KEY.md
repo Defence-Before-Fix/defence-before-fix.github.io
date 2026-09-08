@@ -76,3 +76,10 @@ A reader who grades 4.1 Yes on the grounds that Lintomatic "mostly" conforms has
 or the detector document's section 8 differently; it counts against this document only if the
 reasoning quotes 4.1. A reader who grades 4.1 Yes because they missed the two undocumented rules
 has misread the fixture.
+
+## 4. Confusion
+
+No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
+finding that blocks until the text is changed and a fresh cohort no longer quotes it. What to
+change is the editor's decision; the reader is not asked and any suggestion it volunteers is
+discarded unread.

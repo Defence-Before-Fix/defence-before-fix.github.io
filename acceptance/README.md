@@ -30,6 +30,6 @@ matches the document is a defect in this directory, not a reason to mark a reade
 
 Questions are fixed so that runs can be compared across versions. Adding a keyed question is
 allowed when a new clause is load-bearing; removing or softening one to make a run pass is not.
-Every question has a key. The reader is never asked to rate the document, name what it found
-hard, or say what would make it clearer: the cohort confirms comprehension and does not design
-the text.
+The reader may quote a passage it found confusing; it is never asked to rate the document, say
+what would make a passage clearer, or propose a change: the cohort confirms comprehension and
+does not design the text.
