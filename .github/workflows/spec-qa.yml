@@ -12,3 +12,5 @@ jobs:
           python-version: "3.12"
       - name: Terminology and link discipline over both specifications
         run: python3 spec-qa.py
+      - name: The tools register table matches the tool pages
+        run: python3 tools/build-register.py --check
