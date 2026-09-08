@@ -28,12 +28,14 @@ versions:
 stylesheet: /assets/css/site.css
 pages:
   - path: /
+    heading: "Defence Before Fix"
     title: Defence Before Fix
     nav: Home
     blurb: >-
       The home page: the definition, the six clauses, the documents, the tools that implement
       the method and the article in which it was first published.
   - path: /SPEC.html
+    heading: "Defence Before Fix: Method Specification"
     title: the method specification
     nav: Method specification
     blurb: >-
@@ -42,6 +44,7 @@ pages:
       remediation, a rule and a toolchain, and how the method operates under AI-assisted
       development.
   - path: /TOOLING-SPEC.html
+    heading: "Defence Before Fix: Toolchain Specification"
     title: the toolchain specification
     nav: Toolchain specification
     blurb: >-
@@ -49,24 +52,28 @@ pages:
       or QA pipeline: what a tool must offer so that the projects using it can follow the method,
       and what it takes to claim conformance.
   - path: /PRIMER.html
+    heading: "Defence Before Fix: Primer"
     title: the primer
     nav: Primer
     blurb: >-
       The short introduction, written at reading pace: why the bug you have just found is
       evidence worth keeping, and why the net is built before the catch is landed.
   - path: /tools/
+    heading: "Defence Before Fix: Tools Register"
     title: the tools register
     nav: Tools
     blurb: >-
       A register of QA tools grouped by language, each graded for readiness and for conformance,
       with a page per tool saying how it is and is not conformant, clause by clause.
   - path: /PROVENANCE.html
+    heading: "Defence Before Fix: Provenance"
     title: provenance
     nav: Provenance
     blurb: >-
       Who coined the term, when it was first published, and what is and is not being claimed
       for it.
   - path: /CHANGELOG.html
+    heading: "Defence Before Fix: Changelog"
     title: the changelog
     nav: Changelog
     blurb: >-
