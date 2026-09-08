@@ -32,7 +32,20 @@ construct the means has moved the obligation rather than met it.
 
 ## 2. Terminology
 
-Terms from the method specification carry over unchanged. These are additional.
+Terms from the method specification carry over unchanged. Every capitalised term links to its
+definition; the ones this document leans on most are, in short:
+
+| Term                                 | In one line                                                                                      |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| [Detector](SPEC.md#detector)         | A tool that reads code without executing it and reports what it finds                            |
+| [Rule](SPEC.md#rule)                 | One check a [Detector](SPEC.md#detector) evaluates                                               |
+| [Identifier](SPEC.md#identifier)     | The stable name printed with a finding that leads to its documentation                           |
+| [Practitioner](SPEC.md#practitioner) | Whoever is doing the work, a person or an [Agent](SPEC.md#agent)                                 |
+| [Toolchain](SPEC.md#toolchain)       | Everything a project assembles to run its checks through, [Detectors](SPEC.md#detector) included |
+| [Suppression](SPEC.md#suppression)   | Making a finding go away without fixing it                                                       |
+| [Baseline](SPEC.md#baseline)         | A recorded set of existing findings a [Rule](SPEC.md#rule) is told to ignore                     |
+
+These are additional.
 
 #### Rule author
 
@@ -188,13 +201,18 @@ place.
 ### 6.3 A bundled rule's documentation MUST ship with the rule, at a version tracked together
 
 Every [Identifier](SPEC.md#identifier) a [Bundled rule](#bundled-rule) can print MUST resolve, under clause 6.1,
-to a page in that shipped documentation. Where one page documents a family of
-[Identifiers](SPEC.md#identifier) under a shared prefix, every full [Identifier](SPEC.md#identifier) in the family
-SHOULD appear on it verbatim, in the installed artefact clause 6.2 requires resolution to work from
-and not only in rendered output, or the page SHOULD carry a pattern a mechanical check can execute,
-a glob or a regular expression rather than prose, that matches every member and no
-[Identifier](SPEC.md#identifier) outside the family. A prefix alone is neither, and a page that resolves a
-family only by a reader's inference resolves it for a human and not for the check clause 6.4 asks for.
+to a page in that shipped documentation.
+
+Where one page documents a family of [Identifiers](SPEC.md#identifier) under a shared prefix, the page
+SHOULD make every member findable by a mechanical check, in one of two ways:
+
+- every full [Identifier](SPEC.md#identifier) in the family appears on the page verbatim, in the installed
+  artefact clause 6.2 requires resolution to work from and not only in rendered output; or
+- the page carries a pattern the check can execute, a glob or a regular expression rather than
+  prose, that matches every member and no [Identifier](SPEC.md#identifier) outside the family.
+
+A prefix alone is neither, and a page that resolves a family only by a reader's inference resolves it
+for a human and not for the check clause 6.4 asks for.
 
 **Why**: method specification clause 3.6. A [Bundled rule](#bundled-rule) travels into codebases its author
 will never see. If its documentation lives only in the [Detector](SPEC.md#detector)'s repository or on its

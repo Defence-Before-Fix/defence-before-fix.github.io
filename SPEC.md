@@ -1,7 +1,7 @@
 # Defence Before Fix: Method Specification
 
-**Version**: 1.0.0, published 2026-09-08
-**Companion to**: [the toolchain specification](TOOLING-SPEC.md), version 0.1.0
+**Version**: 1.0.1, published 2026-09-08
+**Companion to**: [the detector specification](DETECTOR-SPEC.md), version 1.0.0, and [the toolchain specification](TOOLING-SPEC.md), version 0.2.0
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
 
@@ -29,7 +29,7 @@ US spelling: **Defense Before Fix**. Abbreviated [DBF](#dbf) throughout.
 
 ## Status of this document
 
-This is version 1.0.0 of the specification. It is normative: section 3 defines the method,
+This is version 1.0.1 of the specification. It is normative: section 3 defines the method,
 section 4 states who decides what, and section 7 defines what [Conformance](#conform) means and who may claim
 it.
 
@@ -318,6 +318,11 @@ the [Owner](#owner)'s decision under section 4 and is recorded as one. If an ind
 the [Rule](#rule) did not already have, then one [Instance](#instance) is a reasonable conclusion rather than an
 assumption, and the [Rule](#rule) is correct as written.
 
+**What this clause leaves on the record**, before clause 3.2 begins: the [Class](#class), spelt as a
+pattern; the [Hazard](#hazard) sentence; the two search techniques and what each found; and the next
+wider [Rule](#rule) that was not built, with the reason. A record missing any of the four has not
+finished this clause.
+
 **Why**: the [Class](#class) is the unit of work. Everything downstream operates on it, so an error here
 wastes all the effort that follows.
 
@@ -422,8 +427,13 @@ of the wider pattern the [Rule](#rule) does not catch, retained as the record of
 [Instance](#instance) and forty-nine others has done exactly what it was built to do, and the forty-nine are
 the reason the method exists.
 
-**The test for whether [Narrowing](#narrowing) is legitimate is the [Hazard](#hazard), never the count.** Ask what the
-[Narrowing](#narrowing) would exclude:
+**The test for whether [Narrowing](#narrowing) is legitimate is the [Hazard](#hazard), never the count.** The
+test has two halves, and the rest of this passage says how each is checked. Where the
+[Practitioner](#practitioner) can write down why the [Hazard](#hazard) cannot arise in the code being
+excluded, that is [Narrowing](#narrowing): the [Practitioner](#practitioner) decides it and records the
+sentence. Where they cannot, it is [Suppression](#suppression): it goes to the [Owner](#owner) under
+section 4 and the [Practitioner](#practitioner) does not decide it. Ask what the [Narrowing](#narrowing)
+would exclude:
 
 - If the excluded code **carries the [Hazard](#hazard)**, the [Narrowing](#narrowing) is [Suppression](#suppression) and is forbidden,
   however many or few [Instances](#instance) it removes.
@@ -956,7 +966,7 @@ re-open it.
 
 ## 9. Citation
 
-> Edmonds, Joseph. *Defence Before Fix*, version 1.0.0. First published 22 February 2026.
+> Edmonds, Joseph. *Defence Before Fix*, version 1.0.1. First published 22 February 2026.
 > <https://ltscommerce.dev>
 
 ## Appendix A: Instructing an agent
@@ -1020,7 +1030,8 @@ This appendix restates sections 3 and 4; where the two differ, the sections gove
 
 ## Changelog
 
-| Version | Date       | Change                                                                                                                                                                                                                          |
-| ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls.   |
-| 1.0.0   | 2026-09-08 | Editorial, no version change: two terminology entries and two section 7 paragraphs name the [detector specification](DETECTOR-SPEC.md) 1.0.0 alongside the [toolchain specification](TOOLING-SPEC.md) 0.2.0. No clause changed. |
+| Version | Date       | Change                                                                                                                                                                                                                                                                      |
+| ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls.                                               |
+| 1.0.0   | 2026-09-08 | Editorial, no version change: two terminology entries and two section 7 paragraphs name the [detector specification](DETECTOR-SPEC.md) 1.0.0 alongside the [toolchain specification](TOOLING-SPEC.md) 0.2.0. No clause changed.                                             |
+| 1.0.1   | 2026-09-08 | Clarity, no obligation changed: clause 3.1 closes with the four things it leaves on the record, and clause 3.3 opens its [Narrowing](#narrowing) passage with the two-halves test the passage then checks. Both were named by two or more readers of the acceptance cohort. |

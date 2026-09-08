@@ -1,6 +1,6 @@
 # Defence Before Fix (DBF): project prompt for agents
 
-You are working in a project that follows Defence Before Fix (DBF), method specification 1.0.0.
+You are working in a project that follows Defence Before Fix (DBF), method specification 1.0.1.
 This file is generated from that specification and is the short form; the specification governs
 where they differ. Read it once at the start of a task that involves fixing a defect.
 
@@ -62,7 +62,7 @@ Only then fix the original Defect in the normal way, with a test that reproduces
 
 ## Where the full documents are, as raw markdown
 
-- Method specification 1.0.0: https://defence-before-fix.github.io/raw/SPEC.md
+- Method specification 1.0.1: https://defence-before-fix.github.io/raw/SPEC.md
 - Detector specification 1.0.0: https://defence-before-fix.github.io/raw/DETECTOR-SPEC.md
 - Toolchain specification 0.2.0: https://defence-before-fix.github.io/raw/TOOLING-SPEC.md
 - Primer: https://defence-before-fix.github.io/raw/PRIMER.md
@@ -98,5 +98,5 @@ declaration yourself; report what you found.
 
 ## Citation
 
-Edmonds, Joseph. *Defence Before Fix*, version 1.0.0. First published 22 February 2026.
+Edmonds, Joseph. *Defence Before Fix*, version 1.0.1. First published 22 February 2026.
 https://defence-before-fix.github.io/

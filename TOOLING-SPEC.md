@@ -41,8 +41,24 @@ part of its [Toolchain](SPEC.md#toolchain) and are judged as such.
 
 ## 2. Terminology
 
-Terms from the method specification and the [detector specification](DETECTOR-SPEC.md) carry over unchanged. These are
-additional.
+Terms from the method specification and the [detector specification](DETECTOR-SPEC.md) carry over unchanged. Every
+capitalised term links to its definition; the ones this document leans on most are, in short:
+
+| Term                                          | In one line                                                                                                         |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [Detector](SPEC.md#detector)                  | A tool that reads code without executing it and reports what it finds                                               |
+| [Runner](SPEC.md#runner)                      | A tool that executes code, a test suite or a compilation, and reports what happened                                 |
+| [Rule](SPEC.md#rule)                          | One check a [Detector](SPEC.md#detector) evaluates                                                                  |
+| [Defence](SPEC.md#defence)                    | A [Rule](SPEC.md#rule) with its documentation, in force and [Blocking](SPEC.md#blocking)                            |
+| [Identifier](SPEC.md#identifier)              | The stable name printed with a finding that leads to its documentation                                              |
+| [Blocking](SPEC.md#blocking)                  | Fails the run rather than issuing a [Warning](SPEC.md#warning)                                                      |
+| [Exception](SPEC.md#exception)                | A recorded, justified decision to leave an [Instance](SPEC.md#instance) unfixed or a [Rule](SPEC.md#rule) unapplied |
+| [Practitioner](SPEC.md#practitioner)          | Whoever is doing the work, a person or an [Agent](SPEC.md#agent)                                                    |
+| [Owner](SPEC.md#owner)                        | The human who decides what the codebase may keep                                                                    |
+| [Bundled rule](DETECTOR-SPEC.md#bundled-rule) | A [Rule](SPEC.md#rule) a [Detector](SPEC.md#detector) ships rather than one the project wrote                       |
+| [Harness](DETECTOR-SPEC.md#harness)           | The route by which one [Rule](SPEC.md#rule) is run against supplied code on its own                                 |
+
+These are additional.
 
 #### Consuming project
 
@@ -96,7 +112,11 @@ A [Toolchain](SPEC.md#toolchain) MUST NOT route a [Defence](SPEC.md#defence) thr
 2. **How the wrapped pair is judged.** This clause holds when the [Detector](SPEC.md#detector) and the
    [Toolchain](SPEC.md#toolchain)'s wrapping together satisfy every MUST of sections 4 to 7 of the
    [detector specification](DETECTOR-SPEC.md), exercised as its clause 8.1 describes. The
-   [Detector](SPEC.md#detector)'s own verdict under that document is unchanged by the wrapping.
+   [Detector](SPEC.md#detector)'s own verdict under that document is unchanged by the wrapping. A gap
+   in the [Detector](SPEC.md#detector) that the wrapping leaves open, a [Bundled rule](DETECTOR-SPEC.md#bundled-rule)
+   with no documentation for example, fails this clause, whether or not a clause below names the
+   same gap again; satisfying most of that document is not [Conformance](SPEC.md#conform) to it, any
+   more than satisfying most of this one is.
 3. **What cannot be wrapped.** A [Detector](SPEC.md#detector) that cannot host a bespoke [Rule](SPEC.md#rule) at all
    cannot be wrapped into [Conformance](SPEC.md#conform), and no [Defence](SPEC.md#defence) is routed through it.
    It MAY still run as one of the [Toolchain](SPEC.md#toolchain)'s checks, as a formatter or a
@@ -238,10 +258,12 @@ Not a documentation convention. A path the [Toolchain](SPEC.md#toolchain) loads.
 When the [Toolchain](SPEC.md#toolchain) reads it, the written decision and the enforced decision are the same object, and
 neither can drift from the other.
 
-### 6.2 Every exception in the project record MUST carry a written justification
+### 6.2 Every exception in the project record MUST carry a written justification that names the hazard and the scope, and the toolchain MUST reject a generic one
 
-The [Toolchain](SPEC.md#toolchain) MUST require the justification, MUST NOT supply a default, and MUST reject an
-[Exception](SPEC.md#exception) that omits it.
+The [Toolchain](SPEC.md#toolchain) MUST require the justification, MUST NOT supply a default, MUST reject an
+[Exception](SPEC.md#exception) that omits it, and MUST reject one whose justification could be pasted onto
+any [Exception](SPEC.md#exception) unchanged. A field that is merely present and non-empty does not satisfy
+this clause.
 
 **Why**: an [Exception](SPEC.md#exception) without a reason is indistinguishable from an [Exception](SPEC.md#exception) nobody would defend,
 and the person who could tell them apart is usually gone. Requiring the sentence is the whole

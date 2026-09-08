@@ -23,7 +23,7 @@ licence:
   name: CC BY 4.0
   url: https://creativecommons.org/licenses/by/4.0/
 versions:
-  method: 1.0.0
+  method: 1.0.1
   detector: 1.0.0
   toolchain: 0.2.0
   published: 8 September 2026
@@ -42,7 +42,7 @@ pages:
     title: the method specification
     nav: Method specification
     blurb: >-
-      Method specification 1.0.0, the normative document: what a practitioner does when a defect
+      Method specification 1.0.1, the normative document: what a practitioner does when a defect
       is found, in six numbered clauses with the reasoning for each, conformance for a
       remediation, a rule and a toolchain, and how the method operates under AI-assisted
       development.

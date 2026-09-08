@@ -18,7 +18,8 @@ Zigpipe is a Zig service. Its quality checks are assembled from three sources:
   script `zig-qa list` that reads `lintomatic.toml` and prints every active rule with its
   identifier, a one-line summary and the path to its documentation. The six `zq.*` rules'
   documentation ships in the package under `docs/rules/`. `zig-qa run` prints Lintomatic's
-  output unchanged, one line per finding.
+  output unchanged, one line per finding, and `zig-qa run <path>` limits the run to a directory or
+  a single file. Both scripts run locally with no service and are what CI runs.
 - **Project rules**, four Lintomatic rules the Zigpipe team wrote, identifiers `proj.*`,
   documented in `docs/defences/` in the repository, one page per identifier, each saying what
   the rule forbids, why, and what to write instead. `zig-qa list` includes them.

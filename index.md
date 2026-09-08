@@ -35,14 +35,14 @@ version.
 
 ## The specifications
 
-| Document                                       | What it is                                                    | Version |
-| ---------------------------------------------- | ------------------------------------------------------------- | ------- |
-| [The method specification](SPEC.md)            | Normative. What a practitioner does when a defect is found.   | 1.0.0   |
-| [The detector specification](DETECTOR-SPEC.md) | What a tool that reads code must offer so that a rule can be written, proven, run and resolved in it. | 1.0.0 |
-| [The toolchain specification](TOOLING-SPEC.md) | What a project's assembled tooling must offer beyond its detectors, measured at the project level. | 0.2.0   |
-| [Primer](PRIMER.md)                            | The short introduction.                                       |         |
-| [Provenance](PROVENANCE.md)                    | Who coined the term, when, and what is and is not claimed.    |         |
-| [Changelog](CHANGELOG.md)                      | Changes to each document, versioned independently.            |         |
+| Document                                       | What it is                                                                                            | Version |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
+| [The method specification](SPEC.md)            | Normative. What a practitioner does when a defect is found.                                           | 1.0.1   |
+| [The detector specification](DETECTOR-SPEC.md) | What a tool that reads code must offer so that a rule can be written, proven, run and resolved in it. | 1.0.0   |
+| [The toolchain specification](TOOLING-SPEC.md) | What a project's assembled tooling must offer beyond its detectors, measured at the project level.    | 0.2.0   |
+| [Primer](PRIMER.md)                            | The short introduction.                                                                               |         |
+| [Provenance](PROVENANCE.md)                    | Who coined the term, when, and what is and is not claimed.                                            |         |
+| [Changelog](CHANGELOG.md)                      | Changes to each document, versioned independently.                                                    |         |
 
 The method specification is the source of truth for what the method is. Where anything else
 describing DBF disagrees with it, including the article in which the term was first

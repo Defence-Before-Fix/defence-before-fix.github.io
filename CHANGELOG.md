@@ -5,6 +5,14 @@ reissuing the method.
 
 ## Method specification (SPEC.md)
 
+### 1.0.1, 2026-09-08
+
+Clarity only; no obligation changed. Clause 3.1 now closes with the four things it leaves on the
+record before clause 3.2 begins, and clause 3.3 opens its narrowing passage with the two-halves
+test the passage then checks. Both were named independently by two or more readers of the first
+acceptance cohort under [ACCEPTANCE.md](ACCEPTANCE.md). The header names the detector
+specification 1.0.0 and toolchain specification 0.2.0 as companions.
+
 ### 1.0.0, 2026-09-08
 
 First normative version, published the day the repository went public. Six clauses in section 3, decision rights in section 4, conformance in
