@@ -43,7 +43,9 @@ REFERENCE = re.compile(
     re.I,
 )
 PROTECTED = re.compile(r"`[^`]*`|\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\[[^\]]*\]|https?://\S+")
-VERSION_WORDS = re.compile(r"(?:version|v|since|from|at|php|python|node|go|zig|rust|typescript|attribution)\s*$", re.I)
+# A number after one of these is a version, a licence or a release, never a clause. Lintomatic is
+# the acceptance fixture's detector, whose name carries its version.
+VERSION_WORDS = re.compile(r"(?:version|v|since|from|at|php|python|node|go|zig|rust|typescript|attribution|lintomatic)\s*$", re.I)
 SENTENCE_END = re.compile(r"[.;:!?]\s|\n")
 TABLE_DOC = re.compile(r"^\|\s*(Method|Detector|Toolchain)\s*\|", re.I)
 LINK = re.compile(r"\[([^\]]+)\]\(([^)#]*)#([^)]+)\)")
@@ -103,10 +105,11 @@ def references(text: str, default: str) -> list[Ref]:
             continue
         number = m.group("num")
         if m.group("doc"):
+            # A qualifier governs the rest of the paragraph, until the next qualifier.
             doc = m.group("doc").lower()
-            end = SENTENCE_END.search(text, m.end())
-            carried, carried_until = doc, (end.start() if end else len(text))
-        elif table_doc:
+            carried, carried_until = doc, len(text)
+        elif table_doc and not refs:
+            # The document column governs the clause column, not the evidence cell after it.
             doc = table_doc
         elif carried and num_start <= carried_until:
             doc = carried
@@ -204,7 +207,7 @@ PAGE_DEFAULTS = {
     "tools/index.md": "detector",
 }
 SECTION_SWITCH = re.compile(r"^## (Method|Detector|Toolchain) specification", re.I)
-KIND = re.compile(r"^(?:\*\*Kind\*\*|kind): (tool|toolchain)\b", re.M)
+KIND = re.compile(r"^kind: (tool|toolchain)\b", re.M)
 
 
 def pages() -> list[Path]:
@@ -237,10 +240,20 @@ def page_findings(path: Path) -> list[Finding]:
     default = page_default(path)
     rel = rel_for(path)
     findings: list[Finding] = []
+    in_front_matter = False
     for n, line in enumerate(text.splitlines(), 1):
+        # Front matter stays plain text: the register generator links the summary itself.
+        if n == 1 and line.strip() == "---":
+            in_front_matter = True
+            continue
+        if in_front_matter:
+            in_front_matter = line.strip() != "---"
+            continue
         m = SECTION_SWITCH.match(line)
         if m:
             default = m.group(1).lower()
+        if line.startswith("#"):
+            continue
         for f in check(line, default, rel):
             findings.append(Finding(f.kind, n, f.detail))
     return findings

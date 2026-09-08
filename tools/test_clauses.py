@@ -55,10 +55,15 @@ class LinkifyTest(unittest.TestCase):
         text = "version 2.2.13, PHP 8.4, `rule 4.1`, [4.1](../DETECTOR-SPEC.md#41-x), Attribution 4.0 and 0.2.0"
         self.assertEqual(clauses.linkify(text, default="detector", rel="../"), text)
 
-    def test_table_row_document_column_wins(self) -> None:
-        row = "| Toolchain | 4.1    | Yes     | evidence |"
+    def test_table_row_document_column_governs_the_clause_cell_only(self) -> None:
+        row = "| Toolchain | 4.1    | No     | as wrapped fails 5.2 |"
         out = clauses.linkify(row, default="detector", rel="../")
         self.assertIn("[4.1](../TOOLING-SPEC.md#41-", out)
+        self.assertIn("[5.2](../DETECTOR-SPEC.md#52-", out)
+
+    def test_qualifier_governs_the_rest_of_the_paragraph(self) -> None:
+        out = clauses.linkify("Under detector clause 4.1 rules enter. Clause 4.2 is the harness.", default="toolchain", rel="")
+        self.assertIn("[4.2](DETECTOR-SPEC.md#42-", out)
 
     def test_qualifier_carries_across_a_list(self) -> None:
         out = clauses.linkify("detector clauses 4.2, 5.2 and 6.1, which fails toolchain 4.1", default="method", rel="")
