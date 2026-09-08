@@ -428,12 +428,15 @@ of the wider pattern the [Rule](#rule) does not catch, retained as the record of
 the reason the method exists.
 
 **The test for whether [Narrowing](#narrowing) is legitimate is the [Hazard](#hazard), never the count.** The
-test has two halves, and the rest of this passage says how each is checked. Where the
-[Practitioner](#practitioner) can write down why the [Hazard](#hazard) cannot arise in the code being
-excluded, that is [Narrowing](#narrowing): the [Practitioner](#practitioner) decides it and records the
-sentence. Where they cannot, it is [Suppression](#suppression): it goes to the [Owner](#owner) under
-section 4 and the [Practitioner](#practitioner) does not decide it. Ask what the [Narrowing](#narrowing)
-would exclude:
+test has two halves, and the rest of this passage says how each is checked:
+
+- **[Narrowing](#narrowing)**, which the [Practitioner](#practitioner) decides: they can write down why
+  the [Hazard](#hazard) cannot arise in the code being excluded, and they record that sentence.
+- **[Suppression](#suppression)**, which the [Owner](#owner) decides under section 4: the sentence
+  cannot be written, so the exclusion is not the [Practitioner](#practitioner)'s to make. Doubt is
+  [Suppression](#suppression); [Narrowing](#narrowing) needs confidence backed by the sentence.
+
+Ask what the [Narrowing](#narrowing) would exclude:
 
 - If the excluded code **carries the [Hazard](#hazard)**, the [Narrowing](#narrowing) is [Suppression](#suppression) and is forbidden,
   however many or few [Instances](#instance) it removes.

@@ -115,7 +115,10 @@ file path, [Class](SPEC.md#class) name or position in a configuration file. The 
 once. The [Detector](SPEC.md#detector) MUST print it, unaltered, alongside every finding the [Rule](SPEC.md#rule)
 reports, in its default output and in every machine-readable format it offers. A prefix the
 [Detector](SPEC.md#detector) adds from the invoking directory or the [Rule](SPEC.md#rule)'s location is derived from
-the file path. A namespace the [Rule author](#rule-author) assigns once in configuration is not.
+the file path. A namespace the [Rule author](#rule-author) assigns once in configuration is not. For
+example, `rules/no-raw-sql`, produced from where the [Rule](SPEC.md#rule)'s file happens to sit, is
+derived and changes when the file moves; `proj.no-raw-sql`, written once in the configuration and
+printed unchanged wherever the [Rule](SPEC.md#rule) runs, is stable.
 
 **Why**: the [Identifier](SPEC.md#identifier) is the only string that reaches the [Practitioner](SPEC.md#practitioner) and the
 only key their lookup can use. An [Identifier](SPEC.md#identifier) that changes when a [Rule](SPEC.md#rule) is renamed
@@ -211,8 +214,10 @@ SHOULD make every member findable by a mechanical check, in one of two ways:
 - the page carries a pattern the check can execute, a glob or a regular expression rather than
   prose, that matches every member and no [Identifier](SPEC.md#identifier) outside the family.
 
-A prefix alone is neither, and a page that resolves a family only by a reader's inference resolves it
-for a human and not for the check clause 6.4 asks for.
+For example, a page for the family `LM-01xx` either lists `LM-0100`, `LM-0101` and every other
+member that exists, or carries the pattern `^LM-01[0-9]{2}$`. A prefix alone, "everything under
+`LM-01` is documented here", is neither, and a page that resolves a family only by a reader's inference
+resolves it for a human and not for the check clause 6.4 asks for.
 
 **Why**: method specification clause 3.6. A [Bundled rule](#bundled-rule) travels into codebases its author
 will never see. If its documentation lives only in the [Detector](SPEC.md#detector)'s repository or on its

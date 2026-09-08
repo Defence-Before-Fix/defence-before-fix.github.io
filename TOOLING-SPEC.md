@@ -39,6 +39,11 @@ building the mechanism first. A [Toolchain](SPEC.md#toolchain) that leaves the p
 moved the obligation rather than met it. Where the project builds the means itself, those scripts are
 part of its [Toolchain](SPEC.md#toolchain) and are judged as such.
 
+**How to read this document.** It is self-contained for grading a [Toolchain](SPEC.md#toolchain): the
+table in section 2 glosses every term it borrows, each clause states its obligation in its heading
+and first sentence, and the **Why** paragraph beneath is reasoning, not a further requirement. A
+link is there for depth and is not a prerequisite for the sentence that carries it.
+
 ## 2. Terminology
 
 Terms from the method specification and the [detector specification](DETECTOR-SPEC.md) carry over unchanged. Every
@@ -109,14 +114,17 @@ A [Toolchain](SPEC.md#toolchain) MUST NOT route a [Defence](SPEC.md#defence) thr
    requires, the [Toolchain](SPEC.md#toolchain) MAY supply it around the [Detector](SPEC.md#detector), a
    [Harness](DETECTOR-SPEC.md#harness) script or a resolver of its own, and the [Detector](SPEC.md#detector)
    together with that wrapping is then what the [Practitioner](SPEC.md#practitioner) uses and what is judged.
-2. **How the wrapped pair is judged.** This clause holds when the [Detector](SPEC.md#detector) and the
-   [Toolchain](SPEC.md#toolchain)'s wrapping together satisfy every MUST of sections 4 to 7 of the
-   [detector specification](DETECTOR-SPEC.md), exercised as its clause 8.1 describes. The
-   [Detector](SPEC.md#detector)'s own verdict under that document is unchanged by the wrapping. A gap
-   in the [Detector](SPEC.md#detector) that the wrapping leaves open, a [Bundled rule](DETECTOR-SPEC.md#bundled-rule)
-   with no documentation for example, fails this clause, whether or not a clause below names the
-   same gap again; satisfying most of that document is not [Conformance](SPEC.md#conform) to it, any
-   more than satisfying most of this one is.
+2. **How the wrapped pair is judged.** Wrapping can add a mechanism; it cannot excuse a gap. This
+   clause holds when the [Detector](SPEC.md#detector) and the [Toolchain](SPEC.md#toolchain)'s wrapping
+   together satisfy every MUST of sections 4 to 7 of the [detector specification](DETECTOR-SPEC.md),
+   exercised as its clause 8.1 describes, and it fails when any gap is left open after wrapping,
+   whether or not a clause below names the same gap again. For example: a [Detector](SPEC.md#detector)
+   that resolves none of its [Identifiers](SPEC.md#identifier) offline, wrapped by a
+   [Toolchain](SPEC.md#toolchain) resolver keyed on the [Identifier](SPEC.md#identifier), passes; a
+   [Detector](SPEC.md#detector) with two undocumented [Bundled rules](DETECTOR-SPEC.md#bundled-rule) that the
+   [Toolchain](SPEC.md#toolchain) does not document either fails. The [Detector](SPEC.md#detector)'s own
+   verdict under that document is unchanged by the wrapping, and satisfying most of that document is
+   not [Conformance](SPEC.md#conform) to it, any more than satisfying most of this one is.
 3. **What cannot be wrapped.** A [Detector](SPEC.md#detector) that cannot host a bespoke [Rule](SPEC.md#rule) at all
    cannot be wrapped into [Conformance](SPEC.md#conform), and no [Defence](SPEC.md#defence) is routed through it.
    It MAY still run as one of the [Toolchain](SPEC.md#toolchain)'s checks, as a formatter or a
