@@ -20,7 +20,7 @@ HERE = Path(__file__).parent
 INDEX = HERE / "index.md"
 START = "<!-- REGISTER:START -->"
 END = "<!-- REGISTER:END -->"
-FIELD = re.compile(r"\*\*(\w+)\*\*: ([^·]+?)(?: · |$)")
+FIELD = re.compile(r"\*\*([\w ]+?)\*\*: ([^·]+?)(?: · |$)")
 LANGUAGE_ORDER = [
     "PHP",
     "JavaScript and TypeScript",

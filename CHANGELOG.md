@@ -13,6 +13,10 @@ test the passage then checks. Both were named independently by two or more reade
 acceptance cohort under [ACCEPTANCE.md](ACCEPTANCE.md). The header names the detector
 specification 1.0.0 and toolchain specification 0.2.0 as companions.
 
+Accepted by a cold cohort of five Haiku readers in three runs; findings applied: 3.1 closes with
+its record, 3.3 opens with the two-halves test as two bullets. Clause 3.1 remains the clause
+readers name as read twice; every reader graded it as keyed, so it is recorded, not blocking.
+
 ### 1.0.0, 2026-09-08
 
 First normative version, published the day the repository went public. Six clauses in section 3, decision rights in section 4, conformance in
@@ -35,6 +39,11 @@ because 0.1.0 asked it to enforce a project's suppression governance and to decl
 before it could conform, and neither is a detector's to do. Conformance is on evidence; the
 declaration is the claim and the known-gap record.
 
+Accepted by a cold cohort of five Haiku readers in three runs; findings applied: 6.3's family
+rule as two listed alternatives with a worked example, a derived-versus-assigned example in 4.3,
+a seven-term gloss in section 2. Clause 6.3 remains the clause readers name as read twice; every
+reader graded it as keyed, so it is recorded, not blocking.
+
 ## Toolchain specification (TOOLING-SPEC.md)
 
 ### 0.2.0, 2026-09-08
@@ -50,6 +59,14 @@ levels, its own and its artefact's, graded and declared separately. The declarat
 clause 11.1 is no longer a condition of conformance; a claim with a non-empty gap record is not a
 claim of conformance. Enumeration, project record, agent context and self-audit are unchanged in
 substance and renumbered as sections 5 to 8, with conformance in section 9.
+
+Not yet accepted. Three runs of a cold cohort of five Haiku readers: every load-bearing statement
+and every fixture verdict correct in every run, and the findings applied (4.1 point 2 leads with
+"wrapping can add a mechanism; it cannot excuse a gap" and a two-case example, 6.2's heading
+carries the generic-justification rejection, an eleven-term gloss and a reading note in sections
+1 and 2), but the clarity median held at 3 of 5 across all three runs, below the threshold of 4,
+with the same cause named each time: the density of linked terms and cross-references to the two
+companion documents. The decision on that cause is recorded in the repository's plan journal.
 
 ### 0.1.0, 2026-09-08
 

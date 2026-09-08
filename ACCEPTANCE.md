@@ -45,20 +45,28 @@ document, so that marking is mechanical. Each reader answers all of them.
 
 The change passes when all of the following hold on a single run:
 
-| Criterion                                            | Threshold                                                                             |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Load-bearing statements (question 2)                 | **5 of 5** readers correct on every one                                               |
-| Restatement and application (questions 1 and 3)      | **At least 4 of 5** readers correct on each keyed item                                |
-| A wrong answer traceable to the text                 | **None.** A miss whose reasoning quotes the document is a finding, whatever the count |
-| Ambiguity named independently by two or more readers | **None outstanding.** It is a finding and blocks until fixed                          |
-| Ambiguity named by one reader                        | Recorded; applied at the editor's discretion; does not block                          |
-| Clarity (question 5)                                 | Median **4 or above**, no reader **below 3**                                          |
+| Criterion                                                      | Threshold                                                                                                                                                                |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Load-bearing statements (question 2)                           | **5 of 5** readers correct on every one                                                                                                                                  |
+| Restatement and application (questions 1 and 3)                | **At least 4 of 5** readers correct on each keyed item                                                                                                                   |
+| A wrong answer traceable to the text                           | **None.** A miss whose reasoning quotes the document is a finding, whatever the count                                                                                    |
+| Two passages that disagree (question 4b), named by two or more | **None outstanding.** A contradiction is a finding and blocks until fixed                                                                                                |
+| A clause read twice (question 4a), named by two or more        | **A finding the editor must disposition** in the record, by a fix or a stated reason; it blocks only when a reader also answered a keyed question on that clause wrongly |
+| Anything named by one reader                                   | Recorded; applied at the editor's discretion; does not block                                                                                                             |
+| Clarity (question 5)                                           | Median **4 or above**, no reader **below 3**                                                                                                                             |
 
 The asymmetry is deliberate. A load-bearing statement is the sentence the whole document exists
 to make, and one reader in five getting it wrong means one agent in five will act on the wrong
 reading; unanimity is the only acceptable result there. Everywhere else a single divergent reader
 is more likely to be the reader than the text, so four of five is tolerated, but a miss that the
 reader can justify from the document is always the document's fault.
+
+Question 4a is treated as a difficulty signal rather than a defect, because the first three runs
+of this test showed why: every document has a hardest clause, a low-strength reader asked to name
+one will name it whether or not it misled them, and after the asked-for example was added the same
+clause was named again with the same ask. A clause that was read twice and then answered correctly
+by every reader has cost attention, not understanding. A clause that was read twice and answered
+wrongly is ambiguous, and that is what blocks.
 
 ## After a failure
 
