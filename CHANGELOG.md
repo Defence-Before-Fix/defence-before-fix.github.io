@@ -29,7 +29,8 @@ search record, since step 2 and the record the clause requires both call for it,
 of run 9 graded it so from the text. One marking error, recorded because it passed a run that
 should have failed: run 9 was marked as passing with four readers grading 3.5 Yes against a key
 of Partial or No; run 11 repeated that result and a clause 3.5 sentence was added in response;
-runs 12 and 14 still had three readers each grading Yes on the clause's opening MUSTs, so the
+run 12 still had three readers, and run 14 two, grading Yes on the clause's opening MUSTs and
+the green run alone, so the
 opening now names its three conditions with the recorded decision the third, and the section 3
 map's record column for 3.5 names it too; run 15 had four readers grade it from the text. Runs 1
 to 7 also asked readers what would make a clause clearer and for a clarity rating; both questions
@@ -63,8 +64,8 @@ declaration is the claim and the known-gap record.
 Accepted by a cold cohort of five Haiku readers, every load-bearing statement and every fixture
 verdict within the key by all five and no passage quoted as confusing by any reader: run 11, at
 commit fa31c4e. Run numbers are positions in one sequence shared by the three documents; this
-document was read in every run, run 10 passed at 6a7372a, and a review of the pull request then
-changed the text. Findings applied across the runs: a seven-term gloss in section 2;
+document was read in runs 1 to 11, run 10 passed at 6a7372a, and a review of the pull request
+then changed the text. Findings applied across the runs: a seven-term gloss in section 2;
 4.3 as a five-row table of stable and derived identifiers; 6.1 opens with a two-case table of
 who documents what, and its URL sentence, quoted as confusing by two readers of run 8, is
 rewritten; 6.3 says one unresolved identifier fails it, and the family-page material is its own
