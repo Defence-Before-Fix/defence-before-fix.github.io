@@ -206,7 +206,7 @@ Six clauses, in order. In brief, before the detail:
 | 3.2    | Express the [Class] as a [Rule] in a [Detector], never a test                                               | The [Rule], and any [Toolchain] gap that stopped a bespoke one                                                                                       | Whether a [Class] that could be defended is left undefended                                          |
 | 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                                                                               | Any exclusion whose sentence cannot be written: that is [Suppression]                                |
 | 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                                                                                    | Any [Instance] left unfixed, and any [Baseline]                                                      |
-| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point                                                                                                      | Removing or disabling the [Rule], and any [Suppression] added to it                                  |
+| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point, and the recorded decision behind any [Suppression]                                                  | Removing or disabling the [Rule], and any [Suppression] added to it                                  |
 | 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                                                                               | Nothing                                                                                              |
 
 The fourth column is what an [Agent] or other [Practitioner] MUST NOT decide alone, clause by
@@ -654,7 +654,9 @@ and fixes one has produced a documented list of [Defects] it has chosen to keep.
 ### 3.5 Enforce permanently, and block
 
 The [Rule] MUST become a permanent part of the project's quality checks, and it MUST **fail** rather
-than warn. A [Rule] that reports a violation without failing does not [Conform].
+than warn. A [Rule] that reports a violation without failing does not [Conform], and neither does
+a [Rule] whose green run depends on a [Suppression] that no recorded decision covers, since the
+checks are then passing around the [Instance] rather than enforcing against it.
 
 **Where those checks run, and what the project does when they fail, is out of scope.** Continuous
 integration, git hooks, branch policy and release process are the project's own business; see

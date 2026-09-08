@@ -25,7 +25,9 @@ as well as Partial where the reasoning names the missing search record, since st
 record the clause requires both call for it, and two readers of run 9 graded it so from the text.
 One marking error, recorded because it passed a run that should have failed: run 9 was marked as
 passing with four readers grading 3.5 Yes against a key of Partial or No; run 11 repeated that
-result and the clause 3.5 sentence above was added in response. Runs 1 to 7 also asked readers what would make a clause clearer and for a clarity rating; both
+result and the clause 3.5 sentence above was added in response; run 12 still had three readers
+grading Yes on the clause's opening MUSTs, so the opening sentence now carries it and the
+section 3 map's record column for 3.5 names the recorded decision. Runs 1 to 7 also asked readers what would make a clause clearer and for a clarity rating; both
 questions were withdrawn before run 8, as `ACCEPTANCE.md` records.
 
 ### 1.0.0, 2026-09-08
