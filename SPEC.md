@@ -498,9 +498,9 @@ of the wider pattern the [Rule] does not catch, retained as the record of what w
 
 A [Narrowing] reduces the [Practitioner]'s own work, which is why it is not left to self-report
 alone. The sentence is recorded with the [Narrowing] as part of the [Rule]'s [Remediation docs];
-the search confirms it. Code a [Narrowing] excludes
-MUST be searched to the standard of clause 3.1, and an [Instance] that search finds there
-disproves the sentence and reverses the [Narrowing]. Every [Narrowing] MUST be enumerable by the
+the search confirms it. Code a [Narrowing] excludes MUST be searched to the standard of clause
+3.1, and an [Instance] that search finds there disproves the sentence and reverses the
+[Narrowing]. Every [Narrowing] MUST be enumerable by the
 same means as the project's [Exceptions], so the [Owner] sees them in one place, and a
 [Narrowing] that excludes more code than the [Rule] still covers MUST be reported to the [Owner]
 as if it were a [Suppression]. The sentence remains the test of whether an exclusion is honest;
@@ -664,9 +664,9 @@ section 8. What this clause requires is that the [Defence] is permanent, applies
 than to whoever remembers it, and produces a failure rather than a remark.
 
 Removing a [Rule], or adding a [Suppression] for an [Instance], MUST be a recorded decision rather
-than a silent edit, and belongs to the [Owner] under section 4, which governs. A [Rule] carrying a
-[Suppression] that no recorded decision covers is not [Blocking] in the sense this clause requires,
-and this clause is not followed until the decision is recorded or the [Suppression] removed.
+than a silent edit, and belongs to the [Owner] under section 4, which governs. Where a [Rule]
+carries a [Suppression] that no recorded decision covers, this clause is not followed until the
+decision is recorded or the [Suppression] removed.
 
 **Enforcement is demonstrated through the project's own entry point.** Running the [Detector]
 directly shows that the [Rule] can fire; it does not show that the project's checks will run it.
