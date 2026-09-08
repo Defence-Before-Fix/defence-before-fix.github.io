@@ -1,0 +1,43 @@
+{
+  "name": "dbf-tools-register",
+  "private": true,
+  "version": "0.1.0",
+  "description": "The tools register on the Defence Before Fix site: a React table over tools/register.json with a fixed header, a scrolling body, filters and sorting.",
+  "type": "module",
+  "license": "CC-BY-4.0",
+  "packageManager": "pnpm@10.17.1",
+  "scripts": {
+    "sync": "node scripts/sync-register.mjs",
+    "dev": "pnpm run sync && vite",
+    "build": "pnpm run sync && tsc -p tsconfig.json --noEmit && vite build",
+    "test": "vitest run",
+    "qa": "ts-qa",
+    "qa:write": "ts-qa --write",
+    "llm:lint": "eslint . --format json --output-file ./var/qa/eslint-cache.json",
+    "llm:test": "vitest run --reporter=json --outputFile=./var/qa/vitest-cache.json --reporter=dot"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@longtermsupport/ts-qa-ci": "github:LongTermSupport/ts-qa-ci#ea2020b6894407b5b43bf5f241200b4a4bc52d89",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.39.0",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.9.0",
+    "typescript": "^6.0.0",
+    "typescript-eslint": "^8.63.0",
+    "vite": "^8.0.0",
+    "vitest": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

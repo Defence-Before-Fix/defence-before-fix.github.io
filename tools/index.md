@@ -19,6 +19,8 @@ applies to a toolchain's own repository as a project following the method with i
 tooling. Partial conformance is never called conformance; a tool that meets most of a document is
 in a normal and respectable condition, and the page says exactly what is missing.
 
+<span id="grades"></span>
+
 | Grade | Readiness                                                       | Detector, toolchain and project conformance                                       |
 | ----- | --------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | 🟢    | All three of bespoke rules, single-rule run, printed identifier | Every MUST holds, on evidence; a declaration with an empty gap record confirms it |
@@ -35,6 +37,16 @@ added or a grade corrected, open an issue or a pull request on
 [the repository](https://github.com/Defence-Before-Fix/defence-before-fix.github.io).
 
 ## The register
+
+The table can be searched, filtered by language, kind and grade, and sorted by any column;
+the filters are kept in the page address so a view can be shared. Without JavaScript the same
+register is shown as a plain table, grouped by language.
+
+<div id="register-app" data-source="/tools/register.json"></div>
+<link rel="stylesheet" href="/tools/app/register.css">
+<script type="module" src="/tools/app/register.js"></script>
+
+<div id="register-static" markdown="1">
 
 <!-- REGISTER:START -->
 ### PHP
@@ -103,3 +115,5 @@ added or a grade corrected, open an issue or a pull request on
 | [Semgrep](semgrep.md) | tool | 🟡 | 🟡 | · | · | Local YAML rules and a test harness meet [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) and [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code); the path-derived prefix fails [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding); registry rules resolve online only, failing [6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access) and [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) | 2026-09-08, version 1.176.0 |
 | [SonarQube](sonarqube.md) | tool | 🟡 | 🔴 | · | · | Custom plugin rules meet [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it); the scanner needs a server and prints no findings so [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure), [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) and [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally) fail | 2026-09-08, version Server 2026.4 |
 <!-- REGISTER:END -->
+
+</div>

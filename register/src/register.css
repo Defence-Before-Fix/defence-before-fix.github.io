@@ -1,0 +1,143 @@
+/* Styles for the tools register application. Colours come from the site's own variables so
+   the table follows the light and dark themes of the rest of the site. */
+
+.register-app {
+  margin: 1rem 0 2rem;
+}
+
+.register-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: flex-start;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background-alt);
+}
+
+.register-search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 14rem;
+}
+
+.register-search input {
+  margin: 0;
+}
+
+.register-filter-group {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  align-items: center;
+}
+
+.register-filter-group legend {
+  float: left;
+  padding: 0;
+  margin-right: 0.5rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.register-filter-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.register-filter-option input {
+  margin: 0;
+}
+
+.register-count {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.register-reset {
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.9em;
+}
+
+.register-scroll {
+  max-height: 70vh;
+  overflow: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.register-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+}
+
+.register-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--background);
+  border-bottom: 2px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.register-table td {
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.register-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.register-table tbody tr[data-kind="toolchain"] .register-name {
+  font-weight: 600;
+}
+
+.register-sort {
+  all: unset;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+}
+
+.register-sort:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.register-grade-cell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.register-checked {
+  white-space: nowrap;
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+.register-notes {
+  min-width: 18rem;
+}
+
+.register-empty,
+.register-loading,
+.register-error {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 1rem;
+}
