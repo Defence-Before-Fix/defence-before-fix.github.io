@@ -1,5 +1,4 @@
 ---
-title: Defence Before Fix
 description: A phase that runs before a defect is fixed. The method and toolchain specifications, the tools that implement them, and the article in which the term was first published.
 permalink: /
 ---
