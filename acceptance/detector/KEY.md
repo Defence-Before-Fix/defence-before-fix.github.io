@@ -67,12 +67,3 @@ own identifiers in CI is a missed SHOULD, not a further MUST failure; the MUST t
 
 A reader who marks 7.1 No because the comment takes no reason has confused 7.1 with 7.2, which is
 SHOULD; that counts against the document if the reasoning quotes 7.1 or 7.2.
-
-## 4. Ambiguity
-
-No keyed answer. Record every clause named; two or more readers naming the same clause is a
-blocking finding under `ACCEPTANCE.md`.
-
-## 5. Clarity
-
-No keyed answer. Median 4 or above, none below 3.

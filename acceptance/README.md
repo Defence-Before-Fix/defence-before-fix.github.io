@@ -28,5 +28,8 @@ A key quotes the document. When a clause is reworded, the key line that quotes i
 the same commit, and the change is one the acceptance run itself then tests. A key that no longer
 matches the document is a defect in this directory, not a reason to mark a reader wrong.
 
-Questions are fixed so that runs can be compared across versions. Adding a question is allowed
-when a new clause is load-bearing; removing or softening one to make a run pass is not.
+Questions are fixed so that runs can be compared across versions. Adding a keyed question is
+allowed when a new clause is load-bearing; removing or softening one to make a run pass is not.
+Every question has a key. The reader is never asked to rate the document, name what it found
+hard, or say what would make it clearer: the cohort confirms comprehension and does not design
+the text.

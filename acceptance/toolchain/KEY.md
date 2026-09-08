@@ -76,12 +76,3 @@ A reader who grades 4.1 Yes on the grounds that Lintomatic "mostly" conforms has
 or the detector document's section 8 differently; it counts against this document only if the
 reasoning quotes 4.1. A reader who grades 4.1 Yes because they missed the two undocumented rules
 has misread the fixture.
-
-## 4. Ambiguity
-
-No keyed answer. Record every clause named; two or more readers naming the same clause is a
-blocking finding under `ACCEPTANCE.md`.
-
-## 5. Clarity
-
-No keyed answer. Median 4 or above, none below 3.

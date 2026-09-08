@@ -64,12 +64,3 @@ A reader who grades 3.6 Yes because the URL resolves has read the versioning sen
 differently, which counts against the document; a reader who grades 3.4 Yes has misread the
 fixture. A reader who attributes the suppression to 3.3 rather than 3.4 has read the narrowing
 passage of 3.3 as covering it, which is a fair reading and is not marked wrong.
-
-## 4. Ambiguity
-
-No keyed answer. Record every clause named; two or more readers naming the same clause is a
-blocking finding under `ACCEPTANCE.md`.
-
-## 5. Clarity
-
-No keyed answer. Median 4 or above, none below 3.

@@ -26,14 +26,3 @@ section 3: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6. For each give Yes, Partial or No and on
 reasoning. Then state whether the remediation conforms under section 7, whether the defence
 alone conforms, and which decision in the fixture, if any, section 4 says was not the
 practitioner's to take.
-
-## 4. Ambiguity
-
-- 4a. Name any clause you had to read twice, and say what would have made it clearer.
-- 4b. Quote any two passages that seem to you to disagree with each other. Write "none" if there
-  are none.
-
-## 5. Clarity
-
-Rate the document from 1 to 5 for clarity to a reader meeting it for the first time, with one
-sentence of reasoning.
