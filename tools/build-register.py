@@ -3,7 +3,8 @@
 
 Each tools/<slug>.md carries a `summary:` line in its front matter and an
 opening line of the form
-  **Language**: X · **Kind**: tool|toolchain · **Readiness**: G · **Conformance**: G · **Checked**: date, version v
+  **Language**: X · **Kind**: tool|toolchain · **Readiness**: G · **Detector conformance**: G
+  [· **Toolchain conformance**: G · **Project conformance**: G, toolchains only] · **Checked**: date, version v
 The table is grouped by language, toolchains first within a group, and is
 written between the REGISTER markers in index.md. Run it after any page
 changes; CI fails when the committed table is stale.
@@ -47,9 +48,18 @@ def parse(page: Path) -> dict[str, str]:
     if title is None or header is None:
         raise SystemExit(f"{page.name}: missing title or header line")
     fields = {k: v.strip() for k, v in FIELD.findall(header.group(0))}
-    for key in ("Language", "Kind", "Readiness", "Conformance", "Checked"):
+    if "Detector conformance" not in fields and "Conformance" in fields:
+        # Graded against toolchain specification 0.1.0, before the split; shown until regraded.
+        fields["Detector conformance"] = fields.pop("Conformance") + " (0.1.0)"
+    for key in ("Language", "Kind", "Readiness", "Detector conformance", "Checked"):
         if key not in fields:
             raise SystemExit(f"{page.name}: header lacks {key}")
+    if fields["Kind"] == "toolchain":
+        for key in ("Toolchain conformance", "Project conformance"):
+            fields.setdefault(key, "not yet graded")
+    else:
+        for key in ("Toolchain conformance", "Project conformance"):
+            fields[key] = "·"
     return {
         "slug": page.stem,
         "name": title.group(1),
@@ -69,12 +79,13 @@ def build(rows: list[dict[str, str]]) -> str:
         group.sort(key=lambda r: (r["Kind"] != "toolchain", r["name"].lower()))
         out.append(f"### {language}")
         out.append("")
-        out.append("| Tool | Kind | Readiness | Conformance | Notes | Checked |")
-        out.append("| ---- | ---- | --------- | ----------- | ----- | ------- |")
+        out.append("| Tool | Kind | Readiness | Detector | Toolchain | Project | Notes | Checked |")
+        out.append("| ---- | ---- | --------- | -------- | --------- | ------- | ----- | ------- |")
         for r in group:
             out.append(
                 f"| [{r['name']}]({r['slug']}.md) | {r['Kind']} | {r['Readiness']} "
-                f"| {r['Conformance']} | {r['summary']} | {r['Checked']} |"
+                f"| {r['Detector conformance']} | {r['Toolchain conformance']} "
+                f"| {r['Project conformance']} | {r['summary']} | {r['Checked']} |"
             )
         out.append("")
     return "\n".join(out).rstrip() + "\n"
