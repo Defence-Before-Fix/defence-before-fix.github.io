@@ -31,8 +31,9 @@ agent summary (those belong to the toolchain specification).
   says a declaration is required, or that partial satisfaction is conformance, is wrong.
 - **2b.** It must make the route either disableable by configuration or detectable by a rule the
   project can write or a mechanical check it documents; it is not required to remove or forbid
-  it. Key quotation, 7.1: "It MUST make each one either disableable by configuration, or
-  detectable by a Rule the project can write in the Detector itself or by a mechanical check the
+  it. Key quotation, 7.1: "For each one it MUST do at least one of two things, and either alone
+  satisfies this clause: make the route disableable by configuration; or make the route
+  detectable, by a Rule the project can write in the Detector itself or by a mechanical check the
   Detector documents". An answer that says the detector must forbid the route, or must require a
   reason (7.2 is SHOULD), is wrong.
 - **2c.** With the rule, in the installed copy, at a version tracked together, and yes, offline.

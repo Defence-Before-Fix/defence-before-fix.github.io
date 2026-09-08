@@ -1,7 +1,7 @@
 # Defence Before Fix: Detector Specification
 
 **Version**: 1.0.0, published 2026-09-08
-**Companion to**: [the method specification](SPEC.md), version 1.0.0, and [the toolchain specification](TOOLING-SPEC.md), version 0.2.0
+**Companion to**: [the method specification](SPEC.md), version 1.0.1, and [the toolchain specification](TOOLING-SPEC.md), version 0.2.0
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
 
@@ -301,7 +301,7 @@ that satisfies most of this document is in a normal and respectable condition; i
 [Conforming], and describing it as such removes the only value the word has.
 
 This document defines one level. The clauses of the method specification's section 8 that reach
-beyond what sections 4 to 6 here already secure, the listing of active [Defences] and the
+beyond what sections 4 to 7 here already secure, the listing of active [Defences] and the
 summary for an [Agent]'s context, are obligations on a project's assembled [Toolchain]
 and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no separate [Agent]-support level
 for a [Detector].
@@ -328,7 +328,7 @@ The shape is illustrative rather than prescribed. In a Composer manifest:
 ```json
 "extra": {
   "defence-before-fix": {
-    "method": "1.0.0",
+    "method": "1.0.1",
     "detector": "1.0.0",
     "toolchain": null,
     "known-gaps": []

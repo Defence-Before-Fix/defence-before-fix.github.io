@@ -1,7 +1,7 @@
 # Defence Before Fix: Toolchain Specification
 
 **Version**: 0.2.0, published 2026-09-08
-**Companion to**: [the method specification](SPEC.md), version 1.0.0, and [the detector specification](DETECTOR-SPEC.md), version 1.0.0
+**Companion to**: [the method specification](SPEC.md), version 1.0.1, and [the detector specification](DETECTOR-SPEC.md), version 1.0.0
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
 
@@ -108,13 +108,13 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 ### 4.1 Every detector the toolchain routes a defence through MUST conform to the [detector specification](DETECTOR-SPEC.md)
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
-[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs, in brief, are
-that the [Detector] hosts bespoke [Rules]; runs one [Rule] on its own against supplied code;
-prints a stable [Identifier] with every finding; runs locally, down to one file, with the result
-in the command's own output and nothing reportable only through a hosted service; resolves every
-[Identifier] a [Bundled rule] can print to documentation shipped with it, offline; and makes any
-inline [Suppression] route detectable or disableable. A [Detector] that fails any one of those,
-after wrapping, fails this clause. Three points govern how that is met.
+[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs, in brief,
+are six. The [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
+code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
+the result in the command's own output and nothing reportable only through a hosted service. It
+resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
+It makes any inline [Suppression] route detectable or disableable. A [Detector] that fails any
+one of those, after wrapping, fails this clause. Three points govern how that is met.
 
 1. **Wrapping is permitted.** The [Toolchain] MAY supply a mechanism the
    [Detector] lacks by wrapping it, with a [Harness] script or a
@@ -297,23 +297,22 @@ neither can drift from the other.
 ### 6.2 Every exception in the project record MUST carry a written justification that names the hazard and the scope, and the toolchain MUST reject a generic one
 
 The [Toolchain] MUST require a written justification on every [Exception].
-It MUST NOT supply a default, and MUST reject an [Exception] that omits one. It MUST
-also reject a justification that could be pasted onto any [Exception] unchanged. A field that is merely present and non-empty does not satisfy
-this clause.
+It MUST NOT supply a default, and MUST reject an [Exception] that omits one. A field that is
+merely present and non-empty does not satisfy this clause.
 
 **Why**: an [Exception] without a reason is indistinguishable from an [Exception] nobody would defend,
 and the person who could tell them apart is usually gone. Requiring the sentence is the whole
 mechanism: it costs the author a minute at the moment they have the reason in mind, and it is the
 only thing that makes an [Exception] reviewable later.
 
-`ts-qa-ci`'s `tier-a-exceptions.json` is the reference implementation, and its own two entries
+`ts-qa-ci`'s `tier-a-exemptions.json` is the reference implementation, and its own two entries
 demonstrate the standard: both explain the scope limit as well as the reason.
 
 The justification MUST name the [Hazard] being accepted and the scope of the [Exception].
 The [Toolchain] MUST reject a justification that could be pasted onto any [Exception]
 unchanged, by a check it documents: "needed for now", "legacy", "TODO" and their like. That check
 cannot verify truth, and a [Toolchain]'s [Conformance] MUST NOT be read as having verified
-it. Whether the sentence is true is the [Owner]'s judgement under clause 3.3 of the method
+it. Whether the sentence is true is the [Owner]'s judgement under section 4 of the method
 specification. That is why clause 6.3 puts every justification in one listing, where a vacuous
 one is seen next to its neighbours.
 
@@ -364,7 +363,7 @@ mistake rather than after it, which is why they are worth stating even as SHOULD
 The [Toolchain] MUST run an automated check that blocks its own release. The check covers
 every [Identifier] printed by a [Rule] the [Toolchain] authors or bundles
 as its own [Defence], whatever kind of [Detector] carries it. Where a documentation
-page covers a family of [Identifiers] by a pattern, as clause 6.3 of the
+page covers a family of [Identifiers] by a pattern, as clause 6.5 of the
 [detector specification](DETECTOR-SPEC.md) allows, this audit MUST apply the pattern to every
 [Identifier] printed and confirm it lands on that page. A member added to the
 [Rule] and not to the page then fails the release. A third-party [Detector]'s

@@ -200,17 +200,17 @@ runs and the language's own [Detector] ecosystem for an extension point, and fou
 
 Six clauses, in order. In brief, before the detail:
 
-| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                               | Goes to the [Owner] under section 4                                   |
-| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built | Whether the next wider [Rule] is built                                |
-| 3.2    | Express the [Class] as a [Rule] in a [Detector], never a test                                               | The [Rule], and any [Toolchain] gap that stopped a bespoke one                                 | Nothing                                                               |
-| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                         | Any exclusion whose sentence cannot be written: that is [Suppression] |
-| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                              | Any [Instance] left unfixed, and any [Baseline]                       |
-| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point                                                | Nothing                                                               |
-| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                         | Nothing                                                               |
+| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                                                                                     | Goes to the [Owner] under section 4                                                                  |
+| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built, whether a [Runner] check pins the reported behaviour | Whether the next wider [Rule] is built, and whether the [Rule] stays narrower than the search showed |
+| 3.2    | Express the [Class] as a [Rule] in a [Detector], never a test                                               | The [Rule], and any [Toolchain] gap that stopped a bespoke one                                                                                       | Whether a [Class] that could be defended is left undefended                                          |
+| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                                                                               | Any exclusion whose sentence cannot be written: that is [Suppression]                                |
+| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                                                                                    | Any [Instance] left unfixed, and any [Baseline]                                                      |
+| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point                                                                                                      | Removing or disabling the [Rule], and any [Suppression] added to it                                  |
+| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                                                                               | Nothing                                                                                              |
 
-The fourth column is the whole of what an [Agent] or other [Practitioner] MUST NOT decide alone;
-every other decision in section 3 is theirs.
+The fourth column is what an [Agent] or other [Practitioner] MUST NOT decide alone, clause by
+clause; section 4 states the full list and governs where the two differ.
 
 **Three of them turn on a judgement this specification deliberately does not close**: whether code
 carries the [Hazard] (3.1, 3.3), whether a search was comprehensive (3.1, 3.4), and how broadly to
@@ -265,7 +265,7 @@ The [Practitioner] MUST first establish what [Class] the [Defect] belongs to. Th
    [Rule] would match code that does not carry the [Hazard].
 4. Where the [Class] stays at the reported [Instance], name the next wider [Rule] and why it
    was not built.
-5. Record all of that, the four things listed at the end of this clause, before clause 3.2.
+5. Record all of that, the five things listed at the end of this clause, before clause 3.2.
 
 A worked example. The [Defect]: a currency conversion's error was caught and its empty result
 used as a total. Step 1 names the [Class] "a caught error whose call's result is then used as if
@@ -313,10 +313,7 @@ the behaviour left unpinned defends the [Instance] thoroughly and the report not
 way to find [Instances], and it is the least trustworthy one whilst it is still unproven. Search for
 other [Instances] by other means, whether that is a text search, reading the code, or asking someone
 who knows the system, and, once the [Rule] exists under clause 3.2, confirm it catches what those
-searches found. That confirmation is not one of the techniques. Two techniques are independent
-when each would miss what the other finds: a text search and a reading of every caller are two,
-because a caller can name the function in a way the text did not match; two text searches for
-different spellings are one technique run twice.
+searches found. That confirmation is not one of the techniques.
 
 That search MUST be a comprehensive one, carried out by a person, model or [Agent] competent to
 carry it out. No fixed technique is prescribed, because what is comprehensive depends entirely on
@@ -357,9 +354,10 @@ the [Rule] did not already have, then one [Instance] is a reasonable conclusion 
 assumption, and the [Rule] is correct as written.
 
 **What this clause leaves on the record**, before clause 3.2 begins: the [Class], spelt as a
-pattern; the [Hazard] sentence; the two search techniques and what each found; and the next
-wider [Rule] that was not built, with the reason. A record missing any of the four has not
-finished this clause.
+pattern; the [Hazard] sentence; the two search techniques and what each found; the next wider
+[Rule] that was not built, with the reason; and, where the [Defect] was reported as a behaviour,
+whether a check a [Runner] executes pins that behaviour, or why not. A record missing any of the
+five has not finished this clause.
 
 **Why**: the [Class] is the unit of work. Everything downstream operates on it, so an error here
 wastes all the effort that follows.
@@ -498,14 +496,9 @@ same standard as a new [Rule]'s red run; the [Rule] not firing on it afterwards;
 shape was chosen from the outset and no wider [Rule] was ever built, the before state is a [Fixture]
 of the wider pattern the [Rule] does not catch, retained as the record of what was left out.
 
-**"Sure" is not a percentage; it is a sentence.** The [Practitioner] is sure when they can write down,
-for the code being excluded, why the [Hazard] cannot arise there, and that sentence is recorded with
-the [Narrowing] as part of the [Rule]'s [Remediation docs]. If the sentence cannot be
-written, the exclusion is a [Suppression] and goes upwards. Confidence that cannot be stated is not
-confidence.
-
 A [Narrowing] reduces the [Practitioner]'s own work, which is why it is not left to self-report
-alone. The sentence states the reasoning; the search confirms it. Code a [Narrowing] excludes
+alone. The sentence is recorded with the [Narrowing] as part of the [Rule]'s [Remediation docs];
+the search confirms it. Code a [Narrowing] excludes
 MUST be searched to the standard of clause 3.1, and an [Instance] that search finds there
 disproves the sentence and reverses the [Narrowing]. Every [Narrowing] MUST be enumerable by the
 same means as the project's [Exceptions], so the [Owner] sees them in one place, and a
@@ -1083,11 +1076,10 @@ This appendix restates sections 3 and 4; where the two differ, the sections gove
 
 ## Changelog
 
-| Version | Date       | Change                                                                                                                                                                                                                                                          |
-| ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls.                                   |
-| 1.0.0   | 2026-09-08 | Editorial, no version change: two terminology entries and two section 7 paragraphs name the [detector specification](DETECTOR-SPEC.md) 1.0.0 alongside the [toolchain specification](TOOLING-SPEC.md) 0.2.0. No clause changed.                                 |
-| 1.0.1   | 2026-09-08 | Clarity, no obligation changed: clause 3.1 closes with the four things it leaves on the record, and clause 3.3 opens its [Narrowing] passage with the two-halves test the passage then checks. Both were named by two or more readers of the acceptance cohort. |
+| Version | Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls.                                                                                                                                                                                                                                                                                                                                                        |
+| 1.0.1   | 2026-09-08 | Clarity, no obligation changed: section 3 opens with a map of the six clauses; clause 3.1 opens with its five steps and closes with what it leaves on the record; clause 3.3 is in three named parts and its [Narrowing] part opens with the decision. The header and the terminology entries for [Detector], [Toolchain] and [Conform] name the [detector specification](DETECTOR-SPEC.md) 1.0.0 alongside the [toolchain specification](TOOLING-SPEC.md) 0.2.0, and [Conform] extends to the companion specification being claimed. Accepted under [ACCEPTANCE.md](ACCEPTANCE.md). |
 
 <!-- Term link definitions -->
 
