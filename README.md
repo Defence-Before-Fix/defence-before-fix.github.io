@@ -25,7 +25,8 @@ Six clauses, in order:
 | Document                           | What it is                                                                   | Version |
 | ---------------------------------- | ---------------------------------------------------------------------------- | ------- |
 | [SPEC.md](SPEC.md)                 | The method. Normative. What a practitioner does when a defect is found.      | 1.0.0   |
-| [TOOLING-SPEC.md](TOOLING-SPEC.md) | The toolchain. What a toolchain must offer so that a practitioner can do it. | 0.1.0   |
+| [DETECTOR-SPEC.md](DETECTOR-SPEC.md) | The detector. What a tool that reads code must offer so that a rule can be written, proven, run and resolved in it. | 1.0.0 |
+| [TOOLING-SPEC.md](TOOLING-SPEC.md) | The toolchain. What a project's assembled tooling must offer beyond its detectors, measured at the project level. | 0.2.0 |
 | [PRIMER.md](PRIMER.md)             | The short introduction.                                                      |         |
 | [PROVENANCE.md](PROVENANCE.md)     | Who coined the term, when, and what is and is not claimed.                   |         |
 | [CHANGELOG.md](CHANGELOG.md)       | Changes to each document, versioned independently.                           |         |

@@ -1,5 +1,5 @@
 title: Defence Before Fix (DBF)
-description: A phase that runs before a defect is fixed. The method and toolchain specifications.
+description: A phase that runs before a defect is fixed. The method, detector and toolchain specifications.
 lang: en-GB
 author: Joseph Edmonds
 plugins:

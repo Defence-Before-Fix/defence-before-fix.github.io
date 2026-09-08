@@ -1,5 +1,5 @@
 ---
-description: A phase that runs before a defect is fixed. The method and toolchain specifications, the tools that implement them, and the article in which the term was first published.
+description: A phase that runs before a defect is fixed. The method, detector and toolchain specifications, the tools that implement them, and the article in which the term was first published.
 permalink: /
 ---
 
@@ -38,20 +38,23 @@ version.
 | Document                                       | What it is                                                    | Version |
 | ---------------------------------------------- | ------------------------------------------------------------- | ------- |
 | [The method specification](SPEC.md)            | Normative. What a practitioner does when a defect is found.   | 1.0.0   |
-| [The toolchain specification](TOOLING-SPEC.md) | What a toolchain must offer so that a practitioner can do it. | 0.1.0   |
+| [The detector specification](DETECTOR-SPEC.md) | What a tool that reads code must offer so that a rule can be written, proven, run and resolved in it. | 1.0.0 |
+| [The toolchain specification](TOOLING-SPEC.md) | What a project's assembled tooling must offer beyond its detectors, measured at the project level. | 0.2.0   |
 | [Primer](PRIMER.md)                            | The short introduction.                                       |         |
 | [Provenance](PROVENANCE.md)                    | Who coined the term, when, and what is and is not claimed.    |         |
 | [Changelog](CHANGELOG.md)                      | Changes to each document, versioned independently.            |         |
 
 The method specification is the source of truth for what the method is. Where anything else
 describing DBF disagrees with it, including the article in which the term was first
-published, the specification is correct. The two documents are versioned independently, so a
-toolchain clause can be added without reissuing the method.
+published, the specification is correct. The three documents are versioned independently, so a
+detector or toolchain clause can be added without reissuing the method.
 
-If you maintain a linter, a static analyser or a QA pipeline that other people install, the
-toolchain specification is the one addressed to you. It states what a tool has to offer so that
-the projects using it can follow the method at all, which turns out to be a different list from
-the one the method itself gives.
+If you maintain a linter or a static analyser, the detector specification is the one addressed to
+you: what a tool that reads code has to offer so that a rule can be written, proven, run and
+resolved in it. If you maintain a QA pipeline, or assemble one for your own project, the toolchain
+specification is the one for you: what the assembled tooling adds beyond its detectors, listing,
+the project record, resolution and self-audit, measured at the project level because that is where
+it counts.
 
 ## Tools that implement it
 
