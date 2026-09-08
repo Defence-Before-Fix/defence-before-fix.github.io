@@ -1,6 +1,6 @@
 ---
 title: CodeQL and Defence Before Fix
-summary: Custom packs, codeql test run and a required @id meet section 4; database build and licence weaken 5.1, no id lookup for 6.1, inline codeql[] comments fail 8.3
+summary: Custom packs and a test harness meet section 4; database build and licence weaken 5.1; no id lookup for 6.1; inline suppression fails 8.3
 ---
 
 # CodeQL

@@ -5,7 +5,7 @@ summary: Custom plugin rules meet 4.1; the scanner needs a server and prints no 
 
 # SonarQube
 
-**Language**: Multi-language · **Kind**: platform · **Readiness**: 🟡 · **Conformance**: 🔴 · **Checked**: 2026-09-08, version Server 2026.4
+**Language**: Multi-language · **Kind**: tool · **Readiness**: 🟡 · **Conformance**: 🔴 · **Checked**: 2026-09-08, version Server 2026.4
 
 SonarQube is SonarSource's code quality and security platform, available as a self-hosted server (Community Build, Developer, Enterprise and Data Center editions), as the hosted SonarQube Cloud, formerly SonarCloud, and as the SonarQube for IDE editor plugins, formerly SonarLint. In a pipeline the scanner runs in CI, pushes an analysis to the server, and the server computes the quality gate. Everything the practitioner reads lives on the server, and that architecture is what decides its grades here.
 

@@ -91,7 +91,9 @@ added or a grade corrected, open an issue or a pull request on
 | Tool | Kind | Readiness | Conformance | Notes | Checked |
 | ---- | ---- | --------- | ----------- | ----- | ------- |
 | [ast-grep](ast-grep.md) | tool | 🟢 | 🔴 | Bespoke YAML rules with a test harness and printed ids meet 4.1 to 5.4; no listing for 7.1 and inline ast-grep-ignore fails 8.3 | 2026-09-08, version 0.45.3 |
-| [CodeQL](codeql.md) | tool | 🟡 | 🔴 | Custom packs, codeql test run and a required @id meet section 4; database build and licence weaken 5.1, no id lookup for 6.1, inline codeql[] comments fail 8.3 | 2026-09-08, version CLI 2.26.4 |
-| [pre-commit](pre-commit.md) | host | 🟢 | 🔴 | Local hooks with a printed id meet 4.1, 4.3 and section 5; no id resolution for 6.1, no listing for 7.1, SKIP and --no-verify fail 8.3 | 2026-09-08, version 4.6.2 |
-| [SonarQube](sonarqube.md) | platform | 🟡 | 🔴 | Custom plugin rules meet 4.1; the scanner needs a server and prints no findings so 5.1, 5.3 and 5.4 fail; NOSONAR fails 8.3 | 2026-09-08, version Server 2026.4 |
+| [Checkov](checkov.md) | tool | 🟢 | 🔴 | Custom Python and YAML policies with printed ids meet 4.1, 4.3 and section 5; online-only Guide links fail 6.2; inline skips and baselines fail 8.3 | 2026-09-08, version 3.3.16 |
+| [CodeQL](codeql.md) | tool | 🟡 | 🔴 | Custom packs and a test harness meet section 4; database build and licence weaken 5.1; no id lookup for 6.1; inline suppression fails 8.3 | 2026-09-08, version CLI 2.26.4 |
+| [pre-commit](pre-commit.md) | tool | 🟢 | 🔴 | Local hooks with a printed id meet 4.1, 4.3 and section 5; no id resolution for 6.1; no listing for 7.1; SKIP fails 8.3 | 2026-09-08, version 4.6.2 |
+| [Semgrep](semgrep.md) | tool | 🟡 | 🔴 | Local YAML rules with a test harness meet 4.1 and 4.2; printed ids carry a path-derived prefix so 4.3 is partial; nosemgrep fails 8.3 | 2026-09-08, version 1.176.0 |
+| [SonarQube](sonarqube.md) | tool | 🟡 | 🔴 | Custom plugin rules meet 4.1; the scanner needs a server and prints no findings so 5.1, 5.3 and 5.4 fail; NOSONAR fails 8.3 | 2026-09-08, version Server 2026.4 |
 <!-- REGISTER:END -->

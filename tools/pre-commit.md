@@ -1,11 +1,11 @@
 ---
 title: pre-commit and Defence Before Fix
-summary: Local hooks with a printed id meet 4.1, 4.3 and section 5; no id resolution for 6.1, no listing for 7.1, SKIP and --no-verify fail 8.3
+summary: Local hooks with a printed id meet 4.1, 4.3 and section 5; no id resolution for 6.1; no listing for 7.1; SKIP fails 8.3
 ---
 
 # pre-commit
 
-**Language**: Multi-language · **Kind**: host · **Readiness**: 🟢 · **Conformance**: 🔴 · **Checked**: 2026-09-08, version 4.6.2
+**Language**: Multi-language · **Kind**: tool · **Readiness**: 🟢 · **Conformance**: 🔴 · **Checked**: 2026-09-08, version 4.6.2
 
 pre-commit is a framework for managing git hooks. It installs each hook's language runtime in an isolated environment, runs the hooks over staged files at commit time, and can run them over the whole repository on demand. It detects nothing itself; it is assessed here as a host for defences, the place a project registers the detectors it wants run, and its grades describe what the host adds to or withholds from whatever runs inside it.
 
