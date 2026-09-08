@@ -28,7 +28,7 @@ HERE = Path(__file__).parent
 PROMPT = HERE / "defence-before-fix-project-prompt.md"
 LLMS = HERE / "llms.txt"
 RAW_DOCS = ["SPEC.md", "DETECTOR-SPEC.md", "TOOLING-SPEC.md", "PRIMER.md", "PROVENANCE.md", "CHANGELOG.md"]
-TERM_LINK = re.compile(r"\[([^\]]+)\](?:\((?:[A-Z-]+\.md)?#[a-z0-9-]+\)|\[\])")
+TERM_LINK = re.compile(r"\[([A-Z][^\]]*)\](?:\((?:[A-Z-]+\.md)?#[a-z0-9-]+\)|\[\]|(?![\(\[]))")
 
 
 def load_data() -> dict:

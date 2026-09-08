@@ -70,24 +70,27 @@ INFLECTIONS = {
 # Phrases in which a defined word appears in a sense that is NOT the term:
 # the method's own name, and the unrelated security term it disclaims.
 PHRASES = [r"Defen[cs]e Before Fix", r"defence in depth"]
-PROTECT = r"`[^`]*`|\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\[[^\]]*\]|(?i:" + "|".join(PHRASES) + ")"
+PROTECT = r"`[^`]*`|\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\[[^\]]*\]|\[[^\]]*\](?![\(\[])|(?i:" + "|".join(PHRASES) + ")"
 
 # Reference-style definitions, one per line at the foot of a document:
-#   [Toolchain]: SPEC.md#toolchain
-# A term link may be written [Toolchain][] and resolves through them. The raw
-# text stays short, which is what an agent reads, and the rendered link is the same.
+#   [toolchain]: SPEC.md#toolchain
+# A term link is then written [Toolchain], the shortcut reference form, and resolves through
+# them case-insensitively. The raw text carries a word where it carried a thirty-character
+# link, which is what an agent reads; the rendered link is the same.
 DEFINITION = re.compile(r"^\[([^\]]+)\]: (\S+)\s*$")
+REFERENCE = re.compile(r"\[([^\]]+)\](?:\[([^\]]*)\])?(?![\(\[])")
 
 
 def definitions(text: str) -> dict[str, str]:
-    return {m.group(1): m.group(2) for m in (DEFINITION.match(l) for l in text.splitlines()) if m}
+    return {m.group(1).lower(): m.group(2) for m in (DEFINITION.match(l) for l in text.splitlines()) if m}
 
 
 def links(line: str, defs: dict[str, str]) -> list[tuple[str, str | None]]:
     """Every link on the line as (text, target); target is None for an undefined reference."""
+    line = re.sub(r"`[^`]*`", "", line)
     found: list[tuple[str, str | None]] = [(t, u) for t, u in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", line)]
-    for t, ref in re.findall(r"\[([^\]]+)\]\[([^\]]*)\]", line):
-        found.append((t, defs.get(ref or t)))
+    for t, ref in REFERENCE.findall(line):
+        found.append((t, defs.get((ref or t).lower())))
     return found
 
 
