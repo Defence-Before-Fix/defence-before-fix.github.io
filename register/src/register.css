@@ -157,15 +157,29 @@
 }
 
 .register-grade[data-level="green"] .register-dot {
-  background: #2da44e;
+  background: #1a7f37;
 }
 
 .register-grade[data-level="amber"] .register-dot {
-  background: #e3a008;
+  background: #9a6700;
 }
 
 .register-grade[data-level="red"] .register-dot {
-  background: #d1242f;
+  background: #cf222e;
+}
+
+@media (prefers-color-scheme: dark) {
+  .register-grade[data-level="green"] .register-dot {
+    background: #3fb950;
+  }
+
+  .register-grade[data-level="amber"] .register-dot {
+    background: #d29922;
+  }
+
+  .register-grade[data-level="red"] .register-dot {
+    background: #f85149;
+  }
 }
 
 .register-grade[data-level="ungraded"] .register-dot {

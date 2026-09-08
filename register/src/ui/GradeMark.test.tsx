@@ -10,7 +10,6 @@ describe("GradeMark", () => {
     );
     const cell = screen.getByLabelText("Readiness: green");
     expect(cell).toHaveAttribute("data-level", "green");
-    expect(cell).toHaveAttribute("title", "Readiness: green");
     expect(cell.querySelector(".register-dot")).not.toBeNull();
   });
 

@@ -20,7 +20,6 @@ export function GradeMark({ grade, column }: GradeMarkProps) {
       data-level={grade.level}
       role="img"
       aria-label={label}
-      title={label}
     >
       <span className="register-dot" aria-hidden="true"></span>
       <span className="register-grade-text">{grade.mark}</span>
