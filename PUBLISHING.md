@@ -1,5 +1,21 @@
 # Publishing
 
+## The custom domain
+
+The site is served by GitHub Pages at <https://longtermsupport.github.io/defence-before-fix/>,
+which is the canonical URL the toolchains print. Moving it to `defencebeforefix.ltscommerce.dev`
+is Joseph's, because it needs DNS:
+
+1. Add a `CNAME` record for `defencebeforefix` pointing at `longtermsupport.github.io`.
+2. Commit a file named `CNAME` at the repository root containing `defencebeforefix.ltscommerce.dev`,
+   or set the custom domain under Settings, Pages, which commits the same file.
+3. Once the certificate is issued, tick "Enforce HTTPS" on the same settings page.
+4. Update the URL in `_config.yml` if one is set, then in the toolchains' failure output and
+   conformance documents, in `head-custom.html` and in the README, since the old address will
+   redirect but the printed line should name the canonical one.
+
+## The packages
+
 Two docs-only packages, one per registry, so that a toolchain can depend on the specification it
 conforms to and a lock file records the version. Both are published by Joseph; nothing here runs
 without his credentials.
