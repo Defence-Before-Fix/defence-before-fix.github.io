@@ -10,24 +10,24 @@
 The key words MUST, MUST NOT, REQUIRED, SHOULD, SHOULD NOT and MAY are to be interpreted as
 described in RFC 2119.
 
-[The method specification](SPEC.md) states what a [Practitioner](SPEC.md#practitioner) does when a
-[Defect](SPEC.md#defect) is found. This document states what a [Detector](SPEC.md#detector) must offer so that they
-can do it: write a [Rule](SPEC.md#rule), prove it, run it and resolve what it prints. It is addressed to
-whoever maintains a [Detector](SPEC.md#detector), which the method specification defines as a tool that reads
+[The method specification](SPEC.md) states what a [Practitioner][] does when a
+[Defect][] is found. This document states what a [Detector][] must offer so that they
+can do it: write a [Rule][], prove it, run it and resolve what it prints. It is addressed to
+whoever maintains a [Detector][], which the method specification defines as a tool that reads
 code without executing it and reports occurrences of a pattern.
 
-A [Detector](SPEC.md#detector) is one part of a project's [Toolchain](SPEC.md#toolchain), and this document judges it
-on what it offers alone. What the assembled [Toolchain](SPEC.md#toolchain) of a project must add on top, the
-[Project record](TOOLING-SPEC.md#project-record), the listing of active [Defences](SPEC.md#defence) and the
-governance of [Suppression](SPEC.md#suppression), is stated in [the toolchain specification](TOOLING-SPEC.md).
-The two are separable because they are built by different people: a [Detector](SPEC.md#detector) is authored once
+A [Detector][] is one part of a project's [Toolchain][], and this document judges it
+on what it offers alone. What the assembled [Toolchain][] of a project must add on top, the
+[Project record][], the listing of active [Defences][] and the
+governance of [Suppression][], is stated in [the toolchain specification](TOOLING-SPEC.md).
+The two are separable because they are built by different people: a [Detector][] is authored once
 and installed into projects its maintainer will never see, whilst governance is decided by each
-project for itself. A document that asked a [Detector](SPEC.md#detector) to enforce a project's governance would
-fail every [Detector](SPEC.md#detector) in use and would not make any project better governed.
+project for itself. A document that asked a [Detector][] to enforce a project's governance would
+fail every [Detector][] in use and would not make any project better governed.
 
-**The governing principle**: where the method specification requires a [Practitioner](SPEC.md#practitioner) to do
-something with a [Rule](SPEC.md#rule), a [Conforming](SPEC.md#conform) [Detector](SPEC.md#detector) MUST make that possible
-without the project building the mechanism first. A [Detector](SPEC.md#detector) that leaves the project to
+**The governing principle**: where the method specification requires a [Practitioner][] to do
+something with a [Rule][], a [Conforming][] [Detector][] MUST make that possible
+without the project building the mechanism first. A [Detector][] that leaves the project to
 construct the means has moved the obligation rather than met it.
 
 ## 2. Terminology
@@ -37,111 +37,111 @@ definition; the ones this document leans on most are, in short:
 
 | Term                                 | In one line                                                                                      |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| [Detector](SPEC.md#detector)         | A tool that reads code without executing it and reports what it finds                            |
-| [Rule](SPEC.md#rule)                 | One check a [Detector](SPEC.md#detector) evaluates                                               |
-| [Identifier](SPEC.md#identifier)     | The stable name printed with a finding that leads to its documentation                           |
-| [Practitioner](SPEC.md#practitioner) | Whoever is doing the work, a person or an [Agent](SPEC.md#agent)                                 |
-| [Toolchain](SPEC.md#toolchain)       | Everything a project assembles to run its checks through, [Detectors](SPEC.md#detector) included |
-| [Suppression](SPEC.md#suppression)   | Making a finding go away without fixing it                                                       |
-| [Baseline](SPEC.md#baseline)         | A recorded set of existing findings a [Rule](SPEC.md#rule) is told to ignore                     |
+| [Detector][]         | A tool that reads code without executing it and reports what it finds                            |
+| [Rule][]                 | One check a [Detector][] evaluates                                               |
+| [Identifier][]     | The stable name printed with a finding that leads to its documentation                           |
+| [Practitioner][] | Whoever is doing the work, a person or an [Agent][]                                 |
+| [Toolchain][]       | Everything a project assembles to run its checks through, [Detectors][] included |
+| [Suppression][]   | Making a finding go away without fixing it                                                       |
+| [Baseline][]         | A recorded set of existing findings a [Rule][] is told to ignore                     |
 
 These are additional.
 
 #### Rule author
 
-Whoever writes a [Rule](SPEC.md#rule). May be the [Detector](SPEC.md#detector)'s maintainer, a [Toolchain](SPEC.md#toolchain)'s maintainer or the project that runs it.
+Whoever writes a [Rule][]. May be the [Detector][]'s maintainer, a [Toolchain][]'s maintainer or the project that runs it.
 
 #### Bundled rule
 
-A [Rule](SPEC.md#rule) the [Detector](SPEC.md#detector) ships, or fetches on the [Practitioner](SPEC.md#practitioner)'s behalf from a source the [Detector](SPEC.md#detector)'s maintainer controls. Its [Rule author](#rule-author) will never see the codebases it runs in, so everything a [Practitioner](SPEC.md#practitioner) needs in order to act on it has to travel with it.
+A [Rule][] the [Detector][] ships, or fetches on the [Practitioner][]'s behalf from a source the [Detector][]'s maintainer controls. Its [Rule author][] will never see the codebases it runs in, so everything a [Practitioner][] needs in order to act on it has to travel with it.
 
 #### Harness
 
-The route by which one [Rule](SPEC.md#rule) is run against supplied code and its findings observed, without the project's own test suite and without every other [Rule](SPEC.md#rule) running alongside it.
+The route by which one [Rule][] is run against supplied code and its findings observed, without the project's own test suite and without every other [Rule][] running alongside it.
 
-The distinction between a [Bundled rule](#bundled-rule) and a project's own [Rule](SPEC.md#rule) matters throughout.
-The [Detector](SPEC.md#detector) owns the documentation of the first and can be held to shipping it; it cannot
+The distinction between a [Bundled rule][] and a project's own [Rule][] matters throughout.
+The [Detector][] owns the documentation of the first and can be held to shipping it; it cannot
 know the documentation of the second, and what it owes there is the mechanism that lets the project
 attach its own.
 
 ## 3. The division of responsibility
 
 Each mechanism the method needs has two halves. Stating only one of them is what produces a
-[Detector](SPEC.md#detector) that is *nearly* usable.
+[Detector][] that is *nearly* usable.
 
-| Requirement                                        | The [Detector](SPEC.md#detector) MUST provide           | The [Rule author](#rule-author) supplies                                   |
+| Requirement                                        | The [Detector][] MUST provide           | The [Rule author][] supplies                                   |
 | -------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Bespoke [Rules](SPEC.md#rule)                      | The authoring and registration route                    | The [Rules](SPEC.md#rule)                                                  |
-| The red proof                                      | A [Harness](#harness)                                   | The [Fixture](SPEC.md#fixture) and the red run                             |
-| Running the [Rule](SPEC.md#rule)                   | A local invocation, including subsets                   | Running it                                                                 |
-| The [Identifier](SPEC.md#identifier)               | A place to carry it, and printing it with every finding | Choosing it once                                                           |
-| Resolution of a [Bundled rule](#bundled-rule)      | The lookup, and the documentation, on disk              | Nothing                                                                    |
-| Resolution of a project's own [Rule](SPEC.md#rule) | The [Identifier](SPEC.md#identifier) printed unaltered  | The documentation and, with the [Toolchain](SPEC.md#toolchain), the lookup |
-| Inline [Suppression](SPEC.md#suppression)          | A route the project can detect or disable               | The decision whether to forbid it                                          |
+| Bespoke [Rules][]                      | The authoring and registration route                    | The [Rules][]                                                  |
+| The red proof                                      | A [Harness][]                                   | The [Fixture][] and the red run                             |
+| Running the [Rule][]                   | A local invocation, including subsets                   | Running it                                                                 |
+| The [Identifier][]               | A place to carry it, and printing it with every finding | Choosing it once                                                           |
+| Resolution of a [Bundled rule][]      | The lookup, and the documentation, on disk              | Nothing                                                                    |
+| Resolution of a project's own [Rule][] | The [Identifier][] printed unaltered  | The documentation and, with the [Toolchain][], the lookup |
+| Inline [Suppression][]          | A route the project can detect or disable               | The decision whether to forbid it                                          |
 
-Read down the middle column and the shape of a [Conforming](SPEC.md#conform) [Detector](SPEC.md#detector) is already
+Read down the middle column and the shape of a [Conforming][] [Detector][] is already
 visible. Read across any row and the failure mode is visible too: either half alone leaves the
-[Practitioner](SPEC.md#practitioner) stuck.
+[Practitioner][] stuck.
 
 ## 4. Authoring rules
 
 ### 4.1 The detector MUST support bespoke rules written by the project that runs it
 
-Configuration of an existing [Rule](SPEC.md#rule) set is not sufficient. The project must be able to express a
-pattern the [Detector](SPEC.md#detector)'s authors have never anticipated, and register it so that it runs with
-the same standing as a [Bundled rule](#bundled-rule).
+Configuration of an existing [Rule][] set is not sufficient. The project must be able to express a
+pattern the [Detector][]'s authors have never anticipated, and register it so that it runs with
+the same standing as a [Bundled rule][].
 
-**Why**: the method turns a specific [Defect](SPEC.md#defect) into a [Class](SPEC.md#class) [Defence](SPEC.md#defence), and the
-[Classes](SPEC.md#class) that matter most to a project are the ones peculiar to it. A [Detector](SPEC.md#detector) offering
-only a fixed catalogue can defend against the industry's known [Hazards](SPEC.md#hazard) and none of the
+**Why**: the method turns a specific [Defect][] into a [Class][] [Defence][], and the
+[Classes][] that matter most to a project are the ones peculiar to it. A [Detector][] offering
+only a fixed catalogue can defend against the industry's known [Hazards][] and none of the
 project's own, which is the half that carries its institutional knowledge.
 
 ### 4.2 The detector MUST provide a harness that runs a single rule against supplied code
 
-A [Harness](#harness) reports, for a given input, whether the [Rule](SPEC.md#rule) fired and what it printed, without
-executing the project's own test suite and without the other [Rules](SPEC.md#rule) obscuring the answer.
-This applies to every [Rule](SPEC.md#rule) the [Detector](SPEC.md#detector) runs, bundled or bespoke; a
-[Detector](SPEC.md#detector) failing 4.1 is graded here on its [Bundled rules](#bundled-rule).
+A [Harness][] reports, for a given input, whether the [Rule][] fired and what it printed, without
+executing the project's own test suite and without the other [Rules][] obscuring the answer.
+This applies to every [Rule][] the [Detector][] runs, bundled or bespoke; a
+[Detector][] failing 4.1 is graded here on its [Bundled rules][].
 
-**Why**: clause 3.3 of the method specification requires the [Rule](SPEC.md#rule) to be proven by making it go
-red. A [Practitioner](SPEC.md#practitioner) who can only observe a [Rule](SPEC.md#rule)'s behaviour by running every
-[Rule](SPEC.md#rule) over the whole codebase cannot demonstrate that a [Rule](SPEC.md#rule) fires on the pattern rather
+**Why**: clause 3.3 of the method specification requires the [Rule][] to be proven by making it go
+red. A [Practitioner][] who can only observe a [Rule][]'s behaviour by running every
+[Rule][] over the whole codebase cannot demonstrate that a [Rule][] fires on the pattern rather
 than on something incidental.
 
 ### 4.3 The detector MUST allow a rule to carry a stable identifier, and MUST print it with every finding
 
-The [Identifier](SPEC.md#identifier) MUST be stable across releases and MUST NOT be derived from the [Rule](SPEC.md#rule)'s
-file path, [Class](SPEC.md#class) name or position in a configuration file. The [Rule author](#rule-author) chooses it
-once. The [Detector](SPEC.md#detector) MUST print it, unaltered, alongside every finding the [Rule](SPEC.md#rule)
+The [Identifier][] MUST be stable across releases and MUST NOT be derived from the [Rule][]'s
+file path, [Class][] name or position in a configuration file. The [Rule author][] chooses it
+once. The [Detector][] MUST print it, unaltered, alongside every finding the [Rule][]
 reports, in its default output and in every machine-readable format it offers. A prefix the
-[Detector](SPEC.md#detector) adds from the invoking directory or the [Rule](SPEC.md#rule)'s location is derived from
-the file path. A namespace the [Rule author](#rule-author) assigns once in configuration is not. For
-example, `rules/no-raw-sql`, produced from where the [Rule](SPEC.md#rule)'s file happens to sit, is
+[Detector][] adds from the invoking directory or the [Rule][]'s location is derived from
+the file path. A namespace the [Rule author][] assigns once in configuration is not. For
+example, `rules/no-raw-sql`, produced from where the [Rule][]'s file happens to sit, is
 derived and changes when the file moves; `proj.no-raw-sql`, written once in the configuration and
-printed unchanged wherever the [Rule](SPEC.md#rule) runs, is stable.
+printed unchanged wherever the [Rule][] runs, is stable.
 
-**Why**: the [Identifier](SPEC.md#identifier) is the only string that reaches the [Practitioner](SPEC.md#practitioner) and the
-only key their lookup can use. An [Identifier](SPEC.md#identifier) that changes when a [Rule](SPEC.md#rule) is renamed
+**Why**: the [Identifier][] is the only string that reaches the [Practitioner][] and the
+only key their lookup can use. An [Identifier][] that changes when a [Rule][] is renamed
 silently breaks every reference to it, including references written down by people who have left.
-An [Identifier](SPEC.md#identifier) the [Detector](SPEC.md#detector) carries but does not print is one the
-[Practitioner](SPEC.md#practitioner) was never given.
+An [Identifier][] the [Detector][] carries but does not print is one the
+[Practitioner][] was never given.
 
 ### 4.4 The detector SHOULD enforce 4.3 with a rule of its own
 
-A [Rule](SPEC.md#rule) over the [Rules](SPEC.md#rule), failing any [Rule](SPEC.md#rule) that reports without a stable
-[Identifier](SPEC.md#identifier).
+A [Rule][] over the [Rules][], failing any [Rule][] that reports without a stable
+[Identifier][].
 
-**Why**: this is the method applied to the [Detector](SPEC.md#detector) itself, and it is cheap. The worked
-example is `php-qa-ci`'s `RequireRuleIdentifierConstantRule`, a [Rule](SPEC.md#rule) hosted in PHPStan by a
-[Toolchain](SPEC.md#toolchain) built on it: it rejects a magic-string [Identifier](SPEC.md#identifier) and names the
-constant to declare instead. Nothing about it needed to live outside the [Detector](SPEC.md#detector).
+**Why**: this is the method applied to the [Detector][] itself, and it is cheap. The worked
+example is `php-qa-ci`'s `RequireRuleIdentifierConstantRule`, a [Rule][] hosted in PHPStan by a
+[Toolchain][] built on it: it rejects a magic-string [Identifier][] and names the
+constant to declare instead. Nothing about it needed to live outside the [Detector][].
 
 ## 5. Reporting
 
 ### 5.1 The detector MUST be invocable by the practitioner, locally, with no infrastructure
 
-**Why**: method specification clause 8.1. An [Agent](SPEC.md#agent) that cannot check its own work cannot
-iterate against a [Defence](SPEC.md#defence), so the loop never closes in the turn where it is cheap to close.
+**Why**: method specification clause 8.1. An [Agent][] that cannot check its own work cannot
+iterate against a [Defence][], so the loop never closes in the turn where it is cheap to close.
 
 ### 5.2 The detector MUST support invocation over a subset, at minimum a single file
 
@@ -151,155 +151,155 @@ any.
 
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
-Where the [Detector](SPEC.md#detector) writes fuller detail elsewhere, the invoked command's own output MUST
+Where the [Detector][] writes fuller detail elsewhere, the invoked command's own output MUST
 carry both a usable summary and the location of the remainder.
 
-**Why**: method specification clause 8.2. A report the [Practitioner](SPEC.md#practitioner) has to go and find is a
+**Why**: method specification clause 8.2. A report the [Practitioner][] has to go and find is a
 report that arrives after the decision it was meant to inform.
 
 ### 5.4 A finding MUST NOT be reportable only through a hosted service, licence tier or CI-only mode the practitioner cannot invoke locally
 
-A finding that the [Detector](SPEC.md#detector) reports only through a hosted service, a licence tier or a
-continuous-integration-only mode the [Practitioner](SPEC.md#practitioner) cannot invoke locally does not
-[Conform](SPEC.md#conform), whatever the same [Rule](SPEC.md#rule) reports there.
+A finding that the [Detector][] reports only through a hosted service, a licence tier or a
+continuous-integration-only mode the [Practitioner][] cannot invoke locally does not
+[Conform][], whatever the same [Rule][] reports there.
 
-**Why**: a [Rule](SPEC.md#rule) that fires only in an environment the [Practitioner](SPEC.md#practitioner) has no access to
+**Why**: a [Rule][] that fires only in an environment the [Practitioner][] has no access to
 teaches nobody anything and blocks them anyway, which is the worst combination available.
 
 ## 6. Resolving an identifier
 
 ### 6.1 The detector MUST provide a mechanism that resolves a printed identifier to its documentation
 
-Keyed on **the [Identifier](SPEC.md#identifier) exactly as printed**. A command, an index file or a URL are all
-acceptable forms; for a [Bundled rule](#bundled-rule), clause 6.2 governs where it lives.
+Keyed on **the [Identifier][] exactly as printed**. A command, an index file or a URL are all
+acceptable forms; for a [Bundled rule][], clause 6.2 governs where it lives.
 
-**For a [Bundled rule](#bundled-rule)**, the [Detector](SPEC.md#detector) supplies the documentation and the
-lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier](SPEC.md#identifier)
-presented alone, because the reader who needs it most has the [Identifier](SPEC.md#identifier) from a log, a
-ticket or a colleague and not the [Message](SPEC.md#message). A [Message](SPEC.md#message) that carries its own
-documentation path resolves that [Message](SPEC.md#message), not the [Identifier](SPEC.md#identifier).
+**For a [Bundled rule][]**, the [Detector][] supplies the documentation and the
+lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier][]
+presented alone, because the reader who needs it most has the [Identifier][] from a log, a
+ticket or a colleague and not the [Message][]. A [Message][] that carries its own
+documentation path resolves that [Message][], not the [Identifier][].
 
-**For a project's own [Rule](SPEC.md#rule)**, the [Detector](SPEC.md#detector) cannot know the documentation, so what
-it owes is the half it can give: the [Identifier](SPEC.md#identifier) printed unaltered under clause 4.3, and no
-transformation of it. Where the [Identifier](SPEC.md#identifier) is itself a URL, as method clause 3.6 allows,
-printing it is printing the [Identifier](SPEC.md#identifier); what this clause forbids is a path supplied in
-addition to a shorter [Identifier](SPEC.md#identifier) that cannot be looked up on its own. The lookup for such
-a [Rule](SPEC.md#rule) is an obligation on the project's assembled [Toolchain](SPEC.md#toolchain), under clause 4.2
-of the [toolchain specification](TOOLING-SPEC.md), and a [Detector](SPEC.md#detector) that offers it as well has
+**For a project's own [Rule][]**, the [Detector][] cannot know the documentation, so what
+it owes is the half it can give: the [Identifier][] printed unaltered under clause 4.3, and no
+transformation of it. Where the [Identifier][] is itself a URL, as method clause 3.6 allows,
+printing it is printing the [Identifier][]; what this clause forbids is a path supplied in
+addition to a shorter [Identifier][] that cannot be looked up on its own. The lookup for such
+a [Rule][] is an obligation on the project's assembled [Toolchain][], under clause 4.2
+of the [toolchain specification](TOOLING-SPEC.md), and a [Detector][] that offers it as well has
 gone further than this clause asks.
 
-**Why**: method specification clause 8.3 requires the [Identifier](SPEC.md#identifier) to resolve without a human.
+**Why**: method specification clause 8.3 requires the [Identifier][] to resolve without a human.
 An index keyed on anything else does not resolve it. This is the most commonly failed clause in this
 document and it fails in a specific way: documentation exists, is genuinely good, and is keyed on the
-[Rule](SPEC.md#rule)'s [Class](SPEC.md#class) or file name, which is a string the [Practitioner](SPEC.md#practitioner) was never
+[Rule][]'s [Class][] or file name, which is a string the [Practitioner][] was never
 given. The lookup they can actually perform is the only one that counts.
 
 ### 6.2 Resolution of a bundled rule's identifier MUST work from the installed copy, without network access
 
-**Why**: an [Agent](SPEC.md#agent) working offline, behind a proxy, or against a URL that has since moved needs
+**Why**: an [Agent][] working offline, behind a proxy, or against a URL that has since moved needs
 the answer to be on disk. A dependency the project already installed is on disk by definition. A
-catalogue on the [Detector](SPEC.md#detector)'s website, however complete, is the right documentation in the wrong
+catalogue on the [Detector][]'s website, however complete, is the right documentation in the wrong
 place.
 
 ### 6.3 A bundled rule's documentation MUST ship with the rule, at a version tracked together
 
-Every [Identifier](SPEC.md#identifier) a [Bundled rule](#bundled-rule) can print MUST resolve, under clause 6.1,
+Every [Identifier][] a [Bundled rule][] can print MUST resolve, under clause 6.1,
 to a page in that shipped documentation.
 
-Where one page documents a family of [Identifiers](SPEC.md#identifier) under a shared prefix, the page
+Where one page documents a family of [Identifiers][] under a shared prefix, the page
 SHOULD make every member findable by a mechanical check, in one of two ways:
 
-- every full [Identifier](SPEC.md#identifier) in the family appears on the page verbatim, in the installed
+- every full [Identifier][] in the family appears on the page verbatim, in the installed
   artefact clause 6.2 requires resolution to work from and not only in rendered output; or
 - the page carries a pattern the check can execute, a glob or a regular expression rather than
-  prose, that matches every member and no [Identifier](SPEC.md#identifier) outside the family.
+  prose, that matches every member and no [Identifier][] outside the family.
 
 For example, a page for the family `LM-01xx` either lists `LM-0100`, `LM-0101` and every other
 member that exists, or carries the pattern `^LM-01[0-9]{2}$`. A prefix alone, "everything under
 `LM-01` is documented here", is neither, and a page that resolves a family only by a reader's inference
 resolves it for a human and not for the check clause 6.4 asks for.
 
-**Why**: method specification clause 3.6. A [Bundled rule](#bundled-rule) travels into codebases its author
-will never see. If its documentation lives only in the [Detector](SPEC.md#detector)'s repository or on its
-website, then every project that installs it is one link rot away from a [Rule](SPEC.md#rule) that blocks
+**Why**: method specification clause 3.6. A [Bundled rule][] travels into codebases its author
+will never see. If its documentation lives only in the [Detector][]'s repository or on its
+website, then every project that installs it is one link rot away from a [Rule][] that blocks
 without explaining.
 
 The failure to guard against is not the absent document but the **dangling one**: a reference to
 documentation that was planned and never written is worse than no reference, because it consumes
-the [Practitioner](SPEC.md#practitioner)'s attention before failing them.
+the [Practitioner][]'s attention before failing them.
 
 ### 6.4 The detector SHOULD fail its own release if a bundled rule lacks resolvable documentation
 
-An automated check over every [Identifier](SPEC.md#identifier) a [Bundled rule](#bundled-rule) can print, applying the
+An automated check over every [Identifier][] a [Bundled rule][] can print, applying the
 family pattern of clause 6.3 where one is used, that blocks the release when any of them lands on no
 page.
 
 **Why**: clause 6.1 is the clause most easily believed to be satisfied whilst being broken, because
-the documentation is written by the same person who wrote the [Rule](SPEC.md#rule) and its absence is
-invisible from the inside. Where the [Detector](SPEC.md#detector) is shipped inside a [Toolchain](SPEC.md#toolchain),
-the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a MUST for the [Toolchain](SPEC.md#toolchain); a
-[Detector](SPEC.md#detector) released on its own is asked for it as a SHOULD because the same [Class](SPEC.md#class) of
-[Defect](SPEC.md#defect), a [Rule](SPEC.md#rule) that blocks without explaining, is detectable mechanically there too.
+the documentation is written by the same person who wrote the [Rule][] and its absence is
+invisible from the inside. Where the [Detector][] is shipped inside a [Toolchain][],
+the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a MUST for the [Toolchain][]; a
+[Detector][] released on its own is asked for it as a SHOULD because the same [Class][] of
+[Defect][], a [Rule][] that blocks without explaining, is detectable mechanically there too.
 
 ## 7. Suppression
 
 ### 7.1 A detector MAY offer an inline suppression route, but MUST make it detectable or disableable
 
-An inline ignore comment, a per-line directive and a generated [Baseline](SPEC.md#baseline) are all such
-routes. The [Detector](SPEC.md#detector) MAY ship them. It MUST make each one either disableable by
-configuration, or detectable by a [Rule](SPEC.md#rule) the project can write in the [Detector](SPEC.md#detector) itself
-or by a mechanical check the [Detector](SPEC.md#detector) documents, so that a project which decides to forbid the route can enforce
-that decision. A route that can be neither switched off nor seen does not [Conform](SPEC.md#conform).
+An inline ignore comment, a per-line directive and a generated [Baseline][] are all such
+routes. The [Detector][] MAY ship them. It MUST make each one either disableable by
+configuration, or detectable by a [Rule][] the project can write in the [Detector][] itself
+or by a mechanical check the [Detector][] documents, so that a project which decides to forbid the route can enforce
+that decision. A route that can be neither switched off nor seen does not [Conform][].
 
-**Why**: the method specification's position is that [Suppression](SPEC.md#suppression) is an [Owner](SPEC.md#owner)
-decision under its clause 3.4 and section 4, and an [Owner](SPEC.md#owner) cannot decide something they are
-never shown. The [Detector](SPEC.md#detector) is not the [Owner](SPEC.md#owner) and does not know the project's
+**Why**: the method specification's position is that [Suppression][] is an [Owner][]
+decision under its clause 3.4 and section 4, and an [Owner][] cannot decide something they are
+never shown. The [Detector][] is not the [Owner][] and does not know the project's
 governance, so it is not asked to enforce it; what it is asked is not to hide the route. Every
-[Detector](SPEC.md#detector) in wide use ships an inline ignore, and a clause that forbade them would fail all of
+[Detector][] in wide use ships an inline ignore, and a clause that forbade them would fail all of
 them without governing any project better. Whether the route is forbidden is the project's decision,
-enforced through its [Toolchain](SPEC.md#toolchain) under clause 4.3 of the [toolchain specification](TOOLING-SPEC.md).
+enforced through its [Toolchain][] under clause 4.3 of the [toolchain specification](TOOLING-SPEC.md).
 
 ### 7.2 An inline suppression route SHOULD require a written reason
 
-The [Detector](SPEC.md#detector) SHOULD reject, or be configurable to reject, an inline [Suppression](SPEC.md#suppression)
+The [Detector][] SHOULD reject, or be configurable to reject, an inline [Suppression][]
 that carries no reason, and SHOULD NOT supply a default one, including each entry of a generated
-[Baseline](SPEC.md#baseline).
+[Baseline][].
 
-**Why**: a [Suppression](SPEC.md#suppression) without a reason is indistinguishable from one nobody would defend,
+**Why**: a [Suppression][] without a reason is indistinguishable from one nobody would defend,
 and the person who could tell them apart is usually gone. Requiring the sentence costs the author a
 minute at the moment they have the reason in mind, and it is the only thing that makes the
-[Suppression](SPEC.md#suppression) reviewable later. PHPStan's `reportIgnoresWithoutComments` is the shape of it.
+[Suppression][] reviewable later. PHPStan's `reportIgnoresWithoutComments` is the shape of it.
 
 ## 8. Conformance
 
-**A [Detector](SPEC.md#detector) [Conforms](SPEC.md#conform)** if it satisfies every MUST in sections 4 to 7.
+**A [Detector][] [Conforms][]** if it satisfies every MUST in sections 4 to 7.
 
-Partial [Conformance](SPEC.md#conform) MUST NOT be described as [Conformance](SPEC.md#conform). A [Detector](SPEC.md#detector)
+Partial [Conformance][] MUST NOT be described as [Conformance][]. A [Detector][]
 that satisfies most of this document is in a normal and respectable condition; it is not
-[Conforming](SPEC.md#conform), and describing it as such removes the only value the word has.
+[Conforming][], and describing it as such removes the only value the word has.
 
 This document defines one level. The clauses of the method specification's section 8 that reach
-beyond what sections 4 to 6 here already secure, the listing of active [Defences](SPEC.md#defence) and the
-summary for an [Agent](SPEC.md#agent)'s context, are obligations on a project's assembled [Toolchain](SPEC.md#toolchain)
-and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no separate [Agent](SPEC.md#agent)-support level
-for a [Detector](SPEC.md#detector).
+beyond what sections 4 to 6 here already secure, the listing of active [Defences][] and the
+summary for an [Agent][]'s context, are obligations on a project's assembled [Toolchain][]
+and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no separate [Agent][]-support level
+for a [Detector][].
 
 ### 8.1 A maintainer MAY declare the version of this document the detector conforms to, and the declaration records known gaps
 
-The declaration is machine-readable, in whatever form the [Detector](SPEC.md#detector)'s ecosystem uses to
+The declaration is machine-readable, in whatever form the [Detector][]'s ecosystem uses to
 record dependencies. The same declaration is where a gap against this document is recorded once it is
-known: a [Detector](SPEC.md#detector) that has learnt, from its own checks or from a [Practitioner](SPEC.md#practitioner)'s
+known: a [Detector][] that has learnt, from its own checks or from a [Practitioner][]'s
 report under the method's clause 3.2, that it fails a MUST in sections 4 to 7 MUST record that gap
 alongside the version it declares, in the same file or one it names. A declaration with a non-empty
-gap record is a statement of where the [Detector](SPEC.md#detector) stands and is not a claim of
-[Conformance](SPEC.md#conform).
+gap record is a statement of where the [Detector][] stands and is not a claim of
+[Conformance][].
 
-The declaration is optional. It is how a maintainer claims [Conformance](SPEC.md#conform); it is not a
-condition of it. A [Detector](SPEC.md#detector) that predates this document, or whose maintainer has never read
-it, MAY be graded [Conforming](SPEC.md#conform) on evidence by anyone who exercises the clauses above against
-it, and a verdict on any [Detector](SPEC.md#detector), declared or not, rests on that exercise and not on the
+The declaration is optional. It is how a maintainer claims [Conformance][]; it is not a
+condition of it. A [Detector][] that predates this document, or whose maintainer has never read
+it, MAY be graded [Conforming][] on evidence by anyone who exercises the clauses above against
+it, and a verdict on any [Detector][], declared or not, rests on that exercise and not on the
 claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
-the reader still runs the [Harness](#harness).
+the reader still runs the [Harness][].
 
 The shape is illustrative rather than prescribed. In a Composer manifest:
 
@@ -315,32 +315,63 @@ The shape is illustrative rather than prescribed. In a Composer manifest:
 ```
 
 In a package.json, the equivalent is a top-level `defenceBeforeFix` object with the same keys. A
-[Detector](SPEC.md#detector) that is not also shipped as a [Toolchain](SPEC.md#toolchain) leaves `toolchain` empty;
+[Detector][] that is not also shipped as a [Toolchain][] leaves `toolchain` empty;
 a project that ships both declares both. Each entry in `known-gaps` names the clause and states the
 gap in a sentence.
 
-**Why**: a [Conformance](SPEC.md#conform) claim in a README is a sentence; a claim in a manifest is a fact about
+**Why**: a [Conformance][] claim in a README is a sentence; a claim in a manifest is a fact about
 a specific installed artefact, checkable by anyone, including mechanically, and it fixes what
-"[Conforming](SPEC.md#conform)" meant at the point the claim was made. Making the claim a condition of
-[Conformance](SPEC.md#conform), though, would mean a [Detector](SPEC.md#detector) with every mechanism in place could
-never [Conform](SPEC.md#conform) until its maintainer had heard of this document, which grades the
-maintainer's reading rather than the [Detector](SPEC.md#detector).
+"[Conforming][]" meant at the point the claim was made. Making the claim a condition of
+[Conformance][], though, would mean a [Detector][] with every mechanism in place could
+never [Conform][] until its maintainer had heard of this document, which grades the
+maintainer's reading rather than the [Detector][].
 
 ## 9. Relationship to the other specifications
 
-This document adds no obligations to a [Practitioner](SPEC.md#practitioner) and relaxes none. Every clause here
-exists to make a clause of the method specification achievable with a [Detector](SPEC.md#detector) in hand.
+This document adds no obligations to a [Practitioner][] and relaxes none. Every clause here
+exists to make a clause of the method specification achievable with a [Detector][] in hand.
 
 Where this document and the method specification disagree, the method specification governs. It
 describes the method, which is the thing being specified; this describes one piece of the equipment.
 
-The [toolchain specification](TOOLING-SPEC.md) states what a project's assembled [Toolchain](SPEC.md#toolchain) must offer beyond
-what each [Detector](SPEC.md#detector) in it offers, and it requires every [Detector](SPEC.md#detector) a [Defence](SPEC.md#defence)
-is routed through to [Conform](SPEC.md#conform) to this one. A [Detector](SPEC.md#detector) shipped inside a
-[Toolchain](SPEC.md#toolchain) is measured here as a [Detector](SPEC.md#detector) and there as part of the
-[Toolchain](SPEC.md#toolchain); the two verdicts are separate and neither implies the other.
+The [toolchain specification](TOOLING-SPEC.md) states what a project's assembled [Toolchain][] must offer beyond
+what each [Detector][] in it offers, and it requires every [Detector][] a [Defence][]
+is routed through to [Conform][] to this one. A [Detector][] shipped inside a
+[Toolchain][] is measured here as a [Detector][] and there as part of the
+[Toolchain][]; the two verdicts are separate and neither implies the other.
 
-Nothing here requires a project to use a [Conforming](SPEC.md#conform) [Detector](SPEC.md#detector). A project can
-[Conform](SPEC.md#conform) to the method specification on a [Detector](SPEC.md#detector) that [Conforms](SPEC.md#conform) to
+Nothing here requires a project to use a [Conforming][] [Detector][]. A project can
+[Conform][] to the method specification on a [Detector][] that [Conforms][] to
 none of this, at the cost of building the missing mechanisms itself. This document exists so that it
 does not have to.
+
+<!-- Term link definitions -->
+[Agent]: SPEC.md#agent
+[Baseline]: SPEC.md#baseline
+[Bundled rule]: #bundled-rule
+[Bundled rules]: #bundled-rule
+[Class]: SPEC.md#class
+[Classes]: SPEC.md#class
+[Conform]: SPEC.md#conform
+[Conformance]: SPEC.md#conform
+[Conforming]: SPEC.md#conform
+[Conforms]: SPEC.md#conform
+[Defect]: SPEC.md#defect
+[Defence]: SPEC.md#defence
+[Defences]: SPEC.md#defence
+[Detector]: SPEC.md#detector
+[Detectors]: SPEC.md#detector
+[Fixture]: SPEC.md#fixture
+[Harness]: #harness
+[Hazards]: SPEC.md#hazard
+[Identifier]: SPEC.md#identifier
+[Identifiers]: SPEC.md#identifier
+[Message]: SPEC.md#message
+[Owner]: SPEC.md#owner
+[Practitioner]: SPEC.md#practitioner
+[Project record]: TOOLING-SPEC.md#project-record
+[Rule]: SPEC.md#rule
+[Rule author]: #rule-author
+[Rules]: SPEC.md#rule
+[Suppression]: SPEC.md#suppression
+[Toolchain]: SPEC.md#toolchain

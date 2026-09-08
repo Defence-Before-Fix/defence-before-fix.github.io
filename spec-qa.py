@@ -70,7 +70,25 @@ INFLECTIONS = {
 # Phrases in which a defined word appears in a sense that is NOT the term:
 # the method's own name, and the unrelated security term it disclaims.
 PHRASES = [r"Defen[cs]e Before Fix", r"defence in depth"]
-PROTECT = r"`[^`]*`|\[[^\]]*\]\([^)]*\)|(?i:" + "|".join(PHRASES) + ")"
+PROTECT = r"`[^`]*`|\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\[[^\]]*\]|(?i:" + "|".join(PHRASES) + ")"
+
+# Reference-style definitions, one per line at the foot of a document:
+#   [Toolchain]: SPEC.md#toolchain
+# A term link may be written [Toolchain][] and resolves through them. The raw
+# text stays short, which is what an agent reads, and the rendered link is the same.
+DEFINITION = re.compile(r"^\[([^\]]+)\]: (\S+)\s*$")
+
+
+def definitions(text: str) -> dict[str, str]:
+    return {m.group(1): m.group(2) for m in (DEFINITION.match(l) for l in text.splitlines()) if m}
+
+
+def links(line: str, defs: dict[str, str]) -> list[tuple[str, str | None]]:
+    """Every link on the line as (text, target); target is None for an undefined reference."""
+    found: list[tuple[str, str | None]] = [(t, u) for t, u in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", line)]
+    for t, ref in re.findall(r"\[([^\]]+)\]\[([^\]]*)\]", line):
+        found.append((t, defs.get(ref or t)))
+    return found
 
 
 def slug(term: str) -> str:
@@ -104,7 +122,7 @@ def body_lines(text: str) -> list[tuple[int, str]]:
         if line.startswith("```"):
             in_code = not in_code
             continue
-        if in_code or line.startswith("#"):
+        if in_code or line.startswith("#") or DEFINITION.match(line):
             continue
         out.append((n, line))
     return out
@@ -145,8 +163,12 @@ def check(here: Path) -> list[str]:
                     findings.append(f"{doc}:{n}: phrase-link — a term link inside a protected phrase")
 
         used: set[str] = set()
+        defs = definitions(text)
         for n, line in body:
-            for txt, target in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", line):
+            for txt, target in links(line, defs):
+                if target is None:
+                    findings.append(f"{doc}:{n}: undefined-reference '[{txt}]' has no definition line")
+                    continue
                 if not (target.startswith("#") or ".md#" in target):
                     continue
                 for term in ordered:

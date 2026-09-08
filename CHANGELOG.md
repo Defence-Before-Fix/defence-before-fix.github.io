@@ -13,9 +13,11 @@ test the passage then checks. Both were named independently by two or more reade
 acceptance cohort under [ACCEPTANCE.md](ACCEPTANCE.md). The header names the detector
 specification 1.0.0 and toolchain specification 0.2.0 as companions.
 
-Accepted by a cold cohort of five Haiku readers in three runs; findings applied: 3.1 closes with
-its record, 3.3 opens with the two-halves test as two bullets. Clause 3.1 remains the clause
-readers name as read twice; every reader graded it as keyed, so it is recorded, not blocking.
+Not yet accepted. Three runs of a cold cohort of five Haiku readers: every load-bearing statement
+and every fixture verdict correct in every run; findings applied so far: 3.1 closes with its
+record, 3.3 opens with the two-halves test as two bullets. Clause 3.1 was still named as read
+twice by two or more readers in the third run, which blocks until a fresh cohort no longer names
+it.
 
 ### 1.0.0, 2026-09-08
 
@@ -39,10 +41,11 @@ because 0.1.0 asked it to enforce a project's suppression governance and to decl
 before it could conform, and neither is a detector's to do. Conformance is on evidence; the
 declaration is the claim and the known-gap record.
 
-Accepted by a cold cohort of five Haiku readers in three runs; findings applied: 6.3's family
-rule as two listed alternatives with a worked example, a derived-versus-assigned example in 4.3,
-a seven-term gloss in section 2. Clause 6.3 remains the clause readers name as read twice; every
-reader graded it as keyed, so it is recorded, not blocking.
+Not yet accepted. Three runs of a cold cohort of five Haiku readers: every load-bearing statement
+and every fixture verdict correct in every run; findings applied so far: 6.3's family rule as two
+listed alternatives with a worked example, a derived-versus-assigned example in 4.3, a seven-term
+gloss in section 2. Clause 6.3 was still named as read twice by five readers in the third run,
+which blocks until a fresh cohort no longer names it.
 
 ## Toolchain specification (TOOLING-SPEC.md)
 
