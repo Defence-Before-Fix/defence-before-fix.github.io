@@ -1,70 +1,70 @@
 /* Styles for the tools register application. Colours come from the site's own variables so
-   the table follows the light and dark themes of the rest of the site. */
+   the table follows the light and dark themes of the rest of the site.
+
+   The site lays its prose out in a 52rem column and gives every table a fixed layout with
+   equal columns, which suits a three-column legend and ruins a nine-column register. The
+   application therefore breaks out of the prose column to the viewport width, up to a
+   ceiling, and gives the table an automatic layout with a minimum width so the notes get
+   room and the grades stay narrow. */
 
 .register-app {
-  margin: 1rem 0 2rem;
+  --register-width: min(100vw - 2rem, 90rem);
+  width: var(--register-width);
+  margin: 1rem 0 2rem calc(50% - var(--register-width) / 2);
 }
 
 .register-filters {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 0.75rem 1rem;
   border: 1px solid var(--border);
   border-radius: 6px;
   background: var(--background-alt);
 }
 
-.register-search {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  min-width: 14rem;
-}
-
-.register-search input {
-  margin: 0;
-}
-
-.register-filter-group {
-  border: 0;
-  padding: 0;
-  margin: 0;
+.register-filter-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 0.75rem;
-  align-items: center;
+  gap: 0.5rem 1.25rem;
+  align-items: flex-end;
 }
 
-.register-filter-group legend {
-  float: left;
-  padding: 0;
-  margin-right: 0.5rem;
-  font-weight: 600;
+.register-search,
+.register-facet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
 
-.register-filter-option {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  white-space: nowrap;
+.register-search {
+  flex: 1 1 16rem;
 }
 
-.register-filter-option input {
+.register-search input,
+.register-facet select {
   margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.register-facet select {
+  min-width: 10rem;
 }
 
 .register-count {
-  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin: 0;
   color: var(--text-muted);
 }
 
 .register-reset {
-  margin-left: 0.5rem;
-  padding: 0.15rem 0.6rem;
+  margin: 0;
+  padding: 0.2rem 0.7rem;
   font-size: 0.9em;
 }
 
@@ -78,9 +78,12 @@
 
 .register-table {
   width: 100%;
+  min-width: 68rem;
+  table-layout: auto;
   border-collapse: separate;
   border-spacing: 0;
   margin: 0;
+  font-size: 0.9rem;
 }
 
 .register-table thead th {
@@ -96,14 +99,29 @@
 .register-table td {
   border-bottom: 1px solid var(--border);
   vertical-align: top;
+  overflow-wrap: normal;
+  word-wrap: normal;
 }
 
 .register-table tbody tr:last-child td {
   border-bottom: 0;
 }
 
+.register-table tbody tr:nth-child(even) td {
+  background: var(--background-alt);
+}
+
+.register-name {
+  white-space: nowrap;
+}
+
 .register-table tbody tr[data-kind="toolchain"] .register-name {
   font-weight: 600;
+}
+
+.register-language,
+.register-kind {
+  white-space: nowrap;
 }
 
 .register-sort {
@@ -122,16 +140,64 @@
 .register-grade-cell {
   text-align: center;
   white-space: nowrap;
+  width: 5.5rem;
+}
+
+.register-grade {
+  display: inline-block;
+  line-height: 1;
+}
+
+.register-dot {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.register-grade[data-level="green"] .register-dot {
+  background: #2da44e;
+}
+
+.register-grade[data-level="amber"] .register-dot {
+  background: #e3a008;
+}
+
+.register-grade[data-level="red"] .register-dot {
+  background: #d1242f;
+}
+
+.register-grade[data-level="ungraded"] .register-dot {
+  background: transparent;
+  border: 2px solid var(--text-muted);
+  box-sizing: border-box;
+}
+
+.register-grade[data-level="none"] .register-dot {
+  width: 0.3rem;
+  height: 0.3rem;
+  background: var(--text-muted);
+}
+
+.register-grade-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .register-checked {
-  white-space: nowrap;
+  min-width: 11rem;
   color: var(--text-muted);
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 .register-notes {
-  min-width: 18rem;
+  min-width: 24rem;
+  width: 45%;
 }
 
 .register-empty,

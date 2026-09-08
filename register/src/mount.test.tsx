@@ -24,10 +24,8 @@ describe("mount", () => {
     fallback.id = "register-static";
     document.body.append(host, fallback);
     expect(mount(document)).toBe(true);
-    await vi.waitFor(() =>
-      expect(host.querySelector("[role='status']")).not.toBeNull(),
-    );
-    expect(fallback.hidden).toBe(true);
+    await vi.waitFor(() => expect(fallback.hidden).toBe(true));
+    expect(host.querySelector("[role='status']")).not.toBeNull();
   });
 
   it("keeps the static fallback visible when the register cannot be loaded", async () => {

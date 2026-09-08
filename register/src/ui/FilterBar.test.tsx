@@ -29,7 +29,7 @@ describe("FilterBar", () => {
     });
   });
 
-  it("toggles a language, a kind and a grade level", async () => {
+  it("narrows by language, kind and a grade through labelled selects", async () => {
     const onChange = vi.fn();
     render(
       <FilterBar
@@ -40,23 +40,62 @@ describe("FilterBar", () => {
         onChange={onChange}
       />,
     );
-    await userEvent.click(screen.getByRole("checkbox", { name: "PHP" }));
+    await userEvent.selectOptions(
+      screen.getByRole("combobox", { name: "Language" }),
+      "PHP",
+    );
     expect(onChange).toHaveBeenLastCalledWith({
       ...defaultFilters(),
       languages: ["PHP"],
     });
-    await userEvent.click(screen.getByRole("checkbox", { name: "Toolchain" }));
+    await userEvent.selectOptions(
+      screen.getByRole("combobox", { name: "Kind" }),
+      "toolchain",
+    );
     expect(onChange).toHaveBeenLastCalledWith({
       ...defaultFilters(),
       kinds: ["toolchain"],
     });
-    await userEvent.click(
-      screen.getByRole("checkbox", { name: "Detector: green" }),
+    await userEvent.selectOptions(
+      screen.getByRole("combobox", { name: "Detector conformance" }),
+      "green",
     );
     expect(onChange).toHaveBeenLastCalledWith({
       ...defaultFilters(),
       grades: { ...defaultFilters().grades, detector: ["green"] },
     });
+  });
+
+  it("returns a select to any and reflects a chosen value", async () => {
+    const onChange = vi.fn();
+    render(
+      <FilterBar
+        filters={{ ...defaultFilters(), languages: ["PHP"] }}
+        languages={languages}
+        shown={2}
+        total={4}
+        onChange={onChange}
+      />,
+    );
+    const language = screen.getByRole("combobox", { name: "Language" });
+    expect(language).toHaveValue("PHP");
+    await userEvent.selectOptions(language, "");
+    expect(onChange).toHaveBeenLastCalledWith(defaultFilters());
+  });
+
+  it("names the grade levels in words, not marks alone", () => {
+    render(
+      <FilterBar
+        filters={defaultFilters()}
+        languages={languages}
+        shown={4}
+        total={4}
+        onChange={vi.fn()}
+      />,
+    );
+    expect(
+      screen.getAllByRole("option", { name: /green/i }).length,
+    ).toBeGreaterThan(0);
   });
 
   it("shows the count and offers a reset only when something is filtered", async () => {

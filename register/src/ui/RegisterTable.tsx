@@ -58,8 +58,8 @@ function Row({ tool }: { tool: Tool }) {
       <td className="register-name">
         <a href={tool.page}>{tool.name}</a>
       </td>
-      <td>{tool.language}</td>
-      <td>{tool.kind}</td>
+      <td className="register-language">{tool.language}</td>
+      <td className="register-kind">{tool.kind}</td>
       {GRADE_COLUMNS.map((column) => (
         <td key={column} className="register-grade-cell">
           <GradeMark grade={tool[column]} column={column} />
