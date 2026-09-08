@@ -2,7 +2,8 @@
 
 **Version**: 0.1.0, published 2026-09-08
 **Companion to**: [the method specification](SPEC.md), version 1.0.0
-**Author**: Joseph Edmonds
+**Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
+**Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
 
 ## 1. What this document is for
 

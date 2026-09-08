@@ -1,8 +1,9 @@
-# Defence Before Fix
+# Defence Before Fix: Method Specification
 
-**Version 1.0.0** · Coined by [Joseph Edmonds](https://ltscommerce.dev) of
-[Edmonds Commerce](https://edmondscommerce.co.uk) · First published
-22 February 2026
+**Version**: 1.0.0, published 2026-09-08
+**Companion to**: [the toolchain specification](TOOLING-SPEC.md), version 0.1.0
+**Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
+**Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
 
 > **Defence Before Fix** is a phase that runs *before* a [Defect](#defect) is fixed. Rather than dropping
 > straight into remediating the specific [Instance](#instance) in front of you, you first treat that [Instance](#instance)
