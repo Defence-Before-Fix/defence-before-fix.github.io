@@ -44,19 +44,19 @@ conform; the agent summary (section 7) is a MUST.
 
 ## 3. Application: the Zigpipe project
 
-| Clause | Intended verdict | Reasoning the fixture supports                                                                                                 |
-| ------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| 4.1    | No               | Lintomatic fails detector 6.3 on two undocumented bundled rules and nothing in the wrapping closes that gap                    |
-| 4.2    | No               | `zq.*` and `proj.*` resolve offline, but the two enabled bundled rules resolve to `(none)`                                     |
-| 4.3    | Yes              | Ignore comments disabled project-wide; exceptions only through the record the toolchain reads                                  |
-| 4.4    | Yes              | `zig-qa run` is local, prints Lintomatic's output unchanged, one line per finding                                              |
-| 4.5    | Yes              | Lintomatic, then the tests, stopping on a Lintomatic failure                                                                   |
-| 5.1    | Yes              | `zig-qa list` prints identifier, summary and documentation path without running the rules                                      |
-| 5.2    | Yes              | Derived from `lintomatic.toml`, not hand-maintained                                                                            |
-| 5.3    | Yes              | The `proj.*` rules appear in the same listing                                                                                  |
-| 6.1    | Yes              | `quality-exceptions.toml` is a defined path that `zig-qa run` loads                                                            |
-| 6.2    | Partial or No    | A justification is required and an empty one rejected, but nothing rejects a justification that could be pasted onto any entry |
-| 6.3    | Yes              | `zig-qa list --exceptions` uses the same format and operation as the rule listing                                              |
+| Clause | Intended verdict   | Reasoning the fixture supports                                                                                                                                                                                                                                                             |
+| ------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 4.1    | No                 | Lintomatic fails detector 6.3 on two undocumented bundled rules and nothing in the wrapping closes that gap                                                                                                                                                                                |
+| 4.2    | No                 | `zq.*` and `proj.*` resolve offline, but the two enabled bundled rules resolve to `(none)`                                                                                                                                                                                                 |
+| 4.3    | Yes                | Ignore comments disabled project-wide; exceptions only through the record the toolchain reads                                                                                                                                                                                              |
+| 4.4    | Yes                | `zig-qa run` is local, prints Lintomatic's output unchanged, one line per finding                                                                                                                                                                                                          |
+| 4.5    | Yes                | Lintomatic, then the tests, stopping on a Lintomatic failure                                                                                                                                                                                                                               |
+| 5.1    | Yes, Partial or No | `zig-qa list` prints identifier, summary and documentation path without running the rules; Partial or No is accepted where the reasoning counts the two `(none)` routes, since 5.1 says the listing MUST provide the route and 4.1 point 2 says a gap may be named again by a later clause |
+| 5.2    | Yes                | Derived from `lintomatic.toml`, not hand-maintained                                                                                                                                                                                                                                        |
+| 5.3    | Yes                | The `proj.*` rules appear in the same listing                                                                                                                                                                                                                                              |
+| 6.1    | Yes                | `quality-exceptions.toml` is a defined path that `zig-qa run` loads                                                                                                                                                                                                                        |
+| 6.2    | Partial or No      | A justification is required and an empty one rejected, but nothing rejects a justification that could be pasted onto any entry                                                                                                                                                             |
+| 6.3    | Yes                | `zig-qa list --exceptions` uses the same format and operation as the rule listing                                                                                                                                                                                                          |
 
 Either Partial or No is accepted for 6.2; the reasoning must mention the generic-justification
 requirement. A Yes on 6.2 with reasoning that quotes only the first sentence of the clause is a

@@ -194,8 +194,9 @@ documentation path resolves that [Message], not the [Identifier].
 **For a project's own [Rule]**, the [Detector] cannot know the documentation, so what
 it owes is the half it can give: the [Identifier] printed unaltered under clause 4.3, and no
 transformation of it. Where the [Identifier] is itself a URL, as method clause 3.6 allows,
-printing it is printing the [Identifier]; what this clause forbids is a path supplied in
-addition to a shorter [Identifier] that cannot be looked up on its own. The lookup for such
+the [Detector] prints that URL and has done what this clause asks. What this clause forbids is
+a documentation path printed alongside a shorter [Identifier] that cannot be looked up on its
+own. The lookup for such
 a [Rule] is an obligation on the project's assembled [Toolchain], under clause 4.2
 of the [toolchain specification](TOOLING-SPEC.md), and a [Detector] that offers it as well has
 gone further than this clause asks.
