@@ -1,7 +1,7 @@
 # Defence Before Fix: Toolchain Specification
 
-**Version**: 0.1.0, published 2026-09-08
-**Companion to**: [the method specification](SPEC.md), version 1.0.0
+**Version**: 0.2.0, published 2026-09-08
+**Companion to**: [the method specification](SPEC.md), version 1.0.0, and [the detector specification](DETECTOR-SPEC.md), version 1.0.0
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
 
@@ -10,38 +10,51 @@
 The key words MUST, MUST NOT, REQUIRED, SHOULD, SHOULD NOT and MAY are to be interpreted as
 described in RFC 2119.
 
-[The method specification](SPEC.md) states what a [Practitioner](SPEC.md#practitioner) does when a [Defect](SPEC.md#defect) is found. This
-document states what a [Toolchain](SPEC.md#toolchain) must offer so that they can do it.
+[The method specification](SPEC.md) states what a [Practitioner](SPEC.md#practitioner) does when a [Defect](SPEC.md#defect) is found.
+[The detector specification](DETECTOR-SPEC.md) states what each [Detector](SPEC.md#detector) must offer so that they
+can write, prove, run and resolve a [Rule](SPEC.md#rule) in it. This document states what a project's
+[Toolchain](SPEC.md#toolchain) must offer beyond that, so that the [Rules](SPEC.md#rule) become [Defences](SPEC.md#defence)
+the project governs.
 
-The two are separable because they fail separately, and both failures have been observed. A project
-can follow the method faithfully on a [Toolchain](SPEC.md#toolchain) that gives it nowhere to record what it decided, and
-a [Toolchain](SPEC.md#toolchain) can offer every mechanism the method needs whilst the project using it writes no [Rules](SPEC.md#rule)
-at all. Conflating the two produces a specification that blames a project for a gap in its [Toolchain](SPEC.md#toolchain), or
-credits a [Toolchain](SPEC.md#toolchain) for discipline the project supplied itself.
+**A [Toolchain](SPEC.md#toolchain) is measured at the project level.** It is whatever the project assembles to
+run its checks through: the [Detectors](SPEC.md#detector) and [Runners](SPEC.md#runner), and the parts around them
+that route, list, record and resolve, from third-party, first-party and project-level parts in any
+combination. A third-party [Toolchain](SPEC.md#toolchain) such as `php-qa-ci` can supply all of it. A project
+can also meet this document with its own scripts around a bare [Detector](SPEC.md#detector). [Conformance](SPEC.md#conform)
+is a property of the assembled whole, because that is where it counts: a [Practitioner](SPEC.md#practitioner)
+arriving at the project cannot tell which package a mechanism came from, and does not need to.
 
-**The governing principle**: where the method specification requires a [Practitioner](SPEC.md#practitioner) to do something,
-a [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) MUST make that possible without the project building the mechanism first. A
-tool that leaves the project to construct the means has moved the obligation rather than met it.
+The three documents are separable because they fail separately, and all three failures have been
+observed. A project can follow the method faithfully on a [Toolchain](SPEC.md#toolchain) that gives it nowhere to
+record what it decided; a [Toolchain](SPEC.md#toolchain) can offer every mechanism the method needs whilst the
+project using it writes no [Rules](SPEC.md#rule) at all; and a [Detector](SPEC.md#detector) can be the best host for
+a [Rule](SPEC.md#rule) in its language whilst shipping an inline ignore that the project has never decided
+whether to allow. Conflating them produces a specification that blames a project for a gap in its
+[Toolchain](SPEC.md#toolchain), credits a [Toolchain](SPEC.md#toolchain) for discipline the project supplied itself, or
+fails a [Detector](SPEC.md#detector) for governance that was never its to decide.
+
+**The governing principle**: where the method specification requires a [Practitioner](SPEC.md#practitioner) to do
+something, a [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) MUST make that possible without the project
+building the mechanism first. A [Toolchain](SPEC.md#toolchain) that leaves the project to construct the means has
+moved the obligation rather than met it. Where the project builds the means itself, those scripts are
+part of its [Toolchain](SPEC.md#toolchain) and are judged as such.
 
 ## 2. Terminology
 
-Terms from the method specification carry over unchanged. These are additional.
-
-#### Rule author
-
-Whoever writes a [Defence](SPEC.md#defence). May be the [Toolchain](SPEC.md#toolchain)'s maintainer or the [Consuming project](#consuming-project).
+Terms from the method specification and the [detector specification](DETECTOR-SPEC.md) carry over unchanged. These are
+additional.
 
 #### Consuming project
 
-A codebase that installs the [Toolchain](SPEC.md#toolchain). The [Toolchain](SPEC.md#toolchain)'s maintainer does not control it and cannot inspect it.
+A codebase that installs a [Detector](SPEC.md#detector) or a [Toolchain](SPEC.md#toolchain) shipped by somebody else. The maintainer of what is installed does not control it and cannot inspect it.
 
 #### Bundled defence
 
-A [Defence](SPEC.md#defence) the [Toolchain](SPEC.md#toolchain) ships and enables by default.
+A [Defence](SPEC.md#defence) a shipped [Toolchain](SPEC.md#toolchain) carries and enables by default in every [Consuming project](#consuming-project). A [Bundled rule](DETECTOR-SPEC.md#bundled-rule) is the [Detector](SPEC.md#detector)-level counterpart; a [Bundled defence](#bundled-defence) is one with its documentation, [Blocking](SPEC.md#blocking), and routed through the [Toolchain](SPEC.md#toolchain)'s own entry point.
 
 #### Project record
 
-The place a [Consuming project](#consuming-project) writes down the judgements the method specification delegates to it: [Calibrations](SPEC.md#calibration), [Exceptions](SPEC.md#exception) and conventions.
+The place a project writes down the judgements the method specification delegates to it: [Calibrations](SPEC.md#calibration), [Exceptions](SPEC.md#exception) and conventions.
 
 The distinction between a [Bundled defence](#bundled-defence) and a project's own is significant throughout. A bundled
 [Defence](SPEC.md#defence) is authored once and runs in codebases its author will never see, so everything a
@@ -50,132 +63,90 @@ The distinction between a [Bundled defence](#bundled-defence) and a project's ow
 ## 3. The division of responsibility
 
 Almost every requirement in section 8 of the method specification has two halves. Stating only one
-of them is what produces a tool that is *nearly* usable.
+of them is what produces a [Toolchain](SPEC.md#toolchain) that is *nearly* usable. The middle column says which
+document states the mechanism half; the assembled [Toolchain](SPEC.md#toolchain) MUST provide every row, whichever
+part of it does so.
 
-| Requirement                                 | The [Toolchain](SPEC.md#toolchain) MUST provide         | The project supplies                           |
-| ------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------- |
-| Bespoke [Defences](SPEC.md#defence)         | The authoring and registration route                    | The [Rules](SPEC.md#rule)                      |
-| The red proof                               | A harness that runs a [Rule](SPEC.md#rule) in isolation | The [Fixture](SPEC.md#fixture) and the red run |
-| Running the [Defence](SPEC.md#defence)      | A local invocation, including subsets                   | Running it                                     |
-| [Identifier](SPEC.md#identifier) resolution | The lookup mechanism                                    | The documentation content                      |
-| Correct construction                        | A place for it to live                                  | The remediation text                           |
-| Enumeration                                 | The listing                                             | The [Defences](SPEC.md#defence) listed         |
-| [Agent](SPEC.md#agent)-context summary      | Generation and delivery                                 | The terse lines                                |
-| Recorded decisions                          | A location it reads itself                              | The decisions                                  |
+| Requirement                                 | The mechanism, and where it is stated                                                                                                     | The project supplies                           |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Bespoke [Defences](SPEC.md#defence)         | The authoring and registration route, [detector specification](DETECTOR-SPEC.md) 4.1                                                      | The [Rules](SPEC.md#rule)                      |
+| The red proof                               | A [Harness](DETECTOR-SPEC.md#harness), [detector specification](DETECTOR-SPEC.md) 4.2                                                     | The [Fixture](SPEC.md#fixture) and the red run |
+| Running the [Defence](SPEC.md#defence)      | A local invocation, including subsets, [detector specification](DETECTOR-SPEC.md) 5                                                       | Running it                                     |
+| [Identifier](SPEC.md#identifier) resolution | The lookup, [detector specification](DETECTOR-SPEC.md) 6 for [Bundled rules](DETECTOR-SPEC.md#bundled-rule), clause 4.2 here for the rest | The documentation content                      |
+| Correct construction                        | A place for it to live, clause 4.2 here                                                                                                   | The remediation text                           |
+| Enumeration                                 | The listing, section 5 here                                                                                                               | The [Defences](SPEC.md#defence) listed         |
+| [Agent](SPEC.md#agent)-context summary      | Generation and delivery, section 7 here                                                                                                   | The terse lines                                |
+| Recorded decisions                          | A location it reads itself, section 6 here                                                                                                | The decisions                                  |
+| [Suppression](SPEC.md#suppression)          | A route that can be forbidden, [detector specification](DETECTOR-SPEC.md) 7; forbidding it, clause 4.3 here                               | The decision, under method section 4           |
 
-Read down the first column and the shape of a [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) is already visible. Read across
+Read down the middle column and the shape of a [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) is already visible. Read across
 any row and the failure mode is visible too: either half alone leaves the [Practitioner](SPEC.md#practitioner) stuck.
 
-## 4. Authoring defences
+## 4. The detectors a toolchain routes defences through
 
-### 4.1 The toolchain MUST support bespoke rules written by the consuming project
+### 4.1 Every detector the toolchain routes a defence through MUST conform to the [detector specification](DETECTOR-SPEC.md)
 
-Configuration of an existing [Rule](SPEC.md#rule) set is not sufficient. The project must be able to express a
-pattern its authors have never anticipated.
+A [Toolchain](SPEC.md#toolchain) MUST NOT route a [Defence](SPEC.md#defence) through a [Detector](SPEC.md#detector) that does not
+[Conform](SPEC.md#conform) to [the detector specification](DETECTOR-SPEC.md). Where a [Detector](SPEC.md#detector) lacks a
+mechanism that specification requires, the [Toolchain](SPEC.md#toolchain) MAY supply it around the
+[Detector](SPEC.md#detector), a [Harness](DETECTOR-SPEC.md#harness) script or a resolver of its own, and the
+[Detector](SPEC.md#detector) together with that wrapping is then what the [Practitioner](SPEC.md#practitioner) uses and what
+is judged. A [Detector](SPEC.md#detector) that cannot host a bespoke [Rule](SPEC.md#rule) at all cannot be wrapped into
+[Conformance](SPEC.md#conform), and no [Defence](SPEC.md#defence) is routed through it; it MAY still run as one of the
+[Toolchain](SPEC.md#toolchain)'s checks, as a formatter or a [Runner](SPEC.md#runner) does.
 
-**Why**: the method turns a specific [Defect](SPEC.md#defect) into a [Class](SPEC.md#class) [Defence](SPEC.md#defence), and the [Classes](SPEC.md#class) that matter most
-to a project are the ones peculiar to it. A [Toolchain](SPEC.md#toolchain) offering only a fixed catalogue can defend
-against the industry's known [Hazards](SPEC.md#hazard) and none of the project's own, which is the half that carries
-its institutional knowledge.
+**Why**: the six clauses of the method are carried out in a [Detector](SPEC.md#detector), and everything this
+document adds presumes those clauses can be followed there. A [Toolchain](SPEC.md#toolchain) that lists, records
+and resolves beautifully around a [Detector](SPEC.md#detector) in which no [Rule](SPEC.md#rule) can be written or proven
+has governed nothing. The wrapping is permitted because a [Practitioner](SPEC.md#practitioner) cannot tell where a
+mechanism lives and the method does not care; it is bounded because a mechanism the [Detector](SPEC.md#detector)
+does not offer and the [Toolchain](SPEC.md#toolchain) does not add is a gap the project writes down under method
+clause 3.2, and a gap recorded is not a gap closed.
 
-### 4.2 The toolchain MUST provide a harness that runs a single rule against supplied code
+### 4.2 The toolchain MUST resolve every identifier a defence it routes can print, from the installed copy, without network access
 
-Without executing the project's own test suite, and reporting for a given input whether the [Rule](SPEC.md#rule)
-fired.
+The [detector specification](DETECTOR-SPEC.md) holds a [Detector](SPEC.md#detector) to on-disk resolution of its own
+[Bundled rules](DETECTOR-SPEC.md#bundled-rule) and no further, because it cannot know a project's
+documentation. The [Toolchain](SPEC.md#toolchain) can, and MUST close the remainder: a mechanism, keyed on the
+[Identifier](SPEC.md#identifier) exactly as printed, that resolves the project's own [Rules](SPEC.md#rule) and every
+[Bundled defence](#bundled-defence) to [Remediation docs](SPEC.md#remediation-docs) shipped with the project or with the
+[Toolchain](SPEC.md#toolchain), at a version tracked together, and a place for that documentation to live so that
+a [Rule author](DETECTOR-SPEC.md#rule-author) adding a [Rule](SPEC.md#rule) knows where its documentation goes.
+A third-party [Detector](SPEC.md#detector)'s native catalogue, which the [Toolchain](SPEC.md#toolchain) orchestrates
+without claiming as its own, is resolved under the [detector specification](DETECTOR-SPEC.md)'s clause 6 and is not
+re-shipped here.
 
-**Why**: clause 3.3 of the method specification requires the [Rule](SPEC.md#rule) to be proven by making it go red.
-A [Practitioner](SPEC.md#practitioner) who can only observe a [Rule](SPEC.md#rule)'s behaviour by running every [Detector](SPEC.md#detector) over the whole
-codebase cannot demonstrate that a [Rule](SPEC.md#rule) fires on the pattern rather than on something incidental.
+**Why**: method specification clauses 3.6 and 8.3. The [Identifier](SPEC.md#identifier) has to resolve for the
+reader, which for an [Agent](SPEC.md#agent) means mechanically and on disk, and the project's own
+[Rules](SPEC.md#rule) are the ones that carry its knowledge. A [Detector](SPEC.md#detector) that prints the
+[Identifier](SPEC.md#identifier) faithfully has done its half; a project in which that string then leads nowhere
+has a [Message](SPEC.md#message) that names a pattern without leading anywhere, which method clause 3.6 says
+does not [Conform](SPEC.md#conform).
 
-### 4.3 The toolchain MUST allow a defence to carry a stable identifier, and MUST print it
+### 4.3 The toolchain MUST forbid, through a defence of its own, every suppression route that bypasses the project record
 
-The [Identifier](SPEC.md#identifier) MUST be stable across releases and MUST NOT be derived from the [Rule](SPEC.md#rule)'s file path,
-[Class](SPEC.md#class) name or position in a configuration file. The [Rule author](#rule-author) chooses it once.
+Inline [Suppression](SPEC.md#suppression) comments, per-line ignores and silent [Baselines](SPEC.md#baseline) all bypass
+the [Project record](#project-record). The [detector specification](DETECTOR-SPEC.md) permits a [Detector](SPEC.md#detector) to ship such a
+route provided it can be detected or disabled; this clause is where the project's decision is made
+and enforced, and the decision is no. A [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) MUST disable each
+such route in every [Detector](SPEC.md#detector) it routes a [Defence](SPEC.md#defence) through, or MUST run a
+[Blocking](SPEC.md#blocking) [Defence](SPEC.md#defence) that fails on its use, and MUST direct irreducible cases to the
+[Project record](#project-record) where clause 6.2 requires a justification.
 
-**Why**: the [Identifier](SPEC.md#identifier) is the only string that reaches the [Practitioner](SPEC.md#practitioner) and the only key their
-lookup can use. An [Identifier](SPEC.md#identifier) that changes when a [Rule](SPEC.md#rule) is renamed silently breaks every reference to
-it, including references written down by people who have left.
+**Why**: a governance mechanism whose escape hatch is an unreviewed comment is not a governance
+mechanism. This is the one place this document is stricter than the [Detectors](SPEC.md#detector) it assembles
+are by default, and it is deliberate: the method specification's position is that
+[Suppression](SPEC.md#suppression) is an [Owner](SPEC.md#owner) decision, and an [Owner](SPEC.md#owner) cannot decide something
+they are never shown. The [Detector](SPEC.md#detector) is not asked to forbid the route because the
+[Detector](SPEC.md#detector) is not the project; the [Toolchain](SPEC.md#toolchain) is the project's, so it is.
 
-### 4.4 The toolchain SHOULD enforce 4.3 with a defence of its own
+The reference implementations both do this. `ts-qa-ci` bans every `eslint-disable` and
+`@ts-expect-error` form outright; `php-qa-ci`'s `ForbidInlinePhpstanIgnoreRule` bans inline
+`@phpstan-ignore` and directs irreducible cases to the configuration file, where they are visible.
 
-A [Rule](SPEC.md#rule) over the [Rules](SPEC.md#rule), failing any [Defence](SPEC.md#defence) that reports without a stable [Identifier](SPEC.md#identifier).
+## 5. Enumeration
 
-**Why**: this is the method applied to the [Toolchain](SPEC.md#toolchain) itself, and it is cheap. `php-qa-ci`'s
-`RequireRuleIdentifierConstantRule` is the worked example: it rejects a magic-string [Identifier](SPEC.md#identifier) and
-names the constant to declare instead.
-
-## 5. Reporting
-
-### 5.1 The toolchain MUST be invocable by the practitioner, locally, with no infrastructure
-
-**Why**: method specification clause 8.1. An [Agent](SPEC.md#agent) that cannot check its own work cannot iterate
-against a [Defence](SPEC.md#defence), so the loop never closes in the turn where it is cheap to close.
-
-### 5.2 The toolchain MUST support invocation over a subset, at minimum a single file
-
-**Why**: 5.1 is satisfied in principle by a whole-codebase run and defeated in practice by one.
-Checking a single edited file has to be fast enough to do on every edit, or it will not be done on
-any.
-
-### 5.3 The result MUST reach the practitioner in the output of the command they ran
-
-Where the [Toolchain](SPEC.md#toolchain) writes fuller detail elsewhere, the invoked command's own output MUST carry both
-a usable summary and the location of the remainder.
-
-**Why**: method specification clause 8.2. A report the [Practitioner](SPEC.md#practitioner) has to go and find is a report
-that arrives after the decision it was meant to inform.
-
-### 5.4 A defence MUST NOT be reportable only through a mode the practitioner cannot run
-
-**Why**: a [Rule](SPEC.md#rule) that fires only in an environment the [Practitioner](SPEC.md#practitioner) has no access to teaches nobody
-anything and blocks them anyway, which is the worst combination available.
-
-## 6. Resolving an identifier
-
-### 6.1 The toolchain MUST provide a mechanism that resolves a printed identifier to its documentation
-
-Keyed on **the [Identifier](SPEC.md#identifier) exactly as printed**. A command, an index file or a URL are all
-acceptable.
-
-A [Message](SPEC.md#message) that carries its own documentation path resolves that [Message](SPEC.md#message), not the
-[Identifier](SPEC.md#identifier). The mechanism MUST resolve an [Identifier](SPEC.md#identifier) presented alone, because the reader
-who needs it most has the [Identifier](SPEC.md#identifier) from a log, a ticket or a colleague and not the [Message](SPEC.md#message).
-Where the [Identifier](SPEC.md#identifier) is itself a URL, as method clause 3.6 allows, printing it is printing the
-[Identifier](SPEC.md#identifier); what this clause forbids is a path supplied in addition to a shorter [Identifier](SPEC.md#identifier)
-that cannot be looked up on its own.
-
-Where one page documents a family of [Identifiers](SPEC.md#identifier) under a shared prefix, every full
-[Identifier](SPEC.md#identifier) in the family MUST appear on it verbatim, in the installed artefact clause 6.2
-requires resolution to work from and not only in rendered output, or the page MUST carry a pattern the
-audit under clause 10.1 can execute, a glob or a regular expression rather than prose, that matches every
-member and no [Identifier](SPEC.md#identifier) outside the family. A prefix alone is neither. That audit MUST apply the
-pattern to every [Identifier](SPEC.md#identifier) printed and confirm it lands on this page, so that a member added to
-the [Rule](SPEC.md#rule) and not to the page fails the release.
-
-**Why**: method specification clause 8.3 requires the [Identifier](SPEC.md#identifier) to resolve without a human. An index
-keyed on anything else does not resolve it. This is the most commonly failed clause in this document
-and it fails in a specific way: documentation exists, is genuinely good, and is keyed on the [Rule](SPEC.md#rule)'s
-[Class](SPEC.md#class) or file name, which is a string the [Practitioner](SPEC.md#practitioner) was never given. The lookup they can actually
-perform is the only one that counts.
-
-### 6.2 Resolution MUST work from the installed copy, without network access
-
-**Why**: an [Agent](SPEC.md#agent) working offline, behind a proxy, or against a URL that has since moved needs the
-answer to be on disk. A dependency the project already installed is on disk by definition.
-
-### 6.3 A bundled defence's documentation MUST ship with the defence, at a version tracked together
-
-**Why**: method specification clause 3.6. A [Bundled defence](#bundled-defence) travels into codebases its author will
-never see. If its documentation lives only in the [Toolchain](SPEC.md#toolchain)'s repository or on its website, then
-every [Consuming project](#consuming-project) is one link rot away from a [Rule](SPEC.md#rule) that blocks without explaining.
-
-The failure to guard against is not the absent document but the **dangling one**: a reference to
-documentation that was planned and never written is worse than no reference, because it consumes
-the [Practitioner](SPEC.md#practitioner)'s attention before failing them.
-
-## 7. Enumeration
-
-### 7.1 The toolchain MUST be able to list the defences active in a project, without triggering them
+### 5.1 The toolchain MUST be able to list the defences active in a project, without triggering them
 
 The listing MUST include each [Defence](SPEC.md#defence)'s [Identifier](SPEC.md#identifier) and a terse statement of what it forbids or
 requires, and MUST provide the route to its full documentation.
@@ -183,7 +154,7 @@ requires, and MUST provide the route to its full documentation.
 **Why**: method specification clause 8.5. An [Agent](SPEC.md#agent) arriving at a codebase has no colleague to ask.
 Without a listing, a project's standards can only be learned by violating them one at a time.
 
-### 7.2 The listing MUST be derived from the active configuration
+### 5.2 The listing MUST be derived from the active configuration
 
 It MUST NOT be a hand-maintained document that happens to describe the configuration.
 
@@ -192,28 +163,28 @@ observed failure is a [Rule](SPEC.md#rule) that is registered, active, [Blocking
 the list of [Rules](SPEC.md#rule), whilst the list states its own count with confidence. A derived listing cannot
 diverge from what is enforced, because the thing enforced is what produced it.
 
-### 7.3 A project's own defences MUST appear in the listing alongside bundled ones
+### 5.3 A project's own defences MUST appear in the listing alongside bundled ones
 
-A [Toolchain](SPEC.md#toolchain)'s [Defences](SPEC.md#defence) against its own source, the ones only its contributors can
+A shipped [Toolchain](SPEC.md#toolchain)'s [Defences](SPEC.md#defence) against its own source, the ones only its contributors can
 trigger, are that project's own [Defences](SPEC.md#defence) for this purpose, and MUST appear in the same listing
-clause 7.1 requires, meeting its content requirements in full, when the [Toolchain](SPEC.md#toolchain) is run on itself,
+clause 5.1 requires, meeting its content requirements in full, when the [Toolchain](SPEC.md#toolchain) is run on itself,
 however they are enabled. Where such a [Defence](SPEC.md#defence) is not expressible in the [Toolchain](SPEC.md#toolchain)'s own
 [Detectors](SPEC.md#detector), its entry MAY be sourced from wherever it is enabled, provided the listing stays derived
-under clause 7.2 rather than hand-maintained.
+under clause 5.2 rather than hand-maintained.
 
 **Why**: the [Practitioner](SPEC.md#practitioner) does not care which package a [Rule](SPEC.md#rule) came from. They care what defends the
-code in front of them, and a listing that covers only what the [Toolchain](SPEC.md#toolchain) ships describes somebody
+code in front of them, and a listing that covers only what a shipped [Toolchain](SPEC.md#toolchain) carries describes somebody
 else's project.
 
-## 8. The project record
+## 6. The project record
 
 This section exists because of a gap found by cold readers of the method specification, repeatedly
 and independently: the method delegates several judgements to project level, and a [Practitioner](SPEC.md#practitioner)
 arriving at a project that has recorded none of them has no legal move. That is a [Toolchain](SPEC.md#toolchain)
 obligation. The method specification cannot fix it, because the method specification does not own a
-file in the [Consuming project](#consuming-project).
+file in the project.
 
-### 8.1 The toolchain MUST define a location for the project record, and MUST read it itself
+### 6.1 The toolchain MUST define a location for the project record, and MUST read it itself
 
 Not a documentation convention. A path the [Toolchain](SPEC.md#toolchain) loads.
 
@@ -221,7 +192,7 @@ Not a documentation convention. A path the [Toolchain](SPEC.md#toolchain) loads.
 When the [Toolchain](SPEC.md#toolchain) reads it, the written decision and the enforced decision are the same object, and
 neither can drift from the other.
 
-### 8.2 Every exception in the project record MUST carry a written justification
+### 6.2 Every exception in the project record MUST carry a written justification
 
 The [Toolchain](SPEC.md#toolchain) MUST require the justification, MUST NOT supply a default, and MUST reject an
 [Exception](SPEC.md#exception) that omits it.
@@ -239,31 +210,17 @@ and the [Toolchain](SPEC.md#toolchain) MUST reject a justification that could be
 unchanged: "needed for now", "legacy", "TODO" and their like, by a check it documents. That check
 cannot verify truth, and a [Toolchain](SPEC.md#toolchain)'s [Conformance](SPEC.md#conform) MUST NOT be read as having verified
 it; whether the sentence is true is the [Owner](SPEC.md#owner)'s judgement under clause 3.3 of the method
-specification, which is why clause 8.4 puts every justification in one listing where a vacuous
+specification, which is why clause 6.3 puts every justification in one listing where a vacuous
 one is seen next to its neighbours.
 
-### 8.3 The toolchain MUST NOT offer a suppression route that bypasses the project record
-
-Inline [Suppression](SPEC.md#suppression) comments, per-line ignores and silent [Baselines](SPEC.md#baseline) all bypass it. Where the
-underlying [Detector](SPEC.md#detector) provides such a mechanism, a [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) MUST defend against it.
-
-**Why**: a governance mechanism whose escape hatch is an unreviewed comment is not a governance
-mechanism. This is the one place the [Toolchain](SPEC.md#toolchain) specification is stricter than the [Detectors](SPEC.md#detector) it describes
-usually are by default, and it is deliberate: the method specification's position is that
-[Suppression](SPEC.md#suppression) is an [Owner](SPEC.md#owner) decision, and an [Owner](SPEC.md#owner) cannot decide something they are never shown.
-
-The reference implementations both do this. `ts-qa-ci` bans every `eslint-disable` and
-`@ts-expect-error` form outright; `php-qa-ci`'s `ForbidInlinePhpstanIgnoreRule` bans inline
-`@phpstan-ignore` and directs irreducible cases to the configuration file, where they are visible.
-
-### 8.4 The project record MUST be enumerable by the same means as the defences
+### 6.3 The project record MUST be enumerable by the same means as the defences
 
 Listing the [Defences](SPEC.md#defence) and listing the [Project record](#project-record) MUST be the same kind of operation.
 
 **Why**: method specification clause 8.7. A decision nobody can find will be re-opened by every
 [Practitioner](SPEC.md#practitioner) who arrives after it, which converts a settled question into a recurring one.
 
-### 8.5 The toolchain SHOULD state its own defaults for anything the method leaves to the project
+### 6.4 The toolchain SHOULD state its own defaults for anything the method leaves to the project
 
 Where the method specification delegates a judgement and the project has recorded nothing, a
 documented [Toolchain](SPEC.md#toolchain) default is what the [Practitioner](SPEC.md#practitioner) falls back to.
@@ -273,47 +230,51 @@ project has decided nothing" leaves an [Agent](SPEC.md#agent) choosing between g
 turns the first project-level decision from a prerequisite into a refinement, and the project's
 first day is exactly when it has recorded least and can afford the interruption least.
 
-## 9. Agent context
+## 7. Agent context
 
-### 9.1 The toolchain SHOULD generate a summary of the active defences suitable for an agent's context
+### 7.1 The toolchain SHOULD generate a summary of the active defences suitable for an agent's context
 
 One terse line per [Defence](SPEC.md#defence), phrased as a standing instruction rather than as a failure report, each
 carrying its [Identifier](SPEC.md#identifier) and the route to its documentation. Generated from the active configuration,
-per clause 7.2.
+per clause 5.2.
 
-### 9.2 The toolchain SHOULD deliver that summary into the consuming project automatically
+### 7.2 The toolchain SHOULD deliver that summary into the project automatically
 
 Into the file the project's [Agents](SPEC.md#agent) already load, refreshed on install and update, in a delimited
 region marked as generated.
 
-**Why**: 9.1 and 9.2 are separate clauses because they are separately missed, and the two reference
+**Why**: 7.1 and 7.2 are separate clauses because they are separately missed, and the two reference
 implementations miss opposite halves. `php-qa-ci` writes an auto-generated, auto-refreshed block
 into every [Consuming project](#consuming-project)'s [Agent](SPEC.md#agent) instructions and does not put a [Rule](SPEC.md#rule) table in it; `ts-qa-ci`
 maintains an excellent [Rule](SPEC.md#rule) catalogue and has no mechanism to deliver it. Each has built the half
 the other lacks. A summary that exists but is never loaded and a delivery channel carrying
 everything except the [Rules](SPEC.md#rule) are the same outcome from opposite directions.
 
-Together these are the only clauses in either specification that operate **before** the mistake
-rather than after it, which is why they are worth stating even as SHOULDs.
+Together these are the only clauses in any of the three specifications that operate **before** the
+mistake rather than after it, which is why they are worth stating even as SHOULDs.
 
-## 10. Self-audit
+## 8. Self-audit
 
-### 10.1 The toolchain MUST fail its own release if a bundled defence lacks resolvable documentation
+### 8.1 A shipped toolchain MUST fail its own release if a bundled defence lacks resolvable documentation
 
 An automated check, over every [Identifier](SPEC.md#identifier) printed by a [Rule](SPEC.md#rule) the [Toolchain](SPEC.md#toolchain) authors or
-bundles as its own [Defence](SPEC.md#defence), whatever kind of [Detector](SPEC.md#detector) carries it, that blocks its own release. A
-third-party [Detector](SPEC.md#detector)'s native catalogue, which the [Toolchain](SPEC.md#toolchain) orchestrates without claiming as its
-own, is outside this audit and inside clause 6.1's resolution all the same. Clause 6.3 names the
-dangling reference as the failure to guard against above all others; this is the guard, and a
-[Toolchain](SPEC.md#toolchain) is not held to less than it holds its [Practitioners](SPEC.md#practitioner) to.
+bundles as its own [Defence](SPEC.md#defence), whatever kind of [Detector](SPEC.md#detector) carries it, that blocks its own release. Where
+a documentation page covers a family of [Identifiers](SPEC.md#identifier) by a pattern, as clause 6.3 of
+the [detector specification](DETECTOR-SPEC.md) allows, this audit MUST apply the pattern to every [Identifier](SPEC.md#identifier)
+printed and confirm it lands on that page, so that a member added to the [Rule](SPEC.md#rule) and not to the
+page fails the release. A third-party [Detector](SPEC.md#detector)'s native catalogue, which the
+[Toolchain](SPEC.md#toolchain) orchestrates without claiming as its own, is outside this audit and inside clause
+4.2's resolution all the same. The [detector specification](DETECTOR-SPEC.md)'s clause 6.3 names the dangling reference as
+the failure to guard against above all others; this is the guard, and a [Toolchain](SPEC.md#toolchain) is not held
+to less than it holds its [Practitioners](SPEC.md#practitioner) to.
 
-**Why**: clause 6.1 is the clause most easily believed to be satisfied whilst being broken, because
+**Why**: clause 4.2 is the clause most easily believed to be satisfied whilst being broken, because
 the documentation is written by the same person who wrote the [Rule](SPEC.md#rule) and its absence is invisible from
 the inside. A check that blocks the release is the difference between honouring the clause and asserting it, and it
 is the method applied to the [Toolchain](SPEC.md#toolchain): the [Class](SPEC.md#class) of [Defect](SPEC.md#defect) is "a [Rule](SPEC.md#rule) that blocks without
 explaining", and it is detectable mechanically.
 
-### 10.2 The toolchain MUST run its own bundled defences on its own source
+### 8.2 A shipped toolchain MUST run its own bundled defences on its own source
 
 Every [Rule](SPEC.md#rule) the [Toolchain](SPEC.md#toolchain) ships to [Consuming projects](#consuming-project) MUST also be
 active when the [Toolchain](SPEC.md#toolchain) analyses itself, and a [Toolchain](SPEC.md#toolchain) release MUST fail when
@@ -322,44 +283,80 @@ they are not.
 **Why**: a mechanism that delivers [Rules](SPEC.md#rule) to installed packages and not to the root package
 leaves the [Toolchain](SPEC.md#toolchain) as the one project in which its own [Defences](SPEC.md#defence) never run. A
 [Defect](SPEC.md#defect) in a [Rule](SPEC.md#rule)'s own code then goes unseen by every [Rule](SPEC.md#rule) built to see it, and a
-self-check that reports clean is believed, by the [Rule author](#rule-author) and by anyone checking their
+self-check that reports clean is believed, by the [Rule author](DETECTOR-SPEC.md#rule-author) and by anyone checking their
 work, because nobody expects a clean run to have run nothing. This clause was found by an execution
 test in which both the [Practitioner](SPEC.md#practitioner) and the reviewer cited exactly such a run as evidence.
 
-## 11. Conformance
+A project that assembles its [Toolchain](SPEC.md#toolchain) without shipping it has no release and no
+[Consuming project](#consuming-project), so this section does not bear on its [Conformance](SPEC.md#conform); its
+own [Defences](SPEC.md#defence) already run on its own source because that is the only source there is.
 
-**A [Toolchain](SPEC.md#toolchain) [Conforms](SPEC.md#conform)** if it satisfies every MUST in sections 4 to 8 and clauses 10.1 and 10.2.
+## 9. Conformance
 
-**A [Toolchain](SPEC.md#toolchain) [Conforms](SPEC.md#conform) with [Agent](SPEC.md#agent) support** if it additionally satisfies section 9.
+**A project's [Toolchain](SPEC.md#toolchain) [Conforms](SPEC.md#conform)** if every MUST in sections 4 to 6 holds across the
+assembled parts, wherever each part came from, and, where the [Toolchain](SPEC.md#toolchain) is one the project
+ships, every MUST in section 8 as well.
+
+**A [Toolchain](SPEC.md#toolchain) [Conforms](SPEC.md#conform) with [Agent](SPEC.md#agent) support** if it additionally satisfies section 7.
 
 Partial [Conformance](SPEC.md#conform) MUST NOT be described as [Conformance](SPEC.md#conform). A [Toolchain](SPEC.md#toolchain) that satisfies most of this
 document is in a normal and respectable condition; it is not [Conforming](SPEC.md#conform), and describing it as such
 removes the only value the word has.
 
-### 11.1 A conforming toolchain MUST declare the version of the method specification it implements
+### 9.1 A project that ships a detector or a toolchain has two levels of conformance, graded separately
 
-Machine-readably, in whatever form its ecosystem uses to record dependencies.
+As a project, it follows the method with its own assembled [Toolchain](SPEC.md#toolchain), like any other
+project, and is graded against this document and section 7 of the method specification on that
+basis. As an artefact, what it ships is graded for its consumers: a [Detector](SPEC.md#detector) against
+[the detector specification](DETECTOR-SPEC.md), a [Toolchain](SPEC.md#toolchain) against this document as it stands
+when installed into a [Consuming project](#consuming-project) with nothing else built around it. The two
+verdicts MUST be graded and declared separately, and neither implies the other.
 
-The same declaration is where a gap against this document is recorded once it is known. A
-[Toolchain](SPEC.md#toolchain) that has learnt, from its own self-audit under section 10 or from a
-[Practitioner](SPEC.md#practitioner)'s report under the method's clause 3.2, that it fails a MUST in sections 4 to 8 or
-section 10 MUST record that gap alongside the version it declares, in the same file or one it names,
-and MUST NOT claim [Conformance](SPEC.md#conform) whilst the record is non-empty. A mechanism gap is by its
-nature one the [Toolchain](SPEC.md#toolchain) could not detect for itself, so the record is the only place its
-[Owner](SPEC.md#owner) and its consumers can learn of it.
+**Why**: the two questions have different readers. A contributor to the artefact wants to know
+whether the project practises what it ships; a [Consuming project](#consuming-project) wants to know what it
+will get. A single grade answers neither, and the observed failure is a [Toolchain](SPEC.md#toolchain) whose own
+source was the one place its [Bundled defences](#bundled-defence) never ran, which a consumer-facing grade
+alone would never have shown.
 
-**Why**: a [Conformance](SPEC.md#conform) claim in a README is a sentence; a [Conformance](SPEC.md#conform) claim in a lock file is a fact
+### 9.2 The declaration is the claim and the known-gap record, not a condition of conformance
+
+A project or a shipped artefact MAY declare, machine-readably in whatever form its ecosystem uses to
+record dependencies, the version of the method specification it follows and the version of this
+document or the [detector specification](DETECTOR-SPEC.md) it [Conforms](SPEC.md#conform) to. A project that ships an artefact
+carries both levels of clause 9.1 in that declaration, each named separately.
+
+The same declaration is where a gap is recorded once it is known. A project or artefact that has
+learnt, from its own self-audit under section 8 or from a [Practitioner](SPEC.md#practitioner)'s report under the
+method's clause 3.2, that it fails a MUST of the document it declares against MUST record that gap
+alongside the version, in the same file or one it names. A declaration with a non-empty gap record is
+a statement of where the project stands and is not a claim of [Conformance](SPEC.md#conform). A mechanism gap
+is by its nature one the [Toolchain](SPEC.md#toolchain) could not detect for itself, so the record is the only
+place its [Owner](SPEC.md#owner) and its consumers can learn of it.
+
+The declaration is optional. A [Toolchain](SPEC.md#toolchain) assembled before this document existed, or by a
+project that has never read it, MAY be graded [Conforming](SPEC.md#conform) on evidence by anyone who exercises
+the clauses above against it, and a verdict on any [Toolchain](SPEC.md#toolchain), declared or not, rests on that
+exercise and not on the claim.
+
+**Why**: a [Conformance](SPEC.md#conform) claim in a README is a sentence; a [Conformance](SPEC.md#conform) claim in a manifest is a fact
 about a specific installed artefact, checkable by anyone, including mechanically. It also fixes what
 "[Conforming](SPEC.md#conform)" meant at the point the claim was made, which a claim against a moving document cannot.
+Making the claim a condition, though, would grade the maintainer's reading rather than the
+[Toolchain](SPEC.md#toolchain), and would leave every project that met the method before hearing of it unable
+to say so.
 
-## 12. Relationship to the method specification
+## 10. Relationship to the method and detector specifications
 
 This document adds no obligations to a [Practitioner](SPEC.md#practitioner) and relaxes none. Every clause here exists to
 make a clause of the method specification achievable.
 
-Where the two disagree, the method specification governs. It describes the method, which is the
-thing being specified; this describes the equipment.
+Where this document and the method specification disagree, the method specification governs. It
+describes the method, which is the thing being specified; this describes the equipment. Where this
+document and the [detector specification](DETECTOR-SPEC.md) disagree about a [Detector](SPEC.md#detector), the [detector specification](DETECTOR-SPEC.md)
+governs, because it is the document a [Detector](SPEC.md#detector)'s maintainer works from; what this document
+asks of a [Detector](SPEC.md#detector) is that it [Conform](SPEC.md#conform) there.
 
-Nothing here requires a project to use a [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain). A project can [Conform](SPEC.md#conform) to the method
+Nothing here requires a project to use a [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) shipped by anyone. A project can [Conform](SPEC.md#conform) to the method
 specification on a [Toolchain](SPEC.md#toolchain) that [Conforms](SPEC.md#conform) to none of this, at the cost of building the missing
-mechanisms itself. This document exists so that it does not have to.
+mechanisms itself, and once built they are its [Toolchain](SPEC.md#toolchain) and are graded here. This document exists so that it
+does not have to build them alone.

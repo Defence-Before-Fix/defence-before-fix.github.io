@@ -5,7 +5,10 @@ The convention: every defined term is a '#### Term' heading in the terminology
 section, and every use of a defined term in the body is a capitalised link to
 that heading, e.g. [Class](#class) or [Classes](#class). A bare occurrence of a
 defined word is therefore either an unlinked use of the term or the ordinary
-English word, and the documents forbid both.
+English word, and the documents forbid both. The detector and toolchain
+documents inherit the method specification's terms and link them across
+documents, e.g. [Rule](SPEC.md#rule); the toolchain document inherits the
+detector document's terms the same way.
 
     spec-qa.py         report findings, exit 1 on any
 
@@ -32,8 +35,12 @@ import re
 import sys
 from pathlib import Path
 
-DOCS = ["SPEC.md", "TOOLING-SPEC.md"]
-INHERITS = {"TOOLING-SPEC.md": "SPEC.md"}
+DOCS = ["SPEC.md", "DETECTOR-SPEC.md", "TOOLING-SPEC.md"]
+# A document links a parent's terms as PARENT.md#slug; parents are searched in order.
+INHERITS = {
+    "DETECTOR-SPEC.md": ["SPEC.md"],
+    "TOOLING-SPEC.md": ["SPEC.md", "DETECTOR-SPEC.md"],
+}
 
 SCOPE_LEAKS = {
     r"\bgates?\b": "'gate' is a pipeline concept; say the rule fires or the defence blocks",
@@ -85,8 +92,7 @@ def glossary(text: str) -> list[str]:
 
 def terms_for(doc: str, own: dict[str, list[str]]) -> dict[str, str]:
     terms = {t: f"#{slug(t)}" for t in own[doc]}
-    if doc in INHERITS:
-        parent = INHERITS[doc]
+    for parent in INHERITS.get(doc, []):
         for t in own[parent]:
             terms.setdefault(t, f"{parent}#{slug(t)}")
     return terms

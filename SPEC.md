@@ -70,7 +70,7 @@ The harm a [Class](#class) causes, which is **not necessarily a failure**. It ma
 
 #### Detector
 
-A tool that reads code without executing it and reports occurrences of a pattern. A [Detector](#detector) is not a [Runner](#runner).
+A tool that reads code without executing it and reports occurrences of a pattern. A [Detector](#detector) is not a [Runner](#runner). What a [Detector](#detector) must offer so that a [Practitioner](#practitioner) can write, prove, run and resolve a [Rule](#rule) in it is specified in the [detector specification](DETECTOR-SPEC.md).
 
 #### Runner
 
@@ -158,7 +158,7 @@ Referring a decision to the [Owner](#owner), whilst continuing with everything t
 
 #### Toolchain
 
-The [Detector](#detector), or orchestrated set of [Detectors](#detector) and [Runners](#runner), a project runs its checks through. What a [Toolchain](#toolchain) must offer is specified in the [toolchain specification](TOOLING-SPEC.md).
+Whatever a project assembles to run its checks through: its [Detectors](#detector) and [Runners](#runner), and the parts around them that route, list, record and resolve, from third-party, first-party and project-level parts in any combination. It is measured at the project level. What a [Toolchain](#toolchain) must offer beyond what each [Detector](#detector) in it offers is specified in the [toolchain specification](TOOLING-SPEC.md).
 
 #### Conform
 
@@ -367,7 +367,7 @@ the mechanism gap alongside it. A mechanism gap that is also a breach of the [to
 own obligations, such as a [Toolchain](#toolchain) that cannot run its [Defences](#defence) on its own source, is recorded
 against the [Toolchain](#toolchain)'s claim under section 7 as well, because that is the fact its [Owner](#owner) needs.
 Where that record lives is the [Toolchain](#toolchain)'s own [Conformance](#conform) declaration, under the
-[toolchain specification](TOOLING-SPEC.md)'s clause 11.1; a [Practitioner](#practitioner) who cannot write there reports it by the channel
+[toolchain specification](TOOLING-SPEC.md)'s clause 9.2, or the [detector specification](DETECTOR-SPEC.md)'s clause 8.1 for a [Detector](#detector); a [Practitioner](#practitioner) who cannot write there reports it by the channel
 section 4 names, as a blocked decision.
 
 **What happens next is not waiting.** Once the gap is recorded, the [Defect](#defect) is fixed conventionally
@@ -830,16 +830,21 @@ construction, and both the [Defences](#defence) and the project's recorded decis
 before a mistake rather than after, so no failing run can prove it absent, and [Conformance](#conform) is
 claimed only over what a run can prove. The [toolchain specification](TOOLING-SPEC.md) names a
 [Toolchain](#toolchain) that also satisfies it as [Conforming](#conform) with [Agent](#agent) support, which is the claim to
-make when it is true.
+make when it is true. Those obligations fall in two documents: what each [Detector](#detector) the
+[Toolchain](#toolchain) routes a [Defence](#defence) through must offer is stated in the
+[detector specification](DETECTOR-SPEC.md), and what the assembled [Toolchain](#toolchain) must add is stated
+in the [toolchain specification](TOOLING-SPEC.md), which requires the first as its own opening clause.
 
 **A project [Conforms](#conform)** if its [Defences](#defence) and [Remediation docs](#remediation-docs) [Conform](#conform), and if its recorded
 decisions under section 3 are discoverable. Nothing here constrains how the project runs its checks
 or what it does when they fail.
 
-[Toolchain](#toolchain) [Conformance](#conform) is stated in full in the [toolchain specification](TOOLING-SPEC.md), which
-gives each of the obligations above as a clause with its own reasoning, and adds what a [Toolchain](#toolchain) must
-provide so that a project can meet its own. The summary here is normative and sufficient to judge a
-[Toolchain](#toolchain) by; the companion document is where a [Toolchain](#toolchain) author should work from.
+[Toolchain](#toolchain) [Conformance](#conform) is stated in full in the [detector specification](DETECTOR-SPEC.md)
+and the [toolchain specification](TOOLING-SPEC.md) together, which give each of the obligations above as a
+clause with its own reasoning, and add what a [Detector](#detector) and a [Toolchain](#toolchain) must provide so
+that a project can meet its own. The summary here is normative and sufficient to judge a
+[Toolchain](#toolchain) by; the companion documents are where a [Detector](#detector) maintainer and a
+[Toolchain](#toolchain) author should work from.
 
 A verdict on a remediation or a [Defence](#defence) MUST rest on reproduction, not on the report: the reviewer
 reruns the [Defence](#defence) red at the commit that introduced it and green at the final commit, through the
@@ -1013,6 +1018,7 @@ This appendix restates sections 3 and 4; where the two differ, the sections gove
 
 ## Changelog
 
-| Version | Date       | Change                                                                                                                                                                                                                        |
-| ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls. |
+| Version | Date       | Change                                                                                                                                                                                                                          |
+| ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls.   |
+| 1.0.0   | 2026-09-08 | Editorial, no version change: two terminology entries and two section 7 paragraphs name the [detector specification](DETECTOR-SPEC.md) 1.0.0 alongside the [toolchain specification](TOOLING-SPEC.md) 0.2.0. No clause changed. |
