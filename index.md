@@ -72,6 +72,14 @@ which walks through a worked example in which the reported defect turned out to 
 twenty-three. The article's date is what establishes priority on the coinage; the specification
 here is what the method now is.
 
+## If you are an agent
+
+Read [the project prompt](defence-before-fix-project-prompt.md), raw markdown generated from the
+specification's appendix on instructing an agent: the method in the form to follow when you find
+a defect, where the raw documents are, what a conforming toolchain gives you, and how a project
+declares the version it follows. [llms.txt](llms.txt) indexes everything on this site, and every
+document is available as raw markdown under `/raw/`.
+
 ## Source and licence
 
 The documents live at

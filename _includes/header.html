@@ -5,6 +5,9 @@
     {% for p in s.pages %}{% if p.path != '/' %}<a href="{{ p.path | relative_url }}">{{ p.nav }}</a>
     {% endif %}{% endfor %}
   </nav>
+  <p class="site-byline agent-line">Agents: read <a href="{{ '/defence-before-fix-project-prompt.md' | relative_url }}">the project prompt</a>
+    (raw markdown), or start from <a href="{{ s.agent_index | relative_url }}">llms.txt</a>.{% for p in s.pages %}{% if p.raw and p.path == page.url %}
+    This page as <a href="{{ '/raw/' | append: p.raw | relative_url }}">raw markdown</a>.{% endif %}{% endfor %}</p>
   <p class="site-byline">By <a href="{{ s.author.url }}">{{ s.author.name }}</a> of
     <a href="{{ s.organisation.url }}">{{ s.organisation.name }}</a>. First published {{ s.coined }}.</p>
 </header>

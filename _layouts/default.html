@@ -7,6 +7,8 @@
   {% seo %}
   {% include head-custom.html %}
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  {% assign s = site.data.site %}{% for p in s.pages %}{% if p.raw and p.path == page.url %}<link rel="alternate" type="text/markdown" href="{{ '/raw/' | append: p.raw | relative_url }}" title="Raw markdown">
+  {% endif %}{% endfor %}<link rel="alternate" type="text/plain" href="{{ s.agent_index | relative_url }}" title="llms.txt">
 </head>
 <body>
   {% include header.html %}

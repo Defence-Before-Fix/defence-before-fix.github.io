@@ -51,6 +51,27 @@ word is a finding. It runs in CI on every push.
 python3 spec-qa.py
 ```
 
+## Agent-facing surfaces
+
+The site is meant to be read by agents as well as people, and every agent surface is generated so
+that it cannot drift from the documents:
+
+| Surface                                   | What it is                                                           | Generated from                       |
+| ----------------------------------------- | -------------------------------------------------------------------- | ------------------------------------ |
+| `/defence-before-fix-project-prompt.md`   | Raw markdown: the method as an agent follows it, plus where the raw documents are, what a conforming toolchain offers, how a project declares | `SPEC.md` Appendix A and `_data/site.yml` |
+| `/llms.txt`                               | The llms.txt index of everything on the site                          | `_data/site.yml`                     |
+| `/llms-full.txt`                          | The prompt and every document in one file                             | the documents                        |
+| `/raw/<name>.md`                          | Every primary document as raw markdown                                | the documents                        |
+| `<link rel="alternate">` on each page     | Points a fetcher at the raw markdown and at llms.txt                  | `_data/site.yml`                     |
+
+`build-agent-surfaces.py` writes the prompt and `llms.txt` into the repository, and CI fails when
+they are stale (`--check`). The Pages workflow runs the same script with `--site ./_site` after
+the Jekyll build to copy the raw documents and write `llms-full.txt` into the deployed site. To
+change any of it, edit `SPEC.md` or `_data/site.yml` and run the script.
+
+Both toolchains print the canonical URL in their failure output, so an agent that meets the
+method in a failing pipeline can fetch the prompt from the line it has just read.
+
 ## Attribution
 
 Coined by [Joseph Edmonds](https://ltscommerce.dev) of

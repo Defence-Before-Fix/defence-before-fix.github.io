@@ -16,6 +16,8 @@ defaults:
 exclude:
   - spec-qa.py
   - tools/build-register.py
+  - build-agent-surfaces.py
+  - defence-before-fix-project-prompt.md
   - LICENSE
   - README.md
   - PUBLISHING.md

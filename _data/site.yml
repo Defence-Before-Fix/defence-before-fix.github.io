@@ -35,6 +35,7 @@ pages:
       The home page: the definition, the six clauses, the documents, the tools that implement
       the method and the article in which it was first published.
   - path: /SPEC.html
+    raw: SPEC.md
     heading: "Defence Before Fix: Method Specification"
     title: the method specification
     nav: Method specification
@@ -44,6 +45,7 @@ pages:
       remediation, a rule and a toolchain, and how the method operates under AI-assisted
       development.
   - path: /TOOLING-SPEC.html
+    raw: TOOLING-SPEC.md
     heading: "Defence Before Fix: Toolchain Specification"
     title: the toolchain specification
     nav: Toolchain specification
@@ -52,6 +54,7 @@ pages:
       or QA pipeline: what a tool must offer so that the projects using it can follow the method,
       and what it takes to claim conformance.
   - path: /PRIMER.html
+    raw: PRIMER.md
     heading: "Defence Before Fix: Primer"
     title: the primer
     nav: Primer
@@ -66,6 +69,7 @@ pages:
       A register of QA tools grouped by language, each graded for readiness and for conformance,
       with a page per tool saying how it is and is not conformant, clause by clause.
   - path: /PROVENANCE.html
+    raw: PROVENANCE.md
     heading: "Defence Before Fix: Provenance"
     title: provenance
     nav: Provenance
@@ -73,9 +77,20 @@ pages:
       Who coined the term, when it was first published, and what is and is not being claimed
       for it.
   - path: /CHANGELOG.html
+    raw: CHANGELOG.md
     heading: "Defence Before Fix: Changelog"
     title: the changelog
     nav: Changelog
     blurb: >-
       Changes to each document, versioned independently, so that a toolchain clause can be added
       without reissuing the method.
+  - path: /defence-before-fix-project-prompt.md
+    heading: "Defence Before Fix: Project Prompt for Agents"
+    title: the project prompt for agents
+    nav: Agents
+    agent: true
+    blurb: >-
+      Raw markdown, generated from the specification's Appendix A: the method in the form an agent
+      follows when it finds a defect, where the raw documents are, what to expect from a conforming
+      toolchain, and how a project declares the version it follows.
+agent_index: /llms.txt

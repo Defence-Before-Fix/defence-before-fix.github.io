@@ -14,3 +14,5 @@ jobs:
         run: python3 spec-qa.py
       - name: The tools register table matches the tool pages
         run: python3 tools/build-register.py --check
+      - name: The agent surfaces match the specification and the metadata
+        run: pip install pyyaml && python3 build-agent-surfaces.py --check

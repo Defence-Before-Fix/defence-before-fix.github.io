@@ -20,6 +20,13 @@ jobs:
         with:
           source: ./
           destination: ./_site
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Agent surfaces into the built site (raw markdown, prompt, llms.txt)
+        run: |
+          pip install pyyaml
+          sudo python3 build-agent-surfaces.py --check --site ./_site
       - uses: actions/upload-pages-artifact@v3
   deploy:
     needs: build
