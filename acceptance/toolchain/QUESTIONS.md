@@ -23,9 +23,9 @@ Answer each in one sentence, followed by the sentence of the document you are re
 ## 3. Application
 
 Grade the Zigpipe project's toolchain, as described in the fixture, against every MUST clause in
-sections 4 to 6: 4.1, 4.2, 4.3, 4.4, 4.5, 5.1, 5.2, 5.3, 6.1, 6.2, 6.3. For each give Yes,
+sections [4](../../TOOLING-SPEC.md#4-the-detectors-a-toolchain-routes-defences-through) to [6](../../TOOLING-SPEC.md#6-the-project-record): [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification), [4.2](../../TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access), [4.3](../../TOOLING-SPEC.md#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record), [4.4](../../TOOLING-SPEC.md#44-the-toolchains-own-invocation-must-satisfy-the-detector-specifications-reporting-clauses-for-every-defence-it-routes), [4.5](../../TOOLING-SPEC.md#45-the-toolchains-entry-point-must-run-detectors-before-runners-and-must-stop-on-a-detector-failure), [5.1](../../TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them), [5.2](../../TOOLING-SPEC.md#52-the-listing-must-be-derived-from-the-active-configuration), [5.3](../../TOOLING-SPEC.md#53-a-projects-own-defences-must-appear-in-the-listing-alongside-bundled-ones), [6.1](../../TOOLING-SPEC.md#61-the-toolchain-must-define-a-location-for-the-project-record-and-must-read-it-itself), [6.2](../../TOOLING-SPEC.md#62-every-exception-in-the-project-record-must-carry-a-written-justification-that-names-the-hazard-and-the-scope-and-the-toolchain-must-reject-a-generic-one), [6.3](../../TOOLING-SPEC.md#63-the-project-record-must-be-enumerable-by-the-same-means-as-the-defences). For each give Yes,
 Partial or No and one line of reasoning. Then state whether the toolchain conforms under section
-9, whether it conforms with agent support, and whether section 8 applies to it. Finally, state
+9, whether it conforms with agent support, and whether section [8](../../TOOLING-SPEC.md#8-self-audit) applies to it. Finally, state
 whether the absence of a declaration affects the verdict.
 
 ## 4. Confusion

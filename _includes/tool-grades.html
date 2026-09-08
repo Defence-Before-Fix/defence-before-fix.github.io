@@ -1,0 +1,16 @@
+{% comment %}The grades block at the top of every tool page, rendered from the page's front matter.
+Each grade label links to the section of the specification that defines what it measures; the
+legend for the colours is on the register page.{% endcomment %}
+<table class="tool-grades">
+  <tbody>
+    <tr><th scope="row">Language</th><td>{{ page.language }}</td></tr>
+    <tr><th scope="row">Kind</th><td>{{ page.kind }}</td></tr>
+    <tr><th scope="row"><a href="{{ '/tools/' | relative_url }}#grades">Readiness</a></th><td>{{ page.readiness }}</td></tr>
+    <tr><th scope="row"><a href="{{ '/DETECTOR-SPEC.html' | relative_url }}#8-conformance">Detector conformance</a></th><td>{{ page.detector }}</td></tr>
+    {% if page.kind == 'toolchain' %}
+    <tr><th scope="row"><a href="{{ '/TOOLING-SPEC.html' | relative_url }}#9-conformance">Toolchain conformance</a></th><td>{{ page.toolchain }}</td></tr>
+    <tr><th scope="row"><a href="{{ '/TOOLING-SPEC.html' | relative_url }}#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately">Project conformance</a></th><td>{{ page.project }}</td></tr>
+    {% endif %}
+    <tr><th scope="row">Checked</th><td>{{ page.checked }}</td></tr>
+  </tbody>
+</table>

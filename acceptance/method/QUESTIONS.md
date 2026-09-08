@@ -22,9 +22,9 @@ Answer each in one sentence, followed by the sentence of the document you are re
 ## 3. Application
 
 Grade the ledger remediation, as described in the fixture, against each of the six clauses of
-section 3: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6. For each give Yes, Partial or No and one line of
-reasoning. Then state whether the remediation conforms under section 7, whether the defence
-alone conforms, and which decision in the fixture, if any, section 4 says was not the
+section [3](../../SPEC.md#3-the-method): [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class), [3.2](../../SPEC.md#32-build-the-net), [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire), [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance), [3.5](../../SPEC.md#35-enforce-permanently-and-block), [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation). For each give Yes, Partial or No and one line of
+reasoning. Then state whether the remediation conforms under section [7](../../SPEC.md#7-conformance), whether the defence
+alone conforms, and which decision in the fixture, if any, section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom) says was not the
 practitioner's to take.
 
 ## 4. Confusion

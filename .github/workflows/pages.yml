@@ -27,6 +27,23 @@ jobs:
         run: |
           pip install pyyaml
           sudo python3 build-agent-surfaces.py --check --site ./_site
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: register/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: register/pnpm-lock.yaml
+      - name: The tools register application
+        working-directory: register
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run build
+      - name: The register application into the built site
+        run: |
+          sudo mkdir -p _site/tools/app
+          sudo cp register/dist/*.js register/dist/*.css _site/tools/app/
       - uses: actions/upload-pages-artifact@v3
   deploy:
     needs: build

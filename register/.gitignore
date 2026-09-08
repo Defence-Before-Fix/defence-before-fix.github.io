@@ -1,0 +1,5 @@
+node_modules/
+dist/
+public/tools/register.json
+var/
+test-results/

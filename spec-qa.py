@@ -27,6 +27,10 @@ Findings:
   synonym            a second word for a term of record
   phrase-link        a term link inside a protected phrase (the method's name)
   rfc-placement      an RFC 2119 keyword outside a numbered section
+
+Over every other page that talks about the specifications (tools/clauses.py lists them):
+  unlinked-clause    a clause or section number outside a link to its heading
+  dead-clause-link   a link into a specification whose fragment is no heading there
 """
 
 from __future__ import annotations
@@ -34,6 +38,9 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent / "tools"))
+import clauses
 
 DOCS = ["SPEC.md", "DETECTOR-SPEC.md", "TOOLING-SPEC.md"]
 # A document links a parent's terms as PARENT.md#slug; parents are searched in order.
@@ -208,6 +215,10 @@ def check(here: Path) -> list[str]:
             if re.search(r"\b(MUST|SHOULD|MAY)\b", line) and "RFC 2119" not in line:
                 if not re.match(r"^## (\d|Appendix)", section):
                     findings.append(f"{doc}:{n}: rfc-placement in '{section.strip('# ')}'")
+
+    for page in clauses.pages():
+        for f in clauses.page_findings(page):
+            findings.append(f"{page}:{f.line}: {f.kind} — {f.detail}")
     return findings
 
 
