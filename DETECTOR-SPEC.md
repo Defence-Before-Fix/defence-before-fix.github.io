@@ -115,10 +115,15 @@ file path, [Class] name or position in a configuration file. The [Rule author] c
 once. The [Detector] MUST print it, unaltered, alongside every finding the [Rule]
 reports, in its default output and in every machine-readable format it offers. A prefix the
 [Detector] adds from the invoking directory or the [Rule]'s location is derived from
-the file path. A namespace the [Rule author] assigns once in configuration is not. For
-example, `rules/no-raw-sql`, produced from where the [Rule]'s file happens to sit, is
-derived and changes when the file moves; `proj.no-raw-sql`, written once in the configuration and
-printed unchanged wherever the [Rule] runs, is stable.
+the file path. A namespace the [Rule author] assigns once in configuration is not.
+
+| [Identifier]       | Where it comes from                                                         | Stable? |
+| ------------------ | --------------------------------------------------------------------------- | ------- |
+| `proj.no-raw-sql`  | Written once by the [Rule author] in configuration, printed as is           | Yes     |
+| `LM-0107`          | Assigned once by the [Detector]'s maintainer at the [Rule]'s first release  | Yes     |
+| `rules/no-raw-sql` | Produced from where the [Rule]'s file sits; changes when the file moves     | No      |
+| `NoRawSqlRule`     | The [Rule]'s [Class] name; changes when the [Rule] is renamed               | No      |
+| `rule 7`           | The [Rule]'s position in a configuration file; changes when one is inserted | No      |
 
 **Why**: the [Identifier] is the only string that reaches the [Practitioner] and the
 only key their lookup can use. An [Identifier] that changes when a [Rule] is renamed

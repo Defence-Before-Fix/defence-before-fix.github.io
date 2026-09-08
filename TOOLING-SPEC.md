@@ -49,19 +49,19 @@ link is there for depth and is not a prerequisite for the sentence that carries 
 Terms from the method specification and the [detector specification](DETECTOR-SPEC.md) carry over unchanged. Every
 capitalised term links to its definition; the ones this document leans on most are, in short:
 
-| Term                                          | In one line                                                                                                         |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| [Detector]                  | A tool that reads code without executing it and reports what it finds                                               |
-| [Runner]                      | A tool that executes code, a test suite or a compilation, and reports what happened                                 |
-| [Rule]                          | One check a [Detector] evaluates                                                                  |
-| [Defence]                    | A [Rule] with its documentation, in force and [Blocking]                            |
-| [Identifier]              | The stable name printed with a finding that leads to its documentation                                              |
-| [Blocking]                  | Fails the run rather than issuing a [Warning]                                                      |
-| [Exception]                | A recorded, justified decision to leave an [Instance] unfixed or a [Rule] unapplied |
-| [Practitioner]          | Whoever is doing the work, a person or an [Agent]                                                    |
-| [Owner]                        | The human who decides what the codebase may keep                                                                    |
+| Term           | In one line                                                                         |
+| -------------- | ----------------------------------------------------------------------------------- |
+| [Detector]     | A tool that reads code without executing it and reports what it finds               |
+| [Runner]       | A tool that executes code, a test suite or a compilation, and reports what happened |
+| [Rule]         | One check a [Detector] evaluates                                                    |
+| [Defence]      | A [Rule] with its documentation, in force and [Blocking]                            |
+| [Identifier]   | The stable name printed with a finding that leads to its documentation              |
+| [Blocking]     | Fails the run rather than issuing a [Warning]                                       |
+| [Exception]    | A recorded, justified decision to leave an [Instance] unfixed or a [Rule] unapplied |
+| [Practitioner] | Whoever is doing the work, a person or an [Agent]                                   |
+| [Owner]        | The human who decides what the codebase may keep                                    |
 | [Bundled rule] | A [Rule] a [Detector] ships rather than one the project wrote                       |
-| [Harness]           | The route by which one [Rule] is run against supplied code on its own                                 |
+| [Harness]      | The route by which one [Rule] is run against supplied code on its own               |
 
 These are additional.
 
@@ -88,17 +88,17 @@ of them is what produces a [Toolchain] that is *nearly* usable. The middle colum
 document states the mechanism half; the assembled [Toolchain] MUST provide every row, whichever
 part of it does so.
 
-| Requirement                                 | The mechanism, and where it is stated                                                                                                     | The project supplies                           |
-| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| Bespoke [Defences]         | The authoring and registration route, [detector specification](DETECTOR-SPEC.md) 4.1                                                      | The [Rules]                      |
-| The red proof                               | A [Harness], [detector specification](DETECTOR-SPEC.md) 4.2                                                     | The [Fixture] and the red run |
-| Running the [Defence]      | A local invocation, including subsets, [detector specification](DETECTOR-SPEC.md) 5                                                       | Running it                                     |
-| [Identifier] resolution | The lookup, [detector specification](DETECTOR-SPEC.md) 6 for [Bundled rules], clause 4.2 here for the rest | The documentation content                      |
-| Correct construction                        | A place for it to live, clause 4.2 here                                                                                                   | The remediation text                           |
-| Enumeration                                 | The listing, section 5 here                                                                                                               | The [Defences] listed         |
-| [Agent]-context summary      | Generation and delivery, section 7 here                                                                                                   | The terse lines                                |
-| Recorded decisions                          | A location it reads itself, section 6 here                                                                                                | The decisions                                  |
-| [Suppression]          | A route that can be forbidden, [detector specification](DETECTOR-SPEC.md) 7; forbidding it, clause 4.3 here                               | The decision, under method section 4           |
+| Requirement             | The mechanism, and where it is stated                                                                       | The project supplies                 |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| Bespoke [Defences]      | The authoring and registration route, [detector specification](DETECTOR-SPEC.md) 4.1                        | The [Rules]                          |
+| The red proof           | A [Harness], [detector specification](DETECTOR-SPEC.md) 4.2                                                 | The [Fixture] and the red run        |
+| Running the [Defence]   | A local invocation, including subsets, [detector specification](DETECTOR-SPEC.md) 5                         | Running it                           |
+| [Identifier] resolution | The lookup, [detector specification](DETECTOR-SPEC.md) 6 for [Bundled rules], clause 4.2 here for the rest  | The documentation content            |
+| Correct construction    | A place for it to live, clause 4.2 here                                                                     | The remediation text                 |
+| Enumeration             | The listing, section 5 here                                                                                 | The [Defences] listed                |
+| [Agent]-context summary | Generation and delivery, section 7 here                                                                     | The terse lines                      |
+| Recorded decisions      | A location it reads itself, section 6 here                                                                  | The decisions                        |
+| [Suppression]           | A route that can be forbidden, [detector specification](DETECTOR-SPEC.md) 7; forbidding it, clause 4.3 here | The decision, under method section 4 |
 
 Read down the middle column and the shape of a [Conforming] [Toolchain] is already visible. Read across
 any row and the failure mode is visible too: either half alone leaves the [Practitioner] stuck.
@@ -108,7 +108,13 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 ### 4.1 Every detector the toolchain routes a defence through MUST conform to the [detector specification](DETECTOR-SPEC.md)
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
-[Conform] to [the detector specification](DETECTOR-SPEC.md). Three points govern how that is met.
+[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs, in brief, are
+that the [Detector] hosts bespoke [Rules]; runs one [Rule] on its own against supplied code;
+prints a stable [Identifier] with every finding; runs locally, down to one file, with the result
+in the command's own output and nothing reportable only through a hosted service; resolves every
+[Identifier] a [Bundled rule] can print to documentation shipped with it, offline; and makes any
+inline [Suppression] route detectable or disableable. A [Detector] that fails any one of those,
+after wrapping, fails this clause. Three points govern how that is met.
 
 1. **Wrapping is permitted.** The [Toolchain] MAY supply a mechanism the
    [Detector] lacks by wrapping it, with a [Harness] script or a
@@ -168,9 +174,9 @@ does not [Conform].
 
 A [Conforming] [Toolchain] MUST disable every [Suppression]
 route that bypasses the [Project record], or MUST run a [Blocking]
-[Defence] that fails on its use. Inline [Suppression] comments, per-line
-ignores and silent [Baselines] all bypass the [Project record]. A route bypasses
-it when the route is not itself the [Project record] and does not pass through it. The
+[Defence] that fails on its use. A route bypasses the [Project record] when a finding can be
+silenced through it without an entry appearing in the [Project record]: an inline
+[Suppression] comment, a per-line ignore and a silently generated [Baseline] all do. The
 obligation covers every such route in every [Detector] the [Toolchain] routes a
 [Defence] through. Irreducible cases MUST be directed to the [Project record],
 where clause 6.2 requires a justification.
@@ -352,7 +358,8 @@ page covers a family of [Identifiers] by a pattern, as clause 6.3 of the
 [Identifier] printed and confirm it lands on that page. A member added to the
 [Rule] and not to the page then fails the release. A third-party [Detector]'s
 native catalogue, which the [Toolchain] orchestrates without claiming as its own, is outside
-this audit and inside clause 4.2's resolution all the same. The [detector specification](DETECTOR-SPEC.md)'s
+this audit; whether that catalogue resolves is judged under the
+[detector specification](DETECTOR-SPEC.md)'s clause 6, as clause 4.2 says. The [detector specification](DETECTOR-SPEC.md)'s
 clause 6.3 names the dangling reference as the failure to guard against above all others. This is the
 guard, and a [Toolchain] is not held to less than it holds its
 [Practitioners] to.
@@ -453,10 +460,10 @@ mechanisms itself, and once built they are its [Toolchain] and are graded here. 
 does not have to build them alone.
 
 <!-- Term link definitions -->
+
 [agent]: SPEC.md#agent
 [agents]: SPEC.md#agent
 [baseline]: SPEC.md#baseline
-[baselines]: SPEC.md#baseline
 [blocking]: SPEC.md#blocking
 [bundled defence]: #bundled-defence
 [bundled defences]: #bundled-defence

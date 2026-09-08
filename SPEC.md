@@ -198,7 +198,16 @@ runs and the language's own [Detector] ecosystem for an extension point, and fou
 
 ## 3. The method
 
-Six clauses, in order.
+Six clauses, in order. In brief, before the detail:
+
+| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                               |
+| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built |
+| 3.2    | Express the [Class] as a [Rule] in a [Detector], never a test                                               | The [Rule], and any [Toolchain] gap that stopped a bespoke one                                 |
+| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                         |
+| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                              |
+| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point                                                |
+| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                         |
 
 **Three of them turn on a judgement this specification deliberately does not close**: whether code
 carries the [Hazard] (3.1, 3.3), whether a search was comprehensive (3.1, 3.4), and how broadly to
@@ -412,6 +421,13 @@ anything is fixed.
 A new [Rule] MUST be proven to fire before it is trusted. It is never the goal to write a [Rule] and
 be instantly green.
 
+**This clause has three parts.** Part A: the proof, a red run kept as a commit of its own. Part B:
+[Narrowing], which is the [Practitioner]'s to decide only when they can write down why the
+[Hazard] cannot arise in what is excluded, and is [Suppression] for the [Owner] otherwise. Part C:
+proving a [Rule] when the pattern is absent from the codebase, and what a [Rule]'s own code owes.
+
+**Part A: the proof.**
+
 **Proving and sweeping are two questions, not necessarily two runs.** Proving asks "does this [Rule]
 work at all", and the answer is pass or fail. Sweeping, in clause 3.4, asks "how much of this [Class]
 is present", and the answer is a count. A single execution of the [Rule] answers both, and no second
@@ -437,6 +453,8 @@ flattens them into one destroys the proof, so a project whose merge policy does 
 [Defence] commit reachable by another recorded reference, a tag or the retained branch, or MUST NOT
 claim the remediation [Conforms]. How the project merges is its own business under section 8;
 what must survive the merge is not.
+
+**Part B: [Narrowing].**
 
 **A [Narrowing] is proven the other way round, and both ways.** Where the change under proof is
 that the [Rule] should stop firing on code that does not carry the [Hazard], three things are shown:
@@ -495,6 +513,8 @@ infallible; it requires the reasoning to be written down where the next reader, 
 [Defect], can test it. A [Narrowing] with a recorded reason is correctable. One without is
 indistinguishable from a [Suppression], which is why the sentence is the test and a percentage is
 not.
+
+**Part C: proving when the pattern is absent, and the [Rule]'s own code.**
 
 **Where the pattern is present, prove the [Rule] against it.** At minimum the [Rule] MUST detect the
 originating [Defect]. Where the [Defect] was found in code review rather than in production, the
