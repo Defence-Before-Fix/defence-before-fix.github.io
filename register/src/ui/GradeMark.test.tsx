@@ -9,8 +9,8 @@ describe("GradeMark", () => {
       <GradeMark grade={{ mark: "🟢", level: "green" }} column="readiness" />,
     );
     const cell = screen.getByLabelText("Readiness: green");
-    expect(cell).toHaveTextContent("🟢");
     expect(cell).toHaveAttribute("data-level", "green");
+    expect(cell.querySelector(".register-dot")).not.toBeNull();
   });
 
   it("renders a middle dot for a grade that does not apply", () => {

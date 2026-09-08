@@ -176,12 +176,6 @@ export function decode(hash: string): Filters {
   return filters;
 }
 
-export function toggle<T>(values: T[], value: T): T[] {
-  return values.includes(value)
-    ? values.filter((v) => v !== value)
-    : [...values, value];
-}
-
 export function gradeColumnLabel(column: GradeColumn): string {
   switch (column) {
     case "readiness":

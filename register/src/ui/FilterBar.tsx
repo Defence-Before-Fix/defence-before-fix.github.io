@@ -1,9 +1,4 @@
-import {
-  defaultFilters,
-  encode,
-  gradeColumnLabel,
-  toggle,
-} from "../register/filter";
+import { defaultFilters, encode } from "../register/filter";
 import {
   GRADE_COLUMNS,
   type Filters,
@@ -20,40 +15,65 @@ interface FilterBarProps {
   onChange: (filters: Filters) => void;
 }
 
-const KINDS: { value: Kind; label: string }[] = [
+interface Choice<T extends string> {
+  value: T;
+  label: string;
+}
+
+const KINDS: Choice<Kind>[] = [
   { value: "tool", label: "Tool" },
   { value: "toolchain", label: "Toolchain" },
 ];
 
-const LEVELS: { value: Level; mark: string }[] = [
-  { value: "green", mark: "🟢" },
-  { value: "amber", mark: "🟡" },
-  { value: "red", mark: "🔴" },
+const LEVELS: Choice<Level>[] = [
+  { value: "green", label: "🟢 Green" },
+  { value: "amber", label: "🟡 Amber" },
+  { value: "red", label: "🔴 Red" },
 ];
 
-interface GradeGroupProps {
-  column: GradeColumn;
-  selected: Level[];
-  onToggle: (level: Level) => void;
+const GRADE_LABELS: Record<GradeColumn, string> = {
+  readiness: "Readiness",
+  detector: "Detector conformance",
+  toolchain: "Toolchain conformance",
+  project: "Project conformance",
+};
+
+interface ChoiceSelectProps<T extends string> {
+  label: string;
+  any: string;
+  choices: Choice<T>[];
+  selected: T[];
+  onSelect: (value: T | undefined) => void;
 }
 
-function GradeGroup({ column, selected, onToggle }: GradeGroupProps) {
-  const label = gradeColumnLabel(column);
+// One select per facet: the first option means no restriction. The filter model allows
+// several values per facet, from a hand-written address; the select shows the first.
+function ChoiceSelect<T extends string>({
+  label,
+  any,
+  choices,
+  selected,
+  onSelect,
+}: ChoiceSelectProps<T>) {
+  const current = selected[0] ?? "";
   return (
-    <fieldset className="register-filter-group">
-      <legend>{label}</legend>
-      {LEVELS.map((level) => (
-        <label key={level.value} className="register-filter-option">
-          <input
-            type="checkbox"
-            checked={selected.includes(level.value)}
-            onChange={() => onToggle(level.value)}
-            aria-label={`${label}: ${level.value}`}
-          />
-          <span aria-hidden="true">{level.mark}</span>
-        </label>
-      ))}
-    </fieldset>
+    <label className="register-facet">
+      <span>{label}</span>
+      <select
+        value={current}
+        onChange={(event) => {
+          const chosen = choices.find((c) => c.value === event.target.value);
+          onSelect(chosen?.value);
+        }}
+      >
+        <option value="">{any}</option>
+        {choices.map((choice) => (
+          <option key={choice.value} value={choice.value}>
+            {choice.label}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 
@@ -65,87 +85,81 @@ export function FilterBar({
   onChange,
 }: FilterBarProps) {
   const filtered = encode(filters) !== "";
+  const languageChoices: Choice<string>[] = languages.map((language) => ({
+    value: language,
+    label: language,
+  }));
   return (
     <form
       className="register-filters"
       onSubmit={(event) => event.preventDefault()}
     >
-      <label className="register-search">
-        <span>Search</span>
-        <input
-          type="search"
-          value={filters.query}
-          placeholder="Name, language, note…"
-          onChange={(event) =>
-            onChange({ ...filters, query: event.target.value })
-          }
-        />
-      </label>
-      <fieldset className="register-filter-group">
-        <legend>Language</legend>
-        {languages.map((language) => (
-          <label key={language} className="register-filter-option">
-            <input
-              type="checkbox"
-              checked={filters.languages.includes(language)}
-              onChange={() =>
-                onChange({
-                  ...filters,
-                  languages: toggle(filters.languages, language),
-                })
-              }
-            />
-            <span>{language}</span>
-          </label>
-        ))}
-      </fieldset>
-      <fieldset className="register-filter-group">
-        <legend>Kind</legend>
-        {KINDS.map((kind) => (
-          <label key={kind.value} className="register-filter-option">
-            <input
-              type="checkbox"
-              checked={filters.kinds.includes(kind.value)}
-              onChange={() =>
-                onChange({
-                  ...filters,
-                  kinds: toggle(filters.kinds, kind.value),
-                })
-              }
-            />
-            <span>{kind.label}</span>
-          </label>
-        ))}
-      </fieldset>
-      {GRADE_COLUMNS.map((column) => (
-        <GradeGroup
-          key={column}
-          column={column}
-          selected={filters.grades[column]}
-          onToggle={(level) =>
+      <div className="register-filter-row">
+        <label className="register-search">
+          <span>Search</span>
+          <input
+            type="search"
+            value={filters.query}
+            placeholder="Tool name, language or note"
+            onChange={(event) =>
+              onChange({ ...filters, query: event.target.value })
+            }
+          />
+        </label>
+        <ChoiceSelect
+          label="Language"
+          any="Any language"
+          choices={languageChoices}
+          selected={filters.languages}
+          onSelect={(value) =>
             onChange({
               ...filters,
-              grades: {
-                ...filters.grades,
-                [column]: toggle(filters.grades[column], level),
-              },
+              languages: value === undefined ? [] : [value],
             })
           }
         />
-      ))}
+        <ChoiceSelect
+          label="Kind"
+          any="Tools and toolchains"
+          choices={KINDS}
+          selected={filters.kinds}
+          onSelect={(value) =>
+            onChange({ ...filters, kinds: value === undefined ? [] : [value] })
+          }
+        />
+      </div>
+      <div className="register-filter-row">
+        {GRADE_COLUMNS.map((column) => (
+          <ChoiceSelect
+            key={column}
+            label={GRADE_LABELS[column]}
+            any="Any grade"
+            choices={LEVELS}
+            selected={filters.grades[column]}
+            onSelect={(value) =>
+              onChange({
+                ...filters,
+                grades: {
+                  ...filters.grades,
+                  [column]: value === undefined ? [] : [value],
+                },
+              })
+            }
+          />
+        ))}
+      </div>
       <p className="register-count" role="status">
-        {shown} of {total} tools
+        <span>
+          {shown} of {total} tools
+        </span>
         {filtered ? (
-          <>
-            {" "}
-            <button
-              type="button"
-              className="register-reset"
-              onClick={() => onChange(defaultFilters())}
-            >
-              Reset filters
-            </button>
-          </>
+          <button
+            type="button"
+            className="register-reset"
+            onClick={() => onChange(defaultFilters())}
+          >
+            Reset filters
+          </button>
         ) : null}
       </p>
     </form>
