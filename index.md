@@ -75,7 +75,7 @@ here is what the method now is.
 ## Source and licence
 
 The documents live at
-[github.com/LongTermSupport/defence-before-fix](https://github.com/LongTermSupport/defence-before-fix),
+[github.com/Defence-Before-Fix](https://github.com/Defence-Before-Fix/defence-before-fix.github.io),
 with their full history, and are checked in CI by the repository's own defence, `spec-qa.py`.
 They are licensed under
 [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/).

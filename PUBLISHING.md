@@ -2,11 +2,11 @@
 
 ## The custom domain
 
-The site is served by GitHub Pages at <https://longtermsupport.github.io/defence-before-fix/>,
-which is the canonical URL the toolchains print. Moving it to `defencebeforefix.ltscommerce.dev`
-is Joseph's, because it needs DNS:
+The site is served by GitHub Pages at <https://defence-before-fix.github.io/>, the organisation
+site of `Defence-Before-Fix`, which is the canonical URL the toolchains print. Moving it to
+`defencebeforefix.ltscommerce.dev` is Joseph's, because it needs DNS:
 
-1. Add a `CNAME` record for `defencebeforefix` pointing at `longtermsupport.github.io`.
+1. Add a `CNAME` record for `defencebeforefix` pointing at `defence-before-fix.github.io`.
 2. Commit a file named `CNAME` at the repository root containing `defencebeforefix.ltscommerce.dev`,
    or set the custom domain under Settings, Pages, which commits the same file.
 3. Once the certificate is issued, tick "Enforce HTTPS" on the same settings page.
@@ -29,7 +29,7 @@ A change to either document is a new package release with the changelog updated 
 ## Packagist
 
 1. Sign in at packagist.org as the LongTermSupport account and submit
-   `https://github.com/LongTermSupport/defence-before-fix`.
+   `https://github.com/Defence-Before-Fix/defence-before-fix.github.io`.
 2. Enable the GitHub hook so tags publish automatically.
 3. Tag: `git tag -a v1.0.0 -m 'Method specification 1.0.0' && git push origin v1.0.0`.
 
