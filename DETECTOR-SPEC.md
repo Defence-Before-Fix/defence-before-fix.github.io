@@ -157,20 +157,20 @@ teaches nobody anything and blocks them anyway, which is the worst combination a
 Keyed on **the [Identifier](SPEC.md#identifier) exactly as printed**. A command, an index file or a URL are all
 acceptable forms; for a [Bundled rule](#bundled-rule), clause 6.2 governs where it lives.
 
-For a [Bundled rule](#bundled-rule), the [Detector](SPEC.md#detector) supplies the documentation and the lookup, and
-clauses 6.2 and 6.3 say where. For a project's own [Rule](SPEC.md#rule), the [Detector](SPEC.md#detector) cannot know
-the documentation, so what it owes is the half it can give: the [Identifier](SPEC.md#identifier) printed
-unaltered under clause 4.3, and no transformation of it. The lookup for such a
-[Rule](SPEC.md#rule) is an obligation on the project's assembled [Toolchain](SPEC.md#toolchain), under clause 4.2 of
-the [toolchain specification](TOOLING-SPEC.md), and a [Detector](SPEC.md#detector) that offers it as well has gone further than
-this clause asks.
+**For a [Bundled rule](#bundled-rule)**, the [Detector](SPEC.md#detector) supplies the documentation and the
+lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier](SPEC.md#identifier)
+presented alone, because the reader who needs it most has the [Identifier](SPEC.md#identifier) from a log, a
+ticket or a colleague and not the [Message](SPEC.md#message). A [Message](SPEC.md#message) that carries its own
+documentation path resolves that [Message](SPEC.md#message), not the [Identifier](SPEC.md#identifier).
 
-A [Message](SPEC.md#message) that carries its own documentation path resolves that [Message](SPEC.md#message), not the
-[Identifier](SPEC.md#identifier). The mechanism MUST resolve an [Identifier](SPEC.md#identifier) presented alone, because
-the reader who needs it most has the [Identifier](SPEC.md#identifier) from a log, a ticket or a colleague and not
-the [Message](SPEC.md#message). Where the [Identifier](SPEC.md#identifier) is itself a URL, as method clause 3.6 allows,
+**For a project's own [Rule](SPEC.md#rule)**, the [Detector](SPEC.md#detector) cannot know the documentation, so what
+it owes is the half it can give: the [Identifier](SPEC.md#identifier) printed unaltered under clause 4.3, and no
+transformation of it. Where the [Identifier](SPEC.md#identifier) is itself a URL, as method clause 3.6 allows,
 printing it is printing the [Identifier](SPEC.md#identifier); what this clause forbids is a path supplied in
-addition to a shorter [Identifier](SPEC.md#identifier) that cannot be looked up on its own.
+addition to a shorter [Identifier](SPEC.md#identifier) that cannot be looked up on its own. The lookup for such
+a [Rule](SPEC.md#rule) is an obligation on the project's assembled [Toolchain](SPEC.md#toolchain), under clause 4.2
+of the [toolchain specification](TOOLING-SPEC.md), and a [Detector](SPEC.md#detector) that offers it as well has
+gone further than this clause asks.
 
 **Why**: method specification clause 8.3 requires the [Identifier](SPEC.md#identifier) to resolve without a human.
 An index keyed on anything else does not resolve it. This is the most commonly failed clause in this

@@ -87,16 +87,20 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 ### 4.1 Every detector the toolchain routes a defence through MUST conform to the [detector specification](DETECTOR-SPEC.md)
 
 A [Toolchain](SPEC.md#toolchain) MUST NOT route a [Defence](SPEC.md#defence) through a [Detector](SPEC.md#detector) that does not
-[Conform](SPEC.md#conform) to [the detector specification](DETECTOR-SPEC.md). Where a [Detector](SPEC.md#detector) lacks a
-mechanism that specification requires, the [Toolchain](SPEC.md#toolchain) MAY supply it around the
-[Detector](SPEC.md#detector), a [Harness](DETECTOR-SPEC.md#harness) script or a resolver of its own, and the
-[Detector](SPEC.md#detector) together with that wrapping is then what the [Practitioner](SPEC.md#practitioner) uses and what
-is judged. This clause holds when the [Detector](SPEC.md#detector) and the [Toolchain](SPEC.md#toolchain)'s wrapping
-together satisfy every MUST of sections 4 to 7 of the [detector specification](DETECTOR-SPEC.md),
-exercised as its clause 8.1 describes; the [Detector](SPEC.md#detector)'s own verdict under that document is
-unchanged by the wrapping. A [Detector](SPEC.md#detector) that cannot host a bespoke [Rule](SPEC.md#rule) at all cannot be wrapped into
-[Conformance](SPEC.md#conform), and no [Defence](SPEC.md#defence) is routed through it; it MAY still run as one of the
-[Toolchain](SPEC.md#toolchain)'s checks, as a formatter or a [Runner](SPEC.md#runner) does.
+[Conform](SPEC.md#conform) to [the detector specification](DETECTOR-SPEC.md). Three points govern how that is met.
+
+1. **Wrapping is permitted.** Where a [Detector](SPEC.md#detector) lacks a mechanism that specification
+   requires, the [Toolchain](SPEC.md#toolchain) MAY supply it around the [Detector](SPEC.md#detector), a
+   [Harness](DETECTOR-SPEC.md#harness) script or a resolver of its own, and the [Detector](SPEC.md#detector)
+   together with that wrapping is then what the [Practitioner](SPEC.md#practitioner) uses and what is judged.
+2. **How the wrapped pair is judged.** This clause holds when the [Detector](SPEC.md#detector) and the
+   [Toolchain](SPEC.md#toolchain)'s wrapping together satisfy every MUST of sections 4 to 7 of the
+   [detector specification](DETECTOR-SPEC.md), exercised as its clause 8.1 describes. The
+   [Detector](SPEC.md#detector)'s own verdict under that document is unchanged by the wrapping.
+3. **What cannot be wrapped.** A [Detector](SPEC.md#detector) that cannot host a bespoke [Rule](SPEC.md#rule) at all
+   cannot be wrapped into [Conformance](SPEC.md#conform), and no [Defence](SPEC.md#defence) is routed through it.
+   It MAY still run as one of the [Toolchain](SPEC.md#toolchain)'s checks, as a formatter or a
+   [Runner](SPEC.md#runner) does.
 
 **Why**: the six clauses of the method are carried out in a [Detector](SPEC.md#detector), and everything this
 document adds presumes those clauses can be followed there. A [Toolchain](SPEC.md#toolchain) that lists, records
@@ -159,7 +163,11 @@ Where the [Toolchain](SPEC.md#toolchain) wraps its [Detectors](SPEC.md#detector)
 point MUST itself meet clauses 5.1 to 5.4 of the [detector specification](DETECTOR-SPEC.md) for every
 [Defence](SPEC.md#defence) it routes: invocable locally with no infrastructure, over a subset down to one
 file, with the result in the output of the command the [Practitioner](SPEC.md#practitioner) ran, and with no
-[Defence](SPEC.md#defence) reportable only through a mode they cannot run.
+[Defence](SPEC.md#defence) reportable only through a mode they cannot run. The entry point MUST also print
+every [Identifier](SPEC.md#identifier) its [Detectors](SPEC.md#detector) print, unaltered, so that clause 4.3 of the
+[detector specification](DETECTOR-SPEC.md) holds through the wrapping; the [Detector](SPEC.md#detector)'s verdict
+under that clause is on its own output, and the [Toolchain](SPEC.md#toolchain)'s is on what reaches the
+[Practitioner](SPEC.md#practitioner).
 
 **Why**: method clause 3.5 asks the [Practitioner](SPEC.md#practitioner) to demonstrate enforcement through the
 project's own entry point, not through the [Detector](SPEC.md#detector) directly. A [Detector](SPEC.md#detector) that

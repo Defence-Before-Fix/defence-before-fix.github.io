@@ -80,7 +80,10 @@ configuration, with the project's recorded exceptions in the same listing; the i
 routes forbidden; and a manifest entry declaring the specification versions it conforms to. Use those commands rather than guessing. The two reference
 toolchains and their commands are listed at {c}/tools/. If the project's toolchain lacks one of
 these, say so in your report; that gap belongs to the toolchain's owner under clause 3.2 of the
-method specification.
+method specification. If the detector itself lacks one of the four things a detector gives you, say
+so in your report as a gap in the detector under the detector specification; use the toolchain's
+wrapping where it closes the gap, and otherwise fix the defect conventionally as the method's
+Appendix A allows and say why.
 
 ## How the project declares it
 
