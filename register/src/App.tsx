@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { apply, decode, defaultFilters, encode } from "./register/filter";
 import { parseRegister } from "./register/parse";
@@ -6,8 +6,17 @@ import type { Filters, Register, SortKey } from "./register/types";
 import { FilterBar } from "./ui/FilterBar";
 import { RegisterTable } from "./ui/RegisterTable";
 
+export type LoadState = "ready" | "failed";
+
 interface AppProps {
   source: string;
+  onLoad?: (state: LoadState) => void;
+}
+
+// A hash the application did not write, such as #grades, is left alone; only a hash that
+// round-trips through the filter codec belongs to the application.
+function isFilterHash(hash: string): boolean {
+  return hash === "" || encode(decode(hash)) === hash;
 }
 
 type Loaded =
@@ -20,16 +29,26 @@ function nextSort(filters: Filters, key: SortKey): Filters {
   return { ...filters, sort: { key, direction: flip ? "desc" : "asc" } };
 }
 
-export function App({ source }: AppProps) {
+export function App({ source, onLoad }: AppProps) {
   const [loaded, setLoaded] = useState<Loaded>({ state: "loading" });
   const [filters, setFilters] = useState<Filters>(defaultFilters);
+  const fromHash = useRef(false);
 
   useEffect(() => {
-    setFilters(decode(window.location.hash));
-    const onHashChange = () => setFilters(decode(window.location.hash));
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    const read = () => {
+      fromHash.current = true;
+      setFilters(decode(window.location.hash));
+    };
+    read();
+    window.addEventListener("hashchange", read);
+    return () => window.removeEventListener("hashchange", read);
   }, []);
+
+  useEffect(() => {
+    if (loaded.state !== "loading") {
+      onLoad?.(loaded.state);
+    }
+  }, [loaded, onLoad]);
 
   useEffect(() => {
     let cancelled = false;
@@ -60,9 +79,13 @@ export function App({ source }: AppProps) {
   }, [source]);
 
   useEffect(() => {
+    if (fromHash.current) {
+      fromHash.current = false;
+      return;
+    }
     const encoded = encode(filters);
     const current = window.location.hash.replace(/^#/, "");
-    if (encoded !== current) {
+    if (encoded !== current && (encoded !== "" || isFilterHash(current))) {
       window.history.replaceState(
         null,
         "",

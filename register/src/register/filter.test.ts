@@ -37,6 +37,7 @@ describe("apply", () => {
         (t) => t.slug,
       ),
     ).toEqual(["ruff"]);
+    expect(apply(register, { ...defaultFilters(), query: "tool" })).toEqual([]);
   });
 
   it("narrows by language, kind and grade level together", () => {

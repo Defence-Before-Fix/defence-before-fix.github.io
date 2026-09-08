@@ -48,13 +48,7 @@ function matchesQuery(tool: Tool, query: string): boolean {
   if (q === "") {
     return true;
   }
-  const haystack = [
-    tool.name,
-    tool.language,
-    tool.kind,
-    noteText(tool),
-    tool.checked,
-  ]
+  const haystack = [tool.name, tool.language, noteText(tool), tool.checked]
     .join(" ")
     .toLowerCase();
   return q.split(/\s+/).every((word) => haystack.includes(word));

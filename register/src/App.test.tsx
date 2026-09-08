@@ -49,11 +49,29 @@ describe("App", () => {
     expect(screen.getByRole("status")).toHaveTextContent("1 of 4 tools");
   });
 
-  it("reports a failed load", async () => {
+  it("reports a failed load and tells the host", async () => {
     stubFetch({}, false);
-    render(<App source="/tools/register.json" />);
+    const onLoad = vi.fn();
+    render(<App source="/tools/register.json" onLoad={onLoad} />);
     expect(await screen.findByRole("alert")).toHaveTextContent(
       /could not load/i,
     );
+    expect(onLoad).toHaveBeenCalledWith("failed");
+  });
+
+  it("tells the host when the register is ready", async () => {
+    stubFetch(register);
+    const onLoad = vi.fn();
+    render(<App source="/tools/register.json" onLoad={onLoad} />);
+    await screen.findByRole("link", { name: "PHPStan" });
+    expect(onLoad).toHaveBeenCalledWith("ready");
+  });
+
+  it("leaves a hash that is not a filter alone", async () => {
+    window.location.hash = "#grades";
+    stubFetch(register);
+    render(<App source="/tools/register.json" />);
+    await screen.findByRole("link", { name: "PHPStan" });
+    expect(window.location.hash).toBe("#grades");
   });
 });

@@ -43,7 +43,7 @@ jobs:
       - name: The register application into the built site
         run: |
           sudo mkdir -p _site/tools/app
-          sudo cp register/dist/register.js register/dist/register.css _site/tools/app/
+          sudo cp register/dist/*.js register/dist/*.css _site/tools/app/
       - uses: actions/upload-pages-artifact@v3
   deploy:
     needs: build

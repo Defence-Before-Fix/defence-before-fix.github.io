@@ -24,3 +24,7 @@ exclude:
   - .github
   - composer.json
   - package.json
+  - register
+  - tools/clauses.py
+  - tools/link-clauses.py
+  - tools/test_clauses.py

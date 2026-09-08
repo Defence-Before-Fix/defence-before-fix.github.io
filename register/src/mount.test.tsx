@@ -24,10 +24,27 @@ describe("mount", () => {
     fallback.id = "register-static";
     document.body.append(host, fallback);
     expect(mount(document)).toBe(true);
-    expect(fallback.hidden).toBe(true);
     await vi.waitFor(() =>
       expect(host.querySelector("[role='status']")).not.toBeNull(),
     );
+    expect(fallback.hidden).toBe(true);
+  });
+
+  it("keeps the static fallback visible when the register cannot be loaded", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => ({ ok: false, status: 404, json: async () => ({}) })),
+    );
+    const host = document.createElement("div");
+    host.id = "register-app";
+    const fallback = document.createElement("div");
+    fallback.id = "register-static";
+    document.body.append(host, fallback);
+    expect(mount(document)).toBe(true);
+    await vi.waitFor(() =>
+      expect(host.querySelector("[role='alert']")).not.toBeNull(),
+    );
+    expect(fallback.hidden).toBe(false);
   });
 
   it("does nothing when there is no mount point", () => {
