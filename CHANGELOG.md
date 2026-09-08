@@ -10,7 +10,8 @@ reissuing the method.
 Clarity only; no obligation changed. Section 3 opens with a map of the six clauses, with a column
 naming what goes to the Owner at each; clause 3.1 opens with its five steps and a worked example
 and closes with the five things it leaves on the record; clause 3.3 is in three named parts and
-its narrowing part opens with the decision and a two-row example before the proof; the Owner
+its narrowing part opens with the decision and a two-row example before the proof; clause 3.5
+says that a Suppression no recorded decision covers leaves the clause unmet; the Owner
 definition's longest sentence is split. The header and the terminology entries for Detector,
 Toolchain and Conform name the detector specification 1.0.0 and toolchain specification 0.2.0
 as companions, and Conform now reads "every MUST of the relevant section 7 level, or of the
@@ -22,7 +23,9 @@ and commit are stated below once the post-review text has been through a fresh c
 correction during the runs, recorded here because the key changed after a run: 3.1 accepts No
 as well as Partial where the reasoning names the missing search record, since step 2 and the
 record the clause requires both call for it, and two readers of run 9 graded it so from the text.
-Runs 1 to 7 also asked readers what would make a clause clearer and for a clarity rating; both
+One marking error, recorded because it passed a run that should have failed: run 9 was marked as
+passing with four readers grading 3.5 Yes against a key of Partial or No; run 11 repeated that
+result and the clause 3.5 sentence above was added in response. Runs 1 to 7 also asked readers what would make a clause clearer and for a clarity rating; both
 questions were withdrawn before run 8, as `ACCEPTANCE.md` records.
 
 ### 1.0.0, 2026-09-08

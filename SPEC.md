@@ -662,7 +662,9 @@ section 8. What this clause requires is that the [Defence] is permanent, applies
 than to whoever remembers it, and produces a failure rather than a remark.
 
 Removing a [Rule], or adding a [Suppression] for an [Instance], MUST be a recorded decision rather
-than a silent edit, and belongs to the [Owner] under section 4, which governs.
+than a silent edit, and belongs to the [Owner] under section 4, which governs. A [Rule] carrying a
+[Suppression] that no recorded decision covers is not [Blocking] in the sense this clause requires,
+and this clause is not followed until the decision is recorded or the [Suppression] removed.
 
 **Enforcement is demonstrated through the project's own entry point.** Running the [Detector]
 directly shows that the [Rule] can fire; it does not show that the project's checks will run it.
