@@ -1,0 +1,74 @@
+# The single source of shared site metadata. The Jekyll header and footer read it, /site.json
+# is generated from it, and the US-spelling signpost site (defense-before-fix.github.io)
+# fetches that JSON to build its pages. Edit here only.
+name: Defence Before Fix
+us_name: Defense Before Fix
+definition: >-
+  A phase that runs before a defect is fixed: the instance is treated as evidence of a class,
+  and the defence that detects the class is built and seen to fire before the fix is made.
+canonical_url: https://defence-before-fix.github.io
+us_url: https://defense-before-fix.github.io
+repository_url: https://github.com/Defence-Before-Fix/defence-before-fix.github.io
+author:
+  name: Joseph Edmonds
+  url: https://ltscommerce.dev
+organisation:
+  name: Edmonds Commerce
+  url: https://edmondscommerce.co.uk
+coined: 22 February 2026
+coined_iso: "2026-02-22"
+article_url: https://ltscommerce.dev/articles/defence-before-fix-static-analysis
+licence:
+  name: CC BY 4.0
+  url: https://creativecommons.org/licenses/by/4.0/
+versions:
+  method: 1.0.0
+  toolchain: 0.1.0
+  published: 8 September 2026
+stylesheet: /assets/css/site.css
+pages:
+  - path: /
+    title: Defence Before Fix
+    nav: Home
+    blurb: >-
+      The home page: the definition, the six clauses, the documents, the tools that implement
+      the method and the article in which it was first published.
+  - path: /SPEC.html
+    title: the method specification
+    nav: Method specification
+    blurb: >-
+      Method specification 1.0.0, the normative document: what a practitioner does when a defect
+      is found, in six numbered clauses with the reasoning for each, conformance for a
+      remediation, a rule and a toolchain, and how the method operates under AI-assisted
+      development.
+  - path: /TOOLING-SPEC.html
+    title: the toolchain specification
+    nav: Toolchain specification
+    blurb: >-
+      Toolchain specification 0.1.0, addressed to anyone who maintains a linter, static analyser
+      or QA pipeline: what a tool must offer so that the projects using it can follow the method,
+      and what it takes to claim conformance.
+  - path: /PRIMER.html
+    title: the primer
+    nav: Primer
+    blurb: >-
+      The short introduction, written at reading pace: why the bug you have just found is
+      evidence worth keeping, and why the net is built before the catch is landed.
+  - path: /tools/
+    title: the tools register
+    nav: Tools
+    blurb: >-
+      A register of QA tools grouped by language, each graded for readiness and for conformance,
+      with a page per tool saying how it is and is not conformant, clause by clause.
+  - path: /PROVENANCE.html
+    title: provenance
+    nav: Provenance
+    blurb: >-
+      Who coined the term, when it was first published, and what is and is not being claimed
+      for it.
+  - path: /CHANGELOG.html
+    title: the changelog
+    nav: Changelog
+    blurb: >-
+      Changes to each document, versioned independently, so that a toolchain clause can be added
+      without reissuing the method.

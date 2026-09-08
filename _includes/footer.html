@@ -1,8 +1,10 @@
+{% assign s = site.data.site %}
 <footer class="site-footer">
-  <p>Method specification 1.0.0 and toolchain specification 0.1.0, both published 8 September 2026.
-    Source and history at
-    <a href="https://github.com/Defence-Before-Fix/defence-before-fix.github.io">github.com/Defence-Before-Fix</a>.</p>
-  <p>Coined by <a href="https://ltscommerce.dev">Joseph Edmonds</a> of
-    <a href="https://edmondscommerce.co.uk">Edmonds Commerce</a>. US spelling: <a href="https://defense-before-fix.github.io/">Defense Before Fix</a>.
-    Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+  <p>Method specification {{ s.versions.method }} and toolchain specification {{ s.versions.toolchain }},
+    both published {{ s.versions.published }}. Source and history at
+    <a href="{{ s.repository_url }}">{{ s.repository_url | remove: 'https://' | split: '/' | slice: 0, 2 | join: '/' }}</a>.</p>
+  <p>Coined by <a href="{{ s.author.url }}">{{ s.author.name }}</a> of
+    <a href="{{ s.organisation.url }}">{{ s.organisation.name }}</a>. US spelling:
+    <a href="{{ s.us_url }}/">{{ s.us_name }}</a>.
+    Licensed under <a href="{{ s.licence.url }}">{{ s.licence.name }}</a>.</p>
 </footer>

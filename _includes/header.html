@@ -1,13 +1,10 @@
+{% assign s = site.data.site %}
 <header class="site-header">
-  <p class="site-title"><a href="{{ '/' | relative_url }}">Defence Before Fix</a></p>
+  <p class="site-title"><a href="{{ '/' | relative_url }}">{{ s.name }}</a></p>
   <nav aria-label="Site">
-    <a href="{{ '/SPEC.html' | relative_url }}">Method specification</a>
-    <a href="{{ '/TOOLING-SPEC.html' | relative_url }}">Toolchain specification</a>
-    <a href="{{ '/PRIMER.html' | relative_url }}">Primer</a>
-    <a href="{{ '/tools/' | relative_url }}">Tools</a>
-    <a href="{{ '/PROVENANCE.html' | relative_url }}">Provenance</a>
-    <a href="{{ '/CHANGELOG.html' | relative_url }}">Changelog</a>
+    {% for p in s.pages %}{% if p.path != '/' %}<a href="{{ p.path | relative_url }}">{{ p.nav }}</a>
+    {% endif %}{% endfor %}
   </nav>
-  <p class="site-byline">By <a href="https://ltscommerce.dev">Joseph Edmonds</a> of
-    <a href="https://edmondscommerce.co.uk">Edmonds Commerce</a>. First published 22 February 2026.</p>
+  <p class="site-byline">By <a href="{{ s.author.url }}">{{ s.author.name }}</a> of
+    <a href="{{ s.organisation.url }}">{{ s.organisation.name }}</a>. First published {{ s.coined }}.</p>
 </header>
