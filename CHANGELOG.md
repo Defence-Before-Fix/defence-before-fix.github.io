@@ -13,11 +13,15 @@ test the passage then checks. Both were named independently by two or more reade
 acceptance cohort under [ACCEPTANCE.md](ACCEPTANCE.md). The header names the detector
 specification 1.0.0 and toolchain specification 0.2.0 as companions.
 
-Not yet accepted. Three runs of a cold cohort of five Haiku readers: every load-bearing statement
-and every fixture verdict correct in every run; findings applied so far: 3.1 closes with its
-record, 3.3 opens with the two-halves test as two bullets. Clause 3.1 was still named as read
-twice by two or more readers in the third run, which blocks until a fresh cohort no longer names
-it.
+Accepted by a cold cohort of five Haiku readers in nine runs, the last at spec repository commit
+6c851b7: every load-bearing statement and every fixture verdict within the key, and no passage
+quoted as confusing by more than one reader. Findings applied across the runs: 3.1 opens with
+its five steps and a worked example and says what makes two search techniques independent; the
+section 3 map gains a column naming what goes to the Owner at each clause; 3.3 is in three
+named parts, and its narrowing part opens with the decision and a two-row example before the
+proof; the Owner definition's longest sentence is split. Runs 1 to 7 also asked readers what
+would make a clause clearer and for a clarity rating; both questions were withdrawn before run
+8, as `ACCEPTANCE.md` records.
 
 ### 1.0.0, 2026-09-08
 
@@ -41,11 +45,15 @@ because 0.1.0 asked it to enforce a project's suppression governance and to decl
 before it could conform, and neither is a detector's to do. Conformance is on evidence; the
 declaration is the claim and the known-gap record.
 
-Not yet accepted. Three runs of a cold cohort of five Haiku readers: every load-bearing statement
-and every fixture verdict correct in every run; findings applied so far: 6.3's family rule as two
-listed alternatives with a worked example, a derived-versus-assigned example in 4.3, a seven-term
-gloss in section 2. Clause 6.3 was still named as read twice by five readers in the third run,
-which blocks until a fresh cohort no longer names it.
+Accepted by a cold cohort of five Haiku readers in ten runs, the last at spec repository commit
+6a7372a: every load-bearing statement and every fixture verdict as keyed, and no passage quoted
+as confusing by any reader. Findings applied across the runs: a seven-term gloss in section 2;
+4.3 as a five-row table of stable and derived identifiers; 6.1 opens with a two-case table of
+who documents what, and its URL sentence, quoted as confusing by two readers of run 8, is
+rewritten; 6.3 says one unresolved identifier fails it, and the family-page material is its own
+clause 6.5; 7.1 says "at least one of two things". Runs 1 to 7 also asked readers what would
+make a clause clearer and for a clarity rating; both questions were withdrawn before run 8, as
+`ACCEPTANCE.md` records.
 
 ## Toolchain specification (TOOLING-SPEC.md)
 
@@ -63,13 +71,17 @@ clause 11.1 is no longer a condition of conformance; a claim with a non-empty ga
 claim of conformance. Enumeration, project record, agent context and self-audit are unchanged in
 substance and renumbered as sections 5 to 8, with conformance in section 9.
 
-Not yet accepted. Three runs of a cold cohort of five Haiku readers: every load-bearing statement
-and every fixture verdict correct in every run, and the findings applied (4.1 point 2 leads with
-"wrapping can add a mechanism; it cannot excuse a gap" and a two-case example, 6.2's heading
-carries the generic-justification rejection, an eleven-term gloss and a reading note in sections
-1 and 2), but the clarity median held at 3 of 5 across all three runs, below the threshold of 4,
-with the same cause named each time: the density of linked terms and cross-references to the two
-companion documents. The decision on that cause is recorded in the repository's plan journal.
+Accepted by a cold cohort of five Haiku readers in eight runs, the last at spec repository commit
+9aaf62d: every load-bearing statement and every fixture verdict as keyed, 4.1 graded No by all
+five for the first time, and no passage quoted as confusing by any reader. Findings applied
+across the runs: an eleven-term gloss and a reading note in sections 1 and 2; every sentence over
+forty words split; 4.1 opens by listing the detector specification's MUSTs and its point 2
+leads with a three-case table of wrapped pairs, then the one question behind it; 4.2 says it
+widens the detector document's reach to the project's own rules; 4.3 loses its double negative;
+5.2 gives the derived-listing test; 6.2's heading carries the generic-justification rejection;
+8.1 is consistent with 4.2 on third-party catalogues. Runs 1 to 7 also asked readers what would
+make a clause clearer and for a clarity rating; both questions were withdrawn before run 8, as
+`ACCEPTANCE.md` records.
 
 ### 0.1.0, 2026-09-08
 
