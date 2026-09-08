@@ -654,9 +654,12 @@ and fixes one has produced a documented list of [Defects] it has chosen to keep.
 ### 3.5 Enforce permanently, and block
 
 The [Rule] MUST become a permanent part of the project's quality checks, and it MUST **fail** rather
-than warn. A [Rule] that reports a violation without failing does not [Conform], and neither does
-a [Rule] whose green run depends on a [Suppression] that no recorded decision covers, since the
-checks are then passing around the [Instance] rather than enforcing against it.
+than warn. Three things must hold for this clause to be met: the [Rule] is in the checks the
+project runs to accept changes; it fails rather than warns; and every [Suppression] it carries is
+covered by a recorded decision. A [Rule] that reports a violation without failing does not
+[Conform], and neither does a [Rule] whose green run depends on a [Suppression] that no recorded
+decision covers, since the checks are then passing around the [Instance] rather than enforcing
+against it.
 
 **Where those checks run, and what the project does when they fail, is out of scope.** Continuous
 integration, git hooks, branch policy and release process are the project's own business; see
