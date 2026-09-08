@@ -18,8 +18,8 @@ as companions, and Conform now reads "every MUST of the relevant section 7 level
 companion specification being claimed", so that detector conformance is a use of the word.
 
 Accepted by a cold cohort of five Haiku readers, every load-bearing statement and every fixture
-verdict within the key and no passage quoted as confusing by more than one reader; the run count
-and commit are stated below once the post-review text has been through a fresh cohort. One key
+verdict within the key and no passage quoted as confusing by more than one reader: run 13, at
+commit 06aa434, after twelve runs that each failed or were superseded by a text change. One key
 correction during the runs, recorded here because the key changed after a run: 3.1 accepts No
 as well as Partial where the reasoning names the missing search record, since step 2 and the
 record the clause requires both call for it, and two readers of run 9 graded it so from the text.
@@ -55,8 +55,9 @@ before it could conform, and neither is a detector's to do. Conformance is on ev
 declaration is the claim and the known-gap record.
 
 Accepted by a cold cohort of five Haiku readers, every load-bearing statement and every fixture
-verdict as keyed and no passage quoted as confusing by any reader; the run count and commit are
-stated below once the post-review text has been through a fresh cohort. Findings applied across the runs: a seven-term gloss in section 2;
+verdict as keyed and no passage quoted as confusing by any reader: run 11, at commit fa31c4e,
+after run 10 passed at 6a7372a and a review of the pull request changed the text. Findings
+applied across the runs: a seven-term gloss in section 2;
 4.3 as a five-row table of stable and derived identifiers; 6.1 opens with a two-case table of
 who documents what, and its URL sentence, quoted as confusing by two readers of run 8, is
 rewritten; 6.3 says one unresolved identifier fails it, and the family-page material is its own
@@ -82,8 +83,8 @@ substance and renumbered as sections 5 to 8, with conformance in section 9.
 
 Accepted by a cold cohort of five Haiku readers, every load-bearing statement and every fixture
 verdict as keyed, 4.1 graded No by all five, and no passage quoted as confusing by any reader;
-the run count and commit are stated below once the post-review text has been through a fresh
-cohort. One key correction during the runs, recorded here because the key changed after a run:
+run 11, at commit fa31c4e, after run 8 passed at 9aaf62d and a review of the pull request
+changed the text. One key correction during the runs, recorded here because the key changed after a run:
 5.1 accepts Partial or No where the reasoning counts the two unresolved documentation routes,
 since the clause says the listing MUST provide the route and 4.1 point 2 says a gap may be named
 again by a later clause; three readers of run 8 graded it so from the text. Findings applied
