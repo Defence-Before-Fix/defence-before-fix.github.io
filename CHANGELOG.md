@@ -20,19 +20,18 @@ companion specification being claimed", so that detector conformance is a use of
 Accepted by a cold cohort of five Haiku readers under the criteria in `ACCEPTANCE.md`: every
 load-bearing statement keyed by all five, every fixture verdict within the key by at least four
 of five, and no passage quoted as confusing by more than one reader. The accepting run is run
-14, at the commit stated here once that cohort has read the text; run numbers are positions in
-one sequence shared by the three documents, and this document was read in all of them but run
-10\. Single-reader misses
-in the accepting run: one 3.5 Yes, one defence verdict of Partial against No, one reader quoting
-3.1's passage on independent techniques. Findings applied across the runs are the changes the
-first paragraph describes. One key correction during the runs, recorded here because the key
+15, at commit 6bff4f0; run numbers are positions in one sequence shared by the three documents,
+and this document was read in all of them but run 10. Single-reader misses in the accepting run:
+one 3.5 Yes and one 3.6 Yes, neither quoting the document. Findings applied across the runs are
+the changes the first paragraph describes. One key correction during the runs, recorded here because the key
 changed after a run: 3.1 accepts No as well as Partial where the reasoning names the missing
 search record, since step 2 and the record the clause requires both call for it, and two readers
 of run 9 graded it so from the text. One marking error, recorded because it passed a run that
 should have failed: run 9 was marked as passing with four readers grading 3.5 Yes against a key
 of Partial or No; run 11 repeated that result and a clause 3.5 sentence was added in response;
-run 12 still had three readers grading Yes on the clause's opening MUSTs, so the opening sentence
-now carries it and the section 3 map's record column for 3.5 names the recorded decision. Runs 1
+runs 12 and 14 still had three readers each grading Yes on the clause's opening MUSTs, so the
+opening now names its three conditions with the recorded decision the third, and the section 3
+map's record column for 3.5 names it too; run 15 had four readers grade it from the text. Runs 1
 to 7 also asked readers what would make a clause clearer and for a clarity rating; both questions
 were withdrawn before run 8, as `ACCEPTANCE.md` records.
 
