@@ -38,7 +38,11 @@ document, so that marking is mechanical. Each reader answers all of them.
    counts against the document only when the reader's reasoning shows the clause was read
    differently, not when the fixture was misread.
 
-Every question has a keyed answer. The reader is asked to read and answer, nothing more.
+Every question has a keyed answer. The reader is asked to read and answer, nothing more. The
+cohort settles one thing: is the document clear, coherent and comprehensive. A reader getting
+everything right after one reading proves it; a reader getting confused fails it. The document
+is designed by its editor to resolve the comprehension failures the cohort shows; the cohort is
+the acceptance layer, not the designer.
 
 ## What the cohort is not asked
 
