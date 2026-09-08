@@ -215,21 +215,8 @@ place.
 ### 6.3 A bundled rule's documentation MUST ship with the rule, at a version tracked together
 
 Every [Identifier] a [Bundled rule] can print MUST resolve, under clause 6.1,
-to a page in that shipped documentation. One page per [Identifier] is the plain case. One page
-MAY instead cover a family of [Identifiers] that share a prefix, and the rest of this clause says
-how such a page is written so that it still resolves each member.
-
-A family page SHOULD let a mechanical check, the one clause 6.4 asks for, confirm that each member
-resolves to it. Two forms do that and one does not:
-
-| The page                                                                                                  | A check can confirm each member?          |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| Lists every full [Identifier] in the family, `LM-0100`, `LM-0101`, and so on                              | Yes                                       |
-| Carries a regular expression the check can run, `^LM-01[0-9]{2}$`, matching every member and nothing else | Yes                                       |
-| Says in prose that everything under `LM-01` is documented here                                            | No: a person can infer it, a check cannot |
-
-The list or the pattern lives in the installed file, since clause 6.2 requires resolution to work
-from the installed copy, not only in a rendered web page.
+to a page in that shipped documentation. A page per [Identifier] satisfies this; a page per
+family of [Identifiers] MAY be used instead, under clause 6.5.
 
 **Why**: method specification clause 3.6. A [Bundled rule] travels into codebases its author
 will never see. If its documentation lives only in the [Detector]'s repository or on its
@@ -243,8 +230,8 @@ the [Practitioner]'s attention before failing them.
 ### 6.4 The detector SHOULD fail its own release if a bundled rule lacks resolvable documentation
 
 An automated check over every [Identifier] a [Bundled rule] can print, applying the
-family pattern of clause 6.3 where one is used, that blocks the release when any of them lands on no
-page.
+family list or pattern of clause 6.5 where one is used, that blocks the release when any of them
+lands on no page.
 
 **Why**: clause 6.1 is the clause most easily believed to be satisfied whilst being broken, because
 the documentation is written by the same person who wrote the [Rule] and its absence is
@@ -252,6 +239,25 @@ invisible from the inside. Where the [Detector] is shipped inside a [Toolchain],
 the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a MUST for the [Toolchain]; a
 [Detector] released on its own is asked for it as a SHOULD because the same [Class] of
 [Defect], a [Rule] that blocks without explaining, is detectable mechanically there too.
+
+### 6.5 One page MAY document a family of identifiers, and SHOULD name its members so a check can confirm them
+
+Where several [Bundled rules] share a prefix, one page MAY document them all. Such a page
+SHOULD let the check clause 6.4 asks for confirm that each member resolves to it. Two forms do
+that and one does not:
+
+| The page                                                                                                  | A check can confirm each member?          |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| Lists every full [Identifier] in the family, `LM-0100`, `LM-0101`, and so on                              | Yes                                       |
+| Carries a regular expression the check can run, `^LM-01[0-9]{2}$`, matching every member and nothing else | Yes                                       |
+| Says in prose that everything under `LM-01` is documented here                                            | No: a person can infer it, a check cannot |
+
+The list or the regular expression lives in the installed file, since clause 6.2 requires
+resolution to work from the installed copy, not only in a rendered web page.
+
+**Why**: a family page is a convenience for the author, and the cost of it must not fall on the
+check. A page that a person can see covers `LM-0107` but a check cannot leaves clause 6.4 with
+nothing to run.
 
 ## 7. Suppression
 

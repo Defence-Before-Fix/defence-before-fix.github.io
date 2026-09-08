@@ -200,14 +200,17 @@ runs and the language's own [Detector] ecosystem for an extension point, and fou
 
 Six clauses, in order. In brief, before the detail:
 
-| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                               |
-| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built |
-| 3.2    | Express the [Class] as a [Rule] in a [Detector], never a test                                               | The [Rule], and any [Toolchain] gap that stopped a bespoke one                                 |
-| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                         |
-| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                              |
-| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point                                                |
-| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                         |
+| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                               | Goes to the [Owner] under section 4                                   |
+| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built | Whether the next wider [Rule] is built                                |
+| 3.2    | Express the [Class] as a [Rule] in a [Detector], never a test                                               | The [Rule], and any [Toolchain] gap that stopped a bespoke one                                 | Nothing                                                               |
+| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                         | Any exclusion whose sentence cannot be written: that is [Suppression] |
+| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                              | Any [Instance] left unfixed, and any [Baseline]                       |
+| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point                                                | Nothing                                                               |
+| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                         | Nothing                                                               |
+
+The fourth column is the whole of what an [Agent] or other [Practitioner] MUST NOT decide alone;
+every other decision in section 3 is theirs.
 
 **Three of them turn on a judgement this specification deliberately does not close**: whether code
 carries the [Hazard] (3.1, 3.3), whether a search was comprehensive (3.1, 3.4), and how broadly to
@@ -470,7 +473,10 @@ the [Hazard], never the count. Two exclusions of the same [Rule] show the differ
 | A catch in test helpers that asserts on the caught error and returns it   | "The result is the error itself, so it cannot be used as if the call had succeeded" | [Narrowing]                             | [Practitioner] |
 | A catch in a nightly export, excluded because the export "hardly matters" | Cannot be written: the caught result is still used, so the [Hazard] is present      | [Suppression], referred under section 4 | [Owner]        |
 
-Ask, for every exclusion, which row it sits in:
+The sequence is: write the sentence; confirm it by search, the way clause 3.1's search confirms
+the [Class], so that the excluded code is looked at and not assumed; record both. A sentence
+that cannot be confirmed is a sentence that cannot be written, and the exclusion goes to the
+[Owner]. Ask, for every exclusion, which row it sits in:
 
 - If the excluded code **carries the [Hazard]**, the exclusion is [Suppression] and is forbidden to
   the [Practitioner], however many or few [Instances] it removes.
