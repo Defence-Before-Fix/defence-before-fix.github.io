@@ -91,7 +91,10 @@ A [Toolchain](SPEC.md#toolchain) MUST NOT route a [Defence](SPEC.md#defence) thr
 mechanism that specification requires, the [Toolchain](SPEC.md#toolchain) MAY supply it around the
 [Detector](SPEC.md#detector), a [Harness](DETECTOR-SPEC.md#harness) script or a resolver of its own, and the
 [Detector](SPEC.md#detector) together with that wrapping is then what the [Practitioner](SPEC.md#practitioner) uses and what
-is judged. A [Detector](SPEC.md#detector) that cannot host a bespoke [Rule](SPEC.md#rule) at all cannot be wrapped into
+is judged. This clause holds when the [Detector](SPEC.md#detector) and the [Toolchain](SPEC.md#toolchain)'s wrapping
+together satisfy every MUST of sections 4 to 7 of the [detector specification](DETECTOR-SPEC.md),
+exercised as its clause 8.1 describes; the [Detector](SPEC.md#detector)'s own verdict under that document is
+unchanged by the wrapping. A [Detector](SPEC.md#detector) that cannot host a bespoke [Rule](SPEC.md#rule) at all cannot be wrapped into
 [Conformance](SPEC.md#conform), and no [Defence](SPEC.md#defence) is routed through it; it MAY still run as one of the
 [Toolchain](SPEC.md#toolchain)'s checks, as a formatter or a [Runner](SPEC.md#runner) does.
 
@@ -112,6 +115,9 @@ documentation. The [Toolchain](SPEC.md#toolchain) can, and MUST close the remain
 [Bundled defence](#bundled-defence) to [Remediation docs](SPEC.md#remediation-docs) shipped with the project or with the
 [Toolchain](SPEC.md#toolchain), at a version tracked together, and a place for that documentation to live so that
 a [Rule author](DETECTOR-SPEC.md#rule-author) adding a [Rule](SPEC.md#rule) knows where its documentation goes.
+The documentation an [Identifier](SPEC.md#identifier) resolves to MUST state the correct construction, not
+only the prohibition, specifically enough to act on, as method clause 8.4 requires; the
+[Toolchain](SPEC.md#toolchain) supplies the place and the [Rule author](DETECTOR-SPEC.md#rule-author) the text.
 A third-party [Detector](SPEC.md#detector)'s native catalogue, which the [Toolchain](SPEC.md#toolchain) orchestrates
 without claiming as its own, is resolved under the [detector specification](DETECTOR-SPEC.md)'s clause 6 and is not
 re-shipped here.
@@ -128,10 +134,13 @@ does not [Conform](SPEC.md#conform).
 Inline [Suppression](SPEC.md#suppression) comments, per-line ignores and silent [Baselines](SPEC.md#baseline) all bypass
 the [Project record](#project-record). The [detector specification](DETECTOR-SPEC.md) permits a [Detector](SPEC.md#detector) to ship such a
 route provided it can be detected or disabled; this clause is where the project's decision is made
-and enforced, and the decision is no. A [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) MUST disable each
-such route in every [Detector](SPEC.md#detector) it routes a [Defence](SPEC.md#defence) through, or MUST run a
+and enforced, and the decision is no. For every such route in every [Detector](SPEC.md#detector) it routes a
+[Defence](SPEC.md#defence) through that is not itself the [Project record](#project-record), or does not pass
+through it, a [Conforming](SPEC.md#conform) [Toolchain](SPEC.md#toolchain) MUST disable the route, or MUST run a
 [Blocking](SPEC.md#blocking) [Defence](SPEC.md#defence) that fails on its use, and MUST direct irreducible cases to the
-[Project record](#project-record) where clause 6.2 requires a justification.
+[Project record](#project-record) where clause 6.2 requires a justification. A [Baseline](SPEC.md#baseline) an
+[Owner](SPEC.md#owner) has adopted under method section 4 is therefore kept in the [Project record](#project-record),
+or read from a file the record names, and never as a file the [Detector](SPEC.md#detector) generates unseen.
 
 **Why**: a governance mechanism whose escape hatch is an unreviewed comment is not a governance
 mechanism. This is the one place this document is stricter than the [Detectors](SPEC.md#detector) it assembles
@@ -143,6 +152,32 @@ they are never shown. The [Detector](SPEC.md#detector) is not asked to forbid th
 The reference implementations both do this. `ts-qa-ci` bans every `eslint-disable` and
 `@ts-expect-error` form outright; `php-qa-ci`'s `ForbidInlinePhpstanIgnoreRule` bans inline
 `@phpstan-ignore` and directs irreducible cases to the configuration file, where they are visible.
+
+### 4.4 The toolchain's own invocation MUST satisfy the detector specification's reporting clauses for every defence it routes
+
+Where the [Toolchain](SPEC.md#toolchain) wraps its [Detectors](SPEC.md#detector) in an entry point of its own, that entry
+point MUST itself meet clauses 5.1 to 5.4 of the [detector specification](DETECTOR-SPEC.md) for every
+[Defence](SPEC.md#defence) it routes: invocable locally with no infrastructure, over a subset down to one
+file, with the result in the output of the command the [Practitioner](SPEC.md#practitioner) ran, and with no
+[Defence](SPEC.md#defence) reportable only through a mode they cannot run.
+
+**Why**: method clause 3.5 asks the [Practitioner](SPEC.md#practitioner) to demonstrate enforcement through the
+project's own entry point, not through the [Detector](SPEC.md#detector) directly. A [Detector](SPEC.md#detector) that
+[Conforms](SPEC.md#conform) on its own, wrapped in a command that runs only the whole codebase or only
+elsewhere, has had its reporting clauses undone by the wrapping, and the [Practitioner](SPEC.md#practitioner)
+is back to a loop that does not close.
+
+### 4.5 The toolchain's entry point MUST run detectors before runners, and MUST stop on a detector failure
+
+The invocation the project uses to accept changes MUST evaluate its [Detectors](SPEC.md#detector) before its
+[Runners](SPEC.md#runner), and a [Blocking](SPEC.md#blocking) failure at the [Detector](SPEC.md#detector) level MUST stop the
+levels below it from being treated as meaningful, in the order method section 5 states. How the
+project expresses that sequence, and where it runs, remain out of scope under method section 8.
+
+**Why**: method section 5. A [Detector](SPEC.md#detector) is preventive and a test is diagnostic, and a failure
+at the [Detector](SPEC.md#detector) level produces confusing results at every level above it. The method makes
+the ordering a property of the project rather than of any one remediation, which is exactly the
+kind of property that lives in the [Toolchain](SPEC.md#toolchain) and nowhere else.
 
 ## 5. Enumeration
 
@@ -165,7 +200,10 @@ diverge from what is enforced, because the thing enforced is what produced it.
 
 ### 5.3 A project's own defences MUST appear in the listing alongside bundled ones
 
-A shipped [Toolchain](SPEC.md#toolchain)'s [Defences](SPEC.md#defence) against its own source, the ones only its contributors can
+Every [Defence](SPEC.md#defence) the project has written itself MUST appear in the listing clause 5.1
+requires, meeting its content requirements in full, alongside every [Bundled defence](#bundled-defence).
+
+For a shipped [Toolchain](SPEC.md#toolchain), the case is the same and worth spelling out. Its [Defences](SPEC.md#defence) against its own source, the ones only its contributors can
 trigger, are that project's own [Defences](SPEC.md#defence) for this purpose, and MUST appear in the same listing
 clause 5.1 requires, meeting its content requirements in full, when the [Toolchain](SPEC.md#toolchain) is run on itself,
 however they are enabled. Where such a [Defence](SPEC.md#defence) is not expressible in the [Toolchain](SPEC.md#toolchain)'s own
@@ -295,7 +333,8 @@ own [Defences](SPEC.md#defence) already run on its own source because that is th
 
 **A project's [Toolchain](SPEC.md#toolchain) [Conforms](SPEC.md#conform)** if every MUST in sections 4 to 6 holds across the
 assembled parts, wherever each part came from, and, where the [Toolchain](SPEC.md#toolchain) is one the project
-ships, every MUST in section 8 as well.
+ships, every MUST in section 8 as well. The project-level verdict is a single grade; which part of the
+[Toolchain](SPEC.md#toolchain) satisfied each clause is evidence for that grade, not a second grade.
 
 **A [Toolchain](SPEC.md#toolchain) [Conforms](SPEC.md#conform) with [Agent](SPEC.md#agent) support** if it additionally satisfies section 7.
 
@@ -310,7 +349,8 @@ project, and is graded against this document and section 7 of the method specifi
 basis. As an artefact, what it ships is graded for its consumers: a [Detector](SPEC.md#detector) against
 [the detector specification](DETECTOR-SPEC.md), a [Toolchain](SPEC.md#toolchain) against this document as it stands
 when installed into a [Consuming project](#consuming-project) with nothing else built around it. The two
-verdicts MUST be graded and declared separately, and neither implies the other.
+verdicts MUST be graded and declared separately, and neither implies the other. Section 8 bears on
+the artefact grade only; clause 5.3 is its project-level counterpart.
 
 **Why**: the two questions have different readers. A contributor to the artefact wants to know
 whether the project practises what it ships; a [Consuming project](#consuming-project) wants to know what it

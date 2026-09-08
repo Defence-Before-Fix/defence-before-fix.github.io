@@ -40,7 +40,7 @@ Whoever writes a [Rule](SPEC.md#rule). May be the [Detector](SPEC.md#detector)'s
 
 #### Bundled rule
 
-A [Rule](SPEC.md#rule) the [Detector](SPEC.md#detector) ships. Its [Rule author](#rule-author) will never see the codebases it runs in, so everything a [Practitioner](SPEC.md#practitioner) needs in order to act on it has to travel with it.
+A [Rule](SPEC.md#rule) the [Detector](SPEC.md#detector) ships, or fetches on the [Practitioner](SPEC.md#practitioner)'s behalf from a source the [Detector](SPEC.md#detector)'s maintainer controls. Its [Rule author](#rule-author) will never see the codebases it runs in, so everything a [Practitioner](SPEC.md#practitioner) needs in order to act on it has to travel with it.
 
 #### Harness
 
@@ -87,6 +87,8 @@ project's own, which is the half that carries its institutional knowledge.
 
 A [Harness](#harness) reports, for a given input, whether the [Rule](SPEC.md#rule) fired and what it printed, without
 executing the project's own test suite and without the other [Rules](SPEC.md#rule) obscuring the answer.
+This applies to every [Rule](SPEC.md#rule) the [Detector](SPEC.md#detector) runs, bundled or bespoke; a
+[Detector](SPEC.md#detector) failing 4.1 is graded here on its [Bundled rules](#bundled-rule).
 
 **Why**: clause 3.3 of the method specification requires the [Rule](SPEC.md#rule) to be proven by making it go
 red. A [Practitioner](SPEC.md#practitioner) who can only observe a [Rule](SPEC.md#rule)'s behaviour by running every
@@ -98,7 +100,9 @@ than on something incidental.
 The [Identifier](SPEC.md#identifier) MUST be stable across releases and MUST NOT be derived from the [Rule](SPEC.md#rule)'s
 file path, [Class](SPEC.md#class) name or position in a configuration file. The [Rule author](#rule-author) chooses it
 once. The [Detector](SPEC.md#detector) MUST print it, unaltered, alongside every finding the [Rule](SPEC.md#rule)
-reports, in every output format it offers.
+reports, in its default output and in every machine-readable format it offers. A prefix the
+[Detector](SPEC.md#detector) adds from the invoking directory or the [Rule](SPEC.md#rule)'s location is derived from
+the file path. A namespace the [Rule author](#rule-author) assigns once in configuration is not.
 
 **Why**: the [Identifier](SPEC.md#identifier) is the only string that reaches the [Practitioner](SPEC.md#practitioner) and the
 only key their lookup can use. An [Identifier](SPEC.md#identifier) that changes when a [Rule](SPEC.md#rule) is renamed
@@ -137,7 +141,11 @@ carry both a usable summary and the location of the remainder.
 **Why**: method specification clause 8.2. A report the [Practitioner](SPEC.md#practitioner) has to go and find is a
 report that arrives after the decision it was meant to inform.
 
-### 5.4 A finding MUST NOT be reportable only through a mode the practitioner cannot run
+### 5.4 A finding MUST NOT be reportable only through a hosted service, licence tier or CI-only mode the practitioner cannot invoke locally
+
+A finding that the [Detector](SPEC.md#detector) reports only through a hosted service, a licence tier or a
+continuous-integration-only mode the [Practitioner](SPEC.md#practitioner) cannot invoke locally does not
+[Conform](SPEC.md#conform), whatever the same [Rule](SPEC.md#rule) reports there.
 
 **Why**: a [Rule](SPEC.md#rule) that fires only in an environment the [Practitioner](SPEC.md#practitioner) has no access to
 teaches nobody anything and blocks them anyway, which is the worst combination available.
@@ -147,13 +155,12 @@ teaches nobody anything and blocks them anyway, which is the worst combination a
 ### 6.1 The detector MUST provide a mechanism that resolves a printed identifier to its documentation
 
 Keyed on **the [Identifier](SPEC.md#identifier) exactly as printed**. A command, an index file or a URL are all
-acceptable.
+acceptable forms; for a [Bundled rule](#bundled-rule), clause 6.2 governs where it lives.
 
 For a [Bundled rule](#bundled-rule), the [Detector](SPEC.md#detector) supplies the documentation and the lookup, and
 clauses 6.2 and 6.3 say where. For a project's own [Rule](SPEC.md#rule), the [Detector](SPEC.md#detector) cannot know
 the documentation, so what it owes is the half it can give: the [Identifier](SPEC.md#identifier) printed
-unaltered under clause 4.3, and a form of [Identifier](SPEC.md#identifier) that can be looked up on its own,
-which method clause 3.6 allows to be a [Rule](SPEC.md#rule) ID, an anchor or a URL. The lookup for such a
+unaltered under clause 4.3, and no transformation of it. The lookup for such a
 [Rule](SPEC.md#rule) is an obligation on the project's assembled [Toolchain](SPEC.md#toolchain), under clause 4.2 of
 the [toolchain specification](TOOLING-SPEC.md), and a [Detector](SPEC.md#detector) that offers it as well has gone further than
 this clause asks.
@@ -180,11 +187,14 @@ place.
 
 ### 6.3 A bundled rule's documentation MUST ship with the rule, at a version tracked together
 
-Where one page documents a family of [Identifiers](SPEC.md#identifier) under a shared prefix, every full
-[Identifier](SPEC.md#identifier) in the family MUST appear on it verbatim, in the installed artefact clause 6.2
-requires resolution to work from and not only in rendered output, or the page MUST carry a pattern a
-mechanical check can execute, a glob or a regular expression rather than prose, that matches every
-member and no [Identifier](SPEC.md#identifier) outside the family. A prefix alone is neither.
+Every [Identifier](SPEC.md#identifier) a [Bundled rule](#bundled-rule) can print MUST resolve, under clause 6.1,
+to a page in that shipped documentation. Where one page documents a family of
+[Identifiers](SPEC.md#identifier) under a shared prefix, every full [Identifier](SPEC.md#identifier) in the family
+SHOULD appear on it verbatim, in the installed artefact clause 6.2 requires resolution to work from
+and not only in rendered output, or the page SHOULD carry a pattern a mechanical check can execute,
+a glob or a regular expression rather than prose, that matches every member and no
+[Identifier](SPEC.md#identifier) outside the family. A prefix alone is neither, and a page that resolves a
+family only by a reader's inference resolves it for a human and not for the check clause 6.4 asks for.
 
 **Why**: method specification clause 3.6. A [Bundled rule](#bundled-rule) travels into codebases its author
 will never see. If its documentation lives only in the [Detector](SPEC.md#detector)'s repository or on its
@@ -215,7 +225,7 @@ the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a M
 An inline ignore comment, a per-line directive and a generated [Baseline](SPEC.md#baseline) are all such
 routes. The [Detector](SPEC.md#detector) MAY ship them. It MUST make each one either disableable by
 configuration, or detectable by a [Rule](SPEC.md#rule) the project can write in the [Detector](SPEC.md#detector) itself
-or by a plain reading of the source, so that a project which decides to forbid the route can enforce
+or by a mechanical check the [Detector](SPEC.md#detector) documents, so that a project which decides to forbid the route can enforce
 that decision. A route that can be neither switched off nor seen does not [Conform](SPEC.md#conform).
 
 **Why**: the method specification's position is that [Suppression](SPEC.md#suppression) is an [Owner](SPEC.md#owner)
@@ -229,7 +239,8 @@ enforced through its [Toolchain](SPEC.md#toolchain) under clause 4.3 of the [too
 ### 7.2 An inline suppression route SHOULD require a written reason
 
 The [Detector](SPEC.md#detector) SHOULD reject, or be configurable to reject, an inline [Suppression](SPEC.md#suppression)
-that carries no reason, and SHOULD NOT supply a default one.
+that carries no reason, and SHOULD NOT supply a default one, including each entry of a generated
+[Baseline](SPEC.md#baseline).
 
 **Why**: a [Suppression](SPEC.md#suppression) without a reason is indistinguishable from one nobody would defend,
 and the person who could tell them apart is usually gone. Requiring the sentence costs the author a
@@ -266,6 +277,24 @@ it, MAY be graded [Conforming](SPEC.md#conform) on evidence by anyone who exerci
 it, and a verdict on any [Detector](SPEC.md#detector), declared or not, rests on that exercise and not on the
 claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
 the reader still runs the [Harness](#harness).
+
+The shape is illustrative rather than prescribed. In a Composer manifest:
+
+```json
+"extra": {
+  "defence-before-fix": {
+    "method": "1.0.0",
+    "detector": "1.0.0",
+    "toolchain": null,
+    "known-gaps": []
+  }
+}
+```
+
+In a package.json, the equivalent is a top-level `defenceBeforeFix` object with the same keys. A
+[Detector](SPEC.md#detector) that is not also shipped as a [Toolchain](SPEC.md#toolchain) leaves `toolchain` empty;
+a project that ships both declares both. Each entry in `known-gaps` names the clause and states the
+gap in a sentence.
 
 **Why**: a [Conformance](SPEC.md#conform) claim in a README is a sentence; a claim in a manifest is a fact about
 a specific installed artefact, checkable by anyone, including mechanically, and it fixes what

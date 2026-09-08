@@ -162,7 +162,7 @@ Whatever a project assembles to run its checks through: its [Detectors](#detecto
 
 #### Conform
 
-To satisfy every MUST of the relevant section 7 level. Partial satisfaction is not [Conformance](#conform).
+To satisfy every MUST of the relevant section 7 level, or of the companion specification being claimed. Partial satisfaction is not [Conformance](#conform).
 
 ## 2. When the method applies
 
@@ -833,7 +833,9 @@ claimed only over what a run can prove. The [toolchain specification](TOOLING-SP
 make when it is true. Those obligations fall in two documents: what each [Detector](#detector) the
 [Toolchain](#toolchain) routes a [Defence](#defence) through must offer is stated in the
 [detector specification](DETECTOR-SPEC.md), and what the assembled [Toolchain](#toolchain) must add is stated
-in the [toolchain specification](TOOLING-SPEC.md), which requires the first as its own opening clause.
+in the [toolchain specification](TOOLING-SPEC.md), which requires the first as its own opening clause,
+carries the ordering in section 5 and the correct construction of clause 8.4 as clauses of its own,
+and states the listing and the project record that clauses 8.5 and 8.7 require.
 
 **A project [Conforms](#conform)** if its [Defences](#defence) and [Remediation docs](#remediation-docs) [Conform](#conform), and if its recorded
 decisions under section 3 are discoverable. Nothing here constrains how the project runs its checks
