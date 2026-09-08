@@ -217,8 +217,9 @@ place.
 ### 6.3 A bundled rule's documentation MUST ship with the rule, at a version tracked together
 
 Every [Identifier] a [Bundled rule] can print MUST resolve, under clause 6.1,
-to a page in that shipped documentation. A page per [Identifier] satisfies this; a page per
-family of [Identifiers] MAY be used instead, under clause 6.5.
+to a page in that shipped documentation. One [Identifier] that does not resolve fails this
+clause, however many others do. A page per [Identifier] satisfies this; a page per family of
+[Identifiers] MAY be used instead, under clause 6.5.
 
 **Why**: method specification clause 3.6. A [Bundled rule] travels into codebases its author
 will never see. If its documentation lives only in the [Detector]'s repository or on its
