@@ -41,14 +41,14 @@ a test may serve as the detector; an agent may baseline the remaining instances.
 
 ## 3. Application: the ledger remediation
 
-| Clause | Intended verdict | Reasoning the fixture supports                                                                                                                                                          |
-| ------ | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3.1    | Yes or Partial   | Class, hazard and the next wider rule are named; Partial is accepted where the reader notes no independent search technique is recorded                                                 |
-| 3.2    | Yes              | A rule in the project's static analyser, reading code, not a test                                                                                                                       |
-| 3.3    | Yes              | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                              |
-| 3.4    | No or Partial    | Five findings recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority; Partial accepted where the reasoning names that suppression             |
-| 3.5    | Partial or No    | The rule is permanent and blocking, but the suppression was not a recorded decision                                                                                                     |
-| 3.6    | No or Partial    | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule; Partial accepted where the reasoning quotes the versioning sentence |
+| Clause | Intended verdict   | Reasoning the fixture supports                                                                                                                                                                             |
+| ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.1    | Yes, Partial or No | Class, hazard and the next wider rule are named; Partial or No is accepted where the reader notes that no independent search technique is recorded, which step 2 and the record 3.1 requires both call for |
+| 3.2    | Yes                | A rule in the project's static analyser, reading code, not a test                                                                                                                                          |
+| 3.3    | Yes                | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                 |
+| 3.4    | No or Partial      | Five findings recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority; Partial accepted where the reasoning names that suppression                                |
+| 3.5    | Partial or No      | The rule is permanent and blocking, but the suppression was not a recorded decision                                                                                                                        |
+| 3.6    | No or Partial      | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule; Partial accepted where the reasoning quotes the versioning sentence                    |
 
 Section 7: the **remediation does not conform**, because 3.4 and 3.6 were not followed. The
 **defence does not conform** either, because 3.6 fails; a reader who says the defence conforms
