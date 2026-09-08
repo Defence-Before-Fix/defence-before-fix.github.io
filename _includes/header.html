@@ -1,6 +1,6 @@
 {% assign s = site.data.site %}
 <header class="site-header">
-  <p class="site-title"><a href="{{ '/' | relative_url }}">{{ s.name }}</a></p>
+  <p class="site-title"><a href="{{ '/' | relative_url }}">{{ s.name }} ({{ s.short }})</a></p>
   <nav aria-label="Site">
     {% for p in s.pages %}{% if p.path != '/' %}<a href="{{ p.path | relative_url }}">{{ p.nav }}</a>
     {% endif %}{% endfor %}

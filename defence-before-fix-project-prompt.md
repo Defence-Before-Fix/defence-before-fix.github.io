@@ -1,6 +1,6 @@
-# Defence Before Fix: project prompt for agents
+# Defence Before Fix (DBF): project prompt for agents
 
-You are working in a project that follows Defence Before Fix, method specification 1.0.0.
+You are working in a project that follows Defence Before Fix (DBF), method specification 1.0.0.
 This file is generated from that specification and is the short form; the specification governs
 where they differ. Read it once at the start of a task that involves fixing a defect.
 

@@ -5,7 +5,7 @@
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
 
-> **Defence Before Fix** is a phase that runs *before* a [Defect](#defect) is fixed. Rather than dropping
+> **Defence Before Fix** ([DBF](#dbf)) is a phase that runs *before* a [Defect](#defect) is fixed. Rather than dropping
 > straight into remediating the specific [Instance](#instance) in front of you, you first treat that [Instance](#instance)
 > as evidence of a [Class](#class), and you build the automated [Defence](#defence) that detects every occurrence of
 > that [Class](#class) across the whole codebase. The [Defence](#defence) is only trusted once it has been seen to

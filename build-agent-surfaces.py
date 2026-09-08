@@ -48,9 +48,9 @@ def appendix_a(spec: str) -> str:
 def prompt(data: dict, spec: str) -> str:
     c = data["canonical_url"].rstrip("/")
     v = data["versions"]
-    return f"""# Defence Before Fix: project prompt for agents
+    return f"""# Defence Before Fix (DBF): project prompt for agents
 
-You are working in a project that follows Defence Before Fix, method specification {v["method"]}.
+You are working in a project that follows Defence Before Fix (DBF), method specification {v["method"]}.
 This file is generated from that specification and is the short form; the specification governs
 where they differ. Read it once at the start of a task that involves fixing a defect.
 
@@ -98,11 +98,11 @@ Edmonds, Joseph. *Defence Before Fix*, version {v["method"]}. First published {d
 def llms(data: dict) -> str:
     c = data["canonical_url"].rstrip("/")
     lines = [
-        f"# {data['name']}",
+        f"# {data['name']} ({data['short']})",
         "",
         f"> {data['definition']}",
         "",
-        f"A method by {data['author']['name']} of {data['organisation']['name']}, first published "
+        f"{data['short']} is a method by {data['author']['name']} of {data['organisation']['name']}, first published "
         f"{data['coined']}. Method specification {data['versions']['method']} and toolchain "
         f"specification {data['versions']['toolchain']}, published {data['versions']['published']}, "
         f"under {data['licence']['name']}. The method specification is the source of truth; where "

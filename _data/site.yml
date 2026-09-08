@@ -2,6 +2,7 @@
 # is generated from it, and the US-spelling signpost site (defense-before-fix.github.io)
 # fetches that JSON to build its pages. Edit here only.
 name: Defence Before Fix
+short: DBF
 us_name: Defense Before Fix
 definition: >-
   A phase that runs before a defect is fixed: the instance is treated as evidence of a class,

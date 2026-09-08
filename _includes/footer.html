@@ -3,7 +3,7 @@
   <p>Method specification {{ s.versions.method }} and toolchain specification {{ s.versions.toolchain }},
     both published {{ s.versions.published }}. Source and history at
     <a href="{{ s.repository_url }}">{{ s.repository_url | remove: 'https://' | split: '/' | slice: 0, 2 | join: '/' }}</a>.</p>
-  <p>Coined by <a href="{{ s.author.url }}">{{ s.author.name }}</a> of
+  <p>{{ s.name }} ({{ s.short }}) was coined by <a href="{{ s.author.url }}">{{ s.author.name }}</a> of
     <a href="{{ s.organisation.url }}">{{ s.organisation.name }}</a>. US spelling:
     <a href="{{ s.us_url }}/">{{ s.us_name }}</a>.
     Licensed under <a href="{{ s.licence.url }}">{{ s.licence.name }}</a>.</p>

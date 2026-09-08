@@ -1,6 +1,6 @@
 # Build the net before you land the catch
 
-*An introduction to Defence Before Fix. The precise version is in
+*An introduction to Defence Before Fix (DBF). The precise version is in
 [the specification](SPEC.md); this page is the idea it formalises.*
 
 ---

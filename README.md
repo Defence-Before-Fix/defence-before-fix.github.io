@@ -1,6 +1,6 @@
-# Defence Before Fix
+# Defence Before Fix (DBF)
 
-> **Defence Before Fix** is a phase that runs *before* a defect is fixed. Rather than dropping
+> **Defence Before Fix (DBF)** is a phase that runs *before* a defect is fixed. Rather than dropping
 > straight into remediating the specific instance in front of you, you first treat that instance
 > as evidence of a class, and you build the automated defence that detects every occurrence of
 > that class across the whole codebase. The defence is only trusted once it has been seen to fire.

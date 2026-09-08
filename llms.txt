@@ -1,8 +1,8 @@
-# Defence Before Fix
+# Defence Before Fix (DBF)
 
 > A phase that runs before a defect is fixed: the instance is treated as evidence of a class, and the defence that detects the class is built and seen to fire before the fix is made.
 
-A method by Joseph Edmonds of Edmonds Commerce, first published 22 February 2026. Method specification 1.0.0 and toolchain specification 0.1.0, published 8 September 2026, under CC BY 4.0. The method specification is the source of truth; where anything else disagrees with it, the specification is correct.
+DBF is a method by Joseph Edmonds of Edmonds Commerce, first published 22 February 2026. Method specification 1.0.0 and toolchain specification 0.1.0, published 8 September 2026, under CC BY 4.0. The method specification is the source of truth; where anything else disagrees with it, the specification is correct.
 
 ## Start here if you are an agent
 
