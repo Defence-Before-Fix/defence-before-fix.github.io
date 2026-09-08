@@ -1,73 +1,91 @@
 ---
 title: php-qa-ci and Defence Before Fix
-summary: Harness, resolver, derived listing and justified record all verified by running them; declares toolchain 0.1.0 with an empty gap record; section 9 partial.
+summary: Harness, resolver, derived listing and justified record verified by running them; fails toolchain 4.1 through its PHPArkitect tier and identifier-less lanes, 4.2 on fifteen rules without a page, 4.3 on two baseline routes; declares 0.2.0 with eight recorded gaps.
 ---
 
 # php-qa-ci
 
-**Language**: PHP · **Kind**: toolchain · **Readiness**: 🟢 · **Conformance**: 🟢 · **Checked**: 2026-09-08, branch php8.4 at commit 8a45ed0
+**Language**: PHP · **Kind**: toolchain · **Readiness**: 🟢 · **Detector conformance**: 🟡 · **Toolchain conformance**: 🟡 · **Project conformance**: 🟡 · **Checked**: 2026-09-08, branch php8.4 at commit e25aba4, declaration merged at 4d9b2ba
 
-php-qa-ci is a Composer plugin that wraps PHPStan, PHPUnit, PHP-CS-Fixer, Infection and a set of its own lanes behind one `bin/qa` entry point, ships a bundle of PHPStan rules with their documentation, and writes an agent-facing block into the consuming project. It is the PHP reference toolchain for this method and the one PHP tool in this register that claims conformance ([repository](https://github.com/LongTermSupport/php-qa-ci)).
+php-qa-ci is a Composer plugin that wraps PHPStan, PHPArkitect, PHPUnit, PHP CS Fixer, Rector, Infection and a set of its own lanes behind one `bin/qa` entry point, ships a bundle of PHPStan rules with their documentation, and writes an agent-facing block into the consuming project. It is the PHP reference toolchain for this method, and this page grades it with the same scrutiny as every other entry ([repository](https://github.com/LongTermSupport/php-qa-ci)).
 
-## Tools it bundles
-
-php-qa-ci is a toolchain rather than a tool, so the question for each lane it runs is whether that lane can host a bespoke defence under the method, and which of the toolchain's own mechanisms wrap it. Every lane below is registered by `bin/qa`, appears in the `bin/rules` listing, and has its lane identifier resolved by `bin/rule-doc`; `bin/phpstan-rule` wraps PHPStan alone.
-
-- **PHPStan**: hosts bespoke defences; wrapped by `bin/phpstan-rule`, `bin/rule-doc` and `bin/rules`, with the bundled rules and the identifier constant enforced on top.
-- **PHPArkitect**: hosts bespoke defences about architecture through `phparkitect.php`; wrapped by `bin/rules` and `bin/rule-doc` at lane level, with no single-rule harness of its own.
-- **Rector**: a refactoring tool run in dry-run mode; a project can register a custom rule, but the toolchain wraps it only as a lane in `bin/rules` and `bin/rule-doc`.
-- **PHP CS Fixer**: a formatter; cannot host a defence in the method's sense, and is wrapped only as a lane.
-- **PSR-4 validation**: a fixed check of autoload mapping; not a host, wrapped as a lane.
-- **Composer validation and composer require checker**: fixed checks of the manifest and of undeclared dependencies; not hosts, wrapped as lanes.
-- **Package type**: a bundled defence of the toolchain's own, requiring an explicit `type` in `composer.json`; not a host for project rules, documented in `docs/tools/` and resolved by `bin/rule-doc`.
-- **Config template ignore-list audit**: a bundled defence over the toolchain's own templates; not a host, resolved by `bin/rule-doc`.
-- **Infection config source dirs check**: a bundled defence that `infection.json` names real directories; not a host, resolved by `bin/rule-doc`.
-- **Strict types**: a fixed check that every file declares strict types; not a host, wrapped as a lane.
-- **PHP lint**: a syntax check; not a host, wrapped as a lane.
-- **Markdown links**: a fixed link check; not a host, wrapped as a lane.
-- **Branch name policy**: a fixed naming check; not a host, wrapped as a lane.
-- **PHPStan ignoreErrors justification**: the clause 8.2 mechanism itself, a bundled defence over the project record; not a host, resolved by `bin/rule-doc`.
-- **SensitiveParameter usage**: a bundled defence requiring the attribute somewhere in `src/`; not a host, documented in `docs/tools/` and resolved by `bin/rule-doc`.
-- **PHPUnit**: a test runner; cannot host a defence, since the method rules out a test as the net, and is wrapped only as a lane.
-- **Infection**: a mutation tester; cannot host a defence, wrapped only as a lane, with its configuration guarded by the source dirs check above.
+Every mechanism below was checked by running it in a checkout: `bin/qa`, `bin/qa -t <tool> -p <path>`, `bin/rules`, `bin/rule-doc <identifier>` and `bin/phpstan-rule <identifier> <path>`. Detector conformance is graded on the detectors the toolchain routes defences through, each together with the wrapping around it, as toolchain clause 4.1 requires. Toolchain conformance grades the artefact a consuming project installs. Project conformance grades the repository as a project following the method with the toolchain it ships.
 
 ## How it is conformant
 
-Every mechanism was checked by running it in a checkout rather than by reading the README. Clause 4.1 is inherited from PHPStan: a project's own rule classes go under `rules:` in its `qaConfig/phpstan.neon`. Clause 4.2 is met by `bin/phpstan-rule <identifier> <path>`, whose usage line names a single identifier and a single file, and clause 4.3 by identifier constants of the form `phpqaci.*`, enforced under clause 4.4 by the bundled `RequireRuleIdentifierConstantRule`, which is on by default in `rules-default.neon`. Clauses 5.1 to 5.4 are met by `bin/qa -t <tool> -p <path>`, which runs any single lane over any single path and prints to the terminal. Clause 6.1 is met by `bin/rule-doc <identifier>`, which resolved `phpqaci.nullCoalescingFalse` to its rule class, source path and shipped page; that page lives in `docs/phpstan-rules/` inside the package, which meets 6.2 and 6.3. Clauses 7.1 to 7.3 are met by `bin/rules .`, which walks the resolved PHPStan configuration and the lane registry and printed one line per rule with its identifier and summary, project entries included. Clause 8.1 is met because the record is the `ignoreErrors` block PHPStan itself reads; clause 8.2 by the `pij` lane, which the help text describes as asserting that every entry carries a usable justification; clause 8.3 by the bundled `ForbidInlinePhpstanIgnoreRule`, on by default; and clause 8.4 because the same `bin/rules` listing carries the record. Clause 10.2 is guarded by `SelfCheckRunsBundledRulesTest`, and the package's own `qaConfig/phpstan.neon` includes both bundles. The `composer.json` manifest declares `extra.defence-before-fix` with method 1.0.0, toolchain 0.1.0 and an empty `known-gaps` array, which is clause 11.1.
+For its own PHPStan bundle, every detector clause holds. A project's rules go under `rules:` in its `qaConfig/phpstan.neon` (detector 4.1). `bin/phpstan-rule phpqaci.nullCoalescingFalse src/ZzProbe.php` on a probe containing `?? false` printed `FIRED (1)` with the location and exited 1, and the same command for `phpqaci.nestedTernary` printed `did not fire` (4.2). PHPStan prints the `phpqaci.*` identifier under every finding, and `RequireRuleIdentifierConstantRule`, on by default, rejects a magic-string identifier (4.3, 4.4). `bin/qa -t phpstan -p <file>` runs one lane over one file locally with the result in the terminal, and the CI script runs the same `bin/qa` (5.1 to 5.4). `bin/rule-doc phpqaci.nullCoalescingFalse` resolves the identifier as printed to its rule, bundle, source and the shipped page in `docs/phpstan-rules/`, offline (6.1 to 6.3 for the bundle). Inline `@phpstan-ignore` in every form is a finding of `ForbidInlinePhpstanIgnoreRule` (7.1).
+
+At toolchain level, `bin/rules .` lists every rule in the resolved neon chain with identifier, summary and documentation route, derived from the configuration and the lane registry rather than hand-maintained, and the package's contributor-only rules appear in its own listing (5.2, 5.3). The record is the `ignoreErrors` block PHPStan itself loads (6.1); the `pij` lane rejects an entry with no comment, a comment matching a paste-anywhere list such as `legacy` or `needed for now`, or one too short to name a hazard and a scope (6.2 in part); and the same listing enumerates the record beside the defences, including an entry from an included baseline (6.3). The entry point runs coding standards, linting and static analysis before tests and stops on a failure (4.5). The self-check configuration includes both bundled rule sets, guarded by a test, and the PHPArkitect tier runs on the package's own source (8.2). The agent block is written and refreshed on every install (7.2). The manifest declares method 1.0.0 and toolchain 0.2.0 at both levels, with the gaps below recorded against their clauses (9.2).
 
 ## How it is not conformant
 
-No MUST failure was found. Two limits are worth stating. Clause 10.1 was verified by the presence of the documentation tests rather than by breaking a page and watching a release fail, and the full pipeline under clause 10.2 was not re-run here; the grade rests on the guarding tests and the declared gap record being empty. Section 9 is only partly met: the agent block is delivered and refreshed, but it does not yet carry the rule summary, so the toolchain conforms without agent support.
+Toolchain clause 4.1 fails three ways. PHPArkitect, through which the on-by-default rule tier routes bundled defences, prints a violation as prose (`should have a name that matches *Controller because controllers must be named consistently`) with no identifier, has no single-rule or single-file invocation through the lane, and has no resolver for its tier, so as wrapped it fails detector 4.3, 5.2 and 6.1 to 6.3. Five of the toolchain's own lanes, `packageType`, `phpstanIgnoreJustification`, `sensitiveParameterUsage`, `branchNamePolicy` and `phpStrictTypes`, print no identifier on failure. And PHPStan's native identifiers resolve online only: `bin/rule-doc method.notFound` answers `Unknown rule identifier`, so the wrapping does not close detector 6.2 and 6.3 for the detector's own catalogue.
+
+Clause 4.2 is partial: fifteen of the twenty-four bundled PHPStan rules resolve to an index row and no page, so `bin/rule-doc phpqaci.nestedTernary` ends at `Summary: No nested ternary expressions` and states no correct construction. Clause 4.3 is partial: a `phparkitect-baseline.json` generated once is read silently on every later run of the lane, which printed `Baseline file found` and `No violations detected` on a fixture with one violation, and a PHPStan baseline included from `qaConfig/phpstan.neon` is listed by `bin/rules` but not checked by the justification lane, which reads the top-level file alone (also 6.2). Clause 5.1 is partial: lanes are listed without an identifier or a documentation route, even the two that print one. Clause 8.1 is partial: the release guard requires an index row rather than a page, and a lane with no identifier is outside it. Clause 7.1 is not met: the agent block carries a pointer and no rule lines, so the toolchain does not conform with agent support.
+
+Project conformance carries the same gaps, because the repository runs the toolchain it ships. Its own record is one justified entry, enumerable in the listing; its contributor-only rules are listed and run; the fifteen rules without a page are among the ones that run on it.
+
+## Tools it bundles
+
+php-qa-ci is a toolchain rather than a tool, so the question for each lane it runs is whether that lane can host a bespoke defence under the method, and which of the toolchain's own mechanisms wrap it. Every lane below is registered by `bin/qa` and appears in the `bin/rules` listing; `bin/phpstan-rule` and `bin/rule-doc` wrap PHPStan and the two lanes that print an identifier.
+
+- **PHPStan**: hosts bespoke defences; wrapped by `bin/phpstan-rule`, `bin/rule-doc` and `bin/rules`, with the bundled rules and the identifier constant enforced on top. Conforms as wrapped for the `phpqaci.*` bundle; fails 6.2 and 6.3 for its native catalogue.
+- **PHPArkitect**: hosts bespoke defences about architecture through `phparkitect.php`; wrapped only as a lane, with no identifier, no single-file run and no resolver. Does not conform as wrapped, and the default tier routes bundled defences through it.
+- **Rector**: a refactoring tool run in dry-run mode; a project can register a custom rule, but the toolchain runs it as a check and routes no defence through it.
+- **PHP CS Fixer**: a formatter; cannot host a defence in the method's sense, and is run as a check.
+- **PSR-4 validation**: a fixed check of autoload mapping; not a host.
+- **Composer validation and composer require checker**: fixed checks of the manifest and of undeclared dependencies; not hosts.
+- **Package type**: a bundled defence requiring an explicit `type` in `composer.json`; prints no identifier, documented in `docs/tools/`.
+- **Config template ignore-list audit**: a bundled defence over the toolchain's own templates; prints `phpqaci.configTemplateIgnoreList`, resolved by `bin/rule-doc`.
+- **Infection config source dirs check**: a bundled defence that `infection.json` names real directories; prints `phpqaci.infectionConfigSourceDirectoriesMustExist`, resolved by `bin/rule-doc`.
+- **Strict types**: a bundled defence that every file declares strict types; prints no identifier.
+- **PHP lint**: a syntax check; not a host.
+- **Markdown links**: a fixed link check; not a host.
+- **Branch name policy**: a bundled defence over branch naming; prints no identifier.
+- **PHPStan ignoreErrors justification**: the clause 6.2 mechanism, a bundled defence over the project record; prints no identifier and reads the top-level record file alone.
+- **SensitiveParameter usage**: a bundled defence requiring the attribute somewhere in `src/`; prints no identifier, documented in `docs/tools/`.
+- **PHPUnit**: a test runner; cannot host a defence, since the method rules out a test as the net.
+- **Infection**: a mutation tester; cannot host a defence, with its configuration guarded by the source dirs check above.
 
 ## Clause by clause
 
-| Clause | Result  | Evidence                                                                                      |
-| ------ | ------- | --------------------------------------------------------------------------------------------- |
-| 4.1    | Yes     | PHPStan `rules:` in the project's `qaConfig/phpstan.neon`                                     |
-| 4.2    | Yes     | `bin/phpstan-rule <identifier> <path>`, usage confirmed in the checkout                       |
-| 4.3    | Yes     | `phpqaci.*` constants, printed by PHPStan with each error                                     |
-| 4.4    | Yes     | `RequireRuleIdentifierConstantRule` in `rules-default.neon`                                   |
-| 5.1    | Yes     | `bin/qa` runs locally                                                                         |
-| 5.2    | Yes     | `bin/qa -t <tool> -p <path>`                                                                  |
-| 5.3    | Yes     | Output to the terminal                                                                        |
-| 5.4    | Yes     | Same lanes locally and in CI                                                                  |
-| 6.1    | Yes     | `bin/rule-doc phpqaci.nullCoalescingFalse` resolved in the checkout                           |
-| 6.2    | Yes     | `docs/phpstan-rules/` ships in the package                                                    |
-| 6.3    | Yes     | Same                                                                                          |
-| 7.1    | Yes     | `bin/rules .` printed every rule with identifier and summary                                  |
-| 7.2    | Yes     | Derived from the resolved neon chain and the lane registry                                    |
-| 7.3    | Yes     | Project rules appear in the same listing                                                      |
-| 8.1    | Yes     | `ignoreErrors` in `qaConfig/phpstan.neon`, read by PHPStan                                    |
-| 8.2    | Yes     | `bin/qa -t pij` fails an entry without a justification                                        |
-| 8.3    | Yes     | `ForbidInlinePhpstanIgnoreRule` on by default                                                 |
-| 8.4    | Yes     | The record appears in `bin/rules` output                                                      |
-| 8.5    | Partial | Lane defaults are documented in `docs/tools/`; method calibrations are not                    |
-| 9.1    | No      | The agent block carries no rule summary yet                                                   |
-| 9.2    | Yes     | Block written and refreshed on install                                                        |
-| 10.1   | Yes     | `RuleDocumentationTest` and `RuleDocResolverTest` run in the pipeline                         |
-| 10.2   | Yes     | `SelfCheckRunsBundledRulesTest`; own `qaConfig/phpstan.neon` includes both bundles            |
-| 11.1   | Yes     | `composer.json` `extra.defence-before-fix`: method 1.0.0, toolchain 0.1.0, `known-gaps` empty |
+Detector rows grade PHPStan as wrapped, with PHPArkitect as wrapped noted where it differs.
+
+| Document  | Clause | Result  | Evidence                                                                                                                                  |
+| --------- | ------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector  | 4.1    | Yes     | Project rules under `rules:` in `qaConfig/phpstan.neon`; PHPArkitect project rules in `phparkitect.php`                                   |
+| Detector  | 4.2    | Yes     | `bin/phpstan-rule <identifier> <path>` fired red on a probe and stayed silent on another rule; PHPArkitect as wrapped has none            |
+| Detector  | 4.3    | Yes     | `🪪  phpqaci.nullCoalescingFalse` printed under the finding, identifier in JSON mode too; PHPArkitect prints prose only                   |
+| Detector  | 4.4    | Yes     | `RequireRuleIdentifierConstantRule` in `rules-default.neon`                                                                               |
+| Detector  | 5.1    | Yes     | Every command ran in the checkout with no service                                                                                         |
+| Detector  | 5.2    | Yes     | `bin/qa -t phpstan -p src/ZzProbe.php` scanned that path alone; PHPArkitect's lane is non-path-supporting                                 |
+| Detector  | 5.3    | Yes     | Findings in the terminal, archived log named after them                                                                                   |
+| Detector  | 5.4    | Yes     | `ci.bash` runs `bin/qa`                                                                                                                   |
+| Detector  | 6.1    | Yes     | `bin/rule-doc phpqaci.nullCoalescingFalse` resolved as printed; an unknown identifier exits 1                                             |
+| Detector  | 6.2    | Partial | Bundle resolves offline from `docs/phpstan-rules/`; `bin/rule-doc method.notFound` is unknown, PHPStan's catalogue is online only         |
+| Detector  | 6.3    | Partial | Bundle pages ship with the package; PHPStan's own rules ship none; PHPArkitect's tier has no page                                         |
+| Detector  | 6.4    | Partial | `RuleDocumentationTest` fails the build on a dangling page reference or an unindexed identifier                                           |
+| Detector  | 7.1    | Yes     | Inline ignores detectable by a bundled rule; PHPArkitect's baseline disableable by `--skip-baseline`                                      |
+| Detector  | 7.2    | No      | `reportIgnoresWithoutComments` not configured; the toolchain's justification lane stands in                                               |
+| Toolchain | 4.1    | No      | PHPArkitect as wrapped fails 4.3, 5.2 and 6.1 to 6.3; five lanes print no identifier; PHPStan's native catalogue fails 6.2 and 6.3        |
+| Toolchain | 4.2    | Partial | `bin/rules .`: `doc: no documentation page` for 15 of 24 rules; `bin/rule-doc phpqaci.packageType` unknown                                |
+| Toolchain | 4.3    | Partial | Inline ignore forbidden; `phparkitect-baseline.json` read silently; an included PHPStan baseline escapes the justification lane           |
+| Toolchain | 4.4    | Yes     | `bin/qa -t <tool> -p <path>` for every path-supporting lane                                                                               |
+| Toolchain | 4.5    | Yes     | `bin/qa` runs coding standards, linting, static analysis, then tests, failing fast or reporting every failure before the success banner   |
+| Toolchain | 5.1    | Partial | Rules listed with identifier, summary and route; lanes listed with `identifier: null` and no route                                        |
+| Toolchain | 5.2    | Yes     | Derived from the resolved neon chain and the lane registry                                                                                |
+| Toolchain | 5.3    | Yes     | Contributor-only rules in the self-listing                                                                                                |
+| Toolchain | 6.1    | Yes     | `ignoreErrors` in `qaConfig/phpstan.neon`, loaded by PHPStan                                                                              |
+| Toolchain | 6.2    | Partial | `bin/qa -t pij` requires a comment, rejects the paste-anywhere list and short reasons; reads the top-level file alone                     |
+| Toolchain | 6.3    | Yes     | The record, including an included baseline's entries, appears in `bin/rules` output                                                       |
+| Toolchain | 6.4    | Partial | Lane defaults in `docs/tools/`; no default for the method's calibrations                                                                  |
+| Toolchain | 7.1    | No      | The agent block carries no rule lines                                                                                                     |
+| Toolchain | 7.2    | Yes     | Block written and refreshed on install and update                                                                                         |
+| Toolchain | 8.1    | Partial | `RuleDocumentationTest` covers rules and identifier-printing lanes; requires an index row, not a page                                     |
+| Toolchain | 8.2    | Yes     | `SelfCheckRunsBundledRulesTest`; own `qaConfig/phpstan.neon` includes both bundles; `bin/qa -t arch` runs the tier on `src/`              |
+| Toolchain | 9.1    | Yes     | Artefact and project graded separately above                                                                                              |
+| Toolchain | 9.2    | Yes     | `composer.json` `extra.defence-before-fix`: method 1.0.0, toolchain 0.2.0, eight gaps; `project` object with the same keys and three gaps |
 
 ## Notes for a practitioner
 
-Install the plugin, write the rule under `rules:` with a `phpqaci`-style identifier constant, prove it with `bin/phpstan-rule` on a fixture, sweep with `bin/qa -t phpstan`, and add the documentation page so `bin/rule-doc` resolves it. Run `bin/rules .` first on any project you arrive at: the listing and the justified exceptions are the record the method tells you to read before guessing.
+Install the plugin, write the rule under `rules:` with a `phpqaci`-style identifier constant, prove it with `bin/phpstan-rule` on a fixture, sweep with `bin/qa -t phpstan`, and add the documentation page so `bin/rule-doc` resolves it to a correct construction and not only to a summary. Run `bin/rules .` first on any project you arrive at: the listing and the justified exceptions are the record the method tells you to read before guessing. Treat a PHPArkitect violation as a defence with no identifier, keep `phparkitect-baseline.json` out of the repository, and put any PHPStan baseline entries in `qaConfig/phpstan.neon` itself so the justification lane sees them.

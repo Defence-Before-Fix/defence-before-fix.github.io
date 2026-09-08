@@ -5,7 +5,10 @@ The convention: every defined term is a '#### Term' heading in the terminology
 section, and every use of a defined term in the body is a capitalised link to
 that heading, e.g. [Class](#class) or [Classes](#class). A bare occurrence of a
 defined word is therefore either an unlinked use of the term or the ordinary
-English word, and the documents forbid both.
+English word, and the documents forbid both. The detector and toolchain
+documents inherit the method specification's terms and link them across
+documents, e.g. [Rule](SPEC.md#rule); the toolchain document inherits the
+detector document's terms the same way.
 
     spec-qa.py         report findings, exit 1 on any
 
@@ -32,8 +35,12 @@ import re
 import sys
 from pathlib import Path
 
-DOCS = ["SPEC.md", "TOOLING-SPEC.md"]
-INHERITS = {"TOOLING-SPEC.md": "SPEC.md"}
+DOCS = ["SPEC.md", "DETECTOR-SPEC.md", "TOOLING-SPEC.md"]
+# A document links a parent's terms as PARENT.md#slug; parents are searched in order.
+INHERITS = {
+    "DETECTOR-SPEC.md": ["SPEC.md"],
+    "TOOLING-SPEC.md": ["SPEC.md", "DETECTOR-SPEC.md"],
+}
 
 SCOPE_LEAKS = {
     r"\bgates?\b": "'gate' is a pipeline concept; say the rule fires or the defence blocks",
@@ -63,7 +70,28 @@ INFLECTIONS = {
 # Phrases in which a defined word appears in a sense that is NOT the term:
 # the method's own name, and the unrelated security term it disclaims.
 PHRASES = [r"Defen[cs]e Before Fix", r"defence in depth"]
-PROTECT = r"`[^`]*`|\[[^\]]*\]\([^)]*\)|(?i:" + "|".join(PHRASES) + ")"
+PROTECT = r"`[^`]*`|\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\[[^\]]*\]|\[[^\]]*\](?![\(\[])|(?i:" + "|".join(PHRASES) + ")"
+
+# Reference-style definitions, one per line at the foot of a document:
+#   [toolchain]: SPEC.md#toolchain
+# A term link is then written [Toolchain], the shortcut reference form, and resolves through
+# them case-insensitively. The raw text carries a word where it carried a thirty-character
+# link, which is what an agent reads; the rendered link is the same.
+DEFINITION = re.compile(r"^\[([^\]]+)\]: (\S+)\s*$")
+REFERENCE = re.compile(r"\[([^\]]+)\](?:\[([^\]]*)\])?(?![\(\[])")
+
+
+def definitions(text: str) -> dict[str, str]:
+    return {m.group(1).lower(): m.group(2) for m in (DEFINITION.match(l) for l in text.splitlines()) if m}
+
+
+def links(line: str, defs: dict[str, str]) -> list[tuple[str, str | None]]:
+    """Every link on the line as (text, target); target is None for an undefined reference."""
+    line = re.sub(r"`[^`]*`", "", line)
+    found: list[tuple[str, str | None]] = [(t, u) for t, u in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", line)]
+    for t, ref in REFERENCE.findall(line):
+        found.append((t, defs.get((ref or t).lower())))
+    return found
 
 
 def slug(term: str) -> str:
@@ -85,8 +113,7 @@ def glossary(text: str) -> list[str]:
 
 def terms_for(doc: str, own: dict[str, list[str]]) -> dict[str, str]:
     terms = {t: f"#{slug(t)}" for t in own[doc]}
-    if doc in INHERITS:
-        parent = INHERITS[doc]
+    for parent in INHERITS.get(doc, []):
         for t in own[parent]:
             terms.setdefault(t, f"{parent}#{slug(t)}")
     return terms
@@ -98,7 +125,7 @@ def body_lines(text: str) -> list[tuple[int, str]]:
         if line.startswith("```"):
             in_code = not in_code
             continue
-        if in_code or line.startswith("#"):
+        if in_code or line.startswith("#") or DEFINITION.match(line):
             continue
         out.append((n, line))
     return out
@@ -139,8 +166,12 @@ def check(here: Path) -> list[str]:
                     findings.append(f"{doc}:{n}: phrase-link — a term link inside a protected phrase")
 
         used: set[str] = set()
+        defs = definitions(text)
         for n, line in body:
-            for txt, target in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", line):
+            for txt, target in links(line, defs):
+                if target is None:
+                    findings.append(f"{doc}:{n}: undefined-reference '[{txt}]' has no definition line")
+                    continue
                 if not (target.startswith("#") or ".md#" in target):
                     continue
                 for term in ordered:

@@ -22,13 +22,14 @@ Six clauses, in order:
 
 ## The documents
 
-| Document                           | What it is                                                                   | Version |
-| ---------------------------------- | ---------------------------------------------------------------------------- | ------- |
-| [SPEC.md](SPEC.md)                 | The method. Normative. What a practitioner does when a defect is found.      | 1.0.0   |
-| [TOOLING-SPEC.md](TOOLING-SPEC.md) | The toolchain. What a toolchain must offer so that a practitioner can do it. | 0.1.0   |
-| [PRIMER.md](PRIMER.md)             | The short introduction.                                                      |         |
-| [PROVENANCE.md](PROVENANCE.md)     | Who coined the term, when, and what is and is not claimed.                   |         |
-| [CHANGELOG.md](CHANGELOG.md)       | Changes to each document, versioned independently.                           |         |
+| Document                             | What it is                                                                                                          | Version |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | ------- |
+| [SPEC.md](SPEC.md)                   | The method. Normative. What a practitioner does when a defect is found.                                             | 1.0.1   |
+| [DETECTOR-SPEC.md](DETECTOR-SPEC.md) | The detector. What a tool that reads code must offer so that a rule can be written, proven, run and resolved in it. | 1.0.0   |
+| [TOOLING-SPEC.md](TOOLING-SPEC.md)   | The toolchain. What a project's assembled tooling must offer beyond its detectors, measured at the project level.   | 0.2.0   |
+| [PRIMER.md](PRIMER.md)               | The short introduction.                                                                                             |         |
+| [PROVENANCE.md](PROVENANCE.md)       | Who coined the term, when, and what is and is not claimed.                                                          |         |
+| [CHANGELOG.md](CHANGELOG.md)         | Changes to each document, versioned independently.                                                                  |         |
 
 The method specification is the source of truth for what the method is. Where anything else
 describing Defence Before Fix disagrees with it, including the article in which the term was first
@@ -51,18 +52,24 @@ word is a finding. It runs in CI on every push.
 python3 spec-qa.py
 ```
 
+A change to any of the three specifications must also pass the acceptance test in
+[ACCEPTANCE.md](ACCEPTANCE.md): a cold cohort of at least five low-strength model readers
+answers a fixed question set for each changed document, marked against the keys under
+[acceptance/](acceptance/), and the version's changelog entry records the result. A version
+without that line is not published.
+
 ## Agent-facing surfaces
 
 The site is meant to be read by agents as well as people, and every agent surface is generated so
 that it cannot drift from the documents:
 
-| Surface                                   | What it is                                                           | Generated from                       |
-| ----------------------------------------- | -------------------------------------------------------------------- | ------------------------------------ |
-| `/defence-before-fix-project-prompt.md`   | Raw markdown: the method as an agent follows it, plus where the raw documents are, what a conforming toolchain offers, how a project declares | `SPEC.md` Appendix A and `_data/site.yml` |
-| `/llms.txt`                               | The llms.txt index of everything on the site                          | `_data/site.yml`                     |
-| `/llms-full.txt`                          | The prompt and every document in one file                             | the documents                        |
-| `/raw/<name>.md`                          | Every primary document as raw markdown                                | the documents                        |
-| `<link rel="alternate">` on each page     | Points a fetcher at the raw markdown and at llms.txt                  | `_data/site.yml`                     |
+| Surface                                 | What it is                                                                                                                                    | Generated from                            |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `/defence-before-fix-project-prompt.md` | Raw markdown: the method as an agent follows it, plus where the raw documents are, what a conforming toolchain offers, how a project declares | `SPEC.md` Appendix A and `_data/site.yml` |
+| `/llms.txt`                             | The llms.txt index of everything on the site                                                                                                  | `_data/site.yml`                          |
+| `/llms-full.txt`                        | The prompt and every document in one file                                                                                                     | the documents                             |
+| `/raw/<name>.md`                        | Every primary document as raw markdown                                                                                                        | the documents                             |
+| `<link rel="alternate">` on each page   | Points a fetcher at the raw markdown and at llms.txt                                                                                          | `_data/site.yml`                          |
 
 `build-agent-surfaces.py` writes the prompt and `llms.txt` into the repository, and CI fails when
 they are stale (`--check`). The Pages workflow runs the same script with `--site ./_site` after

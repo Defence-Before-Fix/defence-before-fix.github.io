@@ -1,50 +1,40 @@
 ---
 title: PHP-CS-Fixer and Defence Before Fix
-summary: A formatter; custom fixers carry stable Vendor names printed only with verbose; fails 8.2 on unjustified exclusions and 7.1 on listing.
+summary: A formatter whose Vendor rule names and describe command meet 4.1, 4.2 and section 6; the name prints only with verbose, failing 4.3.
 ---
 
 # PHP-CS-Fixer
 
-**Language**: PHP · **Kind**: tool · **Readiness**: 🟡 · **Conformance**: 🔴 · **Checked**: 2026-09-08, version 3.95.24
+**Language**: PHP · **Kind**: tool · **Readiness**: 🟡 · **Detector conformance**: 🟡 · **Checked**: 2026-09-08, version 3.95.24
 
 PHP-CS-Fixer is a formatter: it rewrites PHP to a configured style, and in `check` or `--dry-run` mode it reports which files it would change. It is not a detector in the method's sense, because it reports files rather than findings, but a custom fixer can encode a pattern and its correct form together, so it can host a bespoke defence of a narrow kind.
 
 ## How it is conformant
 
-Clause 4.1 is met: a project registers classes implementing `FixerInterface` through `registerCustomFixers()` in its configuration ([custom rules](https://cs.symfony.com/doc/custom_rules.html)). Clause 4.3 is met in part, and better than most: a custom rule's name must match `Vendor/rule_name`, and the author chooses it once, so it is stable and not derived from the class. Clause 4.2 is met by `--rules=Vendor/rule_name` on a single file with `--dry-run --diff`, which shows whether the rule would change the fixture ([usage](https://cs.symfony.com/doc/usage.html)). Clauses 5.1 and 5.2 hold: the tool runs locally and accepts a file path. Clause 6.1 is met for the built-in catalogue by `php-cs-fixer describe <rule>`, which resolves a printed rule name to its explanation from the installed copy, so clauses 6.2 and 6.3 hold for bundled rules.
+Clause 4.1 is met: a project registers classes implementing `FixerInterface` through `registerCustomFixers()` in its configuration ([custom rules](https://cs.symfony.com/doc/custom_rules.html)). Clause 4.3 is met in its first half, and better than most: a custom rule's name must match `Vendor/rule_name`, and the author chooses it once, so it is stable and not derived from the class. Clause 4.2 is met by `--rules=Vendor/rule_name` on a single file with `--dry-run --diff`, which shows whether the rule would change the fixture ([usage](https://cs.symfony.com/doc/usage.html)). Clauses 5.1 to 5.4 hold: the tool runs locally, accepts a file path, and prints its result to the terminal with no CI-only mode. Clause 6.1 is met for the built-in catalogue by `php-cs-fixer describe <rule>`, which resolves a printed rule name to its explanation from the installed copy, so clauses 6.2 and 6.3 hold for bundled rules. Clause 7.1 holds because no inline suppression route is documented on the pages checked; exclusions live in the `Finder` and in per-rule configuration, both of which are visible in the configuration file.
 
 ## How it is not conformant
 
-The readiness limit is clause 4.3's second half: the rule name is printed with a finding only under `--verbose`, and the default output lists files without naming the rule ([usage](https://cs.symfony.com/doc/usage.html)). Clause 8.2 fails structurally: exclusions live in the `Finder` and in per-rule configuration with no field for a reason. Clause 8.3 was not verified; no inline suppression is documented on the pages checked, which if true is a point in its favour, but `notPath()` exclusions in the Finder are silent. Clause 7.1 fails because no command lists the rules active in a project's configuration with what each enforces; `list-sets` names sets and `describe` takes one rule at a time. Whether `describe` resolves a custom rule name was not verified. There is no declaration under clause 11.1.
+Clause 4.3's second half fails, and it decides the grade: the rule name is printed with a finding only under `--verbose`, and the default output lists files without naming the rule ([usage](https://cs.symfony.com/doc/usage.html)). Whether `describe` resolves a custom rule name was not verified, though clause 6.1 asks the detector only for the unaltered name in that case. Clause 7.2 does not apply to an inline route the tool does not offer, and the `notPath()` exclusions in the Finder carry no reason. Clause 4.4 is not met, and clause 6.4 was not verified.
 
 ## Clause by clause
 
-| Clause | Result       | Evidence                                                                                                      |
-| ------ | ------------ | ------------------------------------------------------------------------------------------------------------- |
-| 4.1    | Yes          | `registerCustomFixers()`, [custom rules](https://cs.symfony.com/doc/custom_rules.html)                        |
-| 4.2    | Yes          | `--rules=<one> --dry-run --diff file.php`, [usage](https://cs.symfony.com/doc/usage.html)                     |
-| 4.3    | Partial      | `Vendor/name` is author-chosen; printed only with `--verbose`, [usage](https://cs.symfony.com/doc/usage.html) |
-| 4.4    | No           | Nothing enforces stability                                                                                    |
-| 5.1    | Yes          | Runs locally                                                                                                  |
-| 5.2    | Yes          | File path accepted, [usage](https://cs.symfony.com/doc/usage.html)                                            |
-| 5.3    | Yes          | Output to the terminal                                                                                        |
-| 5.4    | Yes          | No CI-only mode                                                                                               |
-| 6.1    | Partial      | `describe` resolves built-in names; custom names not verified, [usage](https://cs.symfony.com/doc/usage.html) |
-| 6.2    | Yes          | `describe` works from the installed copy                                                                      |
-| 6.3    | Yes          | Bundled rule descriptions ship in the package                                                                 |
-| 7.1    | No           | No listing of active rules with what each enforces                                                            |
-| 7.2    | No           | Follows from 7.1                                                                                              |
-| 7.3    | No           | Follows from 7.1                                                                                              |
-| 8.1    | Partial      | Config file and Finder are read by the tool                                                                   |
-| 8.2    | No           | No reason field on any exclusion                                                                              |
-| 8.3    | Not verified | No inline suppression documented on the pages checked                                                         |
-| 8.4    | No           | Exclusions are not enumerable                                                                                 |
-| 8.5    | No           | Not documented                                                                                                |
-| 9.1    | No           | No agent summary                                                                                              |
-| 9.2    | No           | No delivery mechanism                                                                                         |
-| 10.1   | Not verified | Not found                                                                                                     |
-| 10.2   | Not verified | Not checked                                                                                                   |
-| 11.1   | No           | No declaration                                                                                                |
+| Document | Clause | Result       | Evidence                                                                                                      |
+| -------- | ------ | ------------ | ------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Yes          | `registerCustomFixers()`, [custom rules](https://cs.symfony.com/doc/custom_rules.html)                        |
+| Detector | 4.2    | Yes          | `--rules=<one> --dry-run --diff file.php`, [usage](https://cs.symfony.com/doc/usage.html)                     |
+| Detector | 4.3    | Partial      | `Vendor/name` is author-chosen; printed only with `--verbose`, [usage](https://cs.symfony.com/doc/usage.html) |
+| Detector | 4.4    | No           | Nothing enforces stability                                                                                    |
+| Detector | 5.1    | Yes          | Runs locally                                                                                                  |
+| Detector | 5.2    | Yes          | File path accepted, [usage](https://cs.symfony.com/doc/usage.html)                                            |
+| Detector | 5.3    | Yes          | Output to the terminal                                                                                        |
+| Detector | 5.4    | Yes          | No CI-only mode                                                                                               |
+| Detector | 6.1    | Yes          | `describe` resolves built-in names; custom names not verified, [usage](https://cs.symfony.com/doc/usage.html) |
+| Detector | 6.2    | Yes          | `describe` works from the installed copy                                                                      |
+| Detector | 6.3    | Yes          | Bundled rule descriptions ship in the package                                                                 |
+| Detector | 6.4    | Not verified | No release gate over rule descriptions found                                                                  |
+| Detector | 7.1    | Yes          | No inline suppression documented; Finder and per-rule exclusions are configuration                            |
+| Detector | 7.2    | No           | No inline route to require a reason on; Finder exclusions carry none                                          |
 
 ## Notes for a practitioner
 

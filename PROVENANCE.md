@@ -87,5 +87,5 @@ versioned; corrections to wording that do not change what conforms are not.
 
 ## Citation
 
-> Edmonds, Joseph. *Defence Before Fix*, version 1.0.0. First published 22 February 2026.
+> Edmonds, Joseph. *Defence Before Fix*, version 1.0.1. First published 22 February 2026.
 > <https://ltscommerce.dev>

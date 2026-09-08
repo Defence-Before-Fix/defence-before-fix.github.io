@@ -23,8 +23,9 @@ licence:
   name: CC BY 4.0
   url: https://creativecommons.org/licenses/by/4.0/
 versions:
-  method: 1.0.0
-  toolchain: 0.1.0
+  method: 1.0.1
+  detector: 1.0.0
+  toolchain: 0.2.0
   published: 8 September 2026
 stylesheet: /assets/css/site.css
 pages:
@@ -41,19 +42,28 @@ pages:
     title: the method specification
     nav: Method specification
     blurb: >-
-      Method specification 1.0.0, the normative document: what a practitioner does when a defect
+      Method specification 1.0.1, the normative document: what a practitioner does when a defect
       is found, in six numbered clauses with the reasoning for each, conformance for a
       remediation, a rule and a toolchain, and how the method operates under AI-assisted
       development.
+  - path: /DETECTOR-SPEC.html
+    raw: DETECTOR-SPEC.md
+    heading: "Defence Before Fix: Detector Specification"
+    title: the detector specification
+    nav: Detector specification
+    blurb: >-
+      Detector specification 1.0.0, addressed to anyone who maintains a linter or static analyser:
+      what a tool that reads code must offer so that a practitioner can write, prove, run and
+      resolve a rule in it, and how conformance is graded on evidence.
   - path: /TOOLING-SPEC.html
     raw: TOOLING-SPEC.md
     heading: "Defence Before Fix: Toolchain Specification"
     title: the toolchain specification
     nav: Toolchain specification
     blurb: >-
-      Toolchain specification 0.1.0, addressed to anyone who maintains a linter, static analyser
-      or QA pipeline: what a tool must offer so that the projects using it can follow the method,
-      and what it takes to claim conformance.
+      Toolchain specification 0.2.0: what a project's assembled tooling must offer beyond its
+      detectors, measured at the project level, from listing and the project record to self-audit,
+      and the two conformance levels for a project that ships tooling.
   - path: /PRIMER.html
     raw: PRIMER.md
     heading: "Defence Before Fix: Primer"
