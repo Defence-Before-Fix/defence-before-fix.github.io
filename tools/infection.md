@@ -1,50 +1,40 @@
 ---
 title: Infection and Defence Before Fix
-summary: A mutation tester, not a detector; custom mutators run alone; fails 4.3 on class names, 8.3 on infection-ignore-all, 8.2 on reasons.
+summary: A mutation tester, not a detector; custom mutators only partly meet 4.1, the class name printed fails 4.3, infection-ignore-all fails 7.1.
 ---
 
 # Infection
 
-**Language**: PHP · **Kind**: tool · **Readiness**: 🟡 · **Conformance**: 🔴 · **Checked**: 2026-09-08, version 0.35.4
+**Language**: PHP · **Kind**: tool · **Readiness**: 🟡 · **Detector conformance**: 🔴 · **Checked**: 2026-09-08, version 0.35.4
 
 Infection is a mutation testing framework: it alters the code under test and reports mutants the test suite fails to kill. It is not a detector in the method's sense, because it judges the strength of tests rather than a pattern in code, and the method rules out a test as the net. It is graded here on whether a custom mutator can host a bespoke defence at all.
 
 ## How it is conformant
 
-Clause 4.1 is met in the narrow sense that a project can write a class implementing `Infection\Mutator\Mutator` and enable it by class name in `infection.json5` ([custom mutators](https://infection.github.io/guide/custom-mutators.html)). Clause 4.2 is met by `--mutators="App\Mutator\Name" --show-mutations`, which the guide recommends for quick feedback on a new mutator, and a positional file path narrows the run to one source file ([command line options](https://infection.github.io/guide/command-line-options.html)). Clauses 5.1 and 5.3 hold: the run is local and the report is printed. Clause 8.1 is met in part by the `ignore` and `ignoreSourceCodeByRegex` blocks of the configuration, which Infection reads ([usage](https://infection.github.io/guide/usage.html)).
+Clause 4.1 is met in the narrow sense that a project can write a class implementing `Infection\Mutator\Mutator` and enable it by class name in `infection.json5` ([custom mutators](https://infection.github.io/guide/custom-mutators.html)). Clause 4.2 is met in part by `--mutators="App\Mutator\Name" --show-mutations`, which the guide recommends for quick feedback on a new mutator, and a positional file path narrows the run to one source file ([command line options](https://infection.github.io/guide/command-line-options.html)). Clauses 5.1 to 5.4 hold: the run is local, takes a file path, prints the report to the terminal with log files on request, and has no CI-only mode. Clause 6.1 is met for bundled mutators, whose catalogue on the website is keyed on the printed name.
 
 ## How it is not conformant
 
-A mutator is not a defence: it says nothing about whether a pattern is present, only whether a test would notice its absence, so clause 3.2 of the method cannot be satisfied through it. Within the toolchain clauses, 4.3 fails because the printed identifier is the mutator class name. Clause 8.3 fails structurally: `@infection-ignore-all` is a documented inline annotation at class, method and statement level ([usage](https://infection.github.io/guide/usage.html)), and clause 8.2 fails because neither it nor the `ignore` configuration takes a reason. Clause 6.1 is met only for bundled mutators, whose catalogue is a web page, so clauses 6.2 and 6.3 fail. Clause 7.1 fails because no command lists the mutators a configuration enables. Running Infection at all requires a test suite, so it cannot stand alone under clause 4.2's condition. There is no declaration under clause 11.1.
+A mutator is not a defence: it says nothing about whether a pattern is present, only whether a test would notice its absence, so clause 3.2 of the method cannot be satisfied through it and clause 4.1 is at best partly met. Clause 4.3 fails, and it decides the grade: the printed identifier is the mutator class name, which the clause forbids. Clause 4.2 is only partly met because running Infection at all requires the project's test suite, which the harness definition excludes. Clauses 6.2 and 6.3 fail because the mutator catalogue is a web page. Clause 7.1 fails: `@infection-ignore-all` is a documented inline annotation at class, method and statement level with no switch to disable it and no documented check that finds it ([usage](https://infection.github.io/guide/usage.html)). Clause 7.2 fails because neither the annotation nor the `ignore` configuration takes a reason. Clause 4.4 has nothing to enforce, and clause 6.4 was not verified.
 
 ## Clause by clause
 
-| Clause | Result       | Evidence                                                                                                                                       |
-| ------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| 4.1    | Partial      | Custom mutators, but a mutator is not a detector, [custom mutators](https://infection.github.io/guide/custom-mutators.html)                    |
-| 4.2    | Partial      | `--mutators` and a path, but the project's tests must run, [command line options](https://infection.github.io/guide/command-line-options.html) |
-| 4.3    | No           | Class name printed                                                                                                                             |
-| 4.4    | No           | Nothing to enforce                                                                                                                             |
-| 5.1    | Yes          | Runs locally                                                                                                                                   |
-| 5.2    | Yes          | Positional file path, [command line options](https://infection.github.io/guide/command-line-options.html)                                      |
-| 5.3    | Yes          | Report to the terminal, log files on request                                                                                                   |
-| 5.4    | Yes          | No CI-only mode                                                                                                                                |
-| 6.1    | Partial      | Bundled mutators documented online by name                                                                                                     |
-| 6.2    | No           | Website only                                                                                                                                   |
-| 6.3    | No           | Same                                                                                                                                           |
-| 7.1    | No           | No listing of enabled mutators                                                                                                                 |
-| 7.2    | No           | Follows from 7.1                                                                                                                               |
-| 7.3    | No           | Follows from 7.1                                                                                                                               |
-| 8.1    | Partial      | `ignore` configuration is read by the tool, [usage](https://infection.github.io/guide/usage.html)                                              |
-| 8.2    | No           | No reason field                                                                                                                                |
-| 8.3    | No           | `@infection-ignore-all`, [usage](https://infection.github.io/guide/usage.html)                                                                 |
-| 8.4    | No           | Not enumerable                                                                                                                                 |
-| 8.5    | Partial      | `--min-msi` thresholds are documented defaults                                                                                                 |
-| 9.1    | No           | No agent summary                                                                                                                               |
-| 9.2    | No           | No delivery mechanism                                                                                                                          |
-| 10.1   | Not verified | Not found                                                                                                                                      |
-| 10.2   | Not verified | Not checked                                                                                                                                    |
-| 11.1   | No           | No declaration                                                                                                                                 |
+| Document | Clause | Result       | Evidence                                                                                                                                       |
+| -------- | ------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Partial      | Custom mutators, but a mutator is not a detector, [custom mutators](https://infection.github.io/guide/custom-mutators.html)                    |
+| Detector | 4.2    | Partial      | `--mutators` and a path, but the project's tests must run, [command line options](https://infection.github.io/guide/command-line-options.html) |
+| Detector | 4.3    | No           | Class name printed                                                                                                                             |
+| Detector | 4.4    | No           | Nothing to enforce                                                                                                                             |
+| Detector | 5.1    | Yes          | Runs locally                                                                                                                                   |
+| Detector | 5.2    | Yes          | Positional file path, [command line options](https://infection.github.io/guide/command-line-options.html)                                      |
+| Detector | 5.3    | Yes          | Report to the terminal, log files on request                                                                                                   |
+| Detector | 5.4    | Yes          | No CI-only mode                                                                                                                                |
+| Detector | 6.1    | Yes          | Bundled mutators documented online keyed on the printed name                                                                                   |
+| Detector | 6.2    | No           | Website only                                                                                                                                   |
+| Detector | 6.3    | No           | Same                                                                                                                                           |
+| Detector | 6.4    | Not verified | Not found                                                                                                                                      |
+| Detector | 7.1    | No           | `@infection-ignore-all` has no switch and no documented check, [usage](https://infection.github.io/guide/usage.html)                           |
+| Detector | 7.2    | No           | No reason field on the annotation or the `ignore` configuration                                                                                |
 
 ## Notes for a practitioner
 

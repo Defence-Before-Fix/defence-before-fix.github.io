@@ -1,50 +1,40 @@
 ---
 title: PHPMD and Defence Before Fix
-summary: Custom rules with stable names the text renderer does not print; fails 8.3 on SuppressWarnings and the baseline, 8.2 on reasons.
+summary: Custom rules and one-rule rulesets meet 4.1 and 4.2; the name is absent from default output under 4.3, documentation online only fails 6.2 and 6.3.
 ---
 
 # PHPMD
 
-**Language**: PHP · **Kind**: tool · **Readiness**: 🟡 · **Conformance**: 🔴 · **Checked**: 2026-09-08, version 2.15.0
+**Language**: PHP · **Kind**: tool · **Readiness**: 🟡 · **Detector conformance**: 🟡 · **Checked**: 2026-09-08, version 2.15.0
 
 PHPMD, the PHP Mess Detector, runs rules over the PDepend model of a codebase and reports complexity, naming and design problems. It sits beside the static analysers in a pipeline as a design-level detector, and a project can add rules of its own to it.
 
 ## How it is conformant
 
-Clause 4.1 is met: a rule implements `\PHPMD\Rule` or extends `\PHPMD\AbstractRule`, opts into classes, methods or functions through marker interfaces, and is registered in a ruleset XML with a `name` and a `class` ([writing a PHPMD rule](https://phpmd.org/documentation/writing-a-phpmd-rule.html)). Clause 4.3 is met in part: the ruleset's `name` attribute is chosen by the author and is what `@SuppressWarnings(PHPMD.Name)` keys on, so it is stable and not derived from the class. Clause 4.2 is met by a workaround that needs no test suite: a ruleset XML containing the one rule, run against one file, since PHPMD takes a file list and a ruleset path ([documentation index](https://phpmd.org/documentation/index.html)). Clauses 5.1 and 5.2 hold for the same reason. With `--verbose` the text renderer prints a link to each rule's documentation, which gestures at clause 6.1.
+Clause 4.1 is met: a rule implements `\PHPMD\Rule` or extends `\PHPMD\AbstractRule`, opts into classes, methods or functions through marker interfaces, and is registered in a ruleset XML with a `name` and a `class` ([writing a PHPMD rule](https://phpmd.org/documentation/writing-a-phpmd-rule.html)). Clause 4.2 is met without a test suite: a ruleset XML containing the one rule, run against one file, is a harness in the specification's sense, since PHPMD takes a file list and a ruleset path ([documentation index](https://phpmd.org/documentation/index.html)). Clauses 5.1 to 5.4 hold for the same reason. Clause 4.3 is met in its first half: the ruleset's `name` attribute is chosen by the author and is what `@SuppressWarnings(PHPMD.Name)` keys on, so it is stable and not derived from the class. Clause 6.1 is met in part, since with `--verbose` the text renderer prints a link to each bundled rule's documentation, which is the URL form the clause accepts. Clause 7.1 is met for the baseline, which is only used when the project generates it and keeps it in place ([documentation index](https://phpmd.org/documentation/index.html)).
 
 ## How it is not conformant
 
-The readiness limit is that the rule name is not printed by default: the text renderer prints the configured message, and the rule name reaches output only through the XML renderer or the verbose link ([writing a PHPMD rule](https://phpmd.org/documentation/writing-a-phpmd-rule.html)). Clause 8.3 fails structurally: `@SuppressWarnings(PHPMD)` and its per-rule and wildcard forms are documented inline suppressions, and `--generate-baseline` writes a silent baseline ([suppress warnings](https://phpmd.org/documentation/suppress-warnings.html), [documentation index](https://phpmd.org/documentation/index.html)). Clause 8.2 fails because none of these takes a reason. Clause 6.1 fails for bespoke rules, and for bundled rules the verbose link points at the website, so clauses 6.2 and 6.3 fail. Clause 7.1 fails because nothing lists the rules a ruleset activates with what each forbids. There is no declaration under clause 11.1, and the last release predates the method.
+Clause 4.3's second half fails, and it is the readiness limit: the rule name is not printed by default, because the text renderer prints the configured message, and the name reaches output only through the XML renderer or the verbose link ([writing a PHPMD rule](https://phpmd.org/documentation/writing-a-phpmd-rule.html)). Clauses 6.2 and 6.3 fail because the verbose link points at the website and nothing on disk resolves a name. Clause 7.1 is only partly met: `@SuppressWarnings(PHPMD)` and its per-rule and wildcard forms are documented inline suppressions with no switch to disable them and no documented check that finds them ([suppress warnings](https://phpmd.org/documentation/suppress-warnings.html)). Clause 7.2 fails because neither the annotation nor a baseline entry takes a reason. Clause 4.4 is not met and clause 6.4 was not verified; the last release predates the specification.
 
 ## Clause by clause
 
-| Clause | Result       | Evidence                                                                                                                   |
-| ------ | ------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| 4.1    | Yes          | Custom rule class in a ruleset, [writing a PHPMD rule](https://phpmd.org/documentation/writing-a-phpmd-rule.html)          |
-| 4.2    | Partial      | One-rule ruleset against one file; no purpose-built harness                                                                |
-| 4.3    | Partial      | `name` is author-chosen but the text renderer prints the message, not the name                                             |
-| 4.4    | No           | Nothing enforces a name                                                                                                    |
-| 5.1    | Yes          | `phpmd` runs locally, [documentation index](https://phpmd.org/documentation/index.html)                                    |
-| 5.2    | Yes          | Comma-separated file list accepted, [documentation index](https://phpmd.org/documentation/index.html)                      |
-| 5.3    | Yes          | Renderer output to the terminal                                                                                            |
-| 5.4    | Yes          | No CI-only mode                                                                                                            |
-| 6.1    | Partial      | Verbose link per bundled rule; nothing for bespoke, [documentation index](https://phpmd.org/documentation/index.html)      |
-| 6.2    | No           | Links point at phpmd.org                                                                                                   |
-| 6.3    | No           | Same                                                                                                                       |
-| 7.1    | No           | No listing command                                                                                                         |
-| 7.2    | No           | Follows from 7.1                                                                                                           |
-| 7.3    | No           | Follows from 7.1                                                                                                           |
-| 8.1    | Partial      | Ruleset `exclude` and baseline are read by the tool                                                                        |
-| 8.2    | No           | No reason on suppressions or baseline, [suppress warnings](https://phpmd.org/documentation/suppress-warnings.html)         |
-| 8.3    | No           | `@SuppressWarnings` and `--generate-baseline`, [suppress warnings](https://phpmd.org/documentation/suppress-warnings.html) |
-| 8.4    | No           | Not enumerable                                                                                                             |
-| 8.5    | Partial      | Rule thresholds carry documented defaults                                                                                  |
-| 9.1    | No           | No agent summary                                                                                                           |
-| 9.2    | No           | No delivery mechanism                                                                                                      |
-| 10.1   | Not verified | Not found                                                                                                                  |
-| 10.2   | Not verified | Not checked                                                                                                                |
-| 11.1   | No           | No declaration                                                                                                             |
+| Document | Clause | Result       | Evidence                                                                                                                                               |
+| -------- | ------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Detector | 4.1    | Yes          | Custom rule class in a ruleset, [writing a PHPMD rule](https://phpmd.org/documentation/writing-a-phpmd-rule.html)                                      |
+| Detector | 4.2    | Yes          | One-rule ruleset against one file, [documentation index](https://phpmd.org/documentation/index.html)                                                   |
+| Detector | 4.3    | Partial      | `name` is author-chosen but the text renderer prints the message, not the name                                                                         |
+| Detector | 4.4    | No           | Nothing enforces a name                                                                                                                                |
+| Detector | 5.1    | Yes          | `phpmd` runs locally, [documentation index](https://phpmd.org/documentation/index.html)                                                                |
+| Detector | 5.2    | Yes          | Comma-separated file list accepted, [documentation index](https://phpmd.org/documentation/index.html)                                                  |
+| Detector | 5.3    | Yes          | Renderer output to the terminal                                                                                                                        |
+| Detector | 5.4    | Yes          | No CI-only mode                                                                                                                                        |
+| Detector | 6.1    | Partial      | Verbose link per bundled rule only with `--verbose`; nothing for bespoke, [documentation index](https://phpmd.org/documentation/index.html)            |
+| Detector | 6.2    | No           | Links point at phpmd.org                                                                                                                               |
+| Detector | 6.3    | No           | Same                                                                                                                                                   |
+| Detector | 6.4    | Not verified | Not found                                                                                                                                              |
+| Detector | 7.1    | Partial      | Baseline is opt-in; `@SuppressWarnings` has no switch or documented check, [suppress warnings](https://phpmd.org/documentation/suppress-warnings.html) |
+| Detector | 7.2    | No           | No reason on suppressions or baseline, [suppress warnings](https://phpmd.org/documentation/suppress-warnings.html)                                     |
 
 ## Notes for a practitioner
 
