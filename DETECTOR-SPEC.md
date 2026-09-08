@@ -176,7 +176,13 @@ teaches nobody anything and blocks them anyway, which is the worst combination a
 ### 6.1 The detector MUST provide a mechanism that resolves a printed identifier to its documentation
 
 Keyed on **the [Identifier] exactly as printed**. A command, an index file or a URL are all
-acceptable forms; for a [Bundled rule], clause 6.2 governs where it lives.
+acceptable forms; for a [Bundled rule], clause 6.2 governs where it lives. The obligation differs
+by who wrote the [Rule], and the two cases are set out below in turn:
+
+| The [Rule]        | Who supplies the documentation | What this clause asks of the [Detector]                                   |
+| ----------------- | ------------------------------ | ------------------------------------------------------------------------- |
+| A [Bundled rule]  | The [Detector]                 | Resolve the [Identifier], presented alone, to that documentation          |
+| The project's own | The project                    | Print the [Identifier] unaltered; the lookup is the [Toolchain]'s to give |
 
 **For a [Bundled rule]**, the [Detector] supplies the documentation and the
 lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier]
@@ -209,17 +215,18 @@ place.
 ### 6.3 A bundled rule's documentation MUST ship with the rule, at a version tracked together
 
 Every [Identifier] a [Bundled rule] can print MUST resolve, under clause 6.1,
-to a page in that shipped documentation.
+to a page in that shipped documentation. One page per [Identifier] is the plain case. One page
+MAY instead cover a family of [Identifiers] that share a prefix, and the rest of this clause says
+how such a page is written so that it still resolves each member.
 
-One page MAY document a family of [Identifiers] that share a prefix. That page SHOULD let a
-mechanical check, the one clause 6.4 asks for, confirm that each member resolves to it. Two forms
-do that and one does not:
+A family page SHOULD let a mechanical check, the one clause 6.4 asks for, confirm that each member
+resolves to it. Two forms do that and one does not:
 
-| The page                                                                                       | A check can confirm each member?          |
-| ---------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| Lists every full [Identifier] in the family, `LM-0100`, `LM-0101`, and so on                   | Yes                                       |
-| Carries a pattern the check can run, `^LM-01[0-9]{2}$`, matching every member and nothing else | Yes                                       |
-| Says in prose that everything under `LM-01` is documented here                                 | No: a person can infer it, a check cannot |
+| The page                                                                                                  | A check can confirm each member?          |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| Lists every full [Identifier] in the family, `LM-0100`, `LM-0101`, and so on                              | Yes                                       |
+| Carries a regular expression the check can run, `^LM-01[0-9]{2}$`, matching every member and nothing else | Yes                                       |
+| Says in prose that everything under `LM-01` is documented here                                            | No: a person can infer it, a check cannot |
 
 The list or the pattern lives in the installed file, since clause 6.2 requires resolution to work
 from the installed copy, not only in a rendered web page.
@@ -251,10 +258,11 @@ the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a M
 ### 7.1 A detector MAY offer an inline suppression route, but MUST make it detectable or disableable
 
 An inline ignore comment, a per-line directive and a generated [Baseline] are all such
-routes. The [Detector] MAY ship them. It MUST make each one either disableable by
-configuration, or detectable by a [Rule] the project can write in the [Detector] itself
-or by a mechanical check the [Detector] documents, so that a project which decides to forbid the route can enforce
-that decision. A route that can be neither switched off nor seen does not [Conform].
+routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
+alone satisfies this clause: make the route disableable by configuration; or make the route
+detectable, by a [Rule] the project can write in the [Detector] itself or by a mechanical check
+the [Detector] documents. Either lets a project which decides to forbid the route enforce that
+decision. A route that can be neither switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are

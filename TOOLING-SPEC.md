@@ -120,17 +120,22 @@ after wrapping, fails this clause. Three points govern how that is met.
    [Detector] lacks by wrapping it, with a [Harness] script or a
    resolver of its own. The [Detector] together with that wrapping is then what the
    [Practitioner] uses and what is judged.
+
 2. **How the wrapped pair is judged.** Wrapping can add a mechanism; it cannot excuse a gap. This
    clause holds when the [Detector] and the wrapping together satisfy every MUST of
    sections 4 to 7 of the [detector specification](DETECTOR-SPEC.md), exercised as its clause 8.1
    describes. It fails when any gap is left open after wrapping, whether or not a clause below names
-   the same gap again. For example, a [Detector] that resolves none of its
-   [Identifiers] offline passes when wrapped by a [Toolchain] resolver
-   keyed on the [Identifier]. A [Detector] with two undocumented
-   [Bundled rules] fails when the [Toolchain] does not
-   document them either. The [Detector]'s own verdict under that document is unchanged by
-   the wrapping. Satisfying most of that document is not [Conformance] to it, any more
-   than satisfying most of this one is.
+   the same gap again. Three cases show how that is judged:
+
+   | The [Detector]'s gap                       | What the [Toolchain] adds                                     | This clause |
+   | ------------------------------------------ | ------------------------------------------------------------- | ----------- |
+   | Resolves none of its [Identifiers] offline | A resolver keyed on the [Identifier], covering all of them    | Holds       |
+   | Two [Bundled rules] have no documentation  | Nothing for those two                                         | Fails       |
+   | Two [Bundled rules] have no documentation  | Its own documentation for those two, resolved by [Identifier] | Holds       |
+
+   The [Detector]'s own verdict under that document is unchanged by the wrapping. Satisfying most
+   of that document is not [Conformance] to it, any more than satisfying most of this one is.
+
 3. **What cannot be wrapped.** A [Detector] that cannot host a bespoke [Rule] at all
    cannot be wrapped into [Conformance], and no [Defence] is routed through it.
    It MAY still run as one of the [Toolchain]'s checks, as a formatter or a
@@ -146,7 +151,9 @@ clause 3.2. A gap recorded is not a gap closed.
 
 ### 4.2 The toolchain MUST resolve every identifier a defence it routes can print, from the installed copy, without network access
 
-The [Toolchain] MUST resolve every [Identifier] its [Defences]
+This clause widens the [detector specification](DETECTOR-SPEC.md)'s reach: that document resolves
+[Bundled rules] only, and this one covers every [Identifier] the project can see, the project's
+own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Defences]
 print to [Remediation docs] on disk. The mechanism is keyed on the
 [Identifier] exactly as printed, and it covers the project's own [Rules] and
 every [Bundled defence]. Those [Remediation docs] MUST ship
@@ -242,7 +249,9 @@ Without a listing, a project's standards can only be learned by violating them o
 ### 5.2 The listing MUST be derived from the active configuration
 
 The listing MUST be generated from the configuration the [Toolchain] actually loads. It
-MUST NOT be a hand-maintained document that happens to describe the configuration.
+MUST NOT be a hand-maintained document that happens to describe the configuration. The test is
+what happens when a [Rule] is added to the configuration and nobody edits anything else: a
+derived listing shows it on the next run, and a hand-maintained one does not.
 
 **Why**: a hand-maintained list drifts, and it drifts silently and in the dangerous direction. The
 observed failure is a [Rule] that is registered, active, [Blocking], and absent from

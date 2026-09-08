@@ -310,7 +310,10 @@ the behaviour left unpinned defends the [Instance] thoroughly and the report not
 way to find [Instances], and it is the least trustworthy one whilst it is still unproven. Search for
 other [Instances] by other means, whether that is a text search, reading the code, or asking someone
 who knows the system, and, once the [Rule] exists under clause 3.2, confirm it catches what those
-searches found. That confirmation is not one of the techniques.
+searches found. That confirmation is not one of the techniques. Two techniques are independent
+when each would miss what the other finds: a text search and a reading of every caller are two,
+because a caller can name the function in a way the text did not match; two text searches for
+different spellings are one technique run twice.
 
 That search MUST be a comprehensive one, carried out by a person, model or [Agent] competent to
 carry it out. No fixed technique is prescribed, because what is comprehensive depends entirely on
@@ -456,40 +459,36 @@ what must survive the merge is not.
 
 **Part B: [Narrowing].**
 
-**A [Narrowing] is proven the other way round, and both ways.** Where the change under proof is
+**The decision comes first, and it turns on one sentence.** Can the [Practitioner] write down why
+the [Hazard] cannot arise in the code being excluded? If they can, the exclusion is a [Narrowing],
+it is theirs to make, and they record that sentence. If they cannot, or are not sure, the exclusion
+is a [Suppression] and belongs to the [Owner] under section 4. Doubt is [Suppression]. The test is
+the [Hazard], never the count. Two exclusions of the same [Rule] show the difference:
+
+| Excluded code                                                             | The sentence                                                                        | Which it is                             | Who decides    |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------- | -------------- |
+| A catch in test helpers that asserts on the caught error and returns it   | "The result is the error itself, so it cannot be used as if the call had succeeded" | [Narrowing]                             | [Practitioner] |
+| A catch in a nightly export, excluded because the export "hardly matters" | Cannot be written: the caught result is still used, so the [Hazard] is present      | [Suppression], referred under section 4 | [Owner]        |
+
+Ask, for every exclusion, which row it sits in:
+
+- If the excluded code **carries the [Hazard]**, the exclusion is [Suppression] and is forbidden to
+  the [Practitioner], however many or few [Instances] it removes.
+- If the excluded code **does not carry the [Hazard]**, the exclusion is precision and is required
+  by clause 3.1's upper bound.
+
+A [Rule] MUST NOT be narrowed because its [Instance] count is uncomfortably high. A high count is a
+finding about the codebase, not a [Defect] in the [Rule]. **Firing on more than the originating
+[Defect] is success.** A [Rule] that catches the reported [Instance] and forty-nine others has done
+exactly what it was built to do, and the forty-nine are the reason the method exists.
+
+**Then the proof, which runs the other way round, and both ways.** Where the change under proof is
 that the [Rule] should stop firing on code that does not carry the [Hazard], three things are shown:
 the [Rule] firing on that code before the change, from a commit still reachable in history and to the
 same standard as a new [Rule]'s red run; the [Rule] not firing on it afterwards; and a retained
 [Fixture] on which it still fires afterwards, the case that motivated the [Rule]. Where the narrower
 shape was chosen from the outset and no wider [Rule] was ever built, the before state is a [Fixture]
 of the wider pattern the [Rule] does not catch, retained as the record of what was left out.
-
-**Firing on more than the originating [Defect] is success.** A [Rule] that catches the reported
-[Instance] and forty-nine others has done exactly what it was built to do, and the forty-nine are
-the reason the method exists.
-
-**The test for whether [Narrowing] is legitimate is the [Hazard], never the count.** The
-test has two halves, and the rest of this passage says how each is checked:
-
-- **[Narrowing]**, which the [Practitioner] decides: they can write down why
-  the [Hazard] cannot arise in the code being excluded, and they record that sentence.
-- **[Suppression]**, which the [Owner] decides under section 4: the sentence
-  cannot be written, so the exclusion is not the [Practitioner]'s to make. Doubt is
-  [Suppression]; [Narrowing] needs confidence backed by the sentence.
-
-Ask what the [Narrowing] would exclude:
-
-- If the excluded code **carries the [Hazard]**, the [Narrowing] is [Suppression] and is forbidden,
-  however many or few [Instances] it removes.
-- If the excluded code **does not carry the [Hazard]**, the [Narrowing] is precision and is required
-  by clause 3.1's upper bound.
-
-A [Rule] MUST NOT be narrowed because its [Instance] count is uncomfortably high. A high count is a
-finding about the codebase, not a [Defect] in the [Rule].
-
-**If you are not sure whether the excluded code carries the [Hazard], you are suppressing.** Treat it
-as a [Suppression] and refer it upwards under section 4. The [Practitioner] narrows on confidence, not
-on the balance of probability.
 
 **"Sure" is not a percentage; it is a sentence.** The [Practitioner] is sure when they can write down,
 for the code being excluded, why the [Hazard] cannot arise there, and that sentence is recorded with
