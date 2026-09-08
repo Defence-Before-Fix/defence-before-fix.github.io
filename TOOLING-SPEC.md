@@ -121,14 +121,8 @@ after wrapping, fails this clause. Three points govern how that is met.
    resolver of its own. The [Detector] together with that wrapping is then what the
    [Practitioner] uses and what is judged.
 
-2. **How the wrapped pair is judged.** One question decides it. With the wrapping in place, does
-   the [Detector] meet every MUST of sections 4 to 7 of the
-   [detector specification](DETECTOR-SPEC.md), exercised as its clause 8.1 describes? If yes, this
-   clause holds. If no, this clause fails, however much else the [Detector] does well, and
-   whether or not a clause below names the same gap again. The question is about the
-   [Detector]'s gaps, not its strengths: a [Detector] that does ten things and leaves one MUST
-   unmet fails, and wrapping can add a mechanism but cannot excuse a gap. Three cases show how
-   that is judged:
+2. **How the wrapped pair is judged.** Start from the gap, not from what the [Detector] does
+   well:
 
    | The [Detector]'s gap                       | What the [Toolchain] adds                                     | This clause |
    | ------------------------------------------ | ------------------------------------------------------------- | ----------- |
@@ -136,8 +130,13 @@ after wrapping, fails this clause. Three points govern how that is met.
    | Two [Bundled rules] have no documentation  | Nothing for those two                                         | Fails       |
    | Two [Bundled rules] have no documentation  | Its own documentation for those two, resolved by [Identifier] | Holds       |
 
-   The [Detector]'s own verdict under that document is unchanged by the wrapping. Satisfying most
-   of that document is not [Conformance] to it, any more than satisfying most of this one is.
+   Behind the table is one question. With the wrapping in place, does the [Detector]
+   meet every MUST of sections 4 to 7 of the [detector specification](DETECTOR-SPEC.md),
+   exercised as its clause 8.1 describes? If yes, this clause holds. If no, it fails, however
+   much else the [Detector] does well, and whether or not a clause below names the same gap
+   again. Wrapping can add a mechanism; it cannot excuse a gap. The [Detector]'s own verdict
+   under that document is unchanged by the wrapping. Satisfying most of that document is not
+   [Conformance] to it, any more than satisfying most of this one is.
 
 3. **What cannot be wrapped.** A [Detector] that cannot host a bespoke [Rule] at all
    cannot be wrapped into [Conformance], and no [Defence] is routed through it.

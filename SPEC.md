@@ -482,6 +482,8 @@ that cannot be confirmed is a sentence that cannot be written, and the exclusion
   the [Practitioner], however many or few [Instances] it removes.
 - If the excluded code **does not carry the [Hazard]**, the exclusion is precision and is required
   by clause 3.1's upper bound.
+- If the [Practitioner] **is not sure which**, the exclusion is [Suppression], and it goes to the
+  [Owner] with the doubt stated.
 
 A [Rule] MUST NOT be narrowed because its [Instance] count is uncomfortably high. A high count is a
 finding about the codebase, not a [Defect] in the [Rule]. **Firing on more than the originating

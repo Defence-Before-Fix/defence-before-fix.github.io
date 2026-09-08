@@ -175,14 +175,15 @@ teaches nobody anything and blocks them anyway, which is the worst combination a
 
 ### 6.1 The detector MUST provide a mechanism that resolves a printed identifier to its documentation
 
-Keyed on **the [Identifier] exactly as printed**. A command, an index file or a URL are all
-acceptable forms; for a [Bundled rule], clause 6.2 governs where it lives. The obligation differs
-by who wrote the [Rule], and the two cases are set out below in turn:
+Two cases, by who wrote the [Rule]:
 
 | The [Rule]        | Who supplies the documentation | What this clause asks of the [Detector]                                   |
 | ----------------- | ------------------------------ | ------------------------------------------------------------------------- |
 | A [Bundled rule]  | The [Detector]                 | Resolve the [Identifier], presented alone, to that documentation          |
 | The project's own | The project                    | Print the [Identifier] unaltered; the lookup is the [Toolchain]'s to give |
+
+In both, the mechanism is keyed on **the [Identifier] exactly as printed**. A command, an index
+file or a URL are all acceptable forms. Each case in turn:
 
 **For a [Bundled rule]**, the [Detector] supplies the documentation and the
 lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier]
