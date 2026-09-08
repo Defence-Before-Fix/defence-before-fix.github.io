@@ -1012,6 +1012,6 @@ This appendix restates sections 3 and 4; where the two differ, the sections gove
 
 ## Changelog
 
-| Version | Date          | Change                                                                                                                                                                                                                        |
-| ------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.0.0   | (unpublished) | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls. |
+| Version | Date       | Change                                                                                                                                                                                                                        |
+| ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls. |

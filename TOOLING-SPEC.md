@@ -1,6 +1,6 @@
 # Defence Before Fix: Toolchain Specification
 
-**Version**: 0.1.0 (draft)
+**Version**: 0.1.0, published 2026-09-08
 **Companion to**: [the method specification](SPEC.md), version 1.0.0
 **Author**: Joseph Edmonds
 
