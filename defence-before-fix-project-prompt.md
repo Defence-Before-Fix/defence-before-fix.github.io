@@ -69,7 +69,7 @@ Only then fix the original Defect in the normal way, with a test that reproduces
 - Changelog: https://defence-before-fix.github.io/raw/CHANGELOG.md
 - Index of everything: https://defence-before-fix.github.io/llms.txt (and https://defence-before-fix.github.io/llms-full.txt for all of it in one file)
 
-The rendered site is https://defence-before-fix.github.io/. The US spelling, Defense Before Fix, is the same method.
+The rendered site is https://defence-before-fix.github.io/. The US spelling, Defense Before Fix, is the same method; DBF is the short form of both.
 
 ## What to expect from the toolchain
 

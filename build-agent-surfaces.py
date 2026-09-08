@@ -66,7 +66,7 @@ where they differ. Read it once at the start of a task that involves fixing a de
 - Changelog: {c}/raw/CHANGELOG.md
 - Index of everything: {c}/llms.txt (and {c}/llms-full.txt for all of it in one file)
 
-The rendered site is {c}/. The US spelling, Defense Before Fix, is the same method.
+The rendered site is {c}/. The US spelling, Defense Before Fix, is the same method; DBF is the short form of both.
 
 ## What to expect from the toolchain
 

@@ -5,7 +5,7 @@ permalink: /tools/
 
 # Tools and Defence Before Fix (DBF)
 
-A register of QA tools graded against the method. Each tool has a page saying how it is and is
+A register of QA tools graded against DBF. Each tool has a page saying how it is and is
 not conformant, clause by clause against [the toolchain specification](../TOOLING-SPEC.md).
 
 **Readiness** asks whether a practitioner can follow the six clauses of

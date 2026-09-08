@@ -45,7 +45,7 @@ version.
 | [Changelog](CHANGELOG.md)                      | Changes to each document, versioned independently.            |         |
 
 The method specification is the source of truth for what the method is. Where anything else
-describing Defence Before Fix disagrees with it, including the article in which the term was first
+describing DBF disagrees with it, including the article in which the term was first
 published, the specification is correct. The two documents are versioned independently, so a
 toolchain clause can be added without reissuing the method.
 
@@ -74,7 +74,7 @@ here is what the method now is.
 
 ## If you are an agent
 
-Read [the project prompt](defence-before-fix-project-prompt.md), raw markdown generated from the
+DBF is written to be followed by agents as much as by people. Read [the project prompt](defence-before-fix-project-prompt.md), raw markdown generated from the
 specification's appendix on instructing an agent: the method in the form to follow when you find
 a defect, where the raw documents are, what a conforming toolchain gives you, and how a project
 declares the version it follows. [llms.txt](llms.txt) indexes everything on this site, and every

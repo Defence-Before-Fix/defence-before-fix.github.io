@@ -87,7 +87,7 @@ Worth saying clearly, because the name invites the misunderstanding.
 
 You still reproduce the original bug with a test and you still prove it fixed. That is ordinary
 TDD and it is doing an ordinary and necessary job, which is to pin down one specific behaviour
-so it stays pinned. Defence Before Fix operates a level above that, on the class rather than the
+so it stays pinned. DBF operates a level above that, on the class rather than the
 instance, and the two are complementary rather than alternatives.
 
 The ordering in the name is the whole point. The defence comes before the fix, because after the
@@ -116,7 +116,7 @@ If you maintain a linter, a static analyser or a QA pipeline that other people i
 to offer so that the projects using it can follow the method at all, which turns out to be a
 different list from the one the method itself gives.
 
-*Defence Before Fix was coined by [Joseph Edmonds](https://ltscommerce.dev) of
+*DBF was coined by [Joseph Edmonds](https://ltscommerce.dev) of
 [Edmonds Commerce](https://edmondscommerce.co.uk) and first published on
 22 February 2026. US spelling: Defense Before Fix. If you want the detail of what is and is not
 being claimed, it is in [provenance](PROVENANCE.md).*
