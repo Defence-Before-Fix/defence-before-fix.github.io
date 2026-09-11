@@ -196,6 +196,20 @@ mechanism gap under clause 3.2, and the [Rule] is still built. The attempt that 
 from the second is complete when the [Practitioner] has checked the [Detectors] the project already
 runs and the language's own [Detector] ecosystem for an extension point, and found none.
 
+**Deferring the fix is not one of them.** A [Defect] whose fix is postponed has not left the
+method's scope; the judgement this section calls for is simply owed later, whenever the fix
+happens. A [Practitioner] who finds a [Defect] and does not fix it now MUST record it where the
+project's decisions are enumerable under clause 8.7, naming the [Class] if one is already
+apparent. Reporting it in conversation does not satisfy this: the conversation ends, and with it
+the only trace that the [Defect] was ever seen.
+
+**Why**: each of the three ways out costs the [Practitioner] something to take, and each leaves
+something an [Owner] can read — a recorded sentence naming two techniques tried, or a [Toolchain]
+gap. Deferral costs nothing and leaves nothing, which makes it the cheapest way past the method
+and the only one invisible from outside. A [Defect] mentioned once and never written down cannot
+be told apart from a [Defect] nobody found, so neither the [Class] nor the [Coverage] it implies
+is ever reached.
+
 ## 3. The method
 
 Six clauses, in order. In brief, before the detail:
