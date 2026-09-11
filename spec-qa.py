@@ -31,6 +31,12 @@ Findings:
 Over every other page that talks about the specifications (tools/clauses.py lists them):
   unlinked-clause    a clause or section number outside a link to its heading
   dead-clause-link   a link into a specification whose fragment is no heading there
+
+Three further modules under tools/ run here and document their own findings: style.py
+(house style: dashes, spellings, heading sequence), versions.py (every written version
+agrees, and the latest published one records its cohort) and keys.py (the acceptance
+keys quote the current documents). A fourth, changes.py, compares against a base
+revision and runs on its own in CI, since it needs the pull request's base.
 """
 
 from __future__ import annotations
@@ -41,6 +47,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "tools"))
 import clauses
+import keys
+import style
+import versions
 
 DOCS = ["SPEC.md", "DETECTOR-SPEC.md", "TOOLING-SPEC.md"]
 # A document links a parent's terms as PARENT.md#slug; parents are searched in order.
@@ -219,6 +228,10 @@ def check(here: Path) -> list[str]:
     for page in clauses.pages():
         for f in clauses.page_findings(page):
             findings.append(f"{page}:{f.line}: {f.kind} — {f.detail}")
+    for doc in DOCS:
+        findings += style.check_text(doc, texts[doc])
+    findings += versions.check(here)
+    findings += keys.check(here)
     return findings
 
 

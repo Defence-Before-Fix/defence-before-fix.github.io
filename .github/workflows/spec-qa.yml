@@ -7,13 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: The clause link checker's own tests
-        run: python3 -m unittest tools/test_clauses.py
-      - name: Terminology, link and clause-link discipline over the specifications and every page
+      - name: The checkers' own tests
+        run: python3 -m unittest discover -s tools -p 'test_*.py'
+      - name: Terminology, links, clause links, house style, version agreement and key quotations
         run: python3 spec-qa.py
+      - name: A changed specification carries a changelog entry, and a changed obligation a version
+        if: github.event_name == 'pull_request'
+        run: python3 tools/changes.py --base "origin/${{ github.base_ref }}"
       - name: The tools register table and JSON match the tool pages
         run: python3 tools/build-register.py --check
       - name: The agent surfaces match the specification and the metadata
