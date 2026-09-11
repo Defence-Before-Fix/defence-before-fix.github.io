@@ -29,4 +29,7 @@
 
 ## Findings applied
 
-None required. Single-reader miss recorded above.
+None required. Single-reader miss recorded above. After this run the header, status paragraph
+and citation moved to 1.1.0-dev, which changes no normative text; the independent review of the
+editor's branch then asked for two wording edits in section 2 and the Appendix A framing line,
+which did, so run 18 followed.

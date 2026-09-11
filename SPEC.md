@@ -197,7 +197,7 @@ from the second is complete when the [Practitioner] has checked the [Detectors] 
 runs and the language's own [Detector] ecosystem for an extension point, and found none.
 
 **Deferring the fix is not a fourth.** A [Defect] whose fix is postponed has not left the
-method's scope; the attempt this section requires is owed when the fix is taken up. A
+method; the attempt this section requires is owed when the fix is taken up. A
 [Practitioner] who finds a [Defect] and does not fix it now MUST record it where the project's
 other decisions are enumerable under clause 8.7, naming the [Class] where one is already
 apparent. Whether it stays unfixed is the [Owner]'s decision under section 4; the record is what
@@ -1042,7 +1042,7 @@ re-open it.
 ## Appendix A: Instructing an agent
 
 Where an [Agent] is expected to follow this method, give it the clauses rather than the article.
-This appendix restates sections 3 and 4; where the two differ, the sections govern.
+This appendix restates sections 2 to 4; where the two differ, the sections govern.
 
 > When you find a [Defect] of any kind, do not fix it yet.
 >
