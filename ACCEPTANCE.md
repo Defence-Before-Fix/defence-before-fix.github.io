@@ -3,9 +3,8 @@
 Every change to `SPEC.md`, `DETECTOR-SPEC.md` or `TOOLING-SPEC.md` MUST pass this test before it
 is merged to `next`, and so before it is published. It is the specifications' own defence: a
 document that only a strong reader can follow is not a specification, and the readers that
-matter most, coding agents meeting the method
-in a failing pipeline, are often the weakest. The test is run with a low-strength model so that
-clarity is measured at the floor, not the ceiling.
+matter most, coding agents meeting the method in a failing pipeline, are often the weakest. The
+test is run with a low-strength model so that clarity is measured at the floor, not the ceiling.
 
 ## The cohort
 
