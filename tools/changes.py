@@ -159,7 +159,7 @@ def working_tree(root: Path) -> dict[str, str]:
 
 def added_files(base: str, root: Path) -> list[str]:
     """Paths added since base, in the index and the working tree."""
-    r = subprocess.run(["git", "diff", "--name-only", "--diff-filter=A", base], cwd=root, capture_output=True, text=True, check=True)
+    r = subprocess.run(["git", "diff", "--name-only", "--no-renames", "--diff-filter=A", base], cwd=root, capture_output=True, text=True, check=True)
     tracked = r.stdout.split()
     u = subprocess.run(["git", "ls-files", "--others", "--exclude-standard"], cwd=root, capture_output=True, text=True, check=True)
     return sorted(set(tracked + u.stdout.split()))

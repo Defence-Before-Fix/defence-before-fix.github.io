@@ -39,8 +39,9 @@ A release, in order:
    is patch for clarity only, minor for a new or changed obligation, major for a change that
    makes a conforming remediation non-conforming.
 3. Run `python3 spec-qa.py` and the unit tests; both must be clean.
-4. Merge the release branch into `main` by merge commit, tag `v<version>` on `main`, and delete
-   the release branch.
+4. Open a pull request from the release branch to `main`, since direct pushes are refused; CI
+   sees the run files that arrived on `next` and passes. Merge it by merge commit, tag
+   `v<version>` on `main`, and delete the release branch.
 5. Merge `main` back into `next` and push it directly, so the version lines and changelog land
    there. This is the one push to `next` that does not go through a pull request; branch
    protection exempts administrators for it, and a pull request would fail the run-record check

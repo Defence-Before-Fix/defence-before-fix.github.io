@@ -1,8 +1,9 @@
 # Acceptance test for changes to the specifications
 
 Every change to `SPEC.md`, `DETECTOR-SPEC.md` or `TOOLING-SPEC.md` MUST pass this test before it
-is merged to `next`, and so before it is published. It is the specifications' own defence: a document that only a strong reader can
-follow is not a specification, and the readers that matter most, coding agents meeting the method
+is merged to `next`, and so before it is published. It is the specifications' own defence: a
+document that only a strong reader can follow is not a specification, and the readers that
+matter most, coding agents meeting the method
 in a failing pipeline, are often the weakest. The test is run with a low-strength model so that
 clarity is measured at the floor, not the ceiling.
 
@@ -109,7 +110,8 @@ Each run has a file under `acceptance/runs/`, named `NNN-<slug>.md` with `NNN` t
 the one sequence shared by the three documents, stating: the document, the pull request and the
 commit read, the cohort size and model, the run number in that pull request, the marks per
 reader per question, the findings applied, and whether it passed. The changelog line for the
-change names the file. CI refuses a specification change whose pull request adds no run file.
+change names the file. CI refuses a specification change whose pull request adds no run file;
+it checks for at least one, and a pull request that changes two documents adds a run for each.
 
 Each published version's changelog entry carries the lines of the changes it contains, so a
 version's cohort record is the set of runs those lines name. A version with no such line has not

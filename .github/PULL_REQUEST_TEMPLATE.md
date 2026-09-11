@@ -10,7 +10,7 @@
 
 ## Kind of change
 
-- [ ] Clarity edit: no MUST, SHOULD or MAY added, removed or changed
+- [ ] Clarity edit: no MUST, SHOULD or MAY added or removed; a reword that keeps the keyword and most of the words counts as clarity
 - [ ] Obligation: the five tests below are answered
 
 ## The five scope tests (obligations only)

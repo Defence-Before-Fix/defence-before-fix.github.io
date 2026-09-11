@@ -2,7 +2,8 @@
 
 The question sets and answer keys that [ACCEPTANCE.md](../ACCEPTANCE.md) requires. One directory per
 specification document, each holding the fixed questions a cold reader answers and the key an
-editor marks against. The fixture cases the application question uses live in `fixtures/`.
+editor marks against. The fixture cases the application question uses live in `fixtures/`, and
+the record of every run lives in `runs/`.
 
 | Document           | Questions                                        | Key                                  |
 | ------------------ | ------------------------------------------------ | ------------------------------------ |
@@ -18,9 +19,10 @@ editor marks against. The fixture cases the application question uses live in `f
    critique findings, no other reader's answers.
 3. The editor marks each answer sheet against `KEY.md` and applies the pass criteria in
    `ACCEPTANCE.md`.
-4. The result is recorded in the changelog entry for the version, with cohort size, model, run
-   count and the findings applied. A run that fails is followed by a change to the text, never to
-   the questions, and a fresh cohort.
+4. The result is recorded as a file under [runs/](runs/), with cohort size, model, run number,
+   marks and the findings applied, and the change's `Unreleased` changelog line names that file.
+   A run that fails is followed by a change to the text, never to the questions, and a fresh
+   cohort.
 
 ## Keeping the keys honest
 

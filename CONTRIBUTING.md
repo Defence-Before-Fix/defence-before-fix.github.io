@@ -47,7 +47,10 @@ the normal outcome, not a criticism. If the substance survives, the change is yo
 ## What happens next, in order
 
 1. **Mechanical checks in CI.** Terminology and link discipline, house style, version agreement,
-   key quotations, and the change discipline in `tools/changes.py`. A red check blocks review.
+   key quotations, and the change discipline in `tools/changes.py`. A red check blocks review,
+   with two expected exceptions that clear at step 5: `change-unaccepted`, since the run record
+   does not exist yet, and `change-unversioned` on the first obligation after a release, since
+   the editor sets the pre-release header.
 2. **Scope.** For an obligation, the editor confirms each SCOPE.md test. A failed test closes the
    pull request with a row in `DECLINED.md`.
 3. **Review and rewrite.** An independent review of the diff against the document, then the
@@ -56,9 +59,10 @@ the normal outcome, not a criticism. If the substance survives, the change is yo
 4. **Keys.** Where the change touches a sentence an acceptance key quotes, or adds a load-bearing
    obligation, the editor updates the key before the cohort runs, never after.
 5. **The cohort.** The acceptance test in ACCEPTANCE.md runs on the final text. Its record is
-   committed under `acceptance/runs/` and named from the `Unreleased` changelog line, and CI
-   refuses a specification change that lacks one. A wording change after the run means a fresh
-   run.
+   committed under `acceptance/runs/`, the `Unreleased` changelog line names it, and CI refuses
+   a specification change that lacks one. For an obligation, the editor sets the document's
+   header to `<next version>-dev, unpublished` in the same commit if it still names a published
+   version. A wording change after the run means a fresh run.
 6. **Merge** into `next` by merge commit, and the branch is deleted.
 
 Steps 2 to 5 are done by a person with a Claude Code session, not by CI, and they happen in
