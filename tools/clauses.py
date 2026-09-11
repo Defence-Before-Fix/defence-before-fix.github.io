@@ -58,6 +58,17 @@ def anchor(heading: str) -> str:
     return NON_ID.sub("", text).replace(" ", "-")
 
 
+ANY_LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)|\[([^\]]+)\](?:\[[^\]]*\])?")
+
+
+def flatten(text: str) -> str:
+    """The prose as a reader sees it: link syntax reduced to its text, emphasis markers
+    dropped, whitespace collapsed to single spaces."""
+    text = ANY_LINK.sub(lambda m: m.group(1) or m.group(2), text)
+    text = text.replace("**", "").replace("*", "")
+    return re.sub(r"\s+", " ", text).strip()
+
+
 @lru_cache(maxsize=None)
 def headings() -> dict[str, dict[str, str]]:
     """{doc: {number: anchor}} for every numbered section and clause heading."""
@@ -196,6 +207,9 @@ PAGE_DEFAULTS = {
     "PROVENANCE.md": "method",
     "PUBLISHING.md": "method",
     "ACCEPTANCE.md": "method",
+    "CONTRIBUTING.md": "method",
+    "SCOPE.md": "method",
+    "DECLINED.md": "method",
     "CHANGELOG.md": "method",
     "acceptance/README.md": "method",
     "acceptance/method/QUESTIONS.md": "method",
