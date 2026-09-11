@@ -1,6 +1,6 @@
 # Defence Before Fix: Method Specification
 
-**Version**: 1.0.1, published 2026-09-08
+**Version**: 1.1.0-dev, unpublished
 **Companion to**: [the detector specification](DETECTOR-SPEC.md), version 1.0.0, and [the toolchain specification](TOOLING-SPEC.md), version 0.2.0
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
@@ -29,7 +29,7 @@ US spelling: **Defense Before Fix**. Abbreviated [DBF] throughout.
 
 ## Status of this document
 
-This is version 1.0.1 of the specification. It is normative: section 3 defines the method,
+This is version 1.1.0-dev of the specification, the editor's draft after 1.0.1. It is normative: section 3 defines the method,
 section 4 states who decides what, and section 7 defines what [Conformance] means and who may claim
 it.
 
@@ -1036,7 +1036,7 @@ re-open it.
 
 ## 9. Citation
 
-> Edmonds, Joseph. *Defence Before Fix*, version 1.0.1. First published 22 February 2026.
+> Edmonds, Joseph. *Defence Before Fix*, version 1.1.0-dev. First published 22 February 2026.
 > <https://ltscommerce.dev>
 
 ## Appendix A: Instructing an agent

@@ -10,6 +10,19 @@ version entry with no cohort line has not been accepted and is not published.
 
 ## Method specification (SPEC.md)
 
+### Unreleased
+
+- New obligation, section [2](SPEC.md#2-when-the-method-applies): a defect whose fix is deferred MUST be recorded where the project's
+  other decisions are enumerable under clause [8.7](SPEC.md#87-recorded-project-decisions-must-be-discoverable-by-the-same-means), naming the class where apparent; whether it
+  stays unfixed is the owner's decision under section [4](SPEC.md#4-authority-which-decisions-belong-to-whom), and a mention in conversation is not a
+  record. Appendix A carries the agent-facing sentence. Proposed in pull request 5 by an outside
+  contributor after three defects reported in chat went unrecorded; rewritten by the editor.
+  Section [7](SPEC.md#7-conformance)'s definition of a conforming remediation now names reproduction in the same sentence,
+  after run 16 had two readers stop at the six-clause condition. Accepted by a cold cohort of
+  five Haiku readers in two runs: [run 16](acceptance/runs/016-deferral-clause-run-1.md) failed on
+  load-bearing statement 2c, [run 17](acceptance/runs/017-deferral-clause-run-2.md) passed with one
+  single-reader miss on the defence's conformance. Minor version when released.
+
 ### 1.0.1, 2026-09-08
 
 Clarity only; no obligation changed. Section [3](SPEC.md#3-the-method) opens with a map of the six clauses, with a column

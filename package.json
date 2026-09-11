@@ -1,6 +1,6 @@
 {
   "name": "@longtermsupport/defence-before-fix",
-  "version": "1.0.1",
+  "version": "1.1.0-dev",
   "description": "Defence Before Fix: the method and toolchain specifications. Documentation only.",
   "license": "CC-BY-4.0",
   "author": "Joseph Edmonds (https://ltscommerce.dev)",
