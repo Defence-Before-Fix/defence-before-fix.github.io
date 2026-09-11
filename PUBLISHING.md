@@ -20,7 +20,34 @@ Two docs-only packages, one per registry, so that a toolchain can depend on the 
 conforms to and a lock file records the version. Both are published by Joseph; nothing here runs
 without his credentials.
 
-## Versions
+## Branches and releases
+
+`next` is the editor's draft and takes every pull request, each already accepted by the cohort as
+`ACCEPTANCE.md` and `CONTRIBUTING.md` describe. `main` is what the site serves and what the
+registries see, and only a release branch is merged into it. Versions are set at release, not per
+change: whilst `next` carries unreleased changes to a document, that document's header reads
+`<next version>-dev, unpublished` and `CHANGELOG.md` has an `Unreleased` entry for it.
+`tools/versions.py` holds every version line to that.
+
+A release, in order:
+
+1. Cut `release/<version>` from `next`. No specification text changes on it; if one is needed, it
+   goes through `next` as a pull request with its own cohort.
+2. Set the version and date in each changed document's header, status paragraph, citation and
+   closing table, and in `package.json` for the method specification. The `Unreleased` heading
+   becomes `### <version>, <date>` and its lines stay as the version's cohort record. A version
+   is patch for clarity only, minor for a new or changed obligation, major for a change that
+   makes a conforming remediation non-conforming.
+3. Run `python3 spec-qa.py` and the unit tests; both must be clean.
+4. Merge the release branch into `main` by merge commit, tag `v<version>` on `main`, and delete
+   the release branch.
+5. Merge `main` back into `next` and push it directly, so the version lines and changelog land
+   there. This is the one push to `next` that does not go through a pull request; branch
+   protection exempts administrators for it, and a pull request would fail the run-record check
+   since the merge adds no run of its own.
+6. Publish the packages as below.
+
+## Versions in the packages
 
 The npm package version tracks the method specification (`SPEC.md`). The toolchain specification
 carries its own version inside the document and in `CHANGELOG.md`; it is not a separate package.

@@ -3,6 +3,11 @@
 Three documents, versioned independently. A detector or toolchain clause can be added without
 reissuing the method.
 
+Changes merged to `next` and not yet released sit under an `Unreleased` heading for their
+document, one line per change naming the acceptance run under `acceptance/runs/` that accepted
+it. At release the heading becomes the version and date, and the lines stay as its record. A
+version entry with no cohort line has not been accepted and is not published.
+
 ## Method specification (SPEC.md)
 
 ### 1.0.1, 2026-09-08
