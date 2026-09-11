@@ -16,6 +16,8 @@ bullet asserting an obligation the document does not state, is a correct restate
 - Make the rule permanent and blocking in the project's checks ([3.5](../../SPEC.md#35-enforce-permanently-and-block)).
 - Make the failure message terse, with a stable identifier resolving to documentation versioned
   with the rule ([3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)).
+- Record a defect whose fix is deferred where the project's other decisions are enumerable, rather
+  than only mentioning it (section [2](../../SPEC.md#2-when-the-method-applies)).
 
 Wrong if it asserts: the practitioner fixes the reported instance first and defends afterwards;
 a test may serve as the detector; an agent may baseline the remaining instances.
@@ -35,20 +37,22 @@ a test may serve as the detector; an agent may baseline the remaining instances.
   default owner paragraph in the terminology entry for Owner still requires a recorded decision).
 - **2c.** All six clauses of section [3](../../SPEC.md#3-the-method) were followed for that defect, and the verdict rests on the
   reviewer reproducing the red and green runs, not on the report. Key quotations, section [7](../../SPEC.md#7-conformance): "A
-  remediation Conforms if all six clauses of section [3](../../SPEC.md#3-the-method) were followed for that Defect."; "A
-  verdict on a remediation or a Defence MUST rest on reproduction, not on the report". An answer
-  that accepts the pull request description as the verdict is wrong.
+  remediation Conforms if all six clauses of section [3](../../SPEC.md#3-the-method) were followed for that Defect, and the
+  verdict that they were rests on reproduction"; "A verdict on a remediation or a Defence MUST
+  rest on reproduction, not on the report". An answer that accepts the pull request description
+  as the verdict is wrong, and so is one that states the six clauses and says nothing of
+  reproduction.
 
 ## 3. Application: the ledger remediation
 
-| Clause | Intended verdict   | Reasoning the fixture supports                                                                                                                                                                             |
-| ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)    | Yes, Partial or No | Class, hazard and the next wider rule are named; Partial or No is accepted where the reader notes that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for |
-| [3.2](../../SPEC.md#32-build-the-net)    | Yes                | A rule in the project's static analyser, reading code, not a test                                                                                                                                          |
-| [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)    | Yes                | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                 |
-| [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)    | No or Partial      | Five findings recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority; Partial accepted where the reasoning names that suppression                                |
-| [3.5](../../SPEC.md#35-enforce-permanently-and-block)    | Partial or No      | The rule is permanent and blocking, but the suppression was not a recorded decision; [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers"                  |
-| [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)    | No or Partial      | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule; Partial accepted where the reasoning quotes the versioning sentence                    |
+| Clause                                                                                    | Intended verdict   | Reasoning the fixture supports                                                                                                                                                                                                                                 |
+| ----------------------------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)                                   | Yes, Partial or No | Class, hazard and the next wider rule are named; Partial or No is accepted where the reader notes that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for |
+| [3.2](../../SPEC.md#32-build-the-net)                                                     | Yes                | A rule in the project's static analyser, reading code, not a test                                                                                                                                                                                              |
+| [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)                             | Yes                | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                                                                     |
+| [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)                        | No or Partial      | Five findings recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority; Partial accepted where the reasoning names that suppression                                                                                    |
+| [3.5](../../SPEC.md#35-enforce-permanently-and-block)                                     | Partial or No      | The rule is permanent and blocking, but the suppression was not a recorded decision; [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers"                    |
+| [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) | No or Partial      | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule; Partial accepted where the reasoning quotes the versioning sentence                                                                        |
 
 Section [7](../../SPEC.md#7-conformance): the **remediation does not conform**, because [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) and [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) were not followed. The
 **defence does not conform** either, because [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) fails; a reader who says the defence conforms

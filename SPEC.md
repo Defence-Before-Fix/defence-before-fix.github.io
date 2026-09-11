@@ -890,7 +890,9 @@ evidence is gone and the opportunity closes with it.
 [Conformance] is claimed at one of four levels. Partial [Conformance] MUST NOT be described as
 [Conformance].
 
-**A remediation [Conforms]** if all six clauses of section 3 were followed for that [Defect].
+**A remediation [Conforms]** if all six clauses of section 3 were followed for that [Defect], and
+the verdict that they were rests on reproduction, as this section closes by requiring, not on the
+report.
 
 **A [Defence] [Conforms]** if it satisfies clauses 3.1, 3.2, 3.3, 3.5 and 3.6: it is drawn to a
 [Class] within both bounds and not to the reported [Instance], it is evaluated by reading code, it
