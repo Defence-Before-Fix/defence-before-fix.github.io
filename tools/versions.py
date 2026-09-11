@@ -16,8 +16,10 @@ Findings:
   version-changelog   CHANGELOG.md's latest entry for the document is not the header version and date,
                       or a pre-release version has no Unreleased entry
   version-unaccepted  the latest published entry has no cohort record, so it is not published
-  version-package     package.json's version is not the method specification's
+  version-package     package.json's version, or composer.json's if it carries one, is not the
+                      method specification's (Packagist reads tags, so composer.json normally has none)
   version-prerelease  a pre-release version claims a publication date
+  manifest-drift      package.json and composer.json disagree on description, licence, homepage or keywords
 """
 
 from __future__ import annotations
@@ -37,6 +39,8 @@ TABLE_ROW = re.compile(rf"^\| ({VERSION})\s+\| (\d{{4}}-\d{{2}}-\d{{2}}) \|", re
 CHANGELOG_DOC = re.compile(r"^## .*\((SPEC\.md|DETECTOR-SPEC\.md|TOOLING-SPEC\.md)\)\s*$", re.M)
 CHANGELOG_ENTRY = re.compile(rf"^### (?:({VERSION}), (\d{{4}}-\d{{2}}-\d{{2}})|(Unreleased))\s*$", re.M)
 COHORT = re.compile(r"\bcohort\b", re.I)
+MANIFESTS = ["package.json", "composer.json"]
+SHARED_FIELDS = ["description", "license", "homepage", "keywords"]
 FINDING_KIND = re.compile(r": ([a-z-]+)( |—|$)")
 
 
@@ -143,9 +147,15 @@ def check(root: Path) -> list[str]:
     for d, head in heads.items():
         out += check_changelog(d, head, entries.get(d, []))
 
-    package = root / "package.json"
-    if package.exists() and "SPEC.md" in versions:
-        pv = json.loads(package.read_text()).get("version")
-        if pv != versions["SPEC.md"]:
-            out.append(f"package.json: version-package — {pv}, but SPEC.md is {versions['SPEC.md']}")
+    manifests = {m: json.loads((root / m).read_text()) for m in MANIFESTS if (root / m).exists()}
+    if "SPEC.md" in versions:
+        for name, data in manifests.items():
+            pv = data.get("version")
+            if (name == "package.json" or pv is not None) and pv != versions["SPEC.md"]:
+                out.append(f"{name}: version-package — {pv}, but SPEC.md is {versions['SPEC.md']}")
+    if len(manifests) == 2:
+        pkg, composer = manifests["package.json"], manifests["composer.json"]
+        for field in SHARED_FIELDS:
+            if pkg.get(field) != composer.get(field):
+                out.append(f"composer.json: manifest-drift — {field} differs from package.json")
     return out

@@ -78,7 +78,9 @@ def write_repo(root: Path, *, spec_v="1.0.1", cite=None, table=None, pkg=None, c
     (root / "DETECTOR-SPEC.md").write_text(DETECTOR.format(v="1.0.0", d="2026-09-08", mv=spec_v, tv="0.2.0"))
     (root / "TOOLING-SPEC.md").write_text(TOOLING.format(v="0.2.0", d="2026-09-08", mv=spec_v, dv="1.0.0"))
     (root / "CHANGELOG.md").write_text(changelog or CHANGELOG.format(mv=spec_v, dv="1.0.0", tv="0.2.0", d=spec_date))
-    (root / "package.json").write_text(json.dumps({"name": "x", "version": pkg or spec_v}))
+    manifest = {"description": "Spec.", "license": "CC-BY-4.0", "homepage": "https://x", "keywords": ["a", "b"]}
+    (root / "package.json").write_text(json.dumps({"name": "@x/y", "version": pkg or spec_v, **manifest}))
+    (root / "composer.json").write_text(json.dumps({"name": "x/y", **manifest}))
 
 
 def kinds(findings: list[str]) -> list[str]:
@@ -107,6 +109,25 @@ class DriftTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             write_repo(Path(d), pkg="1.0.0")
             self.assertEqual(kinds(versions.check(Path(d))), ["version-package"])
+
+    def test_composer_version_if_present_must_match(self) -> None:
+        with tempfile.TemporaryDirectory() as d:
+            write_repo(Path(d))
+            c = json.loads(Path(d, "composer.json").read_text())
+            c["version"] = "1.0.0"
+            Path(d, "composer.json").write_text(json.dumps(c))
+            self.assertEqual(kinds(versions.check(Path(d))), ["version-package"])
+
+    def test_manifests_must_agree_on_shared_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as d:
+            write_repo(Path(d))
+            c = json.loads(Path(d, "composer.json").read_text())
+            c["license"] = "MIT"
+            c["keywords"] = ["a"]
+            Path(d, "composer.json").write_text(json.dumps(c))
+            f = versions.check(Path(d))
+            self.assertEqual(kinds(f), ["manifest-drift", "manifest-drift"])
+            self.assertIn("license", f[0] + f[1])
 
     def test_companion_drift(self) -> None:
         with tempfile.TemporaryDirectory() as d:
