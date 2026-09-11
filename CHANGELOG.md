@@ -19,9 +19,11 @@ version entry with no cohort line has not been accepted and is not published.
   contributor after three defects reported in chat went unrecorded; rewritten by the editor.
   Section [7](SPEC.md#7-conformance)'s definition of a conforming remediation now names reproduction in the same sentence,
   after run 16 had two readers stop at the six-clause condition. Accepted by a cold cohort of
-  five Haiku readers in two runs: [run 16](acceptance/runs/016-deferral-clause-run-1.md) failed on
-  load-bearing statement 2c, [run 17](acceptance/runs/017-deferral-clause-run-2.md) passed with one
-  single-reader miss on the defence's conformance. Minor version when released.
+  five Haiku readers in three runs: [run 16](acceptance/runs/016-deferral-clause-run-1.md) failed
+  on load-bearing statement 2c, [run 17](acceptance/runs/017-deferral-clause-run-2.md) passed with
+  one single-reader miss on the defence's conformance, and after two wording edits from review
+  [run 18](acceptance/runs/018-deferral-clause-run-3.md) passed with every item five of five.
+  Minor version when released.
 
 ### 1.0.1, 2026-09-08
 
