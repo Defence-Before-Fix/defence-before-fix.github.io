@@ -54,12 +54,18 @@ def overlap(a: str, b: str) -> float:
     return len(wa & wb) / len(wa | wb) if wa | wb else 1.0
 
 
+def keywords(sentence: str) -> list[str]:
+    return KEYWORD.findall(sentence)
+
+
 def pair_rewords(added: list[str], removed: list[str]) -> tuple[list[str], list[str]]:
-    """Strip from both lists every added sentence that is a rewording of a removed one."""
+    """Strip from both lists every added sentence that is a rewording of a removed one: the
+    same RFC 2119 keywords, and most of the same words. A keyword flip is never a reword."""
     left_removed = list(removed)
     left_added = []
     for s in added:
-        best = max(left_removed, key=lambda r: overlap(s, r), default=None)
+        candidates = [r for r in left_removed if keywords(r) == keywords(s)]
+        best = max(candidates, key=lambda r: overlap(s, r), default=None)
         if best is not None and overlap(s, best) >= REWORD_OVERLAP:
             left_removed.remove(best)
         else:

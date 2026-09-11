@@ -91,6 +91,12 @@ class ChangeSetTest(unittest.TestCase):
         f = changes.check_set(base={"SPEC.md": BASE, "CHANGELOG.md": "old"}, head={"SPEC.md": head, "CHANGELOG.md": "old\nnew"})
         self.assertEqual(kinds(f), ["change-unversioned", "change-unversioned"])
 
+    def test_flipping_the_keyword_is_not_a_reword(self) -> None:
+        for flipped in ("MUST NOT name", "SHOULD name", "MAY name"):
+            head = BASE.replace("MUST name the [Class]", f"{flipped} the [Class]")
+            f = changes.check_set(base={"SPEC.md": BASE, "CHANGELOG.md": "old"}, head={"SPEC.md": head, "CHANGELOG.md": "old\nnew"})
+            self.assertEqual(kinds(f), ["change-unversioned", "change-unversioned"], flipped)
+
     def test_sentences_starting_with_a_digit_or_code_split(self) -> None:
         self.assertEqual(
             changes.normative_sentences("## 1. X\n\nThe x MUST hold. 2 rules MUST run. `y` MAY stop.\n"),
