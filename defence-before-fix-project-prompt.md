@@ -46,6 +46,9 @@ the standing answer is no unless a human has already agreed and documented an Ex
 project. If you hit one, finish everything else, then report the count and what fixing it would
 take, and leave the Rule unmerged rather than merging it weakened.
 
+A Defect you find and do not fix now is recorded where the project keeps its other decisions,
+naming the Class if you can already see it. Mentioning it in your output is not a record.
+
 If you are unsure whether code you want to exclude carries the Hazard, you are suppressing it, so
 refer it upwards rather than deciding. Narrow only where you are confident.
 
