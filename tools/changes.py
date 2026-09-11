@@ -7,10 +7,13 @@ normative sentences, the ones carrying an RFC 2119 keyword inside a numbered sec
 appendix, is a new or removed obligation and needs the version bumped or marked as a
 pre-release, since the published version is the accepted one.
 
+A reworded obligation is one whose sentence still shares most of its words with a
+sentence that was there before; it needs no bump, and keys.py catches the stale
+quotation if the key still carries the old words.
+
 Findings:
-  change-unlogged             a specification changed and CHANGELOG.md did not
-  change-unversioned          an obligation was added or removed on a published version
-  change-obligation-reworded  an obligation's sentence changed; the acceptance key may quote it
+  change-unlogged      a specification changed and CHANGELOG.md did not
+  change-unversioned   an obligation was added or removed on a published version
 
     changes.py --base origin/main    compare the working tree with that revision
 """
@@ -22,16 +25,18 @@ import subprocess
 import sys
 from pathlib import Path
 
+import clauses
+
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ["SPEC.md", "DETECTOR-SPEC.md", "TOOLING-SPEC.md"]
 TRACKED = DOCS + ["CHANGELOG.md"]
 KEYWORD = re.compile(r"\b(MUST NOT|MUST|SHOULD NOT|SHOULD|MAY)\b")
 NUMBERED = re.compile(r"^## (\d+\.|Appendix)")
 SECTION = re.compile(r"^## ")
-LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)|\[([^\]]+)\](?:\[[^\]]*\])?")
-SENTENCE = re.compile(r"(?<=[.!?])\s+(?=[A-Z\[*])")
+SENTENCE = re.compile(r"(?<=[.!?])\s+(?=[A-Z\[*0-9`])")
 HEADER = re.compile(r"^\*\*Version\*\*: (\S+?),", re.M)
 FINDING_KIND = re.compile(r": ([a-z-]+)( |—|$)")
+REWORD_OVERLAP = 0.6
 
 
 def kind_of(finding: str) -> str:
@@ -40,8 +45,26 @@ def kind_of(finding: str) -> str:
 
 
 def flatten(text: str) -> str:
-    text = LINK.sub(lambda m: m.group(1) or m.group(2), text)
-    return re.sub(r"\s+", " ", text).strip()
+    return clauses.flatten(text)
+
+
+def overlap(a: str, b: str) -> float:
+    """Jaccard similarity of the two sentences' word sets."""
+    wa, wb = set(re.findall(r"\w+", a.lower())), set(re.findall(r"\w+", b.lower()))
+    return len(wa & wb) / len(wa | wb) if wa | wb else 1.0
+
+
+def pair_rewords(added: list[str], removed: list[str]) -> tuple[list[str], list[str]]:
+    """Strip from both lists every added sentence that is a rewording of a removed one."""
+    left_removed = list(removed)
+    left_added = []
+    for s in added:
+        best = max(left_removed, key=lambda r: overlap(s, r), default=None)
+        if best is not None and overlap(s, best) >= REWORD_OVERLAP:
+            left_removed.remove(best)
+        else:
+            left_added.append(s)
+    return left_added, left_removed
 
 
 def normative_sentences(text: str) -> list[str]:
@@ -92,17 +115,12 @@ def check_set(base: dict[str, str], head: dict[str, str]) -> list[str]:
     for d in changed:
         before = normative_sentences(base.get(d, ""))
         after = normative_sentences(head.get(d, ""))
-        added = [s for s in after if s not in before]
-        removed = [s for s in before if s not in after]
+        added, removed = pair_rewords([s for s in after if s not in before], [s for s in before if s not in after])
         if not added and not removed:
             continue
         version = version_of(head.get(d, ""))
         base_version = version_of(base.get(d, ""))
         bumped = version != base_version or (version is not None and "-" in version)
-        if len(added) == len(removed):
-            for s in added:
-                out.append(f"{d}: change-obligation-reworded — '{s[:90]}'; check the acceptance key still quotes it")
-            continue
         if not bumped:
             for s in added:
                 out.append(f"{d}: change-unversioned — added on published {version}: '{s[:90]}'")

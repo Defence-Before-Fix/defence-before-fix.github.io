@@ -66,7 +66,7 @@ Section [9](../../TOOLING-SPEC.md#9-conformance) verdict: **does not conform**, 
 described as conformance. **Not with agent support**, because section [7](../../TOOLING-SPEC.md#7-agent-context) is not met (no summary).
 **Section [8](../../TOOLING-SPEC.md#8-self-audit) does not apply**, because Zigpipe ships nothing to other projects; a reader who applies
 [8.1](../../TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) to Zigpipe on the basis that Zigpipe's tooling includes a shipped package (zig-qa) has read
-section [8](../../TOOLING-SPEC.md#8-self-audit)'s shipped-toolchain clauses as reaching the consuming project, and that counts against the document. The
+"where the Toolchain is one the project ships" (section [9](../../TOOLING-SPEC.md#9-conformance)) as reaching the consuming project, and that counts against the document. The
 correct reading is that section [8](../../TOOLING-SPEC.md#8-self-audit) bears on zig-qa's own artefact grade, not on Zigpipe.
 
 Declaration: **does not affect the verdict**. Key quotation, [9.2](../../TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance): "The declaration is optional."

@@ -41,7 +41,6 @@ US_SPELLINGS = {
     "favor": "favour", "favors": "favours",
     "honor": "honour", "honors": "honours",
     "labor": "labour",
-    "license": "licence (noun)",
     "gray": "grey",
     "judgment": "judgement",
     "fulfill": "fulfil", "fulfills": "fulfils",

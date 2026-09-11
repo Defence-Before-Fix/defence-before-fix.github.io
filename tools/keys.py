@@ -5,11 +5,12 @@ Each KEY.md under acceptance/ says its quotations are from the document and must
 updated in the same commit as any rewording. A stale quotation makes a reader who
 answers from the current text fail the key, which is the test failing rather than the
 document. Quotations of six words or more are checked for a verbatim match after link
-syntax is flattened and whitespace collapsed; shorter ones are too common to be quotes.
+syntax and emphasis are flattened and whitespace collapsed; shorter ones are too common
+to be quotes. Links from a key into a specification are checked by the clause-link rule
+in clauses.py, which lists the keys among its pages.
 
 Findings:
   key-quote-stale   a quotation in a key does not appear in the document
-  key-dead-anchor   a key links to a heading the document does not have
 """
 
 from __future__ import annotations
@@ -17,11 +18,13 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+import clauses
+
 KEY_DOC = {"method": "SPEC.md", "detector": "DETECTOR-SPEC.md", "toolchain": "TOOLING-SPEC.md"}
-QUOTE = re.compile(r'"([^"]{20,}?)"', re.S)
-LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)|\[([^\]]+)\](?:\[[^\]]*\])?")
-ANCHOR_LINK = re.compile(r"\]\((?:\.\./)*([A-Z-]+\.md)#([^)]+)\)")
-HEADING = re.compile(r"^#{1,6} (.+)$", re.M)
+# A quotation opens after the start, whitespace or an opening bracket and closes before
+# whitespace, punctuation or the end, so a short quoted token such as "(none)" cannot
+# pair with the next quote along and produce a phantom quotation.
+QUOTE = re.compile(r'(?:(?<=^)|(?<=[\s(]))["“]([^"“”]{20,}?)["”](?=[\s.,;:)\]]|$)', re.S)
 MIN_WORDS = 6
 FINDING_KIND = re.compile(r":\d+: ([a-z-]+)")
 
@@ -32,14 +35,7 @@ def kind_of(finding: str) -> str:
 
 
 def flatten(text: str) -> str:
-    text = LINK.sub(lambda m: m.group(1) or m.group(2), text)
-    text = text.replace("**", "").replace("*", "")
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def anchor(heading: str) -> str:
-    text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", heading).lower()
-    return re.sub(r"[^a-z0-9 -]", "", text).replace(" ", "-")
+    return clauses.flatten(text)
 
 
 def quotations(text: str) -> list[tuple[int, str]]:
@@ -52,18 +48,12 @@ def quotations(text: str) -> list[tuple[int, str]]:
 
 
 def check_key(path: str, key: str, docs: dict[str, str], doc: str) -> list[str]:
-    out: list[str] = []
     flat = flatten(docs[doc])
-    for line, q in quotations(key):
-        if q not in flat:
-            out.append(f"{path}:{line}: key-quote-stale — not in {doc}: '{q[:80]}'")
-    anchors = {d: {anchor(h) for h in HEADING.findall(t)} for d, t in docs.items()}
-    for n, raw in enumerate(key.splitlines(), 1):
-        for m in ANCHOR_LINK.finditer(raw):
-            target, frag = m.group(1), m.group(2)
-            if target in anchors and frag not in anchors[target]:
-                out.append(f"{path}:{n}: key-dead-anchor — {target}#{frag}")
-    return out
+    return [
+        f"{path}:{line}: key-quote-stale — not in {doc}: '{q[:80]}'"
+        for line, q in quotations(key)
+        if q not in flat
+    ]
 
 
 def check(root: Path) -> list[str]:

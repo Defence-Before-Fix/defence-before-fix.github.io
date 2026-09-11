@@ -81,10 +81,21 @@ class ChangeSetTest(unittest.TestCase):
         f = changes.check_set(base={"SPEC.md": BASE, "CHANGELOG.md": "old"}, head={"SPEC.md": head, "CHANGELOG.md": "old\nnew"})
         self.assertEqual(f, [])
 
-    def test_reworded_obligation_with_same_count_is_a_wording_change(self) -> None:
+    def test_reworded_obligation_needs_no_bump(self) -> None:
         head = BASE.replace("MUST name the [Class]", "MUST name the [Class] first")
         f = changes.check_set(base={"SPEC.md": BASE, "CHANGELOG.md": "old"}, head={"SPEC.md": head, "CHANGELOG.md": "old\nnew"})
-        self.assertEqual(kinds(f), ["change-obligation-reworded"])
+        self.assertEqual(f, [])
+
+    def test_swapping_one_obligation_for_an_unrelated_one_needs_a_bump(self) -> None:
+        head = BASE.replace("The [Practitioner] MUST name the [Class].", "A [Rule] MAY print a summary line.")
+        f = changes.check_set(base={"SPEC.md": BASE, "CHANGELOG.md": "old"}, head={"SPEC.md": head, "CHANGELOG.md": "old\nnew"})
+        self.assertEqual(kinds(f), ["change-unversioned", "change-unversioned"])
+
+    def test_sentences_starting_with_a_digit_or_code_split(self) -> None:
+        self.assertEqual(
+            changes.normative_sentences("## 1. X\n\nThe x MUST hold. 2 rules MUST run. `y` MAY stop.\n"),
+            ["The x MUST hold.", "2 rules MUST run.", "`y` MAY stop."],
+        )
 
     def test_added_document_counts_as_changed(self) -> None:
         f = changes.check_set(base={"CHANGELOG.md": "old"}, head={"SPEC.md": BASE, "CHANGELOG.md": "old"})

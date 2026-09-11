@@ -17,7 +17,7 @@ DOC = """# Spec
 
 ### 3.4 Sweep the codebase
 
-The [Practitioner](#practitioner) MUST run the [Rule](#rule) across the entire codebase and
+**The [Practitioner](#practitioner) MUST** run the [Rule](#rule) across the entire codebase and
 record the total [Instance] count before fixing anything.
 
 [instance]: #instance
@@ -47,6 +47,14 @@ class QuoteTest(unittest.TestCase):
     def test_short_quotations_are_ignored(self) -> None:
         self.assertEqual(keys.quotations('A "short one" here.'), [])
 
+    def test_a_short_token_does_not_pair_with_the_next_quote(self) -> None:
+        text = 'resolve to "(none)" and the key then says that "the toolchain MUST fail its own release" here.'
+        self.assertEqual([q for _, q in keys.quotations(text)], ["the toolchain MUST fail its own release"])
+
+    def test_curly_quotes_are_quotations_too(self) -> None:
+        text = "Key: “the toolchain MUST fail its own release”."
+        self.assertEqual([q for _, q in keys.quotations(text)], ["the toolchain MUST fail its own release"])
+
 
 class CheckTest(unittest.TestCase):
     def test_verbatim_quote_is_clean(self) -> None:
@@ -57,11 +65,6 @@ class CheckTest(unittest.TestCase):
         f = keys.check_key("acceptance/method/KEY.md", KEY, {"SPEC.md": doc}, "SPEC.md")
         self.assertEqual(kinds(f), ["key-quote-stale"])
         self.assertIn("acceptance/method/KEY.md:3:", f[0])
-
-    def test_dead_anchor_is_a_finding(self) -> None:
-        key = KEY.replace("#34-sweep-the-codebase", "#34-sweep-everything")
-        f = keys.check_key("acceptance/method/KEY.md", key, {"SPEC.md": DOC}, "SPEC.md")
-        self.assertEqual(kinds(f), ["key-dead-anchor"])
 
 
 class RepoTest(unittest.TestCase):
