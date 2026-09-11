@@ -97,7 +97,9 @@ def check_document(doc: str, text: str, head: Head, versions: dict[str, str]) ->
         out.append(f"{doc}: version-prerelease — {head.version} is a pre-release and cannot name a publication date")
     for m in COMPANION.finditer(text):
         other, named = m.group(1), m.group(2)
-        if other in versions and named != versions[other]:
+        # A companion line names the published version it was written against; a companion
+        # that is itself an unreleased draft has none yet, so the line is left as it was.
+        if other in versions and named != versions[other] and "-" not in versions[other]:
             out.append(f"{doc}: version-companion — names {other} {named}, but {other} is {versions[other]}")
     for pat, what in ((STATUS, "status paragraph"), (CITATION, "citation")):
         for m in pat.finditer(text):
