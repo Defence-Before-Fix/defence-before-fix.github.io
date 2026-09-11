@@ -55,8 +55,15 @@ python3 spec-qa.py
 A change to any of the three specifications must also pass the acceptance test in
 [ACCEPTANCE.md](ACCEPTANCE.md): a cold cohort of at least five low-strength model readers
 answers a fixed question set for each changed document, marked against the keys under
-[acceptance/](acceptance/), and the version's changelog entry records the result. A version
-without that line is not published.
+[acceptance/](acceptance/), and the run's record under `acceptance/runs/` is what lets the
+change merge. A version whose changelog entry records no cohort is not published.
+
+## Contributing
+
+Pull requests target `next` and follow [CONTRIBUTING.md](CONTRIBUTING.md). A proposed
+obligation must pass the five tests in [SCOPE.md](SCOPE.md) before its wording is discussed;
+proposals that fail are listed in [DECLINED.md](DECLINED.md). Releases are cut from `next` as
+described in [PUBLISHING.md](PUBLISHING.md).
 
 ## Agent-facing surfaces
 

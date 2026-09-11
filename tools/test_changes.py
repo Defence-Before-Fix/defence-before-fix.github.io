@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import importlib
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -106,6 +108,40 @@ class ChangeSetTest(unittest.TestCase):
     def test_added_document_counts_as_changed(self) -> None:
         f = changes.check_set(base={"CHANGELOG.md": "old"}, head={"SPEC.md": BASE, "CHANGELOG.md": "old"})
         self.assertEqual(kinds(f), ["change-unlogged"])
+
+
+class RunRecordTest(unittest.TestCase):
+    HEAD = BASE.replace("Prose without a keyword.", "Prose with a new word.")
+
+    def test_spec_change_without_a_run_record_is_unaccepted(self) -> None:
+        f = changes.check_set(
+            base={"SPEC.md": BASE, "CHANGELOG.md": "old"},
+            head={"SPEC.md": self.HEAD, "CHANGELOG.md": "old\nnew"},
+            added_files=["README.md"],
+        )
+        self.assertEqual(kinds(f), ["change-unaccepted"])
+
+    def test_spec_change_with_a_run_record_is_clean(self) -> None:
+        f = changes.check_set(
+            base={"SPEC.md": BASE, "CHANGELOG.md": "old"},
+            head={"SPEC.md": self.HEAD, "CHANGELOG.md": "old\nnew"},
+            added_files=["acceptance/runs/016-deferral.md"],
+        )
+        self.assertEqual(f, [])
+
+    def test_run_records_are_not_required_when_no_file_list_is_given(self) -> None:
+        f = changes.check_set(base={"SPEC.md": BASE, "CHANGELOG.md": "old"}, head={"SPEC.md": self.HEAD, "CHANGELOG.md": "old\nnew"})
+        self.assertEqual(f, [])
+
+    def test_added_files_are_read_from_git(self) -> None:
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            subprocess.run(["git", "init", "-q", "-b", "main"], cwd=root, check=True)
+            subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-q", "--allow-empty", "-m", "base"], cwd=root, check=True)
+            (root / "acceptance" / "runs").mkdir(parents=True)
+            (root / "acceptance" / "runs" / "001-x.md").write_text("run")
+            subprocess.run(["git", "add", "-A"], cwd=root, check=True)
+            self.assertEqual(changes.added_files("HEAD", root), ["acceptance/runs/001-x.md"])
 
 
 if __name__ == "__main__":

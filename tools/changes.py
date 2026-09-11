@@ -11,9 +11,14 @@ A reworded obligation is one whose sentence still shares most of its words with 
 sentence that was there before; it needs no bump, and keys.py catches the stale
 quotation if the key still carries the old words.
 
+A changed specification also needs the acceptance run that accepted it, as a new file under
+acceptance/runs/ in the same change, per ACCEPTANCE.md. That check needs the list of files the
+change adds, so it runs only when one is given.
+
 Findings:
   change-unlogged      a specification changed and CHANGELOG.md did not
   change-unversioned   an obligation was added or removed on a published version
+  change-unaccepted    a specification changed and no acceptance run record was added
 
     changes.py --base origin/main    compare the working tree with that revision
 """
@@ -30,6 +35,7 @@ import clauses
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ["SPEC.md", "DETECTOR-SPEC.md", "TOOLING-SPEC.md"]
 TRACKED = DOCS + ["CHANGELOG.md"]
+RUNS = "acceptance/runs"
 KEYWORD = re.compile(r"\b(MUST NOT|MUST|SHOULD NOT|SHOULD|MAY)\b")
 NUMBERED = re.compile(r"^## (\d+\.|Appendix)")
 SECTION = re.compile(r"^## ")
@@ -112,12 +118,15 @@ def version_of(text: str) -> str | None:
     return m.group(1) if m else None
 
 
-def check_set(base: dict[str, str], head: dict[str, str]) -> list[str]:
-    """base and head map a file name to its content; a missing key is a missing file."""
+def check_set(base: dict[str, str], head: dict[str, str], added_files: list[str] | None = None) -> list[str]:
+    """base and head map a file name to its content; a missing key is a missing file.
+    added_files lists the paths the change adds, when known."""
     out: list[str] = []
     changed = [d for d in DOCS if base.get(d) != head.get(d)]
     if changed and base.get("CHANGELOG.md") == head.get("CHANGELOG.md"):
         out.append(f"CHANGELOG.md: change-unlogged — {', '.join(changed)} changed without a changelog entry")
+    if changed and added_files is not None and not any(p.startswith(RUNS + "/") for p in added_files):
+        out.append(f"{RUNS}: change-unaccepted — {', '.join(changed)} changed without a new acceptance run record")
     for d in changed:
         before = normative_sentences(base.get(d, ""))
         after = normative_sentences(head.get(d, ""))
@@ -148,8 +157,16 @@ def working_tree(root: Path) -> dict[str, str]:
     return {name: (root / name).read_text() for name in TRACKED if (root / name).exists()}
 
 
+def added_files(base: str, root: Path) -> list[str]:
+    """Paths added since base, in the index and the working tree."""
+    r = subprocess.run(["git", "diff", "--name-only", "--no-renames", "--diff-filter=A", base], cwd=root, capture_output=True, text=True, check=True)
+    tracked = r.stdout.split()
+    u = subprocess.run(["git", "ls-files", "--others", "--exclude-standard"], cwd=root, capture_output=True, text=True, check=True)
+    return sorted(set(tracked + u.stdout.split()))
+
+
 def check(root: Path, base: str) -> list[str]:
-    return check_set(at_revision(base, root), working_tree(root))
+    return check_set(at_revision(base, root), working_tree(root), added_files(base, root))
 
 
 def main(argv: list[str]) -> int:

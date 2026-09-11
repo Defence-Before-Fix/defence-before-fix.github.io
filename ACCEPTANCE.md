@@ -1,10 +1,10 @@
 # Acceptance test for changes to the specifications
 
 Every change to `SPEC.md`, `DETECTOR-SPEC.md` or `TOOLING-SPEC.md` MUST pass this test before it
-is published. It is the specifications' own defence: a document that only a strong reader can
-follow is not a specification, and the readers that matter most, coding agents meeting the method
-in a failing pipeline, are often the weakest. The test is run with a low-strength model so that
-clarity is measured at the floor, not the ceiling.
+is merged to `next`, and so before it is published. It is the specifications' own defence: a
+document that only a strong reader can follow is not a specification, and the readers that
+matter most, coding agents meeting the method in a failing pipeline, are often the weakest. The
+test is run with a low-strength model so that clarity is measured at the floor, not the ceiling.
 
 ## The cohort
 
@@ -96,9 +96,23 @@ Fix the text, never the questions, and run a fresh cohort. Readers are not reuse
 The number of runs it took is recorded; a document that needed three runs is telling its editor
 something.
 
+## When it runs
+
+Once per pull request, on the final text, after the editor's rewrite and any key update. It is
+the last gate before the merge to `next`, so that every change on `next` is one the cohort has
+accepted, and the release branch needs no cohort of its own unless it changes specification text.
+A wording change after the run means a fresh run; readers are never reused.
+
 ## The record
 
-Each published version's changelog entry states: the cohort size and model, the number of runs,
-and the findings applied. A version with no such line has not been accepted and MUST NOT be
-described as published. The question sets and answer keys live under `acceptance/` in this
-repository so that a run can be repeated and compared.
+Each run has a file under `acceptance/runs/`, named `NNN-<slug>.md` with `NNN` the next number in
+the one sequence shared by the three documents, stating: the document, the pull request and the
+commit read, the cohort size and model, the run number in that pull request, the marks per
+reader per question, the findings applied, and whether it passed. The changelog line for the
+change names the file. CI refuses a specification change whose pull request adds no run file;
+it checks for at least one, and a pull request that changes two documents adds a run for each.
+
+Each published version's changelog entry carries the lines of the changes it contains, so a
+version's cohort record is the set of runs those lines name. A version with no such line has not
+been accepted and MUST NOT be described as published. The question sets and answer keys live
+under `acceptance/` in this repository so that a run can be repeated and compared.
