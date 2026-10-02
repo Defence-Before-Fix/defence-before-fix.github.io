@@ -10,6 +10,8 @@ Committed outputs, checked in CI with --check:
 
 Deploy-time outputs, written into the built site with --site DIR by the pages workflow:
   DIR/raw/<name>.md                      every primary document as raw markdown
+  DIR/raw/tools/<slug>.md                every tools register page as raw markdown, the
+                                         register table as index.md, and register.json
   DIR/defence-before-fix-project-prompt.md
   DIR/llms.txt
   DIR/llms-full.txt                      the prompt and every raw document in one file
@@ -28,6 +30,8 @@ HERE = Path(__file__).parent
 PROMPT = HERE / "defence-before-fix-project-prompt.md"
 LLMS = HERE / "llms.txt"
 RAW_DOCS = ["SPEC.md", "DETECTOR-SPEC.md", "TOOLING-SPEC.md", "PRIMER.md", "PROVENANCE.md", "CHANGELOG.md"]
+TOOLS = HERE / "tools"
+PLUGIN_URL = "https://github.com/Defence-Before-Fix/claude-plugin"
 TERM_LINK = re.compile(r"\[([A-Z][^\]]*)\](?:\((?:[A-Z-]+\.md)?#[a-z0-9-]+\)|\[\]|(?![\(\[]))")
 
 
@@ -118,6 +122,10 @@ def llms(data: dict) -> str:
         "",
         f"- [Project prompt]({c}/defence-before-fix-project-prompt.md): the method in the form to "
         "follow when you find a defect, generated from the specification's Appendix A.",
+        f"- [Claude Code plugin]({PLUGIN_URL}): a `/dbf` skill that runs the method in the project "
+        "you are working in, with an independent searcher and a conformance reviewer as the agents it "
+        "dispatches. Install with `/plugin marketplace add Defence-Before-Fix/claude-plugin` then "
+        "`/plugin install defence-before-fix@defence-before-fix`.",
         "",
         "## Documents, raw markdown",
         "",
@@ -125,6 +133,11 @@ def llms(data: dict) -> str:
     for p in data["pages"]:
         if p.get("raw"):
             lines.append(f"- [{p['heading']}]({c}/raw/{p['raw']}): {p['blurb']}")
+    lines += [
+        f"- [Tools register, raw markdown]({c}/raw/tools/index.md): the register table. Each tool's "
+        f"page is at {c}/raw/tools/<slug>.md, the slug being the page name the table links to, and "
+        f"the rows as JSON are at {c}/raw/tools/register.json.",
+    ]
     lines += [
         "",
         "## Rendered pages",
@@ -145,16 +158,29 @@ def llms(data: dict) -> str:
     return "\n".join(lines)
 
 
+def raw_tool_sources() -> list[Path]:
+    """The tools register as published under /raw/tools/: every page, the table and the JSON."""
+    return sorted(TOOLS.glob("*.md")) + [TOOLS / "register.json"]
+
+
 def write_site(site: Path, data: dict) -> None:
     raw = site / "raw"
     raw.mkdir(parents=True, exist_ok=True)
     for name in RAW_DOCS:
         shutil.copy(HERE / name, raw / name)
+    raw_tools = raw / "tools"
+    raw_tools.mkdir(exist_ok=True)
+    sources = raw_tool_sources()
+    for src in sources:
+        shutil.copy(src, raw_tools / src.name)
+    missing = [s.name for s in sources if not (raw_tools / s.name).is_file()]
+    if missing:
+        raise SystemExit(f"site: /raw/tools/ lacks {', '.join(missing)}")
     shutil.copy(PROMPT, site / PROMPT.name)
     shutil.copy(LLMS, site / LLMS.name)
     parts = [PROMPT.read_text()] + [(HERE / n).read_text() for n in RAW_DOCS]
     (site / "llms-full.txt").write_text("\n\n---\n\n".join(parts))
-    print(f"site: raw documents, prompt, llms.txt and llms-full.txt written under {site}")
+    print(f"site: raw documents, {len(sources)} raw register files, prompt, llms.txt and llms-full.txt written under {site}")
 
 
 def main() -> int:

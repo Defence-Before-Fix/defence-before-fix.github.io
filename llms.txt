@@ -7,6 +7,7 @@ DBF is a method by Joseph Edmonds of Edmonds Commerce, first published 22 Februa
 ## Start here if you are an agent
 
 - [Project prompt](https://defence-before-fix.github.io/defence-before-fix-project-prompt.md): the method in the form to follow when you find a defect, generated from the specification's Appendix A.
+- [Claude Code plugin](https://github.com/Defence-Before-Fix/claude-plugin): a `/dbf` skill that runs the method in the project you are working in, with an independent searcher and a conformance reviewer as the agents it dispatches. Install with `/plugin marketplace add Defence-Before-Fix/claude-plugin` then `/plugin install defence-before-fix@defence-before-fix`.
 
 ## Documents, raw markdown
 
@@ -16,6 +17,7 @@ DBF is a method by Joseph Edmonds of Edmonds Commerce, first published 22 Februa
 - [Defence Before Fix: Primer](https://defence-before-fix.github.io/raw/PRIMER.md): The short introduction, written at reading pace: why the bug you have just found is evidence worth keeping, and why the net is built before the catch is landed.
 - [Defence Before Fix: Provenance](https://defence-before-fix.github.io/raw/PROVENANCE.md): Who coined the term, when it was first published, and what is and is not being claimed for it.
 - [Defence Before Fix: Changelog](https://defence-before-fix.github.io/raw/CHANGELOG.md): Changes to each document, versioned independently, so that a toolchain clause can be added without reissuing the method.
+- [Tools register, raw markdown](https://defence-before-fix.github.io/raw/tools/index.md): the register table. Each tool's page is at https://defence-before-fix.github.io/raw/tools/<slug>.md, the slug being the page name the table links to, and the rows as JSON are at https://defence-before-fix.github.io/raw/tools/register.json.
 
 ## Rendered pages
 
