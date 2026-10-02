@@ -1,6 +1,6 @@
 # Defence Before Fix: Method Specification
 
-**Version**: 1.1.0-dev, unpublished
+**Version**: 1.1.0, published 2026-10-02
 **Companion to**: [the detector specification](DETECTOR-SPEC.md), version 1.0.0, and [the toolchain specification](TOOLING-SPEC.md), version 0.2.0
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
@@ -29,7 +29,7 @@ US spelling: **Defense Before Fix**. Abbreviated [DBF] throughout.
 
 ## Status of this document
 
-This is version 1.1.0-dev of the specification, the editor's draft after 1.0.1. It is normative: section 3 defines the method,
+This is version 1.1.0 of the specification. It is normative: section 3 defines the method,
 section 4 states who decides what, and section 7 defines what [Conformance] means and who may claim
 it.
 
@@ -1036,7 +1036,7 @@ re-open it.
 
 ## 9. Citation
 
-> Edmonds, Joseph. *Defence Before Fix*, version 1.1.0-dev. First published 22 February 2026.
+> Edmonds, Joseph. *Defence Before Fix*, version 1.1.0. First published 22 February 2026.
 > <https://ltscommerce.dev>
 
 ## Appendix A: Instructing an agent
@@ -1107,6 +1107,7 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 | ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls.                                                                                                                                                                                                                                                                                                                                                        |
 | 1.0.1   | 2026-09-08 | Clarity, no obligation changed: section 3 opens with a map of the six clauses; clause 3.1 opens with its five steps and closes with what it leaves on the record; clause 3.3 is in three named parts and its [Narrowing] part opens with the decision. The header and the terminology entries for [Detector], [Toolchain] and [Conform] name the [detector specification](DETECTOR-SPEC.md) 1.0.0 alongside the [toolchain specification](TOOLING-SPEC.md) 0.2.0, and [Conform] extends to the companion specification being claimed. Accepted under [ACCEPTANCE.md](ACCEPTANCE.md). |
+| 1.1.0   | 2026-10-02 | New obligation: a [Defect] whose fix is deferred is recorded where the project's other decisions are enumerable under clause 8.7, naming the [Class] where apparent; whether it stays unfixed is the [Owner]'s decision under section 4, and a mention in conversation is not a record. Appendix A carries the sentence for an [Agent]. Section 7's definition of a [Conforming] remediation names reproduction in the same sentence. Accepted under [ACCEPTANCE.md](ACCEPTANCE.md).                                                                                                 |
 
 <!-- Term link definitions -->
 
