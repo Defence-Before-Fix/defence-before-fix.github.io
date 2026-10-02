@@ -10,7 +10,7 @@ version entry with no cohort line has not been accepted and is not published.
 
 ## Method specification (SPEC.md)
 
-### Unreleased
+### 1.1.0, 2026-10-02
 
 - New obligation, section [2](SPEC.md#2-when-the-method-applies): a defect whose fix is deferred MUST be recorded where the project's
   other decisions are enumerable under clause [8.7](SPEC.md#87-recorded-project-decisions-must-be-discoverable-by-the-same-means), naming the class where apparent; whether it
@@ -23,7 +23,7 @@ version entry with no cohort line has not been accepted and is not published.
   on load-bearing statement 2c, [run 17](acceptance/runs/017-deferral-clause-run-2.md) passed with
   one single-reader miss on the defence's conformance, and after two wording edits from review
   [run 18](acceptance/runs/018-deferral-clause-run-3.md) passed with every item five of five.
-  Minor version when released.
+  Minor version: a new obligation.
 
 ### 1.0.1, 2026-09-08
 

@@ -37,7 +37,7 @@ version.
 
 | Document                                       | What it is                                                                                            | Version |
 | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| [The method specification](SPEC.md)            | Normative. What a practitioner does when a defect is found.                                           | 1.0.1   |
+| [The method specification](SPEC.md)            | Normative. What a practitioner does when a defect is found.                                           | 1.1.0   |
 | [The detector specification](DETECTOR-SPEC.md) | What a tool that reads code must offer so that a rule can be written, proven, run and resolved in it. | 1.0.0   |
 | [The toolchain specification](TOOLING-SPEC.md) | What a project's assembled tooling must offer beyond its detectors, measured at the project level.    | 0.2.0   |
 | [Primer](PRIMER.md)                            | The short introduction.                                                                               |         |
