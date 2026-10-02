@@ -1,9 +1,11 @@
 # Defence Before Fix (DBF)
 
-> **Defence Before Fix (DBF)** is a phase that runs *before* a defect is fixed. Rather than dropping
-> straight into remediating the specific instance in front of you, you first treat that instance
-> as evidence of a class, and you build the automated defence that detects every occurrence of
-> that class across the whole codebase. The defence is only trusted once it has been seen to fire.
+> Defence Before Fix (DBF) is a phase that runs before a defect is fixed: the instance is treated as evidence of a class, and the defence that detects the class is built and seen to fire before the fix is made. Specification: https://defence-before-fix.github.io/
+
+Rather than dropping straight into remediating the specific instance in front of you, you first
+treat that instance as evidence of a class, and you build the automated defence that detects every
+occurrence of that class across the whole codebase. The defence is only trusted once it has been
+seen to fire.
 
 Six clauses, in order:
 
