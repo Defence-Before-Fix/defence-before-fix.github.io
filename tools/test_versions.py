@@ -138,6 +138,21 @@ class DriftTest(unittest.TestCase):
             self.assertEqual(kinds(f), ["version-companion"])
             self.assertIn("DETECTOR-SPEC.md", f[0])
 
+    def test_companion_lines_keep_the_published_version_whilst_the_other_is_a_draft(self) -> None:
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            write_repo(root, spec_v="1.1.0-dev")
+            text = root.joinpath("SPEC.md").read_text().replace("**Version**: 1.1.0-dev, published 2026-09-08", "**Version**: 1.1.0-dev, unpublished")
+            root.joinpath("SPEC.md").write_text(text)
+            root.joinpath("DETECTOR-SPEC.md").write_text(DETECTOR.format(v="1.0.0", d="2026-09-08", mv="1.0.1", tv="0.2.0"))
+            root.joinpath("TOOLING-SPEC.md").write_text(TOOLING.format(v="0.2.0", d="2026-09-08", mv="1.0.1", dv="1.0.0"))
+            root.joinpath("CHANGELOG.md").write_text(
+                CHANGELOG.format(mv="1.0.1", dv="1.0.0", tv="0.2.0", d="2026-09-08").replace(
+                    "## Method specification (SPEC.md)\n", "## Method specification (SPEC.md)\n\n### Unreleased\n\n- A new obligation.\n"
+                )
+            )
+            self.assertEqual(versions.check(root), [])
+
     def test_changelog_latest_entry_must_match_header(self) -> None:
         with tempfile.TemporaryDirectory() as d:
             write_repo(Path(d), changelog=CHANGELOG.format(mv="1.0.0", dv="1.0.0", tv="0.2.0", d="2026-09-08").replace("### 1.0.0, 2026-09-08\n\nAccepted by a cold cohort of five Haiku readers.\n\n### 1.0.0", "### 1.0.0"))

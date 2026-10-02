@@ -1,9 +1,11 @@
 # Defence Before Fix (DBF)
 
-> **Defence Before Fix (DBF)** is a phase that runs *before* a defect is fixed. Rather than dropping
-> straight into remediating the specific instance in front of you, you first treat that instance
-> as evidence of a class, and you build the automated defence that detects every occurrence of
-> that class across the whole codebase. The defence is only trusted once it has been seen to fire.
+> Defence Before Fix (DBF) is a phase that runs before a defect is fixed: the instance is treated as evidence of a class, and the defence that detects the class is built and seen to fire before the fix is made. Specification: https://defence-before-fix.github.io/
+
+Rather than dropping straight into remediating the specific instance in front of you, you first
+treat that instance as evidence of a class, and you build the automated defence that detects every
+occurrence of that class across the whole codebase. The defence is only trusted once it has been
+seen to fire.
 
 Six clauses, in order:
 
@@ -24,7 +26,7 @@ Six clauses, in order:
 
 | Document                             | What it is                                                                                                          | Version |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | ------- |
-| [SPEC.md](SPEC.md)                   | The method. Normative. What a practitioner does when a defect is found.                                             | 1.0.1   |
+| [SPEC.md](SPEC.md)                   | The method. Normative. What a practitioner does when a defect is found.                                             | 1.1.0   |
 | [DETECTOR-SPEC.md](DETECTOR-SPEC.md) | The detector. What a tool that reads code must offer so that a rule can be written, proven, run and resolved in it. | 1.0.0   |
 | [TOOLING-SPEC.md](TOOLING-SPEC.md)   | The toolchain. What a project's assembled tooling must offer beyond its detectors, measured at the project level.   | 0.2.0   |
 | [PRIMER.md](PRIMER.md)               | The short introduction.                                                                                             |         |

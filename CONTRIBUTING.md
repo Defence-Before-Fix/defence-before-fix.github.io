@@ -41,8 +41,10 @@ request.
   reader who took the passage the wrong way.
 - `python3 spec-qa.py` clean and the unit tests passing, which CI checks for you.
 
-Wording is a proposal. The editor rewrites accepted changes to fit the document, and a rewrite is
-the normal outcome, not a criticism. If the substance survives, the change is yours.
+A pull request is a suggestion, not a demand. The documents have one editor, who keeps ownership
+and control of every word in them: an accepted change is refined until the editor is happy with
+it and merged then, and a rewrite is the normal outcome, not a criticism. If the substance
+survives, the change is yours.
 
 ## What happens next, in order
 

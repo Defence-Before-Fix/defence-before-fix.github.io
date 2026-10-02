@@ -2,25 +2,27 @@
 
 > A phase that runs before a defect is fixed: the instance is treated as evidence of a class, and the defence that detects the class is built and seen to fire before the fix is made.
 
-DBF is a method by Joseph Edmonds of Edmonds Commerce, first published 22 February 2026. Method specification 1.0.1, detector specification 1.0.0 and toolchain specification 0.2.0, published 8 September 2026, under CC BY 4.0. The method specification is the source of truth; where anything else disagrees with it, the specification is correct.
+DBF is a method by Joseph Edmonds of Edmonds Commerce, first published 22 February 2026. Method specification 1.1.0, detector specification 1.0.0 and toolchain specification 0.2.0, published between 8 September and 2 October 2026, under CC BY 4.0. The method specification is the source of truth; where anything else disagrees with it, the specification is correct.
 
 ## Start here if you are an agent
 
 - [Project prompt](https://defence-before-fix.github.io/defence-before-fix-project-prompt.md): the method in the form to follow when you find a defect, generated from the specification's Appendix A.
+- [Claude Code plugin](https://github.com/Defence-Before-Fix/claude-plugin): a `/dbf` skill that runs the method in the project you are working in, with an independent searcher and a conformance reviewer as the agents it dispatches. Install with `/plugin marketplace add Defence-Before-Fix/claude-plugin` then `/plugin install defence-before-fix@defence-before-fix`.
 
 ## Documents, raw markdown
 
-- [Defence Before Fix: Method Specification](https://defence-before-fix.github.io/raw/SPEC.md): Method specification 1.0.1, the normative document: what a practitioner does when a defect is found, in six numbered clauses with the reasoning for each, conformance for a remediation, a rule and a toolchain, and how the method operates under AI-assisted development.
+- [Defence Before Fix: Method Specification](https://defence-before-fix.github.io/raw/SPEC.md): Method specification 1.1.0, the normative document: what a practitioner does when a defect is found, in six numbered clauses with the reasoning for each, conformance for a remediation, a rule and a toolchain, and how the method operates under AI-assisted development.
 - [Defence Before Fix: Detector Specification](https://defence-before-fix.github.io/raw/DETECTOR-SPEC.md): Detector specification 1.0.0, addressed to anyone who maintains a linter or static analyser: what a tool that reads code must offer so that a practitioner can write, prove, run and resolve a rule in it, and how conformance is graded on evidence.
 - [Defence Before Fix: Toolchain Specification](https://defence-before-fix.github.io/raw/TOOLING-SPEC.md): Toolchain specification 0.2.0: what a project's assembled tooling must offer beyond its detectors, measured at the project level, from listing and the project record to self-audit, and the two conformance levels for a project that ships tooling.
 - [Defence Before Fix: Primer](https://defence-before-fix.github.io/raw/PRIMER.md): The short introduction, written at reading pace: why the bug you have just found is evidence worth keeping, and why the net is built before the catch is landed.
 - [Defence Before Fix: Provenance](https://defence-before-fix.github.io/raw/PROVENANCE.md): Who coined the term, when it was first published, and what is and is not being claimed for it.
 - [Defence Before Fix: Changelog](https://defence-before-fix.github.io/raw/CHANGELOG.md): Changes to each document, versioned independently, so that a toolchain clause can be added without reissuing the method.
+- [Tools register, raw markdown](https://defence-before-fix.github.io/raw/tools/index.md): the register table. Each tool's page is at https://defence-before-fix.github.io/raw/tools/<slug>.md, the slug being the page name the table links to, and the rows as JSON are at https://defence-before-fix.github.io/raw/tools/register.json.
 
 ## Rendered pages
 
 - [Defence Before Fix](https://defence-before-fix.github.io/): The home page: the definition, the six clauses, the documents, the tools that implement the method and the article in which it was first published.
-- [Defence Before Fix: Method Specification](https://defence-before-fix.github.io/SPEC.html): Method specification 1.0.1, the normative document: what a practitioner does when a defect is found, in six numbered clauses with the reasoning for each, conformance for a remediation, a rule and a toolchain, and how the method operates under AI-assisted development.
+- [Defence Before Fix: Method Specification](https://defence-before-fix.github.io/SPEC.html): Method specification 1.1.0, the normative document: what a practitioner does when a defect is found, in six numbered clauses with the reasoning for each, conformance for a remediation, a rule and a toolchain, and how the method operates under AI-assisted development.
 - [Defence Before Fix: Detector Specification](https://defence-before-fix.github.io/DETECTOR-SPEC.html): Detector specification 1.0.0, addressed to anyone who maintains a linter or static analyser: what a tool that reads code must offer so that a practitioner can write, prove, run and resolve a rule in it, and how conformance is graded on evidence.
 - [Defence Before Fix: Toolchain Specification](https://defence-before-fix.github.io/TOOLING-SPEC.html): Toolchain specification 0.2.0: what a project's assembled tooling must offer beyond its detectors, measured at the project level, from listing and the project record to self-audit, and the two conformance levels for a project that ships tooling.
 - [Defence Before Fix: Primer](https://defence-before-fix.github.io/PRIMER.html): The short introduction, written at reading pace: why the bug you have just found is evidence worth keeping, and why the net is built before the catch is landed.
