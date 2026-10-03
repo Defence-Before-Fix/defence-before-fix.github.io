@@ -32,31 +32,17 @@
       },
       "notes": [
         {
-          "text": "Harness, resolver, derived listing and justified record verified by running them; fails toolchain "
+          "text": "Harness, resolver, derived listing, justified record and agent summary verified by running them; every lane prints an identifier that resolves to a page stating the correct construction; fails toolchain "
         },
         {
           "text": "4.1",
           "href": "/TOOLING-SPEC.html#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification"
         },
         {
-          "text": " through its PHPArkitect tier and identifier-less lanes, "
-        },
-        {
-          "text": "4.2",
-          "href": "/TOOLING-SPEC.html#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access"
-        },
-        {
-          "text": " on fifteen rules without a page, "
-        },
-        {
-          "text": "4.3",
-          "href": "/TOOLING-SPEC.html#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record"
-        },
-        {
-          "text": " on two baseline routes; declares 0.2.0 with eight recorded gaps."
+          "text": " only through PHPArkitect's unidentified tier rules and PHPStan's online-only native catalogue, both declared; declares method 1.1.0 and toolchain 0.2.0 with three recorded gaps."
         }
       ],
-      "checked": "2026-09-08, branch php8.4 at commit e25aba4, declaration merged at 4d9b2ba"
+      "checked": "2026-10-03, release 85.3.0, branch php8.5 at commit cb5b4eb"
     },
     {
       "slug": "deptrac",
