@@ -134,24 +134,30 @@ custom rules, a single-rule harness, identifier resolution, a derived listing of
 the project record, self-application, and the conformance definition in section 11. Published
 before the acceptance test in `ACCEPTANCE.md` existed; 0.2.0 is the first version to pass it.
 
-## Acceptance process (ACCEPTANCE.md)
+## Acceptance process
 
-Not a specification and not versioned. Changes are recorded here as `ACCEPTANCE.md` describes,
-and need no cohort.
+Not a specification and not versioned. Changes to the process files `ACCEPTANCE.md` names are
+recorded here as it describes, and need no cohort.
 
 ### Unreleased
 
 - The cohort can be run and marked without judgement calls that the rules leave open. Each
   reader is a separate process with no tools and no context but its packet, and the packet is
-  the document, its question set and the fixture the questions name, which `ACCEPTANCE.md` and
-  `acceptance/README.md` previously disagreed on. A new marking section settles what a correct
-  load-bearing answer needs, what makes a miss traceable to the text, an unanswered question and
-  "the same passage", and lets the editor delegate marking to a separate marker whose verdict
-  stands. Thresholds read "every reader" and "all but one", the same as five of five and four of
-  five for a cohort of five, and the pass criteria rows apply in order. The run record states
-  how readers were isolated and who marked. `CONTRIBUTING.md` names the reviewer, the
-  agent-facing rebuild after an Appendix A change, and how a change to this process is made.
-  Prompted by an agent-driven run of the process that could not follow it mechanically; the
-  rulings in [run 16](acceptance/runs/016-deferral-clause-run-1.md),
+  the document, its question set and the fixture the questions name, with nothing added around
+  them. A new marking section says what a delegated marker receives and that its verdict stands,
+  what counts as quoting, what a correct load-bearing answer needs, which misses are traceable
+  to the text and how the key's statements bear on that, how unanswered items count, and when
+  two confusing passages are the same. Thresholds read "every reader" and "all but one", the
+  same as five of five and four of five for a cohort of five; every pass-criteria row must hold,
+  and the last covers only what the others do not. The run record states how readers were
+  isolated and who marked, and the answer sheets are kept beside it. `CONTRIBUTING.md` requires
+  a reviewer who did not draft the change, says which review findings mean a fresh run, adds
+  the agent-facing rebuild after an Appendix A change, and points to how a change to the process
+  files is made. Prompted by gaps in the text as it stood: `ACCEPTANCE.md` named no fixture in
+  what a reader receives whilst `acceptance/README.md` did, the thresholds were written as five
+  of five and four of five for a cohort of at least five, two pass-criteria rows both covered a
+  single reader's traceable miss, and nothing settled an unanswered question or "the same
+  passage". [Run 16](acceptance/runs/016-deferral-clause-run-1.md),
   [run 17](acceptance/runs/017-deferral-clause-run-2.md) and
-  [run 18](acceptance/runs/018-deferral-clause-run-3.md) are written in.
+  [run 18](acceptance/runs/018-deferral-clause-run-3.md) ruled on these case by case, and their
+  rulings are written in.

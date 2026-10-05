@@ -29,8 +29,8 @@ review. It is a patch version when released.
 SHOULD or MAY in a numbered section or appendix. It needs everything a clarity edit needs, plus
 the five tests in SCOPE.md answered in the pull request, and it is at least a minor version when
 released. `tools/changes.py` tells the two apart mechanically and CI runs it on every pull
-request. A change to the acceptance process itself is neither, and ACCEPTANCE.md says how it is
-made.
+request. A change to the process files ACCEPTANCE.md names, this file among them, is neither,
+and ACCEPTANCE.md says how it is made.
 
 ## What a pull request contains
 
@@ -62,7 +62,8 @@ survives, the change is yours.
 3. **Review and rewrite.** An independent review of the diff against the whole document, by a
    reviewer who did not draft the change, then the editor's rewrite, pushed to the pull request
    branch where the contributor allows it or to an editor's branch that supersedes it. A review
-   finding applied after a cohort has run is a wording change, and a fresh run follows.
+   finding that changes the document's text after a cohort has run is a wording change, and a
+   fresh run follows; the header the editor sets at step 5 is not a wording change.
 4. **Keys.** Where the change touches a sentence an acceptance key quotes, or adds a load-bearing
    obligation, the editor updates the key before the cohort runs, never after.
 5. **The cohort.** The acceptance test in ACCEPTANCE.md runs on the final text. Its record is
@@ -74,7 +75,8 @@ survives, the change is yours.
 
 Steps 2 to 5 are the editor's, not CI's, and they happen in batches. The editor may have an
 agent draft or review, and may delegate marking as ACCEPTANCE.md allows, in which case the
-marker's verdict stands; every other decision in these steps stays the editor's. A quiet pull request is not a declined one; a declined one says so.
+marker's verdict stands; every other decision in these steps stays the editor's. A quiet pull
+request is not a declined one; a declined one says so.
 
 ## Versions and releases
 

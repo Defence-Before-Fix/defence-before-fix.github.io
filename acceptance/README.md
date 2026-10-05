@@ -19,9 +19,9 @@ the record of every run lives in `runs/`.
    name. Nothing else: no key, no changelog, no critique findings, no other reader's answers.
 3. The editor, or a separate marker the editor delegates to, marks each answer sheet against
    `KEY.md` under the marking rules in `ACCEPTANCE.md` and applies its pass criteria.
-4. The result is recorded as a file under [runs/](runs/), with cohort size, model, how the
-   readers were isolated, run number, who marked, marks and the findings applied, and the
-   change's `Unreleased` changelog line names that file.
+4. The result is recorded as a file under [runs/](runs/), stating what `ACCEPTANCE.md` lists,
+   with the answer sheets kept beside it, and the change's `Unreleased` changelog line names
+   that file.
    A run that fails is followed by a change to the text, never to the questions, and a fresh
    cohort.
 
