@@ -70,11 +70,23 @@ The harm a [Class] causes, which is **not necessarily a failure**. It may be a f
 
 #### Detector
 
-A tool that reads code without executing it and reports occurrences of a pattern. A [Detector] is not a [Runner]. What a [Detector] must offer so that a [Practitioner] can write, prove, run and resolve a [Rule] in it is specified in the [detector specification](DETECTOR-SPEC.md).
+A tool that reads code without executing it and reports occurrences of a pattern. A [Detector] is not a [Runner]. By what it reads, a [Detector] is [Lexical], [Syntactic] or [Semantic], and clause 3.2 says which to prefer. What a [Detector] must offer so that a [Practitioner] can write, prove, run and resolve a [Rule] in it is specified in the [detector specification](DETECTOR-SPEC.md).
 
 #### Runner
 
 A tool that **executes** code and reports what happened: a test [Runner], a compilation, a benchmark, a smoke check. A [Runner] answers questions about behaviour at one moment, on the paths it happened to exercise; a [Detector] answers questions about the text of the code, everywhere it exists. Detection under this method MUST come from a [Detector], for that reason.
+
+#### Lexical
+
+Of a [Detector]: reading code as text, as grep does. It sees how the code is spelt and nothing of its structure, so it cannot tell a call from a comment that names it.
+
+#### Syntactic
+
+Of a [Detector]: reading a parse tree of the code without types, as ast-grep and Semgrep do. It sees the structure, but knows what a name refers to only by the name.
+
+#### Semantic
+
+Of a [Detector]: reading types and resolved symbols, as PHPStan, mypy, Clippy and ESLint with typescript-eslint's type information do. It sees what a name refers to and what type a value has, whatever either is called. The same [Detector] can be [Syntactic] in one configuration and [Semantic] in another: ESLint without type information is [Syntactic].
 
 #### Rule
 
@@ -218,7 +230,7 @@ Six clauses, in order. In brief, before the detail:
 | Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                                                                                     | Goes to the [Owner] under section 4                                                                  |
 | ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built, whether a [Runner] check pins the reported behaviour | Whether the next wider [Rule] is built, and whether the [Rule] stays narrower than the search showed |
-| 3.2    | Express the [Class] as a [Rule] in a [Detector], never a test                                               | The [Rule], and any [Toolchain] gap that stopped a bespoke one                                                                                       | Whether a [Class] that could be defended is left undefended                                          |
+| 3.2    | Express the [Class] as a [Rule] in a [Detector], never a test                                               | The [Rule], why it sits below a [Semantic] [Detector] where the language has one, and any [Toolchain] gap that stopped a bespoke one                 | Whether a [Class] that could be defended is left undefended                                          |
 | 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                                                                               | Any exclusion whose sentence cannot be written: that is [Suppression]                                |
 | 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                                                                                    | Any [Instance] left unfixed, and any [Baseline]                                                      |
 | 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point, and the recorded decision behind any [Suppression]                                                  | Removing or disabling the [Rule], and any [Suppression] added to it                                  |
@@ -395,6 +407,21 @@ Any tool that reads code and reports pattern matches qualifies, whatever its cat
 [Detectors] such as PHPStan, ESLint, mypy and Clippy are the usual instruments; so are custom AST
 walkers, architectural fitness checks, and [Detectors] that inspect a change before it lands. These
 are examples rather than a permitted list, and a [Detector] is not disqualified for being unfamiliar.
+
+**Qualifying is not the same as being the right host.** Where the language has a [Semantic]
+[Detector] that accepts bespoke [Rules], the [Practitioner] SHOULD express the [Rule] in it; where
+it has none, a [Syntactic] one is preferred to a [Lexical] one. The language has one when the
+project already runs it or the language's own [Detector] ecosystem offers it, the same check
+section 2 asks for before a [Toolchain] gap is recorded. Where the [Rule] is placed lower than
+that, the [Practitioner] MUST record why with its [Remediation docs], in a sentence an [Owner] can
+check:
+that the [Class] is defined by spelling alone, as a forbidden comment is, so a [Lexical] [Rule]
+sees every [Instance] of it; or that the project runs no [Semantic] [Detector], and why adopting
+one was not practical. A [Detector] that cannot see types decides by names and shapes. It reports
+every call named `context`, whatever it is called on, which is a [False positive] clause 3.1 does
+not tolerate, and it misses the same call made through an alias, which is an [Instance] the
+[Rule] never sees; restricting it by name trades the first failure for the second. A [Semantic]
+[Detector] decides by what the code is, so the bounds of clause 3.1 can be held there.
 
 Where the affected language has no extensible [Detector] available, the [Practitioner] MAY build a
 bespoke one: a program of the project's own that reads code and reports matches of the [Class], run
@@ -1051,8 +1078,10 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 > for it, say so and fix the [Defect] conventionally.
 >
 > Write a custom [Rule] that detects the [Class], in a tool that reads code rather than running it.
-> Draw it so that it catches more than the single [Instance] you started from, but never so broadly
-> that it matches code which does not carry the [Hazard].
+> Put it in a [Semantic] [Detector], one that sees types and symbols, where the language has one
+> that takes custom [Rules]; if you put it in one that sees only syntax or text, write down why in
+> the [Rule]'s documentation. Draw the [Rule] so that it catches more than the single [Instance]
+> you started from, but never so broadly that it matches code which does not carry the [Hazard].
 >
 > Do not trust the [Rule] as your only way of finding [Instances]. Search independently as well, by
 > text search and by reading the code, and check the [Rule] catches what you found by hand. Make that
@@ -1137,6 +1166,7 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 [escalation]: #escalation
 [exception]: #exception
 [exceptions]: #exception
+[false positive]: #false-positive
 [false positives]: #false-positive
 [fixture]: #fixture
 [fixtures]: #fixture
@@ -1146,6 +1176,7 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 [identifiers]: #identifier
 [instance]: #instance
 [instances]: #instance
+[lexical]: #lexical
 [message]: #message
 [narrowing]: #narrowing
 [owner]: #owner
@@ -1155,9 +1186,11 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 [rules]: #rule
 [runner]: #runner
 [runners]: #runner
+[semantic]: #semantic
 [suppress]: #suppression
 [suppression]: #suppression
 [suppressions]: #suppression
 [sweep]: #sweep
+[syntactic]: #syntactic
 [toolchain]: #toolchain
 [warning]: #warning

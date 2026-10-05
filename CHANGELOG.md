@@ -10,6 +10,19 @@ version entry with no cohort line has not been accepted and is not published.
 
 ## Method specification (SPEC.md)
 
+### Unreleased
+
+- New obligation, clause [3.2](SPEC.md#32-build-the-net): where the language has a semantic detector, one that reads types
+  and symbols, that accepts bespoke rules, the practitioner SHOULD host the rule there, and a
+  syntactic one before a lexical one where it has none; a rule placed lower MUST have the reason
+  recorded with its remediation docs. Section [1](SPEC.md#1-terminology) defines lexical, syntactic and semantic, and the
+  section [3](SPEC.md#3-the-method) map and Appendix A carry the preference. Prompted by project rules hosted in
+  ast-grep, where the language already had a semantic host, that decided by names: they reported
+  unrelated calls of the same name and missed calls made through an alias, and clause [3.2](SPEC.md#32-build-the-net) said
+  any detector qualified whatever its category. The method question set gains load-bearing
+  statement 2d, which `ACCEPTANCE.md` now lists. Accepted by run NNN. Minor version when
+  released.
+
 ### 1.1.0, 2026-10-02
 
 - New obligation, section [2](SPEC.md#2-when-the-method-applies): a defect whose fix is deferred MUST be recorded where the project's
@@ -67,6 +80,14 @@ Published before the acceptance test in `ACCEPTANCE.md` existed; 1.0.1 is the fi
 pass it.
 
 ## Detector specification (DETECTOR-SPEC.md)
+
+### Unreleased
+
+- New obligation, section [8](DETECTOR-SPEC.md#8-conformance): a verdict on a detector MUST say whether it is semantic, syntactic
+  or lexical, by the most it can give a bespoke rule to read. It is not a level of conformance and
+  does not change the verdict; it is stated because method clause [3.2](SPEC.md#32-build-the-net) now prefers a semantic
+  host, and a verdict of conforming alone presents a lexical detector as an equal host. Section [2](DETECTOR-SPEC.md#2-terminology)'s
+  gloss carries the three terms. Accepted by run NNN. Minor version when released.
 
 ### 1.0.0, 2026-09-08
 
