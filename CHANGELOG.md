@@ -133,3 +133,25 @@ First published version, the draft label dropped on the same day as the method s
 custom rules, a single-rule harness, identifier resolution, a derived listing of active defences,
 the project record, self-application, and the conformance definition in section 11. Published
 before the acceptance test in `ACCEPTANCE.md` existed; 0.2.0 is the first version to pass it.
+
+## Acceptance process (ACCEPTANCE.md)
+
+Not a specification and not versioned. Changes are recorded here as `ACCEPTANCE.md` describes,
+and need no cohort.
+
+### Unreleased
+
+- The cohort can be run and marked without judgement calls that the rules leave open. Each
+  reader is a separate process with no tools and no context but its packet, and the packet is
+  the document, its question set and the fixture the questions name, which `ACCEPTANCE.md` and
+  `acceptance/README.md` previously disagreed on. A new marking section settles what a correct
+  load-bearing answer needs, what makes a miss traceable to the text, an unanswered question and
+  "the same passage", and lets the editor delegate marking to a separate marker whose verdict
+  stands. Thresholds read "every reader" and "all but one", the same as five of five and four of
+  five for a cohort of five, and the pass criteria rows apply in order. The run record states
+  how readers were isolated and who marked. `CONTRIBUTING.md` names the reviewer, the
+  agent-facing rebuild after an Appendix A change, and how a change to this process is made.
+  Prompted by an agent-driven run of the process that could not follow it mechanically; the
+  rulings in [run 16](acceptance/runs/016-deferral-clause-run-1.md),
+  [run 17](acceptance/runs/017-deferral-clause-run-2.md) and
+  [run 18](acceptance/runs/018-deferral-clause-run-3.md) are written in.
