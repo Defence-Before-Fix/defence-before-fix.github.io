@@ -11,6 +11,8 @@ bullet asserting an obligation the document does not state, is a correct restate
 
 - Attribute the defect to a class, bounded on both sides, with the hazard stated ([3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)).
 - Express the class as a rule in a detector that reads code, never a test ([3.2](../../SPEC.md#32-build-the-net)).
+- Host the rule in a semantic detector where the language has one that takes bespoke rules,
+  else a syntactic one before a lexical one, and record why where it sits lower ([3.2](../../SPEC.md#32-build-the-net)).
 - Prove the rule fires, against the instance or a fixture, in a commit of its own ([3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)).
 - Sweep the whole codebase, record the count, then fix every instance ([3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)).
 - Make the rule permanent and blocking in the project's checks ([3.5](../../SPEC.md#35-enforce-permanently-and-block)).
@@ -20,7 +22,8 @@ bullet asserting an obligation the document does not state, is a correct restate
   than only mentioning it (section [2](../../SPEC.md#2-when-the-method-applies)).
 
 Wrong if it asserts: the practitioner fixes the reported instance first and defends afterwards;
-a test may serve as the detector; an agent may baseline the remaining instances.
+a test may serve as the detector; an agent may baseline the remaining instances; only a semantic
+detector may host a rule.
 
 ## 2. Load-bearing statements
 
@@ -42,13 +45,23 @@ a test may serve as the detector; an agent may baseline the remaining instances.
   rest on reproduction, not on the report". An answer that accepts the pull request description
   as the verdict is wrong, and so is one that states the six clauses and says nothing of
   reproduction.
+- **2d.** A semantic detector, one that reads types and symbols, where the language has one that
+  accepts bespoke rules; failing that a syntactic one before a lexical one; and where the rule
+  sits lower than the language allows, the practitioner records why with the rule's remediation
+  docs. Key quotations, [3.2](../../SPEC.md#32-build-the-net): "Where the language has a Semantic Detector that accepts bespoke
+  Rules, the Practitioner SHOULD express the Rule in it; where it has none, a Syntactic one is
+  preferred to a Lexical one."; "Where the Rule is placed lower than that, the Practitioner MUST
+  record why with its Remediation docs". An answer that says any detector is as good as another,
+  that a lower one is forbidden, that the owner must approve it (section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom) leaves the choice of
+  detector to the practitioner), or that names the preference and says nothing of the recorded
+  reason, is wrong.
 
 ## 3. Application: the ledger remediation
 
 | Clause                                                                                    | Intended verdict   | Reasoning the fixture supports                                                                                                                                                                                                                                 |
 | ----------------------------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)                                   | Yes, Partial or No | Class, hazard and the next wider rule are named; Partial or No is accepted where the reader notes that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for |
-| [3.2](../../SPEC.md#32-build-the-net)                                                     | Yes                | A rule in the project's static analyser, reading code, not a test                                                                                                                                                                                              |
+| [3.2](../../SPEC.md#32-build-the-net)                                                     | Yes                | A rule in the project's static analyser, reading code, not a test; the fixture does not say what the analyser reads, so nothing shows the rule sits lower than the language allows                                                                             |
 | [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)                             | Yes                | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                                                                     |
 | [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)                        | No or Partial      | Five findings recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority; Partial accepted where the reasoning names that suppression                                                                                    |
 | [3.5](../../SPEC.md#35-enforce-permanently-and-block)                                     | Partial or No      | The rule is permanent and blocking, but the suppression was not a recorded decision; [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers"                    |
@@ -68,8 +81,11 @@ A reader who grades [3.5](../../SPEC.md#35-enforce-permanently-and-block) Yes be
 sentence on unrecorded suppression, and that counts against the document. A reader who grades
 [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) Yes because the URL resolves has read the versioning sentence of [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)
 differently, which counts against the document; a reader who grades [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) Yes has misread the
-fixture. A reader who attributes the suppression to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) rather than [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) has read the narrowing
-passage of [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) as covering it, which is a fair reading and is not marked wrong.
+fixture. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Partial or No because no reason for the detector's kind
+is recorded has assumed a lower kind of detector than the fixture shows: the record is owed only
+where the rule sits lower than the language allows. That counts against the document only if the
+reasoning quotes [3.2](../../SPEC.md#32-build-the-net) as requiring the reason whatever the detector. A reader who attributes
+the suppression to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) rather than [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) has read the narrowing passage of [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) as covering it, which is a fair reading and is not marked wrong.
 
 ## 4. Confusion
 

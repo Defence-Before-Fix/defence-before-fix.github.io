@@ -25,11 +25,12 @@ document, so that marking is mechanical. Each reader answers all of them.
    bullets. Keyed against the list of MUST clauses: a bullet is correct when it names an
    obligation the document actually states.
 
-2. **Load-bearing statements.** Three questions, fixed per document, each asking for one
+2. **Load-bearing statements.** Three or more questions, fixed per document, each asking for one
    sentence and a quotation:
 
    - `SPEC.md`: what a practitioner does before fixing a defect, in order; who may baseline or
-     suppress; what "conforms" means for a remediation.
+     suppress; what "conforms" means for a remediation; which kind of detector should host a
+     rule, and what is recorded when another is used.
    - `DETECTOR-SPEC.md`: what "conforms" means and whether a tool that predates the document can
      conform; what a detector must do about an inline suppression route; where a bundled rule's
      documentation must live.

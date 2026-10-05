@@ -18,6 +18,8 @@ Answer each in one sentence, followed by the sentence of the document you are re
   authority?
 - 2c. What does it mean for a remediation to conform, and on what must a reviewer's verdict on
   it rest?
+- 2d. Where more than one kind of detector could host the rule, which kind should the
+  practitioner write it in, and what must they do if they write it in another?
 
 ## 3. Application
 
