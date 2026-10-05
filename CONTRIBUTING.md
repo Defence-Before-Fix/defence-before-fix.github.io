@@ -29,8 +29,9 @@ review. It is a patch version when released.
 SHOULD or MAY in a numbered section or appendix. It needs everything a clarity edit needs, plus
 the five tests in SCOPE.md answered in the pull request, and it is at least a minor version when
 released. `tools/changes.py` tells the two apart mechanically and CI runs it on every pull
-request. A change to the process files ACCEPTANCE.md names, this file among them, is neither,
-and ACCEPTANCE.md says how it is made.
+request. A change to the process files ACCEPTANCE.md names, this file among them, is neither:
+ACCEPTANCE.md says how it is made, and it is recorded in `acceptance/CHANGES.md`, not in
+CHANGELOG.md.
 
 ## What a pull request contains
 
@@ -75,7 +76,8 @@ survives, the change is yours.
 
 Steps 2 to 5 are the editor's, not CI's, and they happen in batches. The editor may have an
 agent draft or review, and may delegate marking as ACCEPTANCE.md allows, in which case the
-marker's verdict stands; every other decision in these steps stays the editor's. A quiet pull
+marker's verdict is final unless the editor shows a rule was misapplied, as ACCEPTANCE.md says;
+every other decision in these steps stays the editor's. A quiet pull
 request is not a declined one; a declined one says so.
 
 ## Versions and releases

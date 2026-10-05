@@ -8,21 +8,35 @@ test is run with a low-strength model so that clarity is measured at the floor, 
 
 ## The cohort
 
-- **At least five independent readers**, each a fresh instance of a low-strength model (the
-  smallest current model in its family, for example Haiku), with no shared context and no
-  access to the change history, the critique findings or each other.
+- **An odd number of independent readers, at least five**, each a fresh instance of a
+  low-strength model (the smallest current model in its family, for example Haiku), with no
+  shared context and no access to the change history, the critique findings or each other. The
+  editor chooses the size, and may choose a larger cohort the more load-bearing the change is.
+
 - **Each reader is a separate process with no tools and no context but its packet**, started
-  outside any repository so that no project instruction or settings file reaches it: for
-  example `claude -p` with every tool disabled, run from an empty directory. A reader that
-  shares the editor's context, such as an agent dispatched from the editor's own session, is not
-  a cold reader, and its answers do not count towards a run.
+  from an empty directory outside any repository, with no settings files, no MCP servers and no
+  saved session, so that no project instruction or settings file reaches it. For example, with
+  the packet given inline as the prompt:
+
+  ```
+  claude -p --model haiku --tools "" --setting-sources "" --strict-mcp-config --no-session-persistence "<packet>"
+  ```
+
+  A reader that shares the editor's context, such as an agent dispatched from the editor's own
+  session, is not a cold reader, and its answers do not count towards a run. If fewer than five
+  readers' answers count, the run is void and a fresh cohort runs.
+
 - Each reader receives **only its packet**: the changed document, the document's question set
   and the fixture the questions name, each in full in the reader's prompt and headed by its file
   name. The question set carries the instruction to the reader; no preamble, wrapper or other
   text is added beyond the file names. Every reader in a run receives the same packet. Nothing
   else is read first.
+
 - Readers are run **after** every stronger review has been applied. They are the last gate, not
   the first draft.
+
+The isolation rule above and the answer sheets kept under [The record](#the-record) apply to runs
+from 019 onwards; runs 16 to 18 stand as recorded.
 
 ## The question set
 
@@ -79,8 +93,9 @@ read, its question set, the fixture the questions name and its key; this file an
 shape; the answer sheets; and, from the editor, the facts the record states that the sheets do
 not, which are the pull request and the commit, the cohort size and model, the command the
 readers were started with and the run number. The record states those facts as the editor
-supplied them. A delegated marker's verdict stands. Each sheet is marked question by question,
-as follows.
+supplied them. A delegated marker's verdict is final unless the editor shows that a rule in this
+file was misapplied; the editor then re-marks what the misapplied rule affected, and the record
+says which rule and why. Each sheet is marked question by question, as follows.
 
 - **Quoting.** A reader quotes the document when it gives words of the document verbatim, a
   whole sentence or part of one. Naming a clause number, or paraphrasing, is not quoting.
@@ -103,8 +118,9 @@ as follows.
   common. Passages with no sentence in common are different, even within one paragraph or
   clause.
 
-Where a mark needs a judgement these rules do not settle, the marker makes it, and the record
-states the judgement and why.
+Where a mark needs a judgement these rules do not settle, the marker makes it, taking the stricter
+reading, the one under which the change is less likely to pass, and the record states the
+judgement and why.
 
 ## Pass criteria
 
@@ -179,7 +195,8 @@ process files, and a change to any part of them is a change to this process. The
 specifications, and a change to them is not tested by a cohort: the cohort measures whether a
 low-strength reader can follow a specification, and the process is followed by the editor. Such
 a change names the runs or the case that showed the need for it, has the same independent review
-as any other, and is recorded by a line under `Unreleased` in the changelog's entry for the
-acceptance process. It is bound by the section on the bar: it may raise a criterion, never relax
-one. A change to a question set, key or fixture is not a change to this process;
-`acceptance/README.md` governs those.
+as any other, and is recorded by a line under `Unreleased` in
+[acceptance/CHANGES.md](acceptance/CHANGES.md), not in the changelog, which is for the three
+specifications. It is bound by the section on the bar: it may raise a criterion, never relax one.
+A change to a question set, key or fixture is not a change to this process; `acceptance/README.md`
+governs those.

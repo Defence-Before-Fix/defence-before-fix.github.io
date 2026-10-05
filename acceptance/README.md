@@ -2,8 +2,9 @@
 
 The question sets and answer keys that [ACCEPTANCE.md](../ACCEPTANCE.md) requires. One directory per
 specification document, each holding the fixed questions a cold reader answers and the key an
-editor marks against. The fixture cases the application question uses live in `fixtures/`, and
-the record of every run lives in `runs/`.
+editor marks against. The fixture cases the application question uses live in `fixtures/`, the
+record of every run lives in `runs/`, and changes to the acceptance process itself are recorded
+in [CHANGES.md](CHANGES.md).
 
 | Document           | Questions                                        | Key                                  |
 | ------------------ | ------------------------------------------------ | ------------------------------------ |
@@ -14,9 +15,10 @@ the record of every run lives in `runs/`.
 ## How a run works
 
 1. The editor identifies which documents the change touched. Only those are tested.
-2. For each, five or more fresh low-strength readers, each isolated as `ACCEPTANCE.md` describes,
-   each receive the document's current text, its `QUESTIONS.md`, and the fixture the questions
-   name. Nothing else: no key, no changelog, no critique findings, no other reader's answers.
+2. For each, an odd number of fresh low-strength readers, at least five, each isolated as
+   `ACCEPTANCE.md` describes, each receive the document's current text, its `QUESTIONS.md`, and
+   the fixture the questions name. Nothing else: no key, no changelog, no critique findings, no
+   other reader's answers.
 3. The editor, or a separate marker the editor delegates to, marks each answer sheet against
    `KEY.md` under the marking rules in `ACCEPTANCE.md` and applies its pass criteria.
 4. The result is recorded as a file under [runs/](runs/), stating what `ACCEPTANCE.md` lists,
