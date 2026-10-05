@@ -35,16 +35,16 @@ construct the means has moved the obligation rather than met it.
 Terms from the method specification carry over unchanged. Every capitalised term links to its
 definition; the ones this document leans on most are, in short:
 
-| Term                               | In one line                                                                     |
-| ---------------------------------- | ------------------------------------------------------------------------------- |
-| [Detector]                         | A tool that reads code without executing it and reports what it finds           |
-| [Semantic], [Syntactic], [Lexical] | What a [Detector] reads: types and symbols, a parse tree without types, or text |
-| [Rule]                             | One check a [Detector] evaluates                                                |
-| [Identifier]                       | The stable name printed with a finding that leads to its documentation          |
-| [Practitioner]                     | Whoever is doing the work, a person or an [Agent]                               |
-| [Toolchain]                        | Everything a project assembles to run its checks through, [Detectors] included  |
-| [Suppression]                      | Making a finding go away without fixing it                                      |
-| [Baseline]                         | A recorded set of existing findings a [Rule] is told to ignore                  |
+| Term                               | In one line                                                                                  |
+| ---------------------------------- | -------------------------------------------------------------------------------------------- |
+| [Detector]                         | A tool that reads code without executing it and reports what it finds                        |
+| [Semantic], [Syntactic], [Textual] | What a [Detector] can see: types, symbols and data flow; a parse tree without types; or text |
+| [Rule]                             | One check a [Detector] evaluates                                                             |
+| [Identifier]                       | The stable name printed with a finding that leads to its documentation                       |
+| [Practitioner]                     | Whoever is doing the work, a person or an [Agent]                                            |
+| [Toolchain]                        | Everything a project assembles to run its checks through, [Detectors] included               |
+| [Suppression]                      | Making a finding go away without fixing it                                                   |
+| [Baseline]                         | A recorded set of existing findings a [Rule] is told to ignore                               |
 
 These are additional.
 
@@ -307,12 +307,13 @@ summary for an [Agent]'s context, are obligations on a project's assembled [Tool
 and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no separate [Agent]-support level
 for a [Detector].
 
-**A verdict on a [Detector] MUST also say whether it is [Semantic], [Syntactic] or [Lexical]**,
-by the most it can give a bespoke [Rule] to read. That is not a level of [Conformance] and does
-not change the verdict: a [Lexical] [Detector] can [Conform], and a [Semantic] one can fail to. It
-is stated because the method specification's clause 3.2 asks a [Practitioner] to prefer a
-[Semantic] [Detector] where the language has one that accepts bespoke [Rules], and a verdict that
-said only [Conforming] would present a [Lexical] [Detector] as an equal host to a [Semantic] one.
+**A verdict on a [Detector] MUST also say whether it is [Semantic], [Syntactic] or [Textual]**,
+by the most a [Rule] in it can see in any configuration it documents. That is not a level of
+[Conformance] and does not change the verdict: a [Textual] [Detector] can [Conform], and a
+[Semantic] one can fail to. It is stated because the method specification's clause 3.2 requires a
+[Practitioner] to write a [Rule] in the strongest kind of [Detector] that can express it, and a
+verdict that said only [Conforming] would present a [Textual] [Detector] as an equal host to a
+[Semantic] one.
 
 ### 8.1 A maintainer MAY declare the version of this document the detector conforms to, and the declaration records known gaps
 
@@ -397,7 +398,6 @@ does not have to.
 [hazards]: SPEC.md#hazard
 [identifier]: SPEC.md#identifier
 [identifiers]: SPEC.md#identifier
-[lexical]: SPEC.md#lexical
 [message]: SPEC.md#message
 [owner]: SPEC.md#owner
 [practitioner]: SPEC.md#practitioner
@@ -408,4 +408,5 @@ does not have to.
 [semantic]: SPEC.md#semantic
 [suppression]: SPEC.md#suppression
 [syntactic]: SPEC.md#syntactic
+[textual]: SPEC.md#textual
 [toolchain]: SPEC.md#toolchain

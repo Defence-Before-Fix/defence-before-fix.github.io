@@ -13,10 +13,12 @@ it. Do not decide in advance whether that is possible, attempt it. If you cannot
 for it, say so and fix the Defect conventionally.
 
 Write a custom Rule that detects the Class, in a tool that reads code rather than running it.
-Put it in a Semantic Detector, one that sees types and symbols, where the language has one
-that takes custom Rules; if you put it in one that sees only syntax or text, write down why in
-the Rule's documentation. Draw the Rule so that it catches more than the single Instance
-you started from, but never so broadly that it matches code which does not carry the Hazard.
+Put it in a Semantic Detector, one that sees types and symbols; failing that, one that sees
+syntax; and only then one that sees text. Use a weaker one only where the stronger one cannot
+express the Rule, or the language has none that takes custom Rules, and write down which,
+and why, in the Rule's documentation and in the description of the commit that adds it. Draw
+the Rule so that it catches more than the single Instance you started from, but never so
+broadly that it matches code which does not carry the Hazard.
 
 Do not trust the Rule as your only way of finding Instances. Search independently as well, by
 text search and by reading the code, and check the Rule catches what you found by hand. Make that
