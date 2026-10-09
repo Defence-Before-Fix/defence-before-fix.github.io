@@ -18,8 +18,9 @@ bullet asserting an obligation the document does not state, is a correct restate
   offline, with the documentation shipped and versioned with the rule ([6.1](../../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) to [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together)).
 - Make any inline suppression route detectable or disableable ([7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)).
 
-A bullet saying that a verdict on a detector names whether it is semantic, syntactic or textual
-(section [8](../../DETECTOR-SPEC.md#8-conformance)) is correct too, though it is an obligation on whoever gives the verdict.
+A bullet saying that a verdict on a detector names the kind, semantic, syntactic or textual, of
+each configuration it grades (section [8](../../DETECTOR-SPEC.md#8-conformance)) is correct too, though it is an obligation on whoever
+gives the verdict, as section [9](../../DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) says.
 
 Wrong if it asserts: the detector must be semantic to conform; the detector must enforce a
 project's suppression policy; the detector must
@@ -69,7 +70,7 @@ because they missed the last paragraph of the fixture has misread the fixture, n
 
 The fixture does not say what Lintomatic can see. A reader who names its kind as unknown, or names
 none, is not marked on it; a reader who makes the verdict turn on its kind has read section [8](../../DETECTOR-SPEC.md#8-conformance)
-differently, which counts against the document: the kind "is not a level of Conformance and does
+differently, which counts against the document: "The kind is not a level of Conformance and does
 not change the verdict".
 
 Clause [6.4](../../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation): **does not change the verdict**. It is a SHOULD, and Lintomatic's failure to check its

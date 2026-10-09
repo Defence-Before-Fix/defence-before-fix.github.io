@@ -29,8 +29,8 @@ document, so that marking is mechanical. Each reader answers all of them.
    sentence and a quotation:
 
    - `SPEC.md`: what a practitioner does before fixing a defect, in order; who may baseline or
-     suppress; what "conforms" means for a remediation; which kind of detector should host a
-     rule, and what is recorded when another is used.
+     suppress; what "conforms" means for a remediation; which kind of detector must host a
+     rule the practitioner writes, when a weaker one is allowed, and what is recorded then.
    - `DETECTOR-SPEC.md`: what "conforms" means and whether a tool that predates the document can
      conform; what a detector must do about an inline suppression route; where a bundled rule's
      documentation must live.
