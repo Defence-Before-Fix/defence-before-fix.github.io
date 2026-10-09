@@ -40,6 +40,7 @@ definition; the ones this document leans on most are, in short:
 | [Detector]                         | A tool that reads code without executing it and reports what it finds                                                                               |
 | [Semantic], [Syntactic], [Textual] | What a [Rule] can ask in a configuration: the type of any expression and what any name refers to, program-wide; a parse tree short of that; or text |
 | [Rule]                             | One check a [Detector] evaluates                                                                                                                    |
+| [Message]                          | The text a [Rule] prints when it fires                                                                                                              |
 | [Identifier]                       | The stable name printed with a finding that leads to its documentation                                                                              |
 | [Practitioner]                     | Whoever is doing the work, a person or an [Agent]                                                                                                   |
 | [Toolchain]                        | Everything a project assembles to run its checks through, [Detectors] included                                                                      |
@@ -158,10 +159,10 @@ any.
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
-still carry a usable summary, each finding in it with where it is and its [Identifier]. If the
-summary leaves any finding out, the output MUST also say where the findings it leaves out can be read. Output that prints
-every finding so meets this clause, even where extra detail, such as a code snippet, is written only
-to a file the output does not name.
+still carry a usable summary, each finding in it with where it is and its [Identifier]. The
+summary need not list every finding. If it leaves any finding out, the output MUST also say where
+the rest can be read. Output that lists every finding meets this clause, even where extra detail,
+such as a code snippet, is written only to a file the output does not name.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
 report that arrives after the decision it was meant to inform.
@@ -195,9 +196,9 @@ documentation is the project's to write. Each case in turn:
 **For a [Bundled rule]**, the [Detector] supplies the documentation and the
 lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier]
 presented alone, because the reader who needs it most has the [Identifier] from a log, a
-ticket or a colleague and not the [Message]. A documentation path printed inside the
-[Message] does not meet this: it helps only a reader who has the [Message], and the
-[Identifier] on its own still leads nowhere.
+ticket or a colleague and not the [Message]. Printing a documentation path in the [Message] is
+not enough. It helps only a reader who has the [Message]; the [Identifier] alone still leads
+nowhere.
 
 **For a project's own [Rule]**, the [Detector] cannot know the documentation, so what
 it owes is the half it can give: the [Identifier] printed unaltered under clause 4.3, and no
@@ -274,14 +275,15 @@ nothing to run.
 
 ### 7.1 A detector MAY offer an inline suppression route, but MUST make it detectable or disableable
 
-An inline ignore comment, a per-line directive and a generated [Baseline] are all such
-routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
-alone satisfies this clause: make the route disableable by configuration; or make the route
-detectable. Detectable means the project can find every use of the route, either with a [Rule]
-the project writes itself in the [Detector], of the kind clause 4.1 requires it to host, or with a
-mechanical check the [Detector] documents. The [Detector] is not required to remove the route
-or to forbid it. Either of the two things lets a project which decides to forbid the route
-enforce that decision. A route that can be neither switched off nor seen does not [Conform].
+The [Detector] does not have to remove or forbid an inline [Suppression] route. An inline ignore
+comment, a per-line directive and a generated [Baseline] are all such routes. The [Detector] MAY
+ship them. For each one it MUST do at least one of two things, and either alone satisfies this
+clause: make the route disableable by configuration; or make the route detectable. Detectable
+means the project can find every use of the route. One way is a [Rule] the project writes and
+registers with the [Detector], as clause 4.1 lets it; the [Detector] need not ship that [Rule].
+The other way is a mechanical check the [Detector] documents. Either of the two things lets a
+project which decides to forbid the route enforce that decision. A route that can be neither
+switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
@@ -304,7 +306,8 @@ minute at the moment they have the reason in mind, and it is the only thing that
 
 ## 8. Conformance
 
-**A [Detector] [Conforms]** if it satisfies every MUST in sections 4 to 7.
+**A [Detector] [Conforms]** if it satisfies every MUST in sections 4 to 7. It is judged on the
+evidence, and a declaration under clause 8.1 is optional.
 
 Partial [Conformance] MUST NOT be described as [Conformance]. A [Detector]
 that satisfies most of this document is in a normal and respectable condition; it is not
@@ -333,14 +336,11 @@ record dependencies. The same declaration is where a known gap is recorded. A ga
 sections 4 to 7 that the [Detector] fails. Once its maintainer knows of a gap, from the
 [Detector]'s own checks or from a [Practitioner]'s report under the method's clause 3.2, a
 [Detector] that declares a version MUST record the gap alongside that version, in the same file
-as the declaration or in a file the declaration names. A declaration with a non-empty
-gap record is a statement of where the [Detector] stands and is not a claim of
-[Conformance].
+as the declaration or in a file the declaration names. A declaration that records no gap claims
+[Conformance]. A declaration that records a gap does not; it says where the [Detector] stands.
 
 The declaration is optional: a [Detector] with no declaration can still [Conform]. Whether a
-[Detector] [Conforms] is judged on the evidence, with or without a declaration. The
-declaration is for the maintainer: it is how they claim [Conformance] and record the gaps they
-know of. A [Detector] that predates this document, or whose maintainer has never read
+[Detector] [Conforms] is judged on the evidence, with or without a declaration. A [Detector] that predates this document, or whose maintainer has never read
 it, MAY be graded [Conforming] on evidence by anyone who exercises the clauses above against
 it, and a verdict on any [Detector], declared or not, rests on that exercise and not on the
 claim. A declaration tells the reader what the maintainer believes and what they know to be missing;

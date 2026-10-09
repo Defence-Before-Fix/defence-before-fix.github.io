@@ -46,7 +46,15 @@ version entry with no cohort line has not been accepted and is not published.
   of pointing at clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s vocabulary; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) says what the level of a class is; clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire)'s
   Part B says an instance left behind an inline ignore comment, an ignore entry or a baseline is
   not a narrowing, since the code still carries the hazard, but a suppression for clauses [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance) and
-  [3.5](SPEC.md#35-enforce-permanently-and-block) and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom); and clause [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance) says plainly that a baseline is rare. Accepted by run NNN. Minor version when released.
+  [3.5](SPEC.md#35-enforce-permanently-and-block) and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom); and clause [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance) says plainly that a baseline is rare. After run 21, clarity
+  edits: section [2](SPEC.md#2-when-the-method-applies) names the order of the steps, since three readers stopped at its MUST
+  sentence; clause [3.2](SPEC.md#32-build-the-net) states both grounds for a weaker kind in the sentence that allows one, since
+  no reader named them, and says the extension-points rule in short sentences; clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire)'s Part
+  B says an inline ignore is not judged under it, and Part C says the red run may report a
+  fixture and the green run does not; section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s lead-in names the owner, and its bullet on the
+  next wider rule, with the section [3](SPEC.md#3-the-method) map's row, says the owner decides unless the practitioner
+  has written and confirmed why the hazard cannot arise there. Accepted by run NNN. Minor version
+  when released.
 
 ### 1.1.0, 2026-10-02
 
@@ -125,8 +133,14 @@ pass it.
   clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says the project writes the detecting rule in the detector, of the kind clause
   [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) requires, and that the detector need not remove or forbid the route; clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says
   what a gap is, that a detector declaring a version records it there, and that conformance is
-  judged on evidence with or without a declaration. Accepted by run NNN. Minor version when
-  released.
+  judged on evidence with or without a declaration. After run 22, clarity edits: section [8](DETECTOR-SPEC.md#8-conformance)
+  says beside the definition of conformance that it is judged on evidence and a declaration is
+  optional, and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says plainly which declaration claims conformance; clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) opens by
+  saying the detector need not remove or forbid the route and says what detectable means in short
+  sentences; clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) says the summary need not list every finding; clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says
+  plainly why a path in the message is not enough, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss defines the message.
+  Each after readers of run 22 missed or named the passage. Accepted by run NNN. Minor version
+  when released.
 
 ### 1.0.0, 2026-09-08
 
