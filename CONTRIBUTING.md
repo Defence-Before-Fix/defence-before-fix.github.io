@@ -70,7 +70,8 @@ survives, the change is yours.
 5. **The cohort.** The acceptance test in ACCEPTANCE.md runs on the final text. Its record is
    committed under `acceptance/runs/`, the `Unreleased` changelog line names it, and CI refuses
    a specification change that lacks one. For an obligation, the editor sets the document's
-   header to `<next version>-dev, unpublished` in the same commit if it still names a published
+   header to `<next version>-dev, unpublished`, and the status paragraph and citation that state
+   its version to `<next version>-dev`, in the same commit if the header still names a published
    version. A wording change after the run means a fresh run.
 6. **Merge** into `next` by merge commit, and the branch is deleted.
 

@@ -25,9 +25,12 @@ test is run with a low-strength model so that clarity is measured at the floor, 
   ```
 
   The JSON output gives the model version each reader reported. A reader isolated in this way is
-  a cold reader. A reader whose answer text is empty, or that shared the editor's context, such
-  as an agent dispatched from the editor's own session, is set aside and its answers do not
-  count; no reader is set aside for any other cause, and the record shows the cause. If any
+  a cold reader. A reader is set aside, and its answers do not count, when its answer text is
+  empty; when its process reports an error, for example `is_error` in its JSON output or an API
+  error message in place of answers; when it shared the editor's context, such as an agent
+  dispatched from the editor's own session; when the command or working directory recorded for
+  it is not one this section requires; or when the model version it reported is not the
+  cohort's model. No reader is set aside for any other cause, and the record shows the cause. If any
   reader is set aside, the run is void and a fresh cohort runs, unless the readers whose answers
   count already fail a criterion, when the run fails; a run never passes with a reader set
   aside. A set-aside reader's sheet is still marked, and a miss traceable to the text in it fails
@@ -96,7 +99,8 @@ The editor marks each answer sheet against the document's key, or delegates the 
 separate marker that has seen neither the drafting nor the review. Whoever marks is the marker
 in this file. A delegated marker receives only these: the document, its question set, the
 fixture the questions name and its key, each at the commit the readers read; this file and
-`acceptance/runs/README.md`; the earlier run records of the same pull request, and those of
+`acceptance/runs/README.md`, at the named commit where the run is made under a process change
+before that change merges; the earlier run records of the same pull request, and those of
 other pull requests as examples of style only; the document at the commit each earlier run of
 the pull request read; the answer sheets; and, from the editor, the facts the record states that
 the sheets do not, which are the pull request and the commit, the cohort size and model, how the
@@ -118,8 +122,8 @@ which rule and why. Each sheet is marked question by question, as follows.
   link or emphasis markup. Naming a clause number, or paraphrasing, is not quoting.
 - **Questions 1 and 3** are marked as the key states for each item.
 - **Question 2.** An answer is correct when its sentence states each thing the key's answer
-  states, unless the key says it may be left out, asserts nothing the key says makes an answer
-  wrong, and quotes in support words of the document that by themselves state at least one
+  states, unless the key says it may be left out, asserts nothing the document does not state
+  and nothing the key says makes an answer wrong, and quotes in support words of the document that by themselves state at least one
   thing the key's answer states. The quotation need not be the one the key gives.
 - **A miss traceable to the text**, under questions 2 and 3, is a miss whose reasoning quotes the
   document or states, in the reader's own words, what the document says or requires. Such a miss
@@ -133,9 +137,9 @@ which rule and why. Each sheet is marked question by question, as follows.
   it turns on quotes the document; any other miss on question 1 is the reader's.
 - **An unanswered question.** Each keyed item left unanswered is one miss, not traceable to the
   text, so a sheet that leaves three items of question 3 blank has three misses. Question 4 left
-  unanswered counts as no passage quoted. A sheet with any answer text is marked as it stands,
-  whatever its process returned; one whose answer text is empty is set aside, as
-  [The cohort](#the-cohort) says.
+  unanswered counts as no passage quoted. A sheet with any answer text is marked as it stands;
+  one whose answer text is empty, or whose process reports an error, is set aside, as
+  [The cohort](#the-cohort) says, and is still marked.
 - **The same passage.** A quotation under question 4, of any length, covers every sentence that
   an occurrence of the quoted words, taken as one run, overlaps, at every place that run occurs,
   and a passage named without a quotation, by clause number or description, covers every
@@ -161,8 +165,9 @@ one" is four of five.
 | A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage that covers a sentence of the paragraph the earlier passage lay in, as that paragraph reads in the changed document, or a sentence the change kept from it |
 | Anything else from one reader only                     | Recorded; applied at the editor's discretion; does not block                                                                                                                                                                                                                                                               |
 
-Every row must hold, and the last covers only what none of the others catches. The first, third
-and fourth rows block on what a single reader, or for the fourth two readers, did, and the second
+Every row must hold, and the last covers only what none of the others catches. The first and
+third rows block on what a single reader did, and the fourth on what two readers did and then
+on what any one reader of a fresh cohort names, and the second
 row's tolerance of one reader never excuses a miss under the third.
 
 The asymmetry is deliberate. A load-bearing statement is the sentence the whole document exists

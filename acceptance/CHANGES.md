@@ -12,20 +12,23 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   the change touches, each a separate process with no tools and no project context, started from
   an empty directory outside any repository with no user, project or local settings files,
   `CLAUDE.md`, skills, plugins, hooks, MCP servers or saved session. A reader is set aside only
-  if its answer text is empty or it shared the editor's context, and a run with a reader set
+  if its answer text is empty, its process reports an error, it shared the editor's context, it
+  was not started as required or it reported another model, and a run with a reader set
   aside is void, or fails if the readers who count already fail it or its own sheet has a miss
   traceable to the text; a void run has a number, a record and posted sheets. The packet is the question set, the document and the fixture, each
   after one `===== FILE: <name> =====` line. A new marking section says what a delegated marker
   receives and that its verdict is final unless a rule was misapplied, that open judgements take
   the stricter reading, and defines a keyed item, quoting (consecutive words of any length,
   verbatim apart from case, quotation-mark style and markup), a correct load-bearing answer,
-  whose quotation must itself state part of the key's answer, a miss traceable to the text,
+  which asserts nothing the document does not state and whose quotation must itself state part
+  of the key's answer, a miss traceable to the text,
   including a question 1 bullet that quotes the document, which a key can add to but never
   remove, an unanswered item and the same passage. The thresholds apply to the readers whose answers count and block on a single
-  reader for the first, third and fourth rows, and the fourth row says what a fresh cohort no
+  reader for the first and third rows and on two readers for the fourth, and the fourth row says what a fresh cohort no
   longer naming a passage means. A fresh cohort runs after every change following a failure,
   every void run and every wording change, which is any change to the text after the readers
-  read it except a version number or date the editor sets for a release. The record adds the
+  read it except a version number or date the editor sets for a release, and step 5 sets the
+  status paragraph and citation to the `-dev` version with the header. The record adds the
   model version each reader reported, the isolation, managed settings, readers set aside, void
   runs, re-marks and each confusing passage's words verbatim, and links each reader's whole
   output and the marker's instruction, posted on the pull request and never edited, hidden or
