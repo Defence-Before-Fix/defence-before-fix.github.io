@@ -60,8 +60,7 @@ agent summary (those belong to the toolchain specification).
 
 Section [8](../../DETECTOR-SPEC.md#8-conformance) verdict: **does not conform**, because [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) fails and partial conformance MUST NOT be
 described as conformance. A reader who grades [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) Partial on the grounds that thirty-eight resolve
-has read the clause differently and that counts against the document; a reader who grades [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) Yes
-because they missed the last paragraph of the fixture has misread the fixture, not the document.
+has read the clause differently and that counts against the document.
 
 Clause [6.4](../../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation): **does not change the verdict**. It is a SHOULD, and Lintomatic's failure to check its
 own identifiers in CI is a missed SHOULD, not a further MUST failure; the MUST that fails is [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together).

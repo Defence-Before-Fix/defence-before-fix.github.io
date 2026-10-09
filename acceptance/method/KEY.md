@@ -56,8 +56,7 @@ a test may serve as the detector; an agent may baseline the remaining instances.
 
 Section [7](../../SPEC.md#7-conformance): the **remediation does not conform**, because [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) and [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) were not followed. The
 **defence does not conform** either, because [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) fails; a reader who says the defence conforms
-because the sweep is what failed has missed [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) and that counts against the document only if the
-reasoning quotes the section [7](../../SPEC.md#7-conformance) definition of a conforming defence.
+because the sweep is what failed has missed [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation).
 
 Section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom): the **inline ignore on `Report::render()`** was the owner's decision, not the
 practitioner's. An answer naming instead the decision not to build the wider rule is half right:
@@ -67,8 +66,7 @@ An answer naming neither is wrong.
 A reader who grades [3.5](../../SPEC.md#35-enforce-permanently-and-block) Yes because the rule fails the build has not applied the clause's opening
 sentence on unrecorded suppression, and that counts against the document. A reader who grades
 [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) Yes because the URL resolves has read the versioning sentence of [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)
-differently, which counts against the document; a reader who grades [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) Yes has misread the
-fixture. A reader who attributes the suppression to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) rather than [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) has read the narrowing
+differently, which counts against the document. A reader who attributes the suppression to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) rather than [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) has read the narrowing
 passage of [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) as covering it, which is a fair reading and is not marked wrong.
 
 ## 4. Confusion

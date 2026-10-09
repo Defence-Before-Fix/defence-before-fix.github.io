@@ -41,9 +41,9 @@ CHANGELOG.md.
   request template lays them out.
 - The observed case that prompted it, for either kind. A clarity edit still has a reason: a
   reader who took the passage the wrong way.
-- Where a specification's Appendix A changed, the agent-facing files rebuilt with
-  `python3 build-agent-surfaces.py` and committed with the change; CI runs it with `--check`
-  and fails when they are stale.
+- Where a specification's Appendix A changed, the files `python3 build-agent-surfaces.py`
+  writes, rebuilt with it and committed with the change; CI runs it with `--check` and fails
+  when they are stale.
 - `python3 spec-qa.py` clean and the unit tests passing, which CI checks for you.
 
 A pull request is a suggestion, not a demand. The documents have one editor, who keeps ownership
@@ -62,9 +62,9 @@ survives, the change is yours.
    pull request with a row in `DECLINED.md`.
 3. **Review and rewrite.** An independent review of the diff against the whole document, by a
    reviewer who did not draft the change, then the editor's rewrite, pushed to the pull request
-   branch where the contributor allows it or to an editor's branch that supersedes it. A review
-   finding that changes the document's text after a cohort has run is a wording change, and a
-   fresh run follows; the header the editor sets at step 5 is not a wording change.
+   branch where the contributor allows it or to an editor's branch that supersedes it. The pull
+   request names the reviewer and links or contains the review. A wording change, as
+   ACCEPTANCE.md defines it under "When it runs", means a fresh run.
 4. **Keys.** Where the change touches a sentence an acceptance key quotes, or adds a load-bearing
    obligation, the editor updates the key before the cohort runs, never after.
 5. **The cohort.** The acceptance test in ACCEPTANCE.md runs on the final text. Its record is
@@ -77,8 +77,8 @@ survives, the change is yours.
 Steps 2 to 5 are the editor's, not CI's, and they happen in batches. The editor may have an
 agent draft or review, and may delegate marking as ACCEPTANCE.md allows, in which case the
 marker's verdict is final unless the editor shows a rule was misapplied, as ACCEPTANCE.md says;
-every other decision in these steps stays the editor's. A quiet pull
-request is not a declined one; a declined one says so.
+every other decision in these steps stays the editor's. A quiet pull request is not a declined
+one; a declined one says so.
 
 ## Versions and releases
 

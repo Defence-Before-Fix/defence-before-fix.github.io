@@ -73,9 +73,7 @@ Declaration: **does not affect the verdict**. Key quotation, [9.2](../../TOOLING
 A reader who says Zigpipe cannot be graded without one has read [9.2](../../TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance) wrongly.
 
 A reader who grades [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) Yes on the grounds that Lintomatic "mostly" conforms has read either [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)
-or the detector document's section [8](../../DETECTOR-SPEC.md#8-conformance) differently; it counts against this document only if the
-reasoning quotes [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification). A reader who grades [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) Yes because they missed the two undocumented rules
-has misread the fixture.
+or the detector document's section [8](../../DETECTOR-SPEC.md#8-conformance) differently.
 
 ## 4. Confusion
 

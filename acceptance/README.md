@@ -1,10 +1,10 @@
 # Acceptance question sets
 
 The question sets and answer keys that [ACCEPTANCE.md](../ACCEPTANCE.md) requires. One directory per
-specification document, each holding the fixed questions a cold reader answers and the key an
-editor marks against. The fixture cases the application question uses live in `fixtures/`, the
-record of every run lives in `runs/`, and changes to the acceptance process itself are recorded
-in [CHANGES.md](CHANGES.md).
+specification document, each holding the fixed questions a
+[cold reader](../ACCEPTANCE.md#the-cohort) answers and the key an editor marks against. The
+fixture cases the application question uses live in `fixtures/`, the record of every run lives in
+`runs/`, and changes to the acceptance process itself are recorded in [CHANGES.md](CHANGES.md).
 
 | Document           | Questions                                        | Key                                  |
 | ------------------ | ------------------------------------------------ | ------------------------------------ |
