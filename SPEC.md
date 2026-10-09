@@ -529,8 +529,8 @@ what must survive the merge is not.
 
 **Part B: [Narrowing].**
 
-Leaving an [Instance] in place behind an inline ignore comment, an ignore entry or a [Baseline]
-is not a [Narrowing], whatever note accompanies it: the code still carries the [Hazard]. That is
+Leaving an [Instance] that carries the [Hazard] in place behind an inline ignore comment, an
+ignore entry or a [Baseline] is not a [Narrowing], whatever note accompanies it. That is
 a [Suppression] of the
 [Instance], and clauses 3.4 and 3.5 and section 4 govern it, not this clause.
 

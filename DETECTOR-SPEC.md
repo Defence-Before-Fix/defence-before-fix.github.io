@@ -159,8 +159,8 @@ any.
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
 still carry a usable summary, each finding in it with where it is and its [Identifier]. If the
-summary leaves any finding out, the output MUST also give the location of the rest. Output that prints
-every finding meets this clause, even where extra detail, such as a code snippet, is written only
+summary leaves any finding out, the output MUST also say where the findings it leaves out can be read. Output that prints
+every finding so meets this clause, even where extra detail, such as a code snippet, is written only
 to a file the output does not name.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
