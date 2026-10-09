@@ -41,7 +41,7 @@ agent summary (those belong to the toolchain specification).
   it. Key quotation, [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each one it MUST do at least one of two things, and either alone
   satisfies this clause: make the route disableable by configuration; or make the route
   detectable. Detectable means the project can find every use of the route, either with a Rule
-  the project writes itself, of the kind clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) requires the Detector to host, or with a
+  the project writes itself in the Detector, of the kind clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) requires it to host, or with a
   mechanical check the Detector documents." An answer that says the detector must forbid the route, or must require a
   reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD), is wrong.
 - **2c.** With the rule, in the installed copy, at a version tracked together, and yes, offline.
