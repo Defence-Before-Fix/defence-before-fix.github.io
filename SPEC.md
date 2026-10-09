@@ -359,21 +359,16 @@ new means the search is done. That is a test the [Practitioner] can apply and re
 threshold, and it is the standard clause 3.4 refers back to.
 
 Two techniques are independent when they would miss different things. A text search for the token
-and a reading of the code paths that consume the value are independent; two text searches for two
+and a reading of the code that consumes the value are independent; two text searches for two
 spellings of the same token are one technique; asking someone who knows the system is a third. For a
-[Class] defined by how code is spelt, writing the idiom the other ways it is commonly spelt and searching
-the codebase for each of them is a technique, because a search for one spelling misses every other;
-whether the [Rule] catches those spellings is the confirmation step, not the technique. The
-[Rule] itself is never one of the techniques, because the search exists to check the [Rule].
-A clean run of the [Rule] is therefore not evidence of saturation either: "the [Rule] found nothing
-the reading had missed" is one technique and a [Rule] run, not two techniques, and the stopping
-criterion cannot be applied to it.
-The record MUST name both techniques, chosen before the [Rule] is run against the codebase, and
-MUST state what each found that the other could not have checked. A technique counts only if it does
-not invoke the [Detector] under proof in any configuration and would exist unchanged had the
-[Rule] never been written; a [Sweep]-shaped run of the [Rule], however comprehensive it looks, is
-never one of the two. Where a later technique shows that two earlier checks shared a blind spot, they
-were one technique, and a third is owed.
+[Class] defined by how code is spelt, searching for each other common spelling of the idiom is a
+technique. A technique counts only if it does not run the [Detector] under proof in any
+configuration and would exist unchanged had the [Rule] never been written. So a run of the
+[Rule], however wide, is never a technique, and a clean run of it shows nothing about saturation:
+this search exists to check the [Rule]. The record MUST name both techniques, chosen before the
+[Rule] is run against the codebase, and MUST state what each found that the other could not have
+checked. Where a later technique shows that two earlier checks shared a blind spot, they were one
+technique, and a third is owed.
 
 That turns the single-[Instance] case into something checkable rather than a matter of taste. If an
 independent search finds [Instances] the [Rule] missed, the [Class] was drawn too narrowly and the [Rule]
@@ -422,27 +417,23 @@ on two grounds only: where the stronger kind cannot express the [Rule], or where
 no [Detector] of the stronger kind that accepts bespoke [Rules]. For example, the stronger kind
 cannot express a [Rule] that reads a file the [Semantic] [Detector] does not parse.
 
-The second ground asks two questions of each [Detector] of the stronger kind. First, is it
-available? It is if the project already runs it, or the language's own [Detector] ecosystem
-offers it. That is the same check section 2 asks for before a [Toolchain] gap is recorded. A
-stronger configuration of a [Detector] the project runs counts. A [Detector] or configuration
-that only a hosted service or a licence tier provides does not count. Second, does it accept
-bespoke [Rules]? It does if the project can add its own [Rule] to it through a documented
-extension point, such as a plugin interface or an API for writing [Rules]. It need not meet the
-rest of the [detector specification](DETECTOR-SPEC.md). The second ground holds only when no
-[Detector] of the stronger kind passes both questions. If a [Detector] passes both but its
-extension points cannot reach the construct a [Rule] is about, that [Detector] cannot express the
-[Rule]. If no
-[Detector] of the stronger kind can reach it, the stronger kind cannot express the [Rule]: that
-is the first ground, not the second.
+For the second ground, the language has a [Detector] of the stronger kind when the project
+already runs one or the language's own [Detector] ecosystem offers one. A stronger configuration
+of a [Detector] the project runs counts; one that only a hosted service or a licence tier
+provides does not. A [Detector] accepts bespoke [Rules] when the project can add its own [Rule]
+to it through a documented extension point, such as a plugin interface; it need not meet the rest
+of the [detector specification](DETECTOR-SPEC.md). If no [Detector] of the stronger kind can reach
+the construct the [Rule] is about, that is the first ground.
 
 On the [Remediation docs] of a [Rule] they
-write, the [Practitioner] MUST name the [Detector] and its kind. Where that kind is weaker than [Semantic], the [Practitioner] MUST also
-record, on the [Rule]'s [Remediation docs] and in the description of the commit that adds the
-[Rule], moves it to another [Detector], or first records the grounds, for each step down the
-order [Semantic], [Syntactic], [Textual], which of the two grounds holds (the stronger kind cannot
-express the [Rule], or the language has no [Detector] of the stronger kind that accepts bespoke
-[Rules]) and why, naming the [Detectors] of the stronger kind that were considered. The [Practitioner] judges whether the grounds hold, as section 4 gives them the choice of [Detector]; a
+write, the [Practitioner] MUST name the [Detector] and its kind. Where that kind is weaker than
+[Semantic], the [Practitioner] MUST also record, for each step down the order [Semantic],
+[Syntactic], [Textual], which ground holds, that the stronger kind cannot express the [Rule] or
+that the language has no [Detector] of the stronger kind that accepts bespoke [Rules], and why,
+naming the [Detectors] of the stronger kind that were considered, on the [Rule]'s
+[Remediation docs] and in the description of the commit that adds the [Rule], moves it to another
+[Detector], or first records the grounds. The [Practitioner] judges whether the grounds hold, as
+section 4 gives them the choice of [Detector]; a
 project MAY require its [Owner]'s sign-off on a weaker kind as well, by recording that
 requirement where it records its [Calibrations]; the sign-off is then recorded with the grounds,
 and where the project has recorded no such requirement none is needed.
@@ -759,10 +750,11 @@ that invocation covers, and see the [Rule] reported there. A [Toolchain] that wr
 [Detectors] in its own command is asking for that command to be used, and a [Practitioner]
 who bypasses it has proven the [Rule] and not the [Defence].
 
-For a [Bundled defence], the project whose entry point demonstrates it is any project the
-[Toolchain] is genuinely installed into, the [Consuming project] included, since that is
-where the [Rule] will be enforced. A mechanism gap that stops the [Toolchain] running its own entry
-point on its own source moves the demonstration to such a project; it does not weaken it. The
+A [Bundled defence] is a [Defence] that a [Toolchain] ships and enables by default in every
+project that installs it. The project whose entry point demonstrates it is any project the
+[Toolchain] is genuinely installed into, whether the [Toolchain]'s own or somebody else's, since
+that is where the [Rule] will be enforced. A mechanism gap that stops the [Toolchain] running its
+own entry point on its own source moves the demonstration to such a project; it does not weaken it. The
 substitutes clause 3.2 allows, for proving under clause 3.3 and for resolution under clause 3.6, do
 not extend to this clause: the demonstration here is through an entry point or it is not made. A
 project created for the purpose, with the [Toolchain] installed into it from the source under
@@ -795,9 +787,9 @@ something else. The documentation carries the reasoning and the remedy; it is re
 somebody who has decided to understand the [Rule], and it is maintained as the project's thinking
 develops. Anything that would grow over time belongs in the documentation.
 
-**A [Rule] and its documentation are one artefact and MUST be versioned as one.** They live in the
-same repository and are committed together, or in a library the project depends on at a clearly
-tracked version. A [Rule] carries knowledge specific to the project it defends, and its
+**A [Rule]'s documentation MUST be versioned with the [Rule].** The two are one artefact: they
+live in the same repository and are committed together, or in a library the project depends on at
+a clearly tracked version. A [Rule] carries knowledge specific to the project it defends, and its
 documentation is where most of that knowledge actually sits, so anything that lets the two drift
 apart destroys the value of both. The same applies to a [Rule]'s [Fixtures] under clause 3.3.
 
@@ -1206,7 +1198,6 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 [conformance]: #conform
 [conforming]: #conform
 [conforms]: #conform
-[consuming project]: TOOLING-SPEC.md#consuming-project
 [coverage]: #coverage
 [dbf]: #dbf
 [defect]: #defect

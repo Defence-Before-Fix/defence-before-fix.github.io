@@ -275,16 +275,15 @@ nothing to run.
 
 ### 7.1 A detector MAY offer an inline suppression route, but MUST make it detectable or disableable
 
-The [Detector] does not have to remove or forbid an inline [Suppression] route. An inline ignore
-comment, a per-line directive and a generated [Baseline] are all such routes, and the [Detector]
-MAY ship them. For each route it ships, it MUST do at least one of two things: let the project
-switch the route off in the [Detector]'s configuration, or make the route detectable. Either alone
-satisfies this clause, and neither requires the [Detector] to remove or forbid the route.
-Detectable means the project can find every use of the route. There are two ways. One is a
-[Rule] the project writes and registers with the [Detector], as clause 4.1 lets it; the
-[Detector] need not ship that [Rule]. The other is a mechanical check the [Detector] documents.
-Either of the two things lets a project that decides to forbid the route enforce that decision.
-A route that can be neither switched off nor seen does not [Conform].
+An inline ignore comment, a per-line directive and a generated [Baseline] are all inline
+[Suppression] routes, and the [Detector] MAY ship them. For each route it ships, it MUST do at
+least one of two things, and need not remove or forbid the route: let the project switch the
+route off in the [Detector]'s configuration, or make the route detectable. Either alone satisfies
+this clause. A route is detectable when the project can find every use of it, either with a
+[Rule] of the project's own that the [Detector] runs, or with a mechanical check the [Detector]
+documents. The [Detector] need not ship that [Rule]. Switching the route off or
+detecting it lets a project that decides to forbid the route enforce that decision. A route that
+can be neither switched off nor detected does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
@@ -320,17 +319,15 @@ summary for an [Agent]'s context, are obligations on a project's assembled [Tool
 and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no separate [Agent]-support level
 for a [Detector].
 
-**A verdict on a [Detector] MUST also name the kind of each configuration it grades, [Semantic],
-[Syntactic] or [Textual]**. One [Detector] can be graded in more than one configuration: ESLint,
-for example, is [Syntactic] without type information and [Semantic] with it. A configuration that
-needs a hosted service or a licence tier does not count: the kind named is the one the [Detector]
-has without either. Clause 5.4 is the reason: a finding reported only there does
-not [Conform]. The kind is not a level of
-[Conformance] and does not change the verdict: a [Textual] [Detector] can [Conform], and a
-[Semantic] one can fail to. It is stated because the method specification's clause 3.2 requires a
-[Practitioner] to write a [Rule] in the strongest kind of [Detector] that can express it, and a
-verdict that said only [Conforming] would present a [Textual] [Detector] as an equal host to a
-[Semantic] one.
+**A verdict on a [Detector] MUST name its kind, [Semantic], [Syntactic] or [Textual], in each
+configuration the verdict grades.** The kind is what a [Rule] can ask in that configuration, as
+section 2 glosses it. ESLint, for example, is [Syntactic] without type information and [Semantic]
+with it. The kind named is the one the [Detector] has without a hosted service or a licence tier,
+since under clause 5.4 a finding reported only there does not [Conform]. This duty is on whoever
+gives the verdict, not on the [Detector]: the kind is not a level of [Conformance] and does not
+change the verdict, so a [Textual] [Detector] can [Conform], and a [Semantic] one can fail to. It
+is named because the method specification's clause 3.2 requires a [Rule] to be written in the
+strongest kind of [Detector] that can express it.
 
 ### 8.1 A maintainer MAY declare the version of this document the detector conforms to, and the declaration records known gaps
 

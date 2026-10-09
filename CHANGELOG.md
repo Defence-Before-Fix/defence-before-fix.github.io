@@ -62,8 +62,15 @@ version entry with no cohort line has not been accepted and is not published.
   the hazard is a suppression, not a narrowing; and the Owner entry says the default owner is the
   human who instructed the practitioner, or, where an agent gave the instruction, the human who
   instructed that agent, and takes section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s
-  decisions. Each after readers of run 23 missed or named the passage. Accepted by run NNN. Minor
-  version when released.
+  decisions. Each after readers of run 23 missed or named the passage. After run 25, clarity
+  edits: clause [3.2](SPEC.md#32-build-the-net)'s record sentence states both grounds in its main clause, not in brackets,
+  and its paragraph on the second ground says in fewer sentences when the language has a
+  detector of the stronger kind and when it accepts bespoke rules; clause [3.5](SPEC.md#35-enforce-permanently-and-block) says what a
+  bundled defence is and that a project installing somebody else's toolchain counts, without the
+  undefined term consuming project; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s paragraph on independent techniques is shorter
+  and says plainly that a run of the rule is never one; and clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)'s versioning sentence
+  says a rule's documentation is versioned with the rule. Each after readers of run 25 missed or
+  named the passage. Accepted by run NNN. Minor version when released.
 
 ### 1.1.0, 2026-10-02
 
@@ -154,8 +161,12 @@ pass it.
   sentence that a detector may be graded conforming on evidence says a declaration is optional,
   and its paragraph is in short sentences; section [8](DETECTOR-SPEC.md#8-conformance)'s paragraph on the kind says one
   detector can be graded in more than one configuration and that one needing a hosted service or
-  licence tier does not count. Each after readers of run 24 missed or named the passage. Accepted
-  by run NNN. Minor version when released.
+  licence tier does not count. Each after readers of run 24 missed or named the passage. After
+  run 26, clarity edits: clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s obligation sentence itself says the detector need not
+  remove or forbid the route, and its definition of detectable is one sentence; section [8](DETECTOR-SPEC.md#8-conformance)'s
+  paragraph on the kind is shorter, says what the kind is, and says the duty is on whoever gives
+  the verdict, not on the detector. Each after readers of run 26 missed or named the passage.
+  Accepted by run NNN. Minor version when released.
 
 ### 1.0.0, 2026-09-08
 
