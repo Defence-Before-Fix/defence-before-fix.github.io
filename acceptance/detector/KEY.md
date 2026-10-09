@@ -38,8 +38,8 @@ agent summary (those belong to the toolchain specification).
   says a declaration is required, or that partial satisfaction is conformance, is wrong.
 - **2b.** It must make the route either disableable by configuration or detectable by a rule the
   project can write or a mechanical check it documents; it is not required to remove or forbid
-  it. Key quotation, [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each route it ships, it MUST do at least one of two things,
-  and need not remove or forbid the route: let the project switch the route off in the Detector's
+  it. Key quotation, [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each route it ships, it need not remove or forbid the route,
+  but it MUST do at least one of two things: let the project switch the route off in the Detector's
   configuration, or make the route detectable. Either alone satisfies this clause. A route is
   detectable when the project can find every use of it, either with a Rule of the project's own
   that the Detector runs, or with a mechanical check the Detector documents. The Detector need not

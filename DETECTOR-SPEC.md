@@ -276,8 +276,8 @@ nothing to run.
 ### 7.1 A detector MAY offer an inline suppression route, but MUST make it detectable or disableable
 
 An inline ignore comment, a per-line directive and a generated [Baseline] are all inline
-[Suppression] routes, and the [Detector] MAY ship them. For each route it ships, it MUST do at
-least one of two things, and need not remove or forbid the route: let the project switch the
+[Suppression] routes, and the [Detector] MAY ship them. For each route it ships, it need not remove or forbid the route, but it MUST do at
+least one of two things: let the project switch the
 route off in the [Detector]'s configuration, or make the route detectable. Either alone satisfies
 this clause. A route is detectable when the project can find every use of it, either with a
 [Rule] of the project's own that the [Detector] runs, or with a mechanical check the [Detector]

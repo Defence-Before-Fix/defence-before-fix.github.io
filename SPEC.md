@@ -360,7 +360,7 @@ threshold, and it is the standard clause 3.4 refers back to.
 
 Two techniques are independent when they would miss different things. A text search for the token
 and a reading of the code that consumes the value are independent; two text searches for two
-spellings of the same token are one technique; asking someone who knows the system is a third. For a
+spellings of the same token are one technique, because they miss the same things; asking someone who knows the system is a third. For a
 [Class] defined by how code is spelt, searching for each other common spelling of the idiom is a
 technique. A technique counts only if it does not run the [Detector] under proof in any
 configuration and would exist unchanged had the [Rule] never been written. So a run of the
@@ -419,7 +419,7 @@ cannot express a [Rule] that reads a file the [Semantic] [Detector] does not par
 
 For the second ground, the language has a [Detector] of the stronger kind when the project
 already runs one or the language's own [Detector] ecosystem offers one. A stronger configuration
-of a [Detector] the project runs counts; one that only a hosted service or a licence tier
+of a [Detector] the project runs counts; a [Detector] or configuration that only a hosted service or a licence tier
 provides does not. A [Detector] accepts bespoke [Rules] when the project can add its own [Rule]
 to it through a documented extension point, such as a plugin interface; it need not meet the rest
 of the [detector specification](DETECTOR-SPEC.md). If no [Detector] of the stronger kind can reach
@@ -750,8 +750,8 @@ that invocation covers, and see the [Rule] reported there. A [Toolchain] that wr
 [Detectors] in its own command is asking for that command to be used, and a [Practitioner]
 who bypasses it has proven the [Rule] and not the [Defence].
 
-A [Bundled defence] is a [Defence] that a [Toolchain] ships and enables by default in every
-project that installs it. The project whose entry point demonstrates it is any project the
+A [Bundled defence] is a [Defence] that a shipped [Toolchain] enables by default in every
+project that installs it from somebody else. The project whose entry point demonstrates it is any project the
 [Toolchain] is genuinely installed into, whether the [Toolchain]'s own or somebody else's, since
 that is where the [Rule] will be enforced. A mechanism gap that stops the [Toolchain] running its
 own entry point on its own source moves the demonstration to such a project; it does not weaken it. The
