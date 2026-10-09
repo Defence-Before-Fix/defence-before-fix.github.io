@@ -57,8 +57,8 @@ is correct; a bullet that says no weaker kind is ever allowed is wrong.
   reason. Key quotations, [3.2](../../SPEC.md#32-build-the-net): "A Rule the
   Practitioner writes MUST be written in the strongest kind of Detector that can express it: a
   Semantic one, else a Syntactic one, else a Textual one."; "Where that kind is weaker than
-  Semantic, the Practitioner MUST also record, for each step down from Semantic, which of those
-  two reasons holds and why, naming the Detectors of the stronger kind that were considered, on
+  Semantic, the Practitioner MUST also record, for each step down from Semantic, which of the
+  two grounds holds and why, naming the Detectors of the stronger kind that were considered, on
   the Rule's Remediation docs and in the description of the commit that adds the Rule, moves it to
   another Detector, or first records the reason." Supporting: "On the Remediation docs of a Rule
   they write, the Practitioner MUST name the Detector and its kind." A correct answer gives three
