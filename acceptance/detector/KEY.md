@@ -20,7 +20,8 @@ bullet asserting an obligation the document does not state, is a correct restate
 
 A bullet saying that a verdict on a detector names the kind, semantic, syntactic or textual, of
 each configuration it grades (section [8](../../DETECTOR-SPEC.md#8-conformance)) is correct too, though it is an obligation on whoever
-gives the verdict, as section [9](../../DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) says.
+gives the verdict, as section [9](../../DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) says. A bullet saying that the detector, or a verdict on it, must state
+its kind is marked correct as this obligation, although the document puts it on the verdict.
 
 Wrong if it asserts: the detector must be semantic to conform; the detector must enforce a
 project's suppression policy; the detector must
