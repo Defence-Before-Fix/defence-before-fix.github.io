@@ -24,7 +24,8 @@ bullet asserting an obligation the document does not state, is a correct restate
 
 Wrong if it asserts: the practitioner fixes the reported instance first and defends afterwards;
 a test may serve as the detector; an agent may baseline the remaining instances; only a semantic
-detector may host a rule.
+detector may host a rule. A bullet saying that rules go in a semantic detector, with no
+fallback, names an obligation the document states and is correct.
 
 ## 2. Load-bearing statements
 
@@ -46,37 +47,39 @@ detector may host a rule.
   rest on reproduction, not on the report". An answer that accepts the pull request description
   as the verdict is wrong, and so is one that states the six clauses and says nothing of
   reproduction.
-- **2d.** The strongest kind that can express it: a semantic detector, one that sees the types of
-  values, else a syntactic one, else a textual one, judged by the configuration the rule runs in;
-  a weaker kind only where the stronger cannot express the rule or the language has no detector of
-  that kind that accepts bespoke rules (one the toolchain may not route a defence through does
-  not count), and then the practitioner records, for each step down from semantic, which reason
-  holds and why, naming the stronger detectors considered, on the rule's remediation docs and in
-  the description of the commit that adds or moves the rule. Key quotations, [3.2](../../SPEC.md#32-build-the-net): "A Rule the
+- **2d.** The strongest kind that can express it: a semantic detector, else a syntactic one, else
+  a textual one, judged by the configuration the rule runs in; a weaker kind only where the
+  stronger cannot express the rule or the language has no detector of that kind that accepts
+  bespoke rules, and then the practitioner records, for each step down from semantic, which
+  reason holds and why, naming the stronger detectors considered, on the rule's remediation docs
+  and in the description of the commit that adds the rule, moves it, or first records the
+  reason. Key quotations, [3.2](../../SPEC.md#32-build-the-net): "A Rule the
   Practitioner writes MUST be written in the strongest kind of Detector that can express it: a
   Semantic one, else a Syntactic one, else a Textual one."; "Where that kind is weaker than
   Semantic, the Practitioner MUST also record, for each step down from Semantic, which of those
   two reasons holds and why, naming the Detectors of the stronger kind that were considered, on
-  the Rule's Remediation docs and in the description of the commit that adds the Rule or moves it
-  to another Detector." Supporting: "The Practitioner MUST name the Detector and its kind on the
-  Rule's Remediation docs." The answer must put the semantic kind first. An answer naming the
-  recorded reason in one of the two places is correct. An answer that says any detector is as
-  good as another, that the semantic kind is only
-  preferred and may be passed over for another reason, that a weaker kind is never allowed, that
-  the owner must always approve a weaker kind (the practitioner judges it unless the project
-  requires the owner's sign-off), or that names the kind and says nothing of the recorded reason,
-  is wrong.
+  the Rule's Remediation docs and in the description of the commit that adds the Rule, moves it to
+  another Detector, or first records the reason." Supporting: "On the Remediation docs of a Rule
+  they write, the Practitioner MUST name the Detector and its kind." A correct answer gives three
+  elements, and may leave out everything else above: (i) the strongest kind that can express the
+  rule, in the order semantic, syntactic, textual; (ii) a weaker kind only where the stronger
+  cannot express the rule or the language has no detector of that kind that takes bespoke rules,
+  both grounds; (iii) the reason recorded, in either of the two places. An answer that misses one
+  of the three, that says any detector is as good as another, that the semantic kind is only
+  preferred and may be passed over for another reason, that a weaker kind is never allowed, or
+  that the owner must always approve a weaker kind (the practitioner judges it unless the
+  project requires the owner's sign-off), is wrong.
 
 ## 3. Application: the ledger remediation
 
-| Clause                                                                                    | Intended verdict   | Reasoning the fixture supports                                                                                                                                                                                                                                                                                                                                                 |
-| ----------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)                                   | Yes, Partial or No | Class, hazard and the next wider rule are named; Partial or No is accepted where the reader notes that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for                                                                                                                 |
-| [3.2](../../SPEC.md#32-build-the-net)                                                     | Partial or No      | A rule in the project's static analyser, reading code, not a test, but the wiki page of commit D names neither the detector nor its kind; [3.2](../../SPEC.md#32-build-the-net): "The Practitioner MUST name the Detector and its kind on the Rule's Remediation docs." The fixture does not say what the analyser can see, so no reason for a weaker kind is shown to be owed |
-| [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)                             | Yes                | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                                                                                                                                                                                     |
-| [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)                        | No or Partial      | Five findings recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority; Partial accepted where the reasoning names that suppression                                                                                                                                                                                                    |
-| [3.5](../../SPEC.md#35-enforce-permanently-and-block)                                     | Partial or No      | The rule is permanent and blocking, but the suppression was not a recorded decision; [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers"                                                                                                                                    |
-| [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) | No or Partial      | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule; Partial accepted where the reasoning quotes the versioning sentence                                                                                                                                                                                        |
+| Clause                                                                                    | Intended verdict   | Reasoning the fixture supports                                                                                                                                                                                                                                                                                                                                                                |
+| ----------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)                                   | Yes, Partial or No | Class, hazard and the next wider rule are named; Partial or No is accepted where the reader notes that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for                                                                                                                                |
+| [3.2](../../SPEC.md#32-build-the-net)                                                     | Partial or No      | A rule in the project's static analyser, reading code, not a test, but the wiki page of commit D names neither the detector nor its kind; [3.2](../../SPEC.md#32-build-the-net): "On the Remediation docs of a Rule they write, the Practitioner MUST name the Detector and its kind." The fixture does not say what the analyser can see, so no reason for a weaker kind is shown to be owed |
+| [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)                             | Yes                | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                                                                                                                                                                                                    |
+| [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)                        | No or Partial      | Five findings recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority; Partial accepted where the reasoning names that suppression                                                                                                                                                                                                                   |
+| [3.5](../../SPEC.md#35-enforce-permanently-and-block)                                     | Partial or No      | The rule is permanent and blocking, but the suppression was not a recorded decision; [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers"                                                                                                                                                   |
+| [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) | No or Partial      | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule; Partial accepted where the reasoning quotes the versioning sentence                                                                                                                                                                                                       |
 
 Section [7](../../SPEC.md#7-conformance): the **remediation does not conform**, because [3.2](../../SPEC.md#32-build-the-net), [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) and [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) were not followed. The
 **defence does not conform** either, because [3.2](../../SPEC.md#32-build-the-net) and [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) fail; a reader who names either is correct.
@@ -93,9 +96,7 @@ A reader who grades [3.5](../../SPEC.md#35-enforce-permanently-and-block) Yes be
 sentence on unrecorded suppression, and that counts against the document. A reader who grades
 [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) Yes because the URL resolves has read the versioning sentence of [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)
 differently, which counts against the document; a reader who grades [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) Yes has misread the
-fixture. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Yes has not applied the sentence requiring the remediation
-docs to name the detector and its kind, and that counts against the document. A reader who grades
-[3.2](../../SPEC.md#32-build-the-net) Partial or No only because no reason for a weaker kind is recorded has the verdict on a
+fixture. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Partial or No only because no reason for a weaker kind is recorded has the verdict on a
 ground the fixture does not show: the reason is owed only where the rule is in a weaker kind than
 semantic. That is not marked wrong, and counts against the document only if the reasoning quotes
 [3.2](../../SPEC.md#32-build-the-net) as requiring the reason whatever the detector. A reader who attributes
