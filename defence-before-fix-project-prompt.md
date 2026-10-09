@@ -19,10 +19,10 @@ then one that sees text. Use a weaker one only where the stronger one cannot exp
 or the language has none that takes custom Rules: none the project runs, in any configuration
 it can use without a hosted service or a licence tier, and none its ecosystem offers outside
 one. Name the Detector and its kind in the Rule's documentation. Where you use a weaker one,
-write down which reason holds, and why, naming the stronger Detectors you considered, there and
-in the description of the commit that adds the Rule, moves it to another Detector, or first
-records the reason, and where the project requires its Owner's sign-off on a weaker one, get
-it and record it with the reason. Draw
+write down which of those two grounds holds, and why, naming the stronger Detectors you
+considered, there and in the description of the commit that adds the Rule, moves it to another
+Detector, or first records the grounds, and where the project requires its Owner's sign-off
+on a weaker one, get it and record it with the grounds. Draw
 the Rule so that it catches more than the single Instance you started from, but never so
 broadly that it matches code which does not carry the Hazard.
 

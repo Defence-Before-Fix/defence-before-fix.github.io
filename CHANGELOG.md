@@ -41,11 +41,12 @@ version entry with no cohort line has not been accepted and is not published.
   qualified whatever its category. The method question set gains load-bearing statement 2d, which
   `ACCEPTANCE.md` now lists, and `index.md`, `README.md`, `PRIMER.md` and two register pages
   defer to the clause. After run 19, clarity edits: clause [3.2](SPEC.md#32-build-the-net) sets out the two grounds
-  for a weaker kind as a numbered pair and says the extension-points rule in two sentences;
-  section [2](SPEC.md#2-when-the-method-applies) says what independent means instead of pointing at clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s vocabulary; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)
-  says what the level of a class is; clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire)'s Part B says an instance left behind an inline
-  ignore is a suppression for clauses [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance) and [3.5](SPEC.md#35-enforce-permanently-and-block) and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom), not a narrowing; and clause [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance)
-  says plainly that a baseline is rare. Accepted by run NNN. Minor version when released.
+  for a weaker kind as a numbered pair, calls them grounds throughout, as Appendix A now does, and
+  says the extension-points rule in two sentences; section [2](SPEC.md#2-when-the-method-applies) says what independent means instead
+  of pointing at clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s vocabulary; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) says what the level of a class is; clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire)'s
+  Part B says an instance left behind an inline ignore comment, an ignore entry or a baseline is
+  not a narrowing, since the code still carries the hazard, but a suppression for clauses [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance) and
+  [3.5](SPEC.md#35-enforce-permanently-and-block) and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom); and clause [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance) says plainly that a baseline is rare. Accepted by run NNN. Minor version when released.
 
 ### 1.1.0, 2026-10-02
 
@@ -113,11 +114,15 @@ pass it.
   is stated because method clause [3.2](SPEC.md#32-build-the-net) now requires a rule to be written in the strongest kind of
   detector that can express it, and a verdict of conforming alone presents a textual detector as
   an equal host. Section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) still adds no obligation to a practitioner and names this
-  one as binding whoever gives a verdict on a detector, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss carries the three terms. After run 20, clarity edits: clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) says
-  the usable summary is every finding with its location and identifier, and the location of the
-  rest is owed only where a finding is left out; clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says it asks for the mechanism and
-  that missing documentation for a bundled rule fails clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), and says plainly why a path in the
-  message is not enough; clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says the project writes the detecting rule, of the kind clause
+  one as binding whoever gives a verdict on a detector, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss carries the three terms. After run 20, changed obligation, clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran): the
+  usable summary gives each finding in it with its location and identifier, and the location of
+  the rest is owed only where the summary leaves a finding out, so output that prints every
+  finding conforms though extra detail goes to a file it does not name; the old text owed that
+  location unconditionally, run 20's five readers graded the fixture's [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) Partial on it, and the
+  key's intended Yes already assumed the new reading. Clarity edits: clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says it asks
+  for the mechanism and that missing documentation for a bundled rule fails clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), as
+  clause [6.4](DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation)'s Why now says too, and says plainly why a path in the message is not enough;
+  clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says the project writes the detecting rule in the detector, of the kind clause
   [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) requires, and that the detector need not remove or forbid the route; clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says
   what a gap is, that a detector declaring a version records it there, and that conformance is
   judged on evidence with or without a declaration. Accepted by run NNN. Minor version when

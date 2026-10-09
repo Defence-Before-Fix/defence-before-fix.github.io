@@ -158,8 +158,8 @@ any.
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
-still carry a usable summary: every finding, with where it is and its [Identifier]. If that
-output leaves any finding out, it MUST also give the location of the rest. Output that prints
+still carry a usable summary, each finding in it with where it is and its [Identifier]. If the
+summary leaves any finding out, the output MUST also give the location of the rest. Output that prints
 every finding meets this clause, even where extra detail, such as a code snippet, is written only
 to a file the output does not name.
 
@@ -244,7 +244,7 @@ An automated check over every [Identifier] a [Bundled rule] can print, applying 
 family list or pattern of clause 6.5 where one is used, that blocks the release when any of them
 lands on no page.
 
-**Why**: clause 6.1 is the clause most easily believed to be satisfied whilst being broken, because
+**Why**: clause 6.3 is the clause most easily believed to be satisfied whilst being broken, because
 the documentation is written by the same person who wrote the [Rule] and its absence is
 invisible from the inside. Where the [Detector] is shipped inside a [Toolchain],
 the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a MUST for the [Toolchain]; a
@@ -278,7 +278,7 @@ An inline ignore comment, a per-line directive and a generated [Baseline] are al
 routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
 alone satisfies this clause: make the route disableable by configuration; or make the route
 detectable. Detectable means the project can find every use of the route, either with a [Rule]
-the project writes itself, of the kind clause 4.1 requires the [Detector] to host, or with a
+the project writes itself in the [Detector], of the kind clause 4.1 requires it to host, or with a
 mechanical check the [Detector] documents. The [Detector] is not required to remove the route
 or to forbid it. Either of the two things lets a project which decides to forbid the route
 enforce that decision. A route that can be neither switched off nor seen does not [Conform].

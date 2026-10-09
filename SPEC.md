@@ -194,8 +194,8 @@ clause 3.1's bounds is itself the evidence that the [Defect] is out of scope, an
 more reliable than a judgement made before trying. The conclusion that no pattern exists MUST be
 stated in one sentence, naming at least two independent techniques tried at expressing the
 [Rule], and recorded where the project's other decisions are enumerable under clause 8.7, not
-only with the fix. Two techniques are independent, as clause 3.1 defines it for a search, when
-they would miss different things. It is the cheapest way
+only with the fix. Two techniques are independent when they would miss different things, as
+clause 3.1 says of a search. That conclusion is the cheapest way
 out of the method and the only one that would otherwise leave no trace; enumerating it is how an
 [Owner] sees an [Agent] routing around the method, and naming the techniques is what lets
 them judge whether the attempt was one.
@@ -436,9 +436,9 @@ write, the [Practitioner] MUST name the [Detector] and its kind. Where that kind
 record, for each step down from [Semantic], which of the two grounds holds and why, naming the
 [Detectors] of the stronger kind that were considered, on the [Rule]'s [Remediation docs] and in
 the description of the commit that adds the [Rule], moves it to another [Detector], or first
-records the reason. The [Practitioner] judges whether a reason holds, as section 4 gives them the choice of [Detector]; a
+records the grounds. The [Practitioner] judges whether the grounds hold, as section 4 gives them the choice of [Detector]; a
 project MAY require its [Owner]'s sign-off on a weaker kind as well, by recording that
-requirement where it records its [Calibrations]; the sign-off is then recorded with the reason,
+requirement where it records its [Calibrations]; the sign-off is then recorded with the grounds,
 and where the project has recorded no such requirement none is needed.
 
 **A worked example.** Take a [Rule] against calling a method named `context` on one type. A
@@ -529,9 +529,9 @@ what must survive the merge is not.
 
 **Part B: [Narrowing].**
 
-A [Narrowing] is a change to the [Rule] itself, so that it stops matching some code. An
-[Instance] left in place behind an inline ignore comment, an ignore entry or a [Baseline] is not
-a [Narrowing]: the [Rule] is unchanged and still matches it. That is a [Suppression] of the
+Leaving an [Instance] in place behind an inline ignore comment, an ignore entry or a [Baseline]
+is not a [Narrowing], whatever note accompanies it: the code still carries the [Hazard]. That is
+a [Suppression] of the
 [Instance], and clauses 3.4 and 3.5 and section 4 govern it, not this clause.
 
 **The decision comes first, and it turns on one sentence.** Can the [Practitioner] write down why
@@ -1120,10 +1120,10 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 > or the language has none that takes custom [Rules]: none the project runs, in any configuration
 > it can use without a hosted service or a licence tier, and none its ecosystem offers outside
 > one. Name the [Detector] and its kind in the [Rule]'s documentation. Where you use a weaker one,
-> write down which reason holds, and why, naming the stronger [Detectors] you considered, there and
-> in the description of the commit that adds the [Rule], moves it to another [Detector], or first
-> records the reason, and where the project requires its [Owner]'s sign-off on a weaker one, get
-> it and record it with the reason. Draw
+> write down which of those two grounds holds, and why, naming the stronger [Detectors] you
+> considered, there and in the description of the commit that adds the [Rule], moves it to another
+> [Detector], or first records the grounds, and where the project requires its [Owner]'s sign-off
+> on a weaker one, get it and record it with the grounds. Draw
 > the [Rule] so that it catches more than the single [Instance] you started from, but never so
 > broadly that it matches code which does not carry the [Hazard].
 >
