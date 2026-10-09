@@ -6,7 +6,7 @@ not a specification and is not versioned, and a change to it is not tested by a 
 to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
 
 - [Pull request #13](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/13): the cohort can be run and marked without judgement calls that the rules
-  leave open; this applies to runs made after it merges, and to runs 19 and 20, which were made under it at a695010, and
+  leave open; this applies to runs made after it merges, and to runs 19 to 30, which were made under it at the commits their records name, and
   runs 16 to 18 stand as recorded. A cohort is an odd
   number of readers started, at least five, larger at the editor's choice the more obligations
   the change touches, each a separate process with no tools and no project context, started from
