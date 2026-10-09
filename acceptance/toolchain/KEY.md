@@ -1,6 +1,7 @@
 # Answer key for TOOLING-SPEC.md
 
-Marked against the document at the version named in the changelog entry that records the run.
+Marked against the document at the commit the readers read, with this key, its question set and
+fixture at that same commit.
 Quotations below are from the document; when a clause is reworded, update the quotation here in
 the same commit.
 
@@ -78,6 +79,6 @@ or the detector document's section [8](../../DETECTOR-SPEC.md#8-conformance) dif
 ## 4. Confusion
 
 No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
-finding that blocks until the text is changed and a fresh cohort no longer quotes it. What to
+finding that blocks until the text is changed and a fresh cohort no longer names it. What to
 change is the editor's decision; the reader is not asked and any suggestion it volunteers is
 discarded unread.

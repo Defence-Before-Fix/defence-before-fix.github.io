@@ -1,6 +1,7 @@
 # Answer key for SPEC.md
 
-Marked against the document at the version named in the changelog entry that records the run.
+Marked against the document at the commit the readers read, with this key, its question set and
+fixture at that same commit.
 Quotations below are from the document; when a clause is reworded, update the quotation here in
 the same commit.
 
@@ -59,7 +60,7 @@ Section [7](../../SPEC.md#7-conformance): the **remediation does not conform**, 
 because the sweep is what failed has missed [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation).
 
 Section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom): the **inline ignore on `Report::render()`** was the owner's decision, not the
-practitioner's. An answer naming instead the decision not to build the wider rule is half right:
+practitioner's. An answer naming instead the decision not to build the wider rule is half right, which is a miss:
 that is also listed in section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom) as the owner's to take, and an answer naming both is correct.
 An answer naming neither is wrong.
 
@@ -72,6 +73,6 @@ passage of [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) as cove
 ## 4. Confusion
 
 No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
-finding that blocks until the text is changed and a fresh cohort no longer quotes it. What to
+finding that blocks until the text is changed and a fresh cohort no longer names it. What to
 change is the editor's decision; the reader is not asked and any suggestion it volunteers is
 discarded unread.
