@@ -12,7 +12,7 @@ checked: 2026-09-08, version 1.176.0
 
 {% include tool-grades.html %}
 
-Semgrep is a pattern-based static analyser whose rules are written in YAML using the syntax of the target language itself, across some thirty languages. The open-source command line tool runs locally; the Semgrep AppSec Platform adds a hosted registry, Pro rules, cross-file analysis and triage. In a pipeline it is the usual choice for a project-specific rule that a language linter cannot express cheaply, and its rule-testing harness is one of the best in the field, which makes it a natural detector for the method.
+Semgrep is a pattern-based static analyser whose rules are written in YAML using the syntax of the target language itself, across some thirty languages. The open-source command line tool runs locally; the Semgrep AppSec Platform adds a hosted registry, Pro rules, cross-file analysis and triage. In a pipeline it can host a project-specific rule that a language linter cannot express, where method clause [3.2](../SPEC.md#32-build-the-net), which asks for the strongest kind of detector that can express the rule, allows it, and its rule-testing harness is one of the best in the field, which makes it a natural detector for the method.
 
 ## How it is conformant
 

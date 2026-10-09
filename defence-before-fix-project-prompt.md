@@ -15,8 +15,10 @@ for it, say so and fix the Defect conventionally.
 Write a custom Rule that detects the Class, in a tool that reads code rather than running it.
 Put it in a Semantic Detector, one that sees types and symbols; failing that, one that sees
 syntax; and only then one that sees text. Use a weaker one only where the stronger one cannot
-express the Rule, or the language has none that takes custom Rules, and write down which,
-and why, in the Rule's documentation and in the description of the commit that adds it. Draw
+express the Rule, or the language has none that takes custom Rules. Name the Detector and its
+kind in the Rule's documentation. Where you use a weaker one, write down which reason holds,
+and why, there and in the description of the commit that adds the Rule or moves it to another
+Detector, and where the project requires its Owner's sign-off on a weaker one, get it. Draw
 the Rule so that it catches more than the single Instance you started from, but never so
 broadly that it matches code which does not carry the Hazard.
 

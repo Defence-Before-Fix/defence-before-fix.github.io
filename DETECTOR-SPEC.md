@@ -35,16 +35,16 @@ construct the means has moved the obligation rather than met it.
 Terms from the method specification carry over unchanged. Every capitalised term links to its
 definition; the ones this document leans on most are, in short:
 
-| Term                               | In one line                                                                                  |
-| ---------------------------------- | -------------------------------------------------------------------------------------------- |
-| [Detector]                         | A tool that reads code without executing it and reports what it finds                        |
-| [Semantic], [Syntactic], [Textual] | What a [Detector] can see: types, symbols and data flow; a parse tree without types; or text |
-| [Rule]                             | One check a [Detector] evaluates                                                             |
-| [Identifier]                       | The stable name printed with a finding that leads to its documentation                       |
-| [Practitioner]                     | Whoever is doing the work, a person or an [Agent]                                            |
-| [Toolchain]                        | Everything a project assembles to run its checks through, [Detectors] included               |
-| [Suppression]                      | Making a finding go away without fixing it                                                   |
-| [Baseline]                         | A recorded set of existing findings a [Rule] is told to ignore                               |
+| Term                               | In one line                                                                                           |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [Detector]                         | A tool that reads code without executing it and reports what it finds                                 |
+| [Semantic], [Syntactic], [Textual] | What a [Detector] can see in a configuration: the types of values; a parse tree without them; or text |
+| [Rule]                             | One check a [Detector] evaluates                                                                      |
+| [Identifier]                       | The stable name printed with a finding that leads to its documentation                                |
+| [Practitioner]                     | Whoever is doing the work, a person or an [Agent]                                                     |
+| [Toolchain]                        | Everything a project assembles to run its checks through, [Detectors] included                        |
+| [Suppression]                      | Making a finding go away without fixing it                                                            |
+| [Baseline]                         | A recorded set of existing findings a [Rule] is told to ignore                                        |
 
 These are additional.
 
@@ -307,8 +307,10 @@ summary for an [Agent]'s context, are obligations on a project's assembled [Tool
 and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no separate [Agent]-support level
 for a [Detector].
 
-**A verdict on a [Detector] MUST also say whether it is [Semantic], [Syntactic] or [Textual]**,
-by the most a [Rule] in it can see in any configuration it documents. That is not a level of
+**A verdict on a [Detector] MUST also name the kind of each configuration it grades, [Semantic],
+[Syntactic] or [Textual]**: ESLint, for example, is [Syntactic] without type information and
+[Semantic] with it. It credits no configuration reachable only through a hosted service or a
+licence tier, as clause 5.4 credits no finding reported only there. The kind is not a level of
 [Conformance] and does not change the verdict: a [Textual] [Detector] can [Conform], and a
 [Semantic] one can fail to. It is stated because the method specification's clause 3.2 requires a
 [Practitioner] to write a [Rule] in the strongest kind of [Detector] that can express it, and a
@@ -359,7 +361,8 @@ maintainer's reading rather than the [Detector].
 
 ## 9. Relationship to the other specifications
 
-This document adds no obligations to a [Practitioner] and relaxes none. Every clause here
+This document adds no obligations to a [Practitioner] and relaxes none, save one: a
+verdict on a [Detector], whoever gives it, names its kind under section 8. Every clause here
 exists to make a clause of the method specification achievable with a [Detector] in hand.
 
 Where this document and the method specification disagree, the method specification governs. It

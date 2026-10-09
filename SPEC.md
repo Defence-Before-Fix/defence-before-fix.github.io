@@ -70,7 +70,7 @@ The harm a [Class] causes, which is **not necessarily a failure**. It may be a f
 
 #### Detector
 
-A tool that reads code without executing it and reports occurrences of a pattern. A [Detector] is not a [Runner]. By what it can see, a [Detector] is [Textual], [Syntactic] or [Semantic], and clause 3.2 says which kind a [Rule] is written in. What a [Detector] must offer so that a [Practitioner] can write, prove, run and resolve a [Rule] in it is specified in the [detector specification](DETECTOR-SPEC.md).
+A tool that reads code without executing it and reports occurrences of a pattern. A [Detector] is not a [Runner]. By what it can see in the configuration it runs in, a [Detector] is [Textual], [Syntactic] or [Semantic], and clause 3.2 says which kind a [Rule] is written in. What a [Detector] must offer so that a [Practitioner] can write, prove, run and resolve a [Rule] in it is specified in the [detector specification](DETECTOR-SPEC.md).
 
 #### Runner
 
@@ -82,11 +82,11 @@ Of a [Detector]: seeing the code only as text, as grep does. It sees how the cod
 
 #### Syntactic
 
-Of a [Detector]: seeing the parse tree of the code, without types, as ast-grep and Semgrep do. It sees the structure, but knows what a name refers to only by the name.
+Of a [Detector]: seeing the parse tree of the code but not the types of values, as ast-grep does. It sees the structure, but cannot tell apart two calls of the same name on values of different types.
 
 #### Semantic
 
-Of a [Detector]: seeing types, resolved symbols and data flow, as PHPStan, mypy, Clippy, Dylint and ESLint with typescript-eslint's type information do. It sees what a name refers to and what type a value has, whatever either is called. The same [Detector] can be [Syntactic] in one configuration and [Semantic] in another: ESLint without type information is [Syntactic]. A [Semantic] [Detector] need not accept bespoke [Rules]: Clippy does not, and in Rust a project's own [Semantic] [Rules] are written for Dylint.
+Of a [Detector]: seeing the types of values as the language's type system resolves them, and so what a name refers to, as PHPStan, mypy, Clippy, Dylint and ESLint with typescript-eslint's type information do. The same [Detector] can be [Syntactic] in one configuration and [Semantic] in another: ESLint without type information is [Syntactic]. A [Semantic] [Detector] need not accept bespoke [Rules]: Clippy does not, and in Rust a project's own [Semantic] [Rules] are written for Dylint.
 
 #### Rule
 
@@ -227,14 +227,14 @@ the [Defence] it implies is ever reached.
 
 Six clauses, in order. In brief, before the detail:
 
-| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                                                                                     | Goes to the [Owner] under section 4                                                                  |
-| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built, whether a [Runner] check pins the reported behaviour | Whether the next wider [Rule] is built, and whether the [Rule] stays narrower than the search showed |
-| 3.2    | Express the [Class] as a [Rule] in the strongest kind of [Detector] that can express it, never a test       | The [Rule], why it is in a weaker kind than [Semantic] where it is, and any [Toolchain] gap that stopped a bespoke one                               | Whether a [Class] that could be defended is left undefended                                          |
-| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                                                                               | Any exclusion whose sentence cannot be written: that is [Suppression]                                |
-| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                                                                                    | Any [Instance] left unfixed, and any [Baseline]                                                      |
-| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point, and the recorded decision behind any [Suppression]                                                  | Removing or disabling the [Rule], and any [Suppression] added to it                                  |
-| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                                                                               | Nothing                                                                                              |
+| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                                                                                     | Goes to the [Owner] under section 4                                                                                              |
+| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built, whether a [Runner] check pins the reported behaviour | Whether the next wider [Rule] is built, and whether the [Rule] stays narrower than the search showed                             |
+| 3.2    | Express the [Class] as a [Rule] in the strongest kind of [Detector] that can express it, never a test       | The [Rule], its [Detector] and kind, why it is in a weaker kind than [Semantic] where it is, and any [Toolchain] gap that stopped a bespoke one      | Whether a [Class] that could be defended is left undefended, and a weaker kind where the project requires the [Owner]'s sign-off |
+| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                                                                               | Any exclusion whose sentence cannot be written: that is [Suppression]                                                            |
+| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                                                                                    | Any [Instance] left unfixed, and any [Baseline]                                                                                  |
+| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point, and the recorded decision behind any [Suppression]                                                  | Removing or disabling the [Rule], and any [Suppression] added to it                                                              |
+| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                                                                               | Nothing                                                                                                                          |
 
 The fourth column is what an [Agent] or other [Practitioner] MUST NOT decide alone, clause by
 clause; section 4 states the full list and governs where the two differ.
@@ -410,22 +410,29 @@ are examples rather than a permitted list, and a [Detector] is not disqualified 
 
 **Qualifying is not the same as being the right host.** A [Rule] the [Practitioner] writes MUST
 be written in the strongest kind of [Detector] that can express it: a [Semantic] one, else a
-[Syntactic] one, else a [Textual] one. A weaker kind is allowed only where the stronger kind
-cannot express the [Rule], as where the [Rule] reads a file the [Semantic] [Detector] does not
-parse, or where the language has no [Detector] of the stronger kind that accepts bespoke [Rules].
-The language has one when the project already runs it or the language's own [Detector] ecosystem
-offers it, the same check section 2 asks for before a [Toolchain] gap is recorded. Where the
-[Rule] is written in a weaker kind than [Semantic], the [Practitioner] MUST record which of those
-two reasons holds, and why, on the [Rule]'s [Remediation docs] and in the description of the
-commit that adds the [Rule] or moves it to another [Detector]. The [Practitioner] judges whether
-a reason holds, as section 4 gives them the choice of [Detector]; a project MAY require its
-[Owner]'s sign-off on a weaker kind as well, as a [Calibration] of how strict it is.
+[Syntactic] one, else a [Textual] one. The kind is that of the configuration the [Rule] runs in.
+Enabling or configuring an existing [Rule] is not writing one; the paragraph above covers that. A
+weaker kind is allowed only where the stronger kind cannot express the [Rule], as where the
+[Rule] reads a file the [Semantic] [Detector] does not parse, or where the language has no
+[Detector] of the stronger kind that accepts bespoke [Rules]. The language has one when the
+project already runs it or the language's own [Detector] ecosystem offers it, the same check
+section 2 asks for before a [Toolchain] gap is recorded, but not one through which the
+[toolchain specification](TOOLING-SPEC.md)'s clause 4.1 forbids a [Toolchain] to route a
+[Defence]. The [Practitioner] MUST name the [Detector] and its kind on the [Rule]'s
+[Remediation docs]. Where that kind is weaker than [Semantic], the [Practitioner] MUST also
+record, for each step down from [Semantic], which of those two reasons holds and why, naming the
+[Detectors] of the stronger kind that were considered, on the [Rule]'s [Remediation docs] and in
+the description of the commit that adds the [Rule] or moves it to another [Detector]. The
+[Practitioner] judges whether a reason holds, as section 4 gives them the choice of [Detector]; a
+project MAY require its [Owner]'s sign-off on a weaker kind as well, recorded where it records
+its [Calibrations], and where it has recorded no such requirement none is needed.
 
-A [Detector] that cannot see types decides by names and shapes. It reports every call named
-`context`, whatever it is called on, which is a [False positive] clause 3.1 does not tolerate, and
-it misses the same call made through an alias, which is an [Instance] the [Rule] never sees;
-restricting it by name trades the first failure for the second. A [Semantic] [Detector] decides by
-what the code is, so the bounds of clause 3.1 can be held there.
+**A worked example.** Take a [Rule] against calling a method named `context` on one type. A
+[Detector] that cannot see types reports every call named `context`, whatever type it is called
+on, which is a [False positive] clause 3.1 does not tolerate; restricting it by the name of the
+variable the call is made on misses the same call on a variable named otherwise, which is an
+[Instance] the [Rule] never sees. A [Semantic] [Detector] decides by the type, so the bounds of
+clause 3.1 can be held there.
 
 Where the affected language has no extensible [Detector] available, the [Practitioner] MAY build a
 bespoke one: a program of the project's own that reads code and reports matches of the [Class], run
@@ -822,7 +829,8 @@ they do not.
   than that the [Hazard] is absent from what it would add. The [Instances] the search found are
   fixed regardless; what stays with the [Owner] is the [Class] left partly undefended.
 
-The dividing line is that the [Practitioner] decides **how the [Defence] is built** and the [Owner]
+The dividing line is that the [Practitioner] decides **how the [Defence] is built**, save a weaker
+kind of [Detector] where the project requires the [Owner]'s sign-off on it, and the [Owner]
 decides **what the codebase is permitted to keep**. An [Agent] MUST NOT [Baseline], suppress or
 knowingly leave an [Instance] unfixed on its own authority, whatever the [Instance] count turns out to
 be.
@@ -927,7 +935,8 @@ the verdict that they were rests on reproduction, as this section closes by requ
 report.
 
 **A [Defence] [Conforms]** if it satisfies clauses 3.1, 3.2, 3.3, 3.5 and 3.6: it is drawn to a
-[Class] within both bounds and not to the reported [Instance], it is evaluated by reading code, it
+[Class] within both bounds and not to the reported [Instance], it is evaluated by reading code,
+in the kind of [Detector] clause 3.2 requires, it
 was proven to fire against either the originating [Instance] or [Fixture] code, it fails rather
 than warns, and its [Message] is terse and resolves to [Remediation docs] versioned alongside
 it. A [Defence] can [Conform] whilst the [Sweep] is incomplete; what that describes is a
@@ -1085,8 +1094,10 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 > Write a custom [Rule] that detects the [Class], in a tool that reads code rather than running it.
 > Put it in a [Semantic] [Detector], one that sees types and symbols; failing that, one that sees
 > syntax; and only then one that sees text. Use a weaker one only where the stronger one cannot
-> express the [Rule], or the language has none that takes custom [Rules], and write down which,
-> and why, in the [Rule]'s documentation and in the description of the commit that adds it. Draw
+> express the [Rule], or the language has none that takes custom [Rules]. Name the [Detector] and its
+> kind in the [Rule]'s documentation. Where you use a weaker one, write down which reason holds,
+> and why, there and in the description of the commit that adds the [Rule] or moves it to another
+> [Detector], and where the project requires its [Owner]'s sign-off on a weaker one, get it. Draw
 > the [Rule] so that it catches more than the single [Instance] you started from, but never so
 > broadly that it matches code which does not carry the [Hazard].
 >
