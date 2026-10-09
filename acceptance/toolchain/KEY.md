@@ -30,6 +30,9 @@ conform; the agent summary (section [7](../../TOOLING-SPEC.md#7-agent-context)) 
 
 ## 2. Load-bearing statements
 
+No entry names an element an answer is wrong to omit, so each is marked for the gist of its
+answer, as `ACCEPTANCE.md` says.
+
 - **2a.** At the project level; the toolchain is whatever the project has assembled from
   third-party, first-party and project-level parts. Key quotation, section [9](../../TOOLING-SPEC.md#9-conformance): "A project's
   Toolchain Conforms if every MUST in sections [4](../../TOOLING-SPEC.md#4-the-detectors-a-toolchain-routes-defences-through) to [6](../../TOOLING-SPEC.md#6-the-project-record) holds across the assembled parts, wherever

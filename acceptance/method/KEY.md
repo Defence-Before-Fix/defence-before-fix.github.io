@@ -29,20 +29,20 @@ a test may serve as the detector; an agent may baseline the remaining instances.
   then sweep and fix every instance, in that order. Key quotations, section [3](../../SPEC.md#3-the-method): "Six clauses, in
   order."; [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance): "The Practitioner MUST run the Rule across the entire codebase and record the
   total Instance count before fixing anything, and MUST then fix every Instance found rather
-  than only the one". An answer that has the fix before the rule, or the sweep before the proof,
-  is wrong.
+  than only the one". An answer that omits the rule, the proof or the sweep, or has the fix
+  before the rule or the sweep before the proof, is wrong.
 - **2b.** The owner of the codebase, always a human; an agent may not. Key quotation, section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom):
   "An Agent MUST NOT Baseline, suppress or knowingly leave an Instance unfixed on its own
-  authority, whatever the Instance count turns out to be." An answer that lets the practitioner
-  decide because the count was small, or because the project recorded no rule, is wrong (the
-  default owner paragraph in the terminology entry for Owner still requires a recorded decision).
+  authority, whatever the Instance count turns out to be." An answer that omits the owner, or
+  lets the practitioner decide because the count was small or because the project recorded no
+  rule, is wrong (the default owner paragraph in the terminology entry for Owner still requires a
+  recorded decision).
 - **2c.** All six clauses of section [3](../../SPEC.md#3-the-method) were followed for that defect, and the verdict rests on the
   reviewer reproducing the red and green runs, not on the report. Key quotations, section [7](../../SPEC.md#7-conformance): "A
   remediation Conforms if all six clauses of section [3](../../SPEC.md#3-the-method) were followed for that Defect, and the
   verdict that they were rests on reproduction"; "A verdict on a remediation or a Defence MUST
   rest on reproduction, not on the report". An answer that accepts the pull request description
-  as the verdict is wrong, and so is one that states the six clauses and says nothing of
-  reproduction.
+  as the verdict is wrong, and so is one that omits reproduction.
 
 ## 3. Application: the ledger remediation
 
