@@ -276,14 +276,15 @@ nothing to run.
 ### 7.1 A detector MAY offer an inline suppression route, but MUST make it detectable or disableable
 
 The [Detector] does not have to remove or forbid an inline [Suppression] route. An inline ignore
-comment, a per-line directive and a generated [Baseline] are all such routes. The [Detector] MAY
-ship them. For each one it MUST do at least one of two things, and either alone satisfies this
-clause: make the route disableable by configuration; or make the route detectable. Detectable
-means the project can find every use of the route. One way is a [Rule] the project writes and
-registers with the [Detector], as clause 4.1 lets it; the [Detector] need not ship that [Rule].
-The other way is a mechanical check the [Detector] documents. Either of the two things lets a
-project which decides to forbid the route enforce that decision. A route that can be neither
-switched off nor seen does not [Conform].
+comment, a per-line directive and a generated [Baseline] are all such routes, and the [Detector]
+MAY ship them. For each route it ships, it MUST do at least one of two things: let the project
+switch the route off in the [Detector]'s configuration, or make the route detectable. Either alone
+satisfies this clause, and neither requires the [Detector] to remove or forbid the route.
+Detectable means the project can find every use of the route. There are two ways. One is a
+[Rule] the project writes and registers with the [Detector], as clause 4.1 lets it; the
+[Detector] need not ship that [Rule]. The other is a mechanical check the [Detector] documents.
+Either of the two things lets a project that decides to forbid the route enforce that decision.
+A route that can be neither switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
@@ -320,9 +321,11 @@ and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no
 for a [Detector].
 
 **A verdict on a [Detector] MUST also name the kind of each configuration it grades, [Semantic],
-[Syntactic] or [Textual]**: ESLint, for example, is [Syntactic] without type information and
-[Semantic] with it. The kind named is the one the [Detector] has without any hosted service or
-licence tier, as clause 5.4 credits no finding reported only there. The kind is not a level of
+[Syntactic] or [Textual]**. One [Detector] can be graded in more than one configuration: ESLint,
+for example, is [Syntactic] without type information and [Semantic] with it. A configuration that
+needs a hosted service or a licence tier does not count: the kind named is the one the [Detector]
+has without either. Clause 5.4 is the reason: a finding reported only there does
+not [Conform]. The kind is not a level of
 [Conformance] and does not change the verdict: a [Textual] [Detector] can [Conform], and a
 [Semantic] one can fail to. It is stated because the method specification's clause 3.2 requires a
 [Practitioner] to write a [Rule] in the strongest kind of [Detector] that can express it, and a
@@ -339,11 +342,10 @@ sections 4 to 7 that the [Detector] fails. Once its maintainer knows of a gap, f
 as the declaration or in a file the declaration names. A declaration that records no gap claims
 [Conformance]. A declaration that records a gap does not; it says where the [Detector] stands.
 
-The declaration is optional: a [Detector] with no declaration can still [Conform]. Whether a
-[Detector] [Conforms] is judged on the evidence, with or without a declaration. A [Detector] that predates this document, or whose maintainer has never read
-it, MAY be graded [Conforming] on evidence by anyone who exercises the clauses above against
-it, and a verdict on any [Detector], declared or not, rests on that exercise and not on the
-claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
+A [Detector] that predates this document, or whose maintainer has never read it, MAY be graded
+[Conforming] on evidence: a declaration is optional. Anyone may grade a [Detector], by checking it
+against the clauses above. The verdict rests on that check, not on what a declaration claims,
+whether or not the [Detector] has one. A declaration tells the reader what the maintainer believes and what they know to be missing;
 the reader still runs the [Harness].
 
 The shape is illustrative rather than prescribed. In a Composer manifest:

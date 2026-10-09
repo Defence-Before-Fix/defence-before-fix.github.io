@@ -53,8 +53,17 @@ version entry with no cohort line has not been accepted and is not published.
   B says an inline ignore is not judged under it, and Part C says the red run may report a
   fixture and the green run does not; section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s lead-in names the owner, and its bullet on the
   next wider rule, with the section [3](SPEC.md#3-the-method) map's row, says the owner decides unless the practitioner
-  has written and confirmed why the hazard cannot arise there. Accepted by run NNN. Minor version
-  when released.
+  has written and confirmed why the hazard cannot arise there. After run 23, clarity edits: clause
+  [3.2](SPEC.md#32-build-the-net)'s record sentence names the order of kinds, both grounds and the two places first, since
+  no reader stated all three; clause [3.2](SPEC.md#32-build-the-net) asks the second ground as two questions of each
+  stronger detector; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s lower bound says an exact-value rule matches one thing and
+  states the test of the wider rule's rejection in short sentences, without calling it a
+  narrowing; section [1](SPEC.md#1-terminology)'s Narrowing and Suppression entries say an exclusion of code that carries
+  the hazard is a suppression, not a narrowing; and the Owner entry says the default owner is the
+  human who instructed the practitioner, or, where an agent gave the instruction, the human who
+  instructed that agent, and takes section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s
+  decisions. Each after readers of run 23 missed or named the passage. Accepted by run NNN. Minor
+  version when released.
 
 ### 1.1.0, 2026-10-02
 
@@ -139,8 +148,14 @@ pass it.
   saying the detector need not remove or forbid the route and says what detectable means in short
   sentences; clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) says the summary need not list every finding; clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says
   plainly why a path in the message is not enough, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss defines the message.
-  Each after readers of run 22 missed or named the passage. Accepted by run NNN. Minor version
-  when released.
+  Each after readers of run 22 missed or named the passage. After run 24, clarity edits: clause
+  [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s sentence that either thing alone satisfies the clause adds that neither requires the
+  detector to remove or forbid the route, and the clause is in shorter sentences; clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s
+  sentence that a detector may be graded conforming on evidence says a declaration is optional,
+  and its paragraph is in short sentences; section [8](DETECTOR-SPEC.md#8-conformance)'s paragraph on the kind says one
+  detector can be graded in more than one configuration and that one needing a hosted service or
+  licence tier does not count. Each after readers of run 24 missed or named the passage. Accepted
+  by run NNN. Minor version when released.
 
 ### 1.0.0, 2026-09-08
 

@@ -126,11 +126,11 @@ A report on code that does not carry the [Hazard].
 
 #### Narrowing
 
-Reducing a [Rule]'s scope so it stops reporting code that does not carry the [Hazard]. [Narrowing] that excludes code which does carry the [Hazard] is a [Suppression].
+Reducing a [Rule]'s scope so it stops reporting code that does not carry the [Hazard]. If the code left out does carry the [Hazard], the reduction is not a [Narrowing] but a [Suppression].
 
 #### Suppression
 
-Any means of preventing a [Rule] from reporting an [Instance] that carries the [Hazard]: an ignore comment, an ignore entry, a [Baseline], or a [Narrowing] that excludes it.
+Any means of preventing a [Rule] from reporting an [Instance] that carries the [Hazard]: an ignore comment, an ignore entry, a [Baseline], or a reduction of the [Rule]'s scope that excludes it.
 
 #### Baseline
 
@@ -162,7 +162,7 @@ A [Practitioner] that is an automated system. Everything said of a [Practitioner
 
 #### Owner
 
-Whoever holds authority over a project's [Exceptions] and [Calibrations]. Always a human. The project decides who, and clause 8.7 requires the answer to be findable. Where the project has recorded nobody, the [Owner] is whoever instructed the [Practitioner], and [Escalation] goes there. One limit applies to that default. The default [Owner] is usually the person under the same deadline as the [Practitioner], so a decision they take under section 4 to keep an [Instance] unfixed, [Suppress], [Baseline] or remove a [Rule] MUST be recorded in the project record with its justification. That record MUST mark the decision as taken by a default [Owner] and state why nobody better placed was reachable, where the next reader can see who decided and why. Such a decision SHOULD be revisited by someone not under that deadline before the next release. A project that wants the separation section 4 describes names an [Owner]; the default exists so work is not blocked, not to certify that a second judgement was applied.
+Whoever holds authority over a project's [Exceptions] and [Calibrations]. The [Owner] is always a human. The project decides who, and clause 8.7 requires the answer to be findable. Where the project has recorded nobody, the [Owner] is the human who instructed the [Practitioner]. If an [Agent] gave that instruction, the [Owner] is the human who instructed that [Agent]. [Escalation] goes to the [Owner], who takes the decisions section 4 gives the [Owner]. One limit applies to that default. The default [Owner] is usually the person under the same deadline as the [Practitioner], so a decision they take under section 4 to keep an [Instance] unfixed, [Suppress], [Baseline] or remove a [Rule] MUST be recorded in the project record with its justification. That record MUST mark the decision as taken by a default [Owner] and state why nobody better placed was reachable, where the next reader can see who decided and why. Such a decision SHOULD be revisited by someone not under that deadline before the next release. A project that wants the separation section 4 describes names an [Owner]; the default exists so work is not blocked, not to certify that a second judgement was applied.
 
 #### Escalation
 
@@ -318,12 +318,12 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   too narrowly and MUST be widened, unless the independent search below has found no other
   [Instance] and the [Practitioner] records that the [Class] is genuinely singular today. A
   [Rule] that matches exactly one thing is an [Instance] [Detector] wearing a [Rule]'s clothes.
-  A [Rule] drawn to the exact value or name found in the [Defect] is the same [Narrowing] however
-  it is spelt, and where it stays because the search found nothing wider, the record MUST also name the next
-  wider [Rule], the one with the [Instance]'s distinguishing detail dropped, and state why it was
-  rejected. That rejection is tested as a [Narrowing] is under clause 3.3: a sentence stating why the
-  [Hazard] cannot arise in the code the wider [Rule] would add, confirmed by search, with uncertainty
-  routed upwards under section 4.
+  A [Rule] drawn to the exact value or name found in the [Defect] also matches exactly one thing,
+  however it is written. Where it stays because the search found nothing wider, the record MUST also name the
+  next wider [Rule], the one with the [Instance]'s distinguishing detail dropped, and state why it
+  was rejected. The reason is one sentence: why the [Hazard] cannot arise in the code the wider
+  [Rule] would add. A search confirms it, as clause 3.3 requires for the sentence behind a
+  [Narrowing]. Where the [Practitioner] is not sure, the decision goes to the [Owner] under section 4.
 - **Upper bound.** If the [Rule] matches code that does not carry the [Hazard], the [Class] is drawn
   too broadly and MUST be narrowed. [False positives] destroy a [Defence]'s credibility faster than a
   missing [Rule] does. One report on code that does not carry the [Hazard] is enough; there is no
@@ -422,23 +422,27 @@ on two grounds only: where the stronger kind cannot express the [Rule], or where
 no [Detector] of the stronger kind that accepts bespoke [Rules]. For example, the stronger kind
 cannot express a [Rule] that reads a file the [Semantic] [Detector] does not parse.
 
-The language has a [Detector] of the stronger kind when the project already runs one, or the
-language's own [Detector] ecosystem offers one. That is the same check section 2 asks for before
-a [Toolchain] gap is recorded. A stronger configuration of a [Detector] the project runs counts.
-A [Detector] or configuration that only a hosted service or a licence tier provides does not
-count. A [Detector] accepts bespoke [Rules] when the project can add its own [Rule] to it through
-a documented extension point, such as a plugin interface or an API for writing [Rules]. It need
-not meet the rest of the [detector specification](DETECTOR-SPEC.md). If its extension points
-cannot reach the construct a [Rule] is about, that [Detector] cannot express the [Rule]. If no
+The second ground asks two questions of each [Detector] of the stronger kind. First, is it
+available? It is if the project already runs it, or the language's own [Detector] ecosystem
+offers it. That is the same check section 2 asks for before a [Toolchain] gap is recorded. A
+stronger configuration of a [Detector] the project runs counts. A [Detector] or configuration
+that only a hosted service or a licence tier provides does not count. Second, does it accept
+bespoke [Rules]? It does if the project can add its own [Rule] to it through a documented
+extension point, such as a plugin interface or an API for writing [Rules]. It need not meet the
+rest of the [detector specification](DETECTOR-SPEC.md). The second ground holds only when no
+[Detector] of the stronger kind passes both questions. If a [Detector] passes both but its
+extension points cannot reach the construct a [Rule] is about, that [Detector] cannot express the
+[Rule]. If no
 [Detector] of the stronger kind can reach it, the stronger kind cannot express the [Rule]: that
 is the first ground, not the second.
 
 On the [Remediation docs] of a [Rule] they
 write, the [Practitioner] MUST name the [Detector] and its kind. Where that kind is weaker than [Semantic], the [Practitioner] MUST also
-record, for each step down from [Semantic], which of the two grounds above holds and why, naming the
-[Detectors] of the stronger kind that were considered, on the [Rule]'s [Remediation docs] and in
-the description of the commit that adds the [Rule], moves it to another [Detector], or first
-records the grounds. The [Practitioner] judges whether the grounds hold, as section 4 gives them the choice of [Detector]; a
+record, on the [Rule]'s [Remediation docs] and in the description of the commit that adds the
+[Rule], moves it to another [Detector], or first records the grounds, for each step down the
+order [Semantic], [Syntactic], [Textual], which of the two grounds holds (the stronger kind cannot
+express the [Rule], or the language has no [Detector] of the stronger kind that accepts bespoke
+[Rules]) and why, naming the [Detectors] of the stronger kind that were considered. The [Practitioner] judges whether the grounds hold, as section 4 gives them the choice of [Detector]; a
 project MAY require its [Owner]'s sign-off on a weaker kind as well, by recording that
 requirement where it records its [Calibrations]; the sign-off is then recorded with the grounds,
 and where the project has recorded no such requirement none is needed.
