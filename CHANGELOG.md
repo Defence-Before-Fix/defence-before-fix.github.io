@@ -16,19 +16,21 @@ version entry with no cohort line has not been accepted and is not published.
   kind of detector that can express it, semantic, else syntactic, else textual, judged by the
   configuration it runs in; enabling or configuring an existing rule is not writing one. A weaker
   kind is allowed only where the stronger cannot express the rule or the language has no
-  detector of that kind that accepts bespoke rules, and a detector the toolchain specification's
-  clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) forbids routing a defence through does not count. The rule's remediation docs MUST
-  name its detector and kind, and for each step down from semantic the reason, with the stronger
-  detectors considered, MUST be recorded there and in the description of the commit that adds or
-  moves the rule. The practitioner judges it; a project MAY require the owner's sign-off, recorded
+  detector of that kind that accepts bespoke rules; a stronger configuration of a detector the
+  project runs counts, and one only a hosted service or licence tier provides does not. The
+  remediation docs of a rule the practitioner writes MUST name its detector and kind, and for
+  each step down from semantic the reason, with the stronger detectors considered, MUST be
+  recorded there and in the description of the commit that adds or moves the rule or first
+  records the reason. The practitioner judges it; a project MAY require the owner's sign-off, recorded
   where it records its calibrations, which section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) and the section [3](SPEC.md#3-the-method) map note. Section [1](SPEC.md#1-terminology)
-  defines textual, syntactic and semantic by whether a detector sees the types of values, section
+  defines textual, syntactic and semantic by whether a rule can ask the type of any expression
+  and what any name refers to across the whole program, section
   [7](SPEC.md#7-conformance)'s conforming defence carries the kind, and Appendix A carries the requirement. Prompted by
   project rules hosted in ast-grep, where the language already had a semantic host, that decided
   by names: they reported unrelated calls of the same name, and clause [3.2](SPEC.md#32-build-the-net) said any detector
   qualified whatever its category. The method question set gains load-bearing statement 2d, which
-  `ACCEPTANCE.md` now lists, and `README.md`, `PRIMER.md` and two register pages defer to the
-  clause. Accepted by run NNN. Minor version when released.
+  `ACCEPTANCE.md` now lists, and `index.md`, `README.md`, `PRIMER.md` and two register pages
+  defer to the clause. Accepted by run NNN. Minor version when released.
 
 ### 1.1.0, 2026-10-02
 
@@ -91,8 +93,8 @@ pass it.
 ### Unreleased
 
 - New obligation, section [8](DETECTOR-SPEC.md#8-conformance): a verdict on a detector MUST name the kind, semantic, syntactic
-  or textual, of each configuration it grades, crediting none reachable only through a hosted
-  service or licence tier. It is not a level of conformance and does not change the verdict; it
+  or textual, of each configuration it grades, as the detector has it without any hosted service
+  or licence tier. It is not a level of conformance and does not change the verdict; it
   is stated because method clause [3.2](SPEC.md#32-build-the-net) now requires a rule to be written in the strongest kind of
   detector that can express it, and a verdict of conforming alone presents a textual detector as
   an equal host. Section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) names it as the one obligation the document adds for a practitioner,

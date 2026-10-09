@@ -22,8 +22,8 @@ version.
 
 1. **Attribute the defect to a class.** Not "what went wrong here" but "what kind of thing is
    this an instance of", within a lower bound and an upper bound that are both checkable.
-2. **Build the net.** A rule that reads code, in whatever detector the toolchain offers, bespoke
-   where nothing off the shelf will take it.
+2. **Build the net.** A rule that reads code, in the strongest kind of detector that can express
+   it, bespoke where nothing off the shelf will take it.
 3. **Prove the net by making the rule fire.** Red before green, on the originating instance,
    committed before the fix.
 4. **Sweep the codebase, then fix every instance.** The count is the finding; the fix addresses

@@ -82,11 +82,11 @@ Of a [Detector]: seeing the code only as text, as grep does. It sees how the cod
 
 #### Syntactic
 
-Of a [Detector]: seeing the parse tree of the code but not the types of values, as ast-grep does. It sees the structure, but cannot tell apart two calls of the same name on values of different types.
+Of a [Detector]: seeing the parse tree of the code, and at most some of the types of values, as ast-grep does. It sees the structure, but cannot always tell apart two calls of the same name on values of different types.
 
 #### Semantic
 
-Of a [Detector]: seeing the types of values as the language's type system resolves them, and so what a name refers to, as PHPStan, mypy, Clippy, Dylint and ESLint with typescript-eslint's type information do. The same [Detector] can be [Syntactic] in one configuration and [Semantic] in another: ESLint without type information is [Syntactic]. A [Semantic] [Detector] need not accept bespoke [Rules]: Clippy does not, and in Rust a project's own [Semantic] [Rules] are written for Dylint.
+Of a [Detector]: one in which a [Rule] can ask the type of any expression and what any name refers to, across the whole program, as the language's compiler or type checker resolves them, as in PHPStan, mypy, Clippy, Dylint and ESLint with typescript-eslint's type information. One that infers types only in part, or only within one file, is [Syntactic]. The same [Detector] can be [Syntactic] in one configuration and [Semantic] in another: ESLint without type information is [Syntactic]. A [Semantic] [Detector] need not accept bespoke [Rules]: Clippy does not, and in Rust a project's own [Semantic] [Rules] are written for Dylint.
 
 #### Rule
 
@@ -416,14 +416,14 @@ weaker kind is allowed only where the stronger kind cannot express the [Rule], a
 [Rule] reads a file the [Semantic] [Detector] does not parse, or where the language has no
 [Detector] of the stronger kind that accepts bespoke [Rules]. The language has one when the
 project already runs it or the language's own [Detector] ecosystem offers it, the same check
-section 2 asks for before a [Toolchain] gap is recorded, but not one through which the
-[toolchain specification](TOOLING-SPEC.md)'s clause 4.1 forbids a [Toolchain] to route a
-[Defence]. The [Practitioner] MUST name the [Detector] and its kind on the [Rule]'s
-[Remediation docs]. Where that kind is weaker than [Semantic], the [Practitioner] MUST also
+section 2 asks for before a [Toolchain] gap is recorded. A stronger configuration of a [Detector]
+the project runs is one; a [Detector] or configuration of the stronger kind available only
+through a hosted service or a licence tier is not. On the [Remediation docs] of a [Rule] they
+write, the [Practitioner] MUST name the [Detector] and its kind. Where that kind is weaker than [Semantic], the [Practitioner] MUST also
 record, for each step down from [Semantic], which of those two reasons holds and why, naming the
 [Detectors] of the stronger kind that were considered, on the [Rule]'s [Remediation docs] and in
-the description of the commit that adds the [Rule] or moves it to another [Detector]. The
-[Practitioner] judges whether a reason holds, as section 4 gives them the choice of [Detector]; a
+the description of the commit that adds the [Rule], moves it to another [Detector], or first
+records the reason. The [Practitioner] judges whether a reason holds, as section 4 gives them the choice of [Detector]; a
 project MAY require its [Owner]'s sign-off on a weaker kind as well, recorded where it records
 its [Calibrations], and where it has recorded no such requirement none is needed.
 
@@ -1092,12 +1092,15 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 > for it, say so and fix the [Defect] conventionally.
 >
 > Write a custom [Rule] that detects the [Class], in a tool that reads code rather than running it.
-> Put it in a [Semantic] [Detector], one that sees types and symbols; failing that, one that sees
-> syntax; and only then one that sees text. Use a weaker one only where the stronger one cannot
-> express the [Rule], or the language has none that takes custom [Rules]. Name the [Detector] and its
-> kind in the [Rule]'s documentation. Where you use a weaker one, write down which reason holds,
-> and why, there and in the description of the commit that adds the [Rule] or moves it to another
-> [Detector], and where the project requires its [Owner]'s sign-off on a weaker one, get it. Draw
+> Put it in a [Semantic] [Detector], one in which a [Rule] can ask the type of any expression and
+> what any name refers to, across the whole program; failing that, one that sees syntax; and only
+> then one that sees text. Use a weaker one only where the stronger one cannot express the [Rule],
+> or the language has none that takes custom [Rules]: none the project runs, in any configuration,
+> and none its ecosystem offers outside a hosted service or a licence tier. Name the [Detector] and
+> its kind in the [Rule]'s documentation. Where you use a weaker one, write down which reason
+> holds, and why, naming the stronger [Detectors] you considered, there and in the description of
+> the commit that adds the [Rule], moves it to another [Detector], or first records the reason,
+> and where the project requires its [Owner]'s sign-off on a weaker one, get it. Draw
 > the [Rule] so that it catches more than the single [Instance] you started from, but never so
 > broadly that it matches code which does not carry the [Hazard].
 >

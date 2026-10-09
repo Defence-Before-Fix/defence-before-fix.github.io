@@ -28,8 +28,8 @@ it is an instance of coalescing an absent value into a falsy one, which is a pat
 patterns can be detected mechanically.
 
 Then write the rule that detects that pattern. A static analysis rule, a custom lint rule, a
-check in a tool your project already runs on every commit, one that sees types where your
-language has one. Something that reads the code
+check in a tool your project already runs on every commit or your language's ecosystem offers,
+one that sees types where your language has one. Something that reads the code
 rather than running it, so it can be pointed at every file you have rather than only the paths
 your tests happen to exercise.
 

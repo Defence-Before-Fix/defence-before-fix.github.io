@@ -35,16 +35,16 @@ construct the means has moved the obligation rather than met it.
 Terms from the method specification carry over unchanged. Every capitalised term links to its
 definition; the ones this document leans on most are, in short:
 
-| Term                               | In one line                                                                                           |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| [Detector]                         | A tool that reads code without executing it and reports what it finds                                 |
-| [Semantic], [Syntactic], [Textual] | What a [Detector] can see in a configuration: the types of values; a parse tree without them; or text |
-| [Rule]                             | One check a [Detector] evaluates                                                                      |
-| [Identifier]                       | The stable name printed with a finding that leads to its documentation                                |
-| [Practitioner]                     | Whoever is doing the work, a person or an [Agent]                                                     |
-| [Toolchain]                        | Everything a project assembles to run its checks through, [Detectors] included                        |
-| [Suppression]                      | Making a finding go away without fixing it                                                            |
-| [Baseline]                         | A recorded set of existing findings a [Rule] is told to ignore                                        |
+| Term                               | In one line                                                                                                                                         |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Detector]                         | A tool that reads code without executing it and reports what it finds                                                                               |
+| [Semantic], [Syntactic], [Textual] | What a [Rule] can ask in a configuration: the type of any expression and what any name refers to, program-wide; a parse tree short of that; or text |
+| [Rule]                             | One check a [Detector] evaluates                                                                                                                    |
+| [Identifier]                       | The stable name printed with a finding that leads to its documentation                                                                              |
+| [Practitioner]                     | Whoever is doing the work, a person or an [Agent]                                                                                                   |
+| [Toolchain]                        | Everything a project assembles to run its checks through, [Detectors] included                                                                      |
+| [Suppression]                      | Making a finding go away without fixing it                                                                                                          |
+| [Baseline]                         | A recorded set of existing findings a [Rule] is told to ignore                                                                                      |
 
 These are additional.
 
@@ -309,7 +309,7 @@ for a [Detector].
 
 **A verdict on a [Detector] MUST also name the kind of each configuration it grades, [Semantic],
 [Syntactic] or [Textual]**: ESLint, for example, is [Syntactic] without type information and
-[Semantic] with it. It credits no configuration reachable only through a hosted service or a
+[Semantic] with it. The kind named is the one the [Detector] has without any hosted service or
 licence tier, as clause 5.4 credits no finding reported only there. The kind is not a level of
 [Conformance] and does not change the verdict: a [Textual] [Detector] can [Conform], and a
 [Semantic] one can fail to. It is stated because the method specification's clause 3.2 requires a
