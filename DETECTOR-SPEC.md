@@ -285,8 +285,8 @@ neither switched off nor detected does not [Conform].
 A route is detectable when the project can find every use of it, in one of two ways. The first is
 a [Rule] the project writes for itself, under clause 4.1, and the [Detector] runs. That way works
 only where the [Detector] lets such a [Rule] see every use of the route, and the [Detector] need
-not ship the [Rule] itself. The second is a mechanical check the [Detector] documents, such as a
-text search for the route's documented spelling. Switching the route off or detecting it is what
+not ship the [Rule] itself. The second is a mechanical check that the [Detector] itself documents, such as a
+text search it documents for the route's spelling. Switching the route off or detecting it is what
 lets a project that decides to forbid the route enforce that decision.
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]

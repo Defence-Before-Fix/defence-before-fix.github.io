@@ -45,7 +45,7 @@ agent summary (those belong to the toolchain specification).
   every use of it, in one of two ways. The first is a Rule the project writes for itself, under
   clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), and the Detector runs. That way works only where the Detector lets such a Rule see
   every use of the route, and the Detector need not ship the Rule itself. The second is a
-  mechanical check the Detector documents". An answer that says the detector must forbid the route, or must require a
+  mechanical check that the Detector itself documents". An answer that says the detector must forbid the route, or must require a
   reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD), is wrong.
 - **2c.** With the rule, in the installed copy, at a version tracked together, and yes, offline.
   Key quotations, [6.2](../../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access): "Resolution of a bundled rule's identifier MUST work from the installed

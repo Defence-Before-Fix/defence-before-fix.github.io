@@ -364,8 +364,8 @@ independent when they would miss different things. A text search for the token a
 the code that consumes the value are independent, and asking someone who knows the system is a
 third. Two text searches for two spellings of the same token are one technique, because they miss
 the same things. For a [Class] defined by how code is spelt, though, searching for each other
-common spelling of the idiom is a technique of its own, because there a search for one spelling
-misses every other.
+common spelling of the idiom is a technique of its own, because there the spelling is the [Class]
+itself.
 
 A technique counts only if it does not run the [Detector] under proof in any configuration and
 would exist unchanged had the [Rule] never been written, because this search exists to check the
