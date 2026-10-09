@@ -38,12 +38,12 @@ agent summary (those belong to the toolchain specification).
   says a declaration is required, or that partial satisfaction is conformance, is wrong.
 - **2b.** It must make the route either disableable by configuration or detectable by a rule the
   project can write or a mechanical check it documents; it is not required to remove or forbid
-  it. Key quotation, [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each route it ships, it MUST do at least one of two things: let
-  the project switch the route off in the Detector's configuration, or make the route detectable.
-  Either alone satisfies this clause, and neither requires the Detector to remove or forbid the
-  route. Detectable means the project can find every use of the route. There are two ways. One is
-  a Rule the project writes and registers with the Detector, as clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) lets it; the
-  Detector need not ship that Rule. The other is a mechanical check the Detector documents." An answer that says the detector must forbid the route, or must require a
+  it. Key quotation, [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each route it ships, it MUST do at least one of two things,
+  and need not remove or forbid the route: let the project switch the route off in the Detector's
+  configuration, or make the route detectable. Either alone satisfies this clause. A route is
+  detectable when the project can find every use of it, either with a Rule of the project's own
+  that the Detector runs, or with a mechanical check the Detector documents. The Detector need not
+  ship that Rule." An answer that says the detector must forbid the route, or must require a
   reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD), is wrong.
 - **2c.** With the rule, in the installed copy, at a version tracked together, and yes, offline.
   Key quotations, [6.2](../../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access): "Resolution of a bundled rule's identifier MUST work from the installed
@@ -73,7 +73,7 @@ has read the clause differently and that counts against the document.
 
 The fixture does not say what Lintomatic can see. A reader who names its kind as unknown, or names
 none, is not marked on it; a reader who makes the verdict turn on its kind has read section [8](../../DETECTOR-SPEC.md#8-conformance)
-differently, which counts against the document: "The kind is not a level of Conformance and does
+differently, which counts against the document: "the kind is not a level of Conformance and does
 not change the verdict".
 
 Clause [6.4](../../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation): **does not change the verdict**. It is a SHOULD, and Lintomatic's failure to check its
