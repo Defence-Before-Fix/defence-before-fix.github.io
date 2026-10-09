@@ -146,8 +146,9 @@ which rule and why. Each sheet is marked question by question, as follows.
   one whose answer text is empty, or whose process reports an error, is set aside, as
   [The cohort](#the-cohort) says, and is still marked.
 - **The same passage.** A quotation under question 4, of any length, covers every sentence that
-  an occurrence of the quoted words, taken as one run, overlaps, at every place that run occurs,
-  and a passage named without a quotation, by clause number or description, covers every
+  an occurrence of the quoted words, taken as one run, overlaps: at the place the reader names
+  it, by clause number or description, and where the reader names no place, at every place that
+  run occurs; a passage named without a quotation, by clause number or description, covers every
   sentence of what it names. A heading, list item or table row counts as one sentence. Two passages are the same when they cover a
   sentence in common or lie in the same paragraph, and a list item or table row is its own
   paragraph.
