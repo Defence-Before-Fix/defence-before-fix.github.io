@@ -14,7 +14,9 @@ version entry with no cohort line has not been accepted and is not published.
 
 - New obligation, clause [3.2](SPEC.md#32-build-the-net): a rule the practitioner writes MUST be written in the strongest
   kind of detector that can express it, semantic, else syntactic, else textual, judged by the
-  configuration it runs in; enabling or configuring an existing rule is not writing one. A weaker
+  configuration it runs in; enabling an existing rule or tightening its thresholds is not writing
+  one, and giving an existing rule a pattern of the project's own, or changing the pattern of one
+  the project wrote, is. A weaker
   kind is allowed only where the stronger cannot express the rule or the language has no
   detector of that kind that accepts bespoke rules; a stronger configuration of a detector the
   project runs counts, and one only a hosted service or licence tier provides does not. A
@@ -28,7 +30,11 @@ version entry with no cohort line has not been accepted and is not published.
   the reason, which section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) and the section [3](SPEC.md#3-the-method) map note. Clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)'s list of what the
   remediation docs state defers to what clause [3.2](SPEC.md#32-build-the-net) adds. Section [1](SPEC.md#1-terminology)
   defines textual, syntactic and semantic by whether a rule can ask the type of any expression
-  and what any name refers to across the whole program, section
+  and what any name refers to across the whole program, naming mypy as semantic only with
+  `check_untyped_defs`, since by default it does not check the bodies of unannotated functions.
+  Section [2](SPEC.md#2-when-the-method-applies) and clause [3.2](SPEC.md#32-build-the-net) send a class that no extensible detector of a kind the language
+  has can express within clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s bounds to a bespoke detector or a toolchain gap, not to
+  "no pattern exists". Section
   [7](SPEC.md#7-conformance)'s conforming defence carries the kind, and Appendix A carries the requirement. Prompted by
   project rules hosted in ast-grep, where the language already had a semantic host, that decided
   by names: they reported unrelated calls of the same name, and clause [3.2](SPEC.md#32-build-the-net) said any detector
@@ -101,8 +107,8 @@ pass it.
   or licence tier. It is not a level of conformance and does not change the verdict; it
   is stated because method clause [3.2](SPEC.md#32-build-the-net) now requires a rule to be written in the strongest kind of
   detector that can express it, and a verdict of conforming alone presents a textual detector as
-  an equal host. Section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) names it as the one obligation the document adds for a practitioner,
-  since it binds whoever gives a verdict, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss carries the three terms. Accepted by run NNN. Minor version when released.
+  an equal host. Section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) still adds no obligation to a practitioner and names this
+  one as binding whoever gives a verdict on a detector, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss carries the three terms. Accepted by run NNN. Minor version when released.
 
 ### 1.0.0, 2026-09-08
 

@@ -86,7 +86,7 @@ Of a [Detector]: seeing the parse tree of the code, and at most some of the type
 
 #### Semantic
 
-Of a [Detector]: one in which a [Rule] can ask the type of any expression and what any name refers to, across the whole program, as the language's compiler or type checker resolves them, as in PHPStan, mypy, Clippy, Dylint and ESLint with typescript-eslint's type information. One that infers types only in part, or only within one file, is [Syntactic]. The same [Detector] can be [Syntactic] in one configuration and [Semantic] in another: ESLint without type information is [Syntactic]. A [Semantic] [Detector] need not accept bespoke [Rules]: Clippy does not, and in Rust a project's own [Semantic] [Rules] are written for Dylint.
+Of a [Detector]: one in which a [Rule] can ask the type of any expression and what any name refers to, across the whole program, as the language's compiler or type checker resolves them, as in PHPStan, mypy with `check_untyped_defs`, Clippy, Dylint and ESLint with typescript-eslint's type information. One that infers types only in part, or only within one file, is [Syntactic]. The same [Detector] can be [Syntactic] in one configuration and [Semantic] in another: ESLint without type information is [Syntactic]. A [Semantic] [Detector] need not accept bespoke [Rules]: Clippy does not, and in Rust a project's own [Semantic] [Rules] are written for Dylint.
 
 #### Rule
 
@@ -201,7 +201,8 @@ them judge whether the attempt was one.
 
 There are three ways out of the method and they are recorded differently. No pattern exists: the
 [Defect] is out of scope under this section, and only the sentence above is recorded. A pattern exists but the
-language has no extensible [Detector] and a bespoke one is not practical: a [Toolchain] gap
+language has no extensible [Detector] of a kind that can express the [Rule] within clause 3.1's
+bounds, and a bespoke one is not practical: a [Toolchain] gap
 under clause 3.2. A pattern exists, a
 [Detector] exists, but the [Toolchain] lacks a mechanism the [toolchain specification](TOOLING-SPEC.md) requires: a
 mechanism gap under clause 3.2, and the [Rule] is still built. The attempt that separates the first
@@ -411,7 +412,9 @@ are examples rather than a permitted list, and a [Detector] is not disqualified 
 **Qualifying is not the same as being the right host.** A [Rule] the [Practitioner] writes MUST
 be written in the strongest kind of [Detector] that can express it: a [Semantic] one, else a
 [Syntactic] one, else a [Textual] one. The kind is that of the configuration the [Rule] runs in.
-Enabling or configuring an existing [Rule] is not writing one; the paragraph above covers that. A
+Enabling an existing [Rule], or tightening its thresholds, is not writing one, and the
+off-the-shelf paragraph above covers it; giving an existing [Rule] a pattern of the project's own,
+or changing the pattern of a [Rule] the project wrote, is writing one. A
 weaker kind is allowed only where the stronger kind cannot express the [Rule], as where the
 [Rule] reads a file the [Semantic] [Detector] does not parse, or where the language has no
 [Detector] of the stronger kind that accepts bespoke [Rules]. The language has one when the
@@ -439,7 +442,8 @@ variable the call is made on misses the same call on a variable named otherwise,
 [Instance] the [Rule] never sees. A [Semantic] [Detector] decides by the type, so the bounds of
 clause 3.1 can be held there.
 
-Where the affected language has no extensible [Detector] available, the [Practitioner] MAY build a
+Where the affected language has no extensible [Detector] available of a kind that can express the
+[Rule] within clause 3.1's bounds, the [Practitioner] MAY build a
 bespoke one: a program of the project's own that reads code and reports matches of the [Class], run
 through the project's own entry point like any other [Detector]. This is a last resort rather than
 a default, because a [Detector] the ecosystem maintains is cheaper to keep and easier for the next
@@ -458,7 +462,8 @@ then the only requirement is that somebody deciding what to invest in the [Toolc
 it. A gap recorded where nobody looks has been forgotten with extra steps.
 
 There are two kinds of gap and they lead to different work. The language having no extensible
-[Detector] and no practical bespoke one is the gap above, and the [Class] waits for one. The project's [Toolchain]
+[Detector] of a kind that can express the [Rule] within clause 3.1's bounds, and no practical
+bespoke one, is the gap above, and the [Class] waits for one. The project's [Toolchain]
 lacking a mechanism the [toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an
 [Identifier] resolver, is a mechanism gap, and it does not put the [Class] out of reach: the
 [Practitioner] builds the [Rule], uses the substitutes clauses 3.3 and 3.6 already allow, and records

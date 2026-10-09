@@ -361,8 +361,8 @@ maintainer's reading rather than the [Detector].
 
 ## 9. Relationship to the other specifications
 
-This document adds no obligations to a [Practitioner] and relaxes none, save one: a
-verdict on a [Detector], whoever gives it, names its kind under section 8. Every clause here
+This document adds no obligations to a [Practitioner] and relaxes none. Section 8 adds one on
+whoever gives a verdict on a [Detector]: to name its kind. Every clause here
 exists to make a clause of the method specification achievable with a [Detector] in hand.
 
 Where this document and the method specification disagree, the method specification governs. It
