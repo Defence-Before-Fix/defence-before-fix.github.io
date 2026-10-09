@@ -5,6 +5,11 @@ describes: a line is added at the top for each change, naming its pull request. 
 not a specification and is not versioned, and a change to it is not tested by a cohort. Changes
 to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
 
+- [Pull request #14](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14):
+  the `SPEC.md` question set gains a fourth load-bearing question, 2d, on which kind of detector
+  must host a rule the practitioner writes, so `ACCEPTANCE.md` lists three or more such
+  questions per document. Adding a keyed question raises the bar, as "The bar only moves up"
+  allows. Prompted by the change to method clause 3.2 in the same pull request.
 - [Pull request #13](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/13): the cohort can be run and marked without judgement calls that the rules
   leave open; this applies to runs made after it merges, and to run 19 if made under it, and
   runs 16 to 18 stand as recorded. A cohort is an odd
