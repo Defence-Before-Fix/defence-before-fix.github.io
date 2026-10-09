@@ -33,8 +33,8 @@ test is run with a low-strength model so that clarity is measured at the floor, 
   cohort's model. No reader is set aside for any other cause, and the record shows the cause. If any
   reader is set aside, the run is void and a fresh cohort runs, unless the readers whose answers
   count already fail a criterion, when the run fails; a run never passes with a reader set
-  aside. A set-aside reader's sheet is still marked, and a miss traceable to the text in it fails
-  the run. A void run takes a run number, has a record and posted sheets like any other, and
+  aside. A set-aside reader's sheet is still marked, and the run fails if any criterion fails when its
+  answered items are counted with the other readers', or if it has a miss traceable to the text. A void run takes a run number, has a record and posted sheets like any other, and
   counts towards the number of runs.
 
 - Each reader receives **only its packet**: the document's question set, the changed document
@@ -165,7 +165,7 @@ one" is four of five.
 | Load-bearing statements (question 2)                   | **Every** reader correct on every one                                                                                                                                                                                                                                                                                      |
 | Restatement and application (questions 1 and 3)        | **All but one** reader correct on each keyed item                                                                                                                                                                                                                                                                          |
 | A miss traceable to the text                           | **None.** Any such miss, as [Marking](#marking) defines it, is a finding, whatever the count                                                                                                                                                                                                                               |
-| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage that covers a sentence of the paragraph the earlier passage lay in, as that paragraph reads in the changed document, or a sentence the change kept from it |
+| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage that covers a sentence of each paragraph the earlier passage lay in, as that paragraph reads in the changed document, or a sentence the change kept from it |
 | Anything else from one reader only                     | Recorded; applied at the editor's discretion; does not block                                                                                                                                                                                                                                                               |
 
 Every row must hold, and the last covers only what none of the others catches. The first and

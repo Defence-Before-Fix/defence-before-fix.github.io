@@ -6,7 +6,7 @@ not a specification and is not versioned, and a change to it is not tested by a 
 to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
 
 - [Pull request #13](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/13): the cohort can be run and marked without judgement calls that the rules
-  leave open; this applies to runs made after it merges, and to run 19 if made under it, and
+  leave open; this applies to runs made after it merges, and to runs 19 and 20, which were made under it at a695010, and
   runs 16 to 18 stand as recorded. A cohort is an odd
   number of readers started, at least five, larger at the editor's choice the more obligations
   the change touches, each a separate process with no tools and no project context, started from
@@ -14,8 +14,8 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   `CLAUDE.md`, skills, plugins, hooks, MCP servers or saved session. A reader is set aside only
   if its answer text is empty, its process reports an error, it shared the editor's context, it
   was not started as required or it reported another model, and a run with a reader set
-  aside is void, or fails if the readers who count already fail it or its own sheet has a miss
-  traceable to the text; a void run has a number, a record and posted sheets. The packet is the question set, the document and the fixture, each
+  aside is void, or fails if the readers who count already fail it, if it fails with the set-aside
+  sheet's answered items counted too, or if that sheet has a miss traceable to the text; a void run has a number, a record and posted sheets. The packet is the question set, the document and the fixture, each
   after one `===== FILE: <name> =====` line. A new marking section says what a delegated marker
   receives and that its verdict is final unless a rule was misapplied, that an open judgement is
   made as a careful reader of the document would, and defines a keyed item, quoting (consecutive
