@@ -531,7 +531,7 @@ what must survive the merge is not.
 
 **Part B: [Narrowing].**
 
-**An inline ignore comment, an ignore entry or a [Baseline] is not judged under this clause.**
+**An inline ignore comment, an ignore entry or a [Baseline] left over an [Instance] that carries the [Hazard] is not judged under this clause.**
 Leaving an [Instance] that carries the [Hazard] in place behind one is not a [Narrowing], whatever
 note accompanies it. It is a [Suppression] of the [Instance]. Clauses 3.4 and 3.5 and section 4
 govern it, and it does not fail this clause.
@@ -626,7 +626,7 @@ demonstrates the [Rule] firing is an acceptable substitute.
 [Fixtures] are part of the [Rule] and are versioned with it, under the co-location requirement in
 clause 3.6. A [Fixture] is input to the [Rule]'s test, not part of the code the [Defence] enforces.
 The red run of Part A may report it; that is the proof. The [Sweep] excludes it under clause 3.4,
-and the green run under clause 3.5 does not report it. So there is no circularity in a [Fixture]
+and the green run under clause 3.5 does not report it as an [Instance]. So there is no circularity in a [Fixture]
 that deliberately fails the [Rule] it proves. Writing the [Fixture] is the [Practitioner]'s own decision under section 4, not something
 to refer upwards.
 
