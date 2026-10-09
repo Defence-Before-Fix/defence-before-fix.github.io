@@ -1,6 +1,7 @@
 # Answer key for SPEC.md
 
-Marked against the document at the version named in the changelog entry that records the run.
+Marked against the document at the commit the readers read, with this key, its question set and
+fixture at that same commit.
 Quotations below are from the document; when a clause is reworded, update the quotation here in
 the same commit.
 
@@ -84,31 +85,27 @@ is correct; a bullet that says no weaker kind is ever allowed is wrong.
 
 Section [7](../../SPEC.md#7-conformance): the **remediation does not conform**, because [3.2](../../SPEC.md#32-build-the-net), [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) and [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) were not followed. The
 **defence does not conform** either, because [3.2](../../SPEC.md#32-build-the-net) and [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) fail; a reader who names either is correct.
-A reader who says the defence conforms because the sweep is what failed has missed both, and that
-counts against the document only if the reasoning quotes the section [7](../../SPEC.md#7-conformance) definition of a
-conforming defence.
+A reader who says the defence conforms because the sweep is what failed has missed both.
 
 Section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom): the **inline ignore on `Report::render()`** was the owner's decision, not the
-practitioner's. An answer naming instead the decision not to build the wider rule is half right:
+practitioner's. An answer naming instead the decision not to build the wider rule is half right, which is a miss:
 that is also listed in section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom) as the owner's to take, and an answer naming both is correct.
 An answer naming neither is wrong.
 
 A reader who grades [3.5](../../SPEC.md#35-enforce-permanently-and-block) Yes because the rule fails the build has not applied the clause's opening
 sentence on unrecorded suppression, and that counts against the document. A reader who grades
 [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) Yes because the URL resolves has read the versioning sentence of [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)
-differently, which counts against the document; a reader who grades [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) Yes has misread the
-fixture. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Partial or No only because no reason for a weaker kind is recorded has the verdict on a
+differently, which counts against the document. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Partial or No only because no reason for a weaker kind is recorded has the verdict on a
 ground the fixture does not show: the reason is owed only where the rule is in a weaker kind than
-semantic. That is not marked wrong, and counts against the document only if the reasoning quotes
-[3.2](../../SPEC.md#32-build-the-net) as requiring the reason whatever the detector. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Yes is marked
+semantic. That is not marked wrong. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Yes is marked
 wrong, including one who assigns the wiki page's failure to [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) alone: a rule with no
 conforming remediation docs has its detector and kind named on none, so [3.2](../../SPEC.md#32-build-the-net) fails either
-way, and the miss counts against the document where the reasoning quotes it. A reader who attributes
+way. A reader who attributes
 the suppression to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) rather than [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) has read the narrowing passage of [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) as covering it, which is a fair reading and is not marked wrong.
 
 ## 4. Confusion
 
-No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
-finding that blocks until the text is changed and a fresh cohort no longer quotes it. What to
-change is the editor's decision; the reader is not asked and any suggestion it volunteers is
-discarded unread.
+No keyed answer. Record every passage quoted. Two or more readers naming the same passage, as
+`ACCEPTANCE.md` defines it, is a finding that blocks until the text is changed and a fresh
+cohort no longer names it. What to change is the editor's decision; the reader is not asked
+and any suggestion it volunteers is discarded unread.

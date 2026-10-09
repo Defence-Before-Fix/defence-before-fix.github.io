@@ -1,9 +1,10 @@
 # Acceptance question sets
 
 The question sets and answer keys that [ACCEPTANCE.md](../ACCEPTANCE.md) requires. One directory per
-specification document, each holding the fixed questions a cold reader answers and the key an
-editor marks against. The fixture cases the application question uses live in `fixtures/`, and
-the record of every run lives in `runs/`.
+specification document, each holding the fixed questions a
+[cold reader](../ACCEPTANCE.md#the-cohort) answers and the key an editor marks against. The
+fixture cases the application question uses live in `fixtures/`, the record of every run lives in
+`runs/`, and changes to the acceptance process itself are recorded in [CHANGES.md](CHANGES.md).
 
 | Document           | Questions                                        | Key                                  |
 | ------------------ | ------------------------------------------------ | ------------------------------------ |
@@ -14,13 +15,15 @@ the record of every run lives in `runs/`.
 ## How a run works
 
 1. The editor identifies which documents the change touched. Only those are tested.
-2. For each, five or more fresh low-strength readers each receive the document's current text,
-   its `QUESTIONS.md`, and the fixture the questions name. Nothing else: no key, no changelog, no
-   critique findings, no other reader's answers.
-3. The editor marks each answer sheet against `KEY.md` and applies the pass criteria in
-   `ACCEPTANCE.md`.
-4. The result is recorded as a file under [runs/](runs/), with cohort size, model, run number,
-   marks and the findings applied, and the change's `Unreleased` changelog line names that file.
+2. For each, an odd number of fresh low-strength readers, at least five, each isolated as
+   `ACCEPTANCE.md` describes, each receive the document's current text, its `QUESTIONS.md`, and
+   the fixture the questions name. Nothing else: no key, no changelog, no critique findings, no
+   other reader's answers.
+3. The editor, or a separate marker the editor delegates to, marks each answer sheet against
+   `KEY.md` under the marking rules in `ACCEPTANCE.md` and applies its pass criteria.
+4. The result is recorded as a file under [runs/](runs/), stating what `ACCEPTANCE.md` lists,
+   with the answer sheets posted on the pull request and linked from it, and the change's
+   `Unreleased` changelog line names that file.
    A run that fails is followed by a change to the text, never to the questions, and a fresh
    cohort.
 
@@ -32,6 +35,8 @@ matches the document is a defect in this directory, not a reason to mark a reade
 
 Questions are fixed so that runs can be compared across versions. Adding a keyed question is
 allowed when a new clause is load-bearing; removing or softening one to make a run pass is not.
+A process change may remove a limit a key puts on which misses count against the document, as
+[the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up) allows.
 The reader may quote a passage it found confusing; it is never asked to rate the document, say
 what would make a passage clearer, or propose a change: the cohort confirms comprehension and
 does not design the text.
