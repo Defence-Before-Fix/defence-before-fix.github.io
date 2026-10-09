@@ -106,9 +106,10 @@ the pull request read; the answer sheets; and, from the editor, the facts the re
 the sheets do not, which are the pull request and the commit, the cohort size and model, how the
 readers were isolated and the command they were started with, whether the machine applies
 managed (policy) settings to the readers, that the editor attests the rest of the isolation, the
-readers set aside and why, how the marker was started, the run number, and whether the run was
+readers set aside for a cause the sheets cannot show and why, how the marker was started, the run number, and whether the run was
 made under a process change before that change merged and, if so, at which commit. The marker
-writes the record, stating those facts as the editor supplied them, and the editor adds the
+writes the record, stating those facts as the editor supplied them and setting aside, with the
+cause, any reader whose sheet shows a cause, and the editor adds the
 findings applied and the link to the posted sheets after marking. A delegated marker's verdict,
 its marks and its PASS or FAIL, is final unless the editor shows that a rule in this file was
 misapplied; the editor then re-marks what the misapplied rule affected, and the record says
@@ -247,8 +248,8 @@ cohort: the cohort measures whether a low-strength reader can follow a specifica
 process is followed by the editor. Such a change names the runs or the case that showed the need
 for it, and goes through steps 1, 3 and 6 of `CONTRIBUTING.md`, with no scope, key or cohort
 step; its review reads every process file it changes. It applies to every run made after it
-merges; a run made before then may be made under it, follows all of it at a named commit, never
-part, and its record says so and names that commit. It is recorded by a line added at the top
+merges; a run made before then may be made under it, follows all of it at a commit named before
+the readers start, never part, and its record says so and names that commit. It is recorded by a line added at the top
 of [acceptance/CHANGES.md](acceptance/CHANGES.md), naming its pull request, not in the
 changelog, which is for the three specifications. It is bound by
 [the section on the bar](#the-bar-only-moves-up): it may raise a criterion, never relax one. A
