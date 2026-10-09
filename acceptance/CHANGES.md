@@ -22,8 +22,9 @@ tested by a cohort. Changes to the three specifications are recorded in
   Thresholds read "every reader" and "all but one", the same as five of five and four of five for
   a cohort of five; every pass-criteria row must hold, and the last covers only what the others
   do not. The run record states how readers were isolated, the command they were started with
-  and who marked, and the answer sheets are kept beside it; the isolation rule and the kept
-  sheets apply from run 019, and runs 16 to 18 stand as recorded. Process changes are recorded
+  and who marked, and links the answer sheets, which are posted unedited on the pull request
+  rather than kept in the repository; the isolation rule and the posted sheets apply from run
+  019, and runs 16 to 18 stand as recorded. Process changes are recorded
   in this file, not in the changelog. `CONTRIBUTING.md` requires a reviewer who did not draft the
   change, says which review findings mean a fresh run, adds the agent-facing rebuild after an
   Appendix A change, and points to how a change to the process files is made. Prompted by gaps in

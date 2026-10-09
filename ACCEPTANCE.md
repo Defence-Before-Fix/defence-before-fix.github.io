@@ -35,8 +35,8 @@ test is run with a low-strength model so that clarity is measured at the floor, 
 - Readers are run **after** every stronger review has been applied. They are the last gate, not
   the first draft.
 
-The isolation rule above and the answer sheets kept under [The record](#the-record) apply to runs
-from 019 onwards; runs 16 to 18 stand as recorded.
+The isolation rule above and the answer sheets posted under [The record](#the-record) apply to
+runs from 019 onwards; runs 16 to 18 stand as recorded.
 
 ## The question set
 
@@ -176,10 +176,11 @@ the one sequence shared by the three documents, stating: the document, the pull 
 commit read, the cohort size and model, how the readers were isolated and the command they were
 started with, the run number in that pull request, who marked and, for a delegated marker, how it
 was started, the marks per reader per question, any judgement made in marking, the passages
-quoted as confusing and by how many readers, the findings applied, and whether it passed. Each
-reader's answer sheet is kept unedited beside the record, one file per reader in a directory
-`NNN-<slug>/`, with the instruction a delegated marker was given, so that an owner can check the
-isolation and the marks. The changelog line for the change names the file. CI refuses a
+quoted as confusing and by how many readers, the findings applied, whether it passed, and a link
+to the answer sheets. The answer sheets are not kept in this repository: every reader's sheet,
+unedited, and the instruction a delegated marker was given are posted in one comment on the pull
+request, so that an owner can check the isolation and the marks. The changelog line for the
+change names the file. CI refuses a
 specification change whose pull request adds no run file; it checks for at least one, and a pull
 request that changes two documents adds a run for each.
 

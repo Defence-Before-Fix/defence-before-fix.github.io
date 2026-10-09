@@ -11,9 +11,9 @@ the command they were started with; the run number within that pull request; who
 a delegated marker, how it was started; the marks per reader per question against the key, with
 any judgement made in marking; the passages quoted as confusing and by how many readers; the
 findings applied to the text as a result; and the verdict against the criteria in
-`ACCEPTANCE.md`. Answer sheets are not pasted into the record, and the marks are the record; the
-sheets are kept unedited beside it in a directory `NNN-<slug>/`, one file per reader, with the
-instruction a delegated marker was given.
+`ACCEPTANCE.md`, with a link to the answer sheets. Answer sheets are not kept in this repository,
+and the marks are the record; the sheets, unedited, and the instruction a delegated marker was
+given are posted in one comment on the pull request, which the record links.
 
 The `Unreleased` changelog line for the change names the record, and `tools/changes.py` refuses a
 specification change whose pull request adds no file here.
