@@ -40,10 +40,12 @@ agent summary (those belong to the toolchain specification).
   project can write or a mechanical check it documents; it is not required to remove or forbid
   it. Key quotation, [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each route it ships, it need not remove or forbid the route,
   but it MUST do at least one of two things: let the project switch the route off in the Detector's
-  configuration, or make the route detectable. Either alone satisfies this clause. A route is
-  detectable when the project can find every use of it, either with a Rule of the project's own
-  that the Detector runs, or with a mechanical check the Detector documents. The Detector need not
-  ship that Rule." An answer that says the detector must forbid the route, or must require a
+  configuration, or make the route detectable. Either alone satisfies this clause; neither requires
+  the Detector to remove or forbid the route."; "A route is detectable when the project can find
+  every use of it, in one of two ways. The first is a Rule the project writes for itself, under
+  clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), and the Detector runs. That way works only where the Detector lets such a Rule see
+  every use of the route, and the Detector need not ship the Rule itself. The second is a
+  mechanical check the Detector documents". An answer that says the detector must forbid the route, or must require a
   reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD), is wrong.
 - **2c.** With the rule, in the installed copy, at a version tracked together, and yes, offline.
   Key quotations, [6.2](../../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access): "Resolution of a bundled rule's identifier MUST work from the installed
