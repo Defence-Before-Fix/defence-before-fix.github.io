@@ -70,7 +70,14 @@ version entry with no cohort line has not been accepted and is not published.
   undefined term consuming project; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s paragraph on independent techniques is shorter
   and says plainly that a run of the rule is never one; and clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)'s versioning sentence
   says a rule's documentation is versioned with the rule. Each after readers of run 25 missed or
-  named the passage. Accepted by run NNN. Minor version when released.
+  named the passage. After run 27, clarity edits: clause [3.2](SPEC.md#32-build-the-net) states both grounds for a weaker
+  kind in the sentence straight after the strongest-kind sentence, and its record paragraph names
+  the two places, both required, before what is recorded and which commit carries it; section
+  [7](SPEC.md#7-conformance)'s conforming defence satisfies each clause in full, and its summary of clause [3.5](SPEC.md#35-enforce-permanently-and-block) includes
+  permanence and the recorded decision behind every suppression; section [2](SPEC.md#2-when-the-method-applies) and clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) each say
+  what a technique is there, and clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s paragraph on independent techniques is three short
+  paragraphs, saying that a run of the rule belongs to the proof or the sweep. Each after readers
+  of run 27 missed or named the passage. Accepted by run NNN. Minor version when released.
 
 ### 1.1.0, 2026-10-02
 
@@ -166,7 +173,16 @@ pass it.
   remove or forbid the route, and its definition of detectable is one sentence; section [8](DETECTOR-SPEC.md#8-conformance)'s
   paragraph on the kind is shorter, says what the kind is, and says the duty is on whoever gives
   the verdict, not on the detector. Each after readers of run 26 missed or named the passage.
-  Accepted by run NNN. Minor version when released.
+  After run 28, clarity edits: clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says after the two things that neither requires removing
+  or forbidding the route, and says in a paragraph of its own what detectable means, that the
+  project writes the detecting rule, which works only where the detector lets it see every use, and what a
+  documented check is; clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says that for a project's own rule printing the identifier
+  unaltered is everything it asks of the detector and the resolving is the toolchain's, without
+  needing the other specifications; section [8](DETECTOR-SPEC.md#8-conformance)'s paragraph on the kind says what a
+  configuration is and, in a paragraph of its own, that the duty is not one of the MUSTs
+  conformance is judged on and that a verdict leaving the kind out still stands on conformance.
+  Each after readers of run 28 missed or named the passage. Accepted by run NNN. Minor version
+  when released.
 
 ### 1.0.0, 2026-09-08
 

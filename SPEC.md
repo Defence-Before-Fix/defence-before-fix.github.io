@@ -196,8 +196,9 @@ clause 3.1's bounds is itself the evidence that the [Defect] is out of scope, an
 more reliable than a judgement made before trying. The conclusion that no pattern exists MUST be
 stated in one sentence, naming at least two independent techniques tried at expressing the
 [Rule], and recorded where the project's other decisions are enumerable under clause 8.7, not
-only with the fix. Two techniques are independent when they would miss different things, as
-clause 3.1 says of a search. That conclusion is the cheapest way
+only with the fix. A technique here is a way of trying to write the [Rule]. Two such techniques
+are independent when they would miss different things, which is the same test clause 3.1 applies
+to ways of searching for [Instances]. That conclusion is the cheapest way
 out of the method and the only one that would otherwise leave no trace; enumerating it is how an
 [Owner] sees an [Agent] routing around the method, and naming the techniques is what lets
 them judge whether the attempt was one.
@@ -358,17 +359,23 @@ second technique that turns up new [Instances] means a third is owed; a second t
 new means the search is done. That is a test the [Practitioner] can apply and record without a
 threshold, and it is the standard clause 3.4 refers back to.
 
-Two techniques are independent when they would miss different things. A text search for the token
-and a reading of the code that consumes the value are independent; two text searches for two
-spellings of the same token are one technique, because they miss the same things; asking someone who knows the system is a third. For a
-[Class] defined by how code is spelt, searching for each other common spelling of the idiom is a
-technique. A technique counts only if it does not run the [Detector] under proof in any
-configuration and would exist unchanged had the [Rule] never been written. So a run of the
-[Rule], however wide, is never a technique, and a clean run of it shows nothing about saturation:
-this search exists to check the [Rule]. The record MUST name both techniques, chosen before the
-[Rule] is run against the codebase, and MUST state what each found that the other could not have
-checked. Where a later technique shows that two earlier checks shared a blind spot, they were one
-technique, and a third is owed.
+In this clause a technique is a way of searching the codebase for [Instances]. Two techniques are
+independent when they would miss different things. A text search for the token and a reading of
+the code that consumes the value are independent, and asking someone who knows the system is a
+third. Two text searches for two spellings of the same token are one technique, because they miss
+the same things. For a [Class] defined by how code is spelt, though, searching for each other
+common spelling of the idiom is a technique of its own, because there a search for one spelling
+misses every other.
+
+A technique counts only if it does not run the [Detector] under proof in any configuration and
+would exist unchanged had the [Rule] never been written, because this search exists to check the
+[Rule]. A run of the [Rule], however wide, is therefore never a technique. Such a run belongs to
+the proof of clause 3.3 or the [Sweep] of clause 3.4, and a clean one shows nothing about whether
+this search is saturated.
+
+The record MUST name both techniques, chosen before the [Rule] is run against the codebase, and
+MUST state what each found that the other could not have checked. Where a later technique shows
+that two earlier checks shared a blind spot, they were one technique, and a third is owed.
 
 That turns the single-[Instance] case into something checkable rather than a matter of taste. If an
 independent search finds [Instances] the [Rule] missed, the [Class] was drawn too narrowly and the [Rule]
@@ -409,13 +416,14 @@ are examples rather than a permitted list, and a [Detector] is not disqualified 
 
 **Qualifying is not the same as being the right host.** A [Rule] the [Practitioner] writes MUST
 be written in the strongest kind of [Detector] that can express it: a [Semantic] one, else a
-[Syntactic] one, else a [Textual] one. The kind is that of the configuration the [Rule] runs in.
-Enabling an existing [Rule], or tightening its thresholds, is not writing one, and the
-off-the-shelf paragraph above covers it; giving an existing [Rule] a pattern of the project's own,
-or changing the pattern of a [Rule] the project wrote, is writing one. A weaker kind is allowed
-on two grounds only: where the stronger kind cannot express the [Rule], or where the language has
-no [Detector] of the stronger kind that accepts bespoke [Rules]. For example, the stronger kind
-cannot express a [Rule] that reads a file the [Semantic] [Detector] does not parse.
+[Syntactic] one, else a [Textual] one. A weaker kind is allowed only where the stronger kind
+cannot express the [Rule], or where the language has no [Detector] of the stronger kind that
+accepts bespoke [Rules]; those are the two grounds. For example, the stronger kind cannot express
+a [Rule] that reads a file the [Semantic] [Detector] does not parse. The kind is that of the
+configuration the [Rule] runs in. Enabling an existing [Rule], or tightening its thresholds, is
+not writing one, and the off-the-shelf paragraph above covers it; giving an existing [Rule] a
+pattern of the project's own, or changing the pattern of a [Rule] the project wrote, is writing
+one.
 
 For the second ground, the language has a [Detector] of the stronger kind when the project
 already runs one or the language's own [Detector] ecosystem offers one. A stronger configuration
@@ -425,14 +433,13 @@ to it through a documented extension point, such as a plugin interface; it need 
 of the [detector specification](DETECTOR-SPEC.md). If no [Detector] of the stronger kind can reach
 the construct the [Rule] is about, that is the first ground.
 
-On the [Remediation docs] of a [Rule] they
-write, the [Practitioner] MUST name the [Detector] and its kind. Where that kind is weaker than
-[Semantic], the [Practitioner] MUST also record, for each step down the order [Semantic],
-[Syntactic], [Textual], which ground holds, that the stronger kind cannot express the [Rule] or
-that the language has no [Detector] of the stronger kind that accepts bespoke [Rules], and why,
-naming the [Detectors] of the stronger kind that were considered, on the [Rule]'s
-[Remediation docs] and in the description of the commit that adds the [Rule], moves it to another
-[Detector], or first records the grounds. The [Practitioner] judges whether the grounds hold, as
+On the [Remediation docs] of a [Rule] they write, the [Practitioner] MUST name the [Detector] and
+its kind. Where that kind is weaker than [Semantic], the [Practitioner] MUST also record the
+grounds in two places, both of them: on the [Rule]'s [Remediation docs], and in the description
+of a commit. That commit is the one that adds the [Rule], moves it to another [Detector], or first
+records the grounds. What is recorded, in both places, is which of the two grounds holds at each
+step down the order [Semantic], [Syntactic], [Textual], and why, naming the [Detectors] of the
+stronger kind that were considered. The [Practitioner] judges whether the grounds hold, as
 section 4 gives them the choice of [Detector]; a
 project MAY require its [Owner]'s sign-off on a weaker kind as well, by recording that
 requirement where it records its [Calibrations]; the sign-off is then recorded with the grounds,
@@ -956,12 +963,13 @@ evidence is gone and the opportunity closes with it.
 the verdict that they were rests on reproduction, as this section closes by requiring, not on the
 report.
 
-**A [Defence] [Conforms]** if it satisfies clauses 3.1, 3.2, 3.3, 3.5 and 3.6: it is drawn to a
-[Class] within both bounds and not to the reported [Instance], it is evaluated by reading code,
-in the kind of [Detector] clause 3.2 requires, it
-was proven to fire against either the originating [Instance] or [Fixture] code, it fails rather
-than warns, and its [Message] is terse and resolves to [Remediation docs] versioned alongside
-it. A [Defence] can [Conform] whilst the [Sweep] is incomplete; what that describes is a
+**A [Defence] [Conforms]** if it satisfies each of clauses 3.1, 3.2, 3.3, 3.5 and 3.6 in full.
+In brief: it is drawn to a [Class] within both bounds and not to the reported [Instance], it is
+evaluated by reading code, in the kind of [Detector] clause 3.2 requires, it was proven to fire
+against either the originating [Instance] or [Fixture] code, it is a permanent part of the
+project's checks and fails rather than warns, every [Suppression] it carries is covered by a
+recorded decision, and its [Message] is terse and resolves to [Remediation docs] versioned
+alongside it. A [Defence] can [Conform] whilst the [Sweep] is incomplete; what that describes is a
 [Conforming] [Defence] over a codebase with known [Instances], which section 4 requires to be
 recorded, not a [Conforming] remediation.
 

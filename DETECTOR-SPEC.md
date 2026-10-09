@@ -200,15 +200,15 @@ ticket or a colleague and not the [Message]. Printing a documentation path in th
 not enough. It helps only a reader who has the [Message]; the [Identifier] alone still leads
 nowhere.
 
-**For a project's own [Rule]**, the [Detector] cannot know the documentation, so what
-it owes is the half it can give: the [Identifier] printed unaltered under clause 4.3, and no
-transformation of it. Where the [Identifier] is itself a URL, as method clause 3.6 allows,
-the [Detector] prints that URL and has done what this clause asks. What this clause forbids is
-a documentation path printed alongside a shorter [Identifier] that cannot be looked up on its
-own. The lookup for such
-a [Rule] is an obligation on the project's assembled [Toolchain], under clause 4.2
-of the [toolchain specification](TOOLING-SPEC.md), and a [Detector] that offers it as well has
-gone further than this clause asks.
+**For a project's own [Rule]**, the [Detector] cannot know the documentation, so this clause
+asks of it only the half it can give: the [Identifier] printed unaltered, as clause 4.3 already
+requires, with no transformation of it. For such a [Rule], that is everything this clause asks of
+the [Detector]; the resolving itself is done by the project's [Toolchain], not by the [Detector].
+Where the project has chosen a URL as the [Identifier], the [Detector] prints that URL unaltered
+like any other [Identifier]. What this clause forbids is a documentation path printed alongside a
+shorter [Identifier] that cannot be looked up on its own. A [Detector] that offers the lookup as
+well has gone further than this clause asks. The [toolchain specification](TOOLING-SPEC.md) states
+the [Toolchain]'s side, in its clause 4.2; it is not needed to judge a [Detector] here.
 
 **Why**: method specification clause 8.3 requires the [Identifier] to resolve without a human.
 An index keyed on anything else does not resolve it. This is the most commonly failed clause in this
@@ -276,14 +276,18 @@ nothing to run.
 ### 7.1 A detector MAY offer an inline suppression route, but MUST make it detectable or disableable
 
 An inline ignore comment, a per-line directive and a generated [Baseline] are all inline
-[Suppression] routes, and the [Detector] MAY ship them. For each route it ships, it need not remove or forbid the route, but it MUST do at
-least one of two things: let the project switch the
+[Suppression] routes, and the [Detector] MAY ship them. For each route it ships, it need not
+remove or forbid the route, but it MUST do at least one of two things: let the project switch the
 route off in the [Detector]'s configuration, or make the route detectable. Either alone satisfies
-this clause. A route is detectable when the project can find every use of it, either with a
-[Rule] of the project's own that the [Detector] runs, or with a mechanical check the [Detector]
-documents. The [Detector] need not ship that [Rule]. Switching the route off or
-detecting it lets a project that decides to forbid the route enforce that decision. A route that
-can be neither switched off nor detected does not [Conform].
+this clause; neither requires the [Detector] to remove or forbid the route. A route that can be
+neither switched off nor detected does not [Conform].
+
+A route is detectable when the project can find every use of it, in one of two ways. The first is
+a [Rule] the project writes for itself, under clause 4.1, and the [Detector] runs. That way works
+only where the [Detector] lets such a [Rule] see every use of the route, and the [Detector] need
+not ship the [Rule] itself. The second is a mechanical check the [Detector] documents, such as a
+text search for the route's documented spelling. Switching the route off or detecting it is what
+lets a project that decides to forbid the route enforce that decision.
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
@@ -320,14 +324,18 @@ and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no
 for a [Detector].
 
 **A verdict on a [Detector] MUST name its kind, [Semantic], [Syntactic] or [Textual], in each
-configuration the verdict grades.** The kind is what a [Rule] can ask in that configuration, as
-section 2 glosses it. ESLint, for example, is [Syntactic] without type information and [Semantic]
-with it. The kind named is the one the [Detector] has without a hosted service or a licence tier,
-since under clause 5.4 a finding reported only there does not [Conform]. This duty is on whoever
-gives the verdict, not on the [Detector]: the kind is not a level of [Conformance] and does not
-change the verdict, so a [Textual] [Detector] can [Conform], and a [Semantic] one can fail to. It
-is named because the method specification's clause 3.2 requires a [Rule] to be written in the
-strongest kind of [Detector] that can express it.
+configuration the verdict grades.** A configuration here is one way of setting the [Detector] up
+to run, and one [Detector] can have several: ESLint, for example, is [Syntactic] run without type
+information and [Semantic] run with it. The kind is what a [Rule] can ask in that configuration,
+as section 2 glosses it. The kind named is the one the [Detector] has without a hosted service or
+a licence tier, since under clause 5.4 a finding reported only there does not [Conform].
+
+This MUST is on whoever gives the verdict, not on the [Detector], so it is not one of the MUSTs
+in sections 4 to 7 that [Conformance] is judged on: the kind is not a level of [Conformance] and
+does not change the verdict. A [Textual] [Detector] can [Conform], and a [Semantic] one can fail
+to. A verdict that leaves the kind out has not met this duty, but what it finds about
+[Conformance] still stands. The kind is named because the method specification's clause 3.2
+requires a [Rule] to be written in the strongest kind of [Detector] that can express it.
 
 ### 8.1 A maintainer MAY declare the version of this document the detector conforms to, and the declaration records known gaps
 
