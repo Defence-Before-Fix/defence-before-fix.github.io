@@ -29,7 +29,7 @@ a test may serve as the detector; an agent may baseline the remaining instances.
   then sweep and fix every instance, in that order. Key quotations, section [3](../../SPEC.md#3-the-method): "Six clauses, in
   order."; [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance): "The Practitioner MUST run the Rule across the entire codebase and record the
   total Instance count before fixing anything, and MUST then fix every Instance found rather
-  than only the one". An answer that omits the rule, the proof or the sweep, or has the fix
+  than only the one". An answer that omits the class, the rule, the proof, the sweep or the fix of every instance, or has the fix
   before the rule or the sweep before the proof, is wrong.
 - **2b.** The owner of the codebase, always a human; an agent may not. Key quotation, section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom):
   "An Agent MUST NOT Baseline, suppress or knowingly leave an Instance unfixed on its own

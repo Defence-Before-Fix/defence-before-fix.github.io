@@ -165,7 +165,7 @@ one" is four of five.
 | Load-bearing statements (question 2)                   | **Every** reader correct on every one                                                                                                                                                                                                                                                                                      |
 | Restatement and application (questions 1 and 3)        | **All but one** reader correct on each keyed item                                                                                                                                                                                                                                                                          |
 | A miss traceable to the text                           | **None.** Any such miss, as [Marking](#marking) defines it, is a finding, whatever the count                                                                                                                                                                                                                               |
-| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage that covers a sentence of each paragraph the earlier passage lay in, as that paragraph reads in the changed document, or a sentence the change kept from it |
+| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage that covers a sentence of any paragraph an earlier passage lay in, as that paragraph reads in the changed document, or a sentence the change kept from one |
 | Anything else from one reader only                     | Recorded; applied at the editor's discretion; does not block                                                                                                                                                                                                                                                               |
 
 Every row must hold, and the last covers only what none of the others catches. The first and
@@ -207,7 +207,7 @@ the release branch needs no cohort of its own unless it changes specification te
 change is any change to the document's text after the readers read it, from any source (a
 review finding, the editor, or `next` merged into the branch), except a version number or date
 that `PUBLISHING.md` or step 5 of `CONTRIBUTING.md` has the editor set, in the header, the status
-section, the citation or the closing table. Any other change to those paragraphs is a wording
+paragraph, the citation or the closing table. Any other change to those paragraphs is a wording
 change. Readers are never reused.
 
 ## The record
