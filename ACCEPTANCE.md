@@ -100,7 +100,7 @@ separate marker that has seen neither the drafting nor the review. Whoever marks
 in this file. A delegated marker receives only these: the document, its question set, the
 fixture the questions name and its key, each at the commit the readers read; this file and
 `acceptance/runs/README.md`, at the named commit where the run is made under a process change
-before that change merges; the earlier run records of the same pull request, and those of
+before that change merges, and otherwise as they stand on `next` when the readers start; the earlier run records of the same pull request, and those of
 other pull requests as examples of style only; the document at the commit each earlier run of
 the pull request read; the answer sheets; and, from the editor, the facts the record states that
 the sheets do not, which are the pull request and the commit, the cohort size and model, how the
@@ -126,9 +126,9 @@ which rule and why. Each sheet is marked question by question, as follows.
   correct when, so read, it states what the key's answer states, in the document's words or the
   reader's own (a paraphrase, a synonym, or a defined term used in its defined sense states what
   it means), asserts nothing the document does not state or the key says makes an answer wrong,
-  omits nothing the key says an answer is wrong to omit, and quotes the document in support. The
-  quotation need not be the one the key gives. The key names the elements an answer is wrong to
-  omit; for the rest, the marker reads for the gist of the key's answer, not a checklist.
+  omits no element of the key's answer that answers a part of the question, nor anything the key
+  says an answer is wrong to omit, and quotes the document in support. Each element is read for
+  its gist, not its exact words. The quotation need not be the one the key gives.
 - **A miss traceable to the text**, under questions 2 and 3, is a miss whose reasoning quotes the
   document or states, in the reader's own words, what the document says or requires. Such a miss
   is traceable even where it also misreads the fixture, and whatever the key says of it. Only a
@@ -144,8 +144,7 @@ which rule and why. Each sheet is marked question by question, as follows.
   unanswered counts as no passage quoted. A sheet with any answer text is marked as it stands;
   one whose answer text is empty, or whose process reports an error, is set aside, as
   [The cohort](#the-cohort) says, and is still marked.
-- **The same passage.** A passage under question 4 is one the reader says it found confusing, not
-  one it names only to explain another confusion. A quotation of one, of any length, covers every sentence that
+- **The same passage.** A quotation under question 4, of any length, covers every sentence that
   an occurrence of the quoted words, taken as one run, overlaps, at every place that run occurs,
   and a passage named without a quotation, by clause number or description, covers every
   sentence of what it names. A heading, list item or table row counts as one sentence. Two passages are the same when they cover a
@@ -221,7 +220,7 @@ managed (policy) settings to the readers, that the editor attests the rest of th
 readers set aside and the cause, the run number in that pull request, counting void runs, who
 marked and, for a delegated marker, how it was started, the marks per reader per question, any
 judgement made in marking, on a re-mark which rule and why, the passages quoted as confusing,
-each with the words quoted, verbatim, and its clause, and by how many readers, the findings
+each with the words quoted, verbatim, or the description used where none were quoted, and its clause, and by how many readers, the findings
 applied, whether it was made under a process change before that change merged and, if so, at
 which commit, whether it passed, and a link to the answer sheets. The answer sheets are not kept in this repository: every reader's sheet, which is its whole output as its process
 returned it (the JSON, where the command asks for JSON), with a set-aside reader's marked as set

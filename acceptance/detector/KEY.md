@@ -25,9 +25,6 @@ agent summary (those belong to the toolchain specification).
 
 ## 2. Load-bearing statements
 
-No entry names an element an answer is wrong to omit, so each is marked for the gist of its
-answer, as `ACCEPTANCE.md` says.
-
 - **2a.** Conformance is satisfying every MUST in sections [4](../../DETECTOR-SPEC.md#4-authoring-rules) to [7](../../DETECTOR-SPEC.md#7-suppression), judged on evidence; a detector
   that predates the document can conform, and the declaration is optional. Key quotation, section
   8: "A Detector Conforms if it satisfies every MUST in sections [4](../../DETECTOR-SPEC.md#4-authoring-rules) to [7](../../DETECTOR-SPEC.md#7-suppression)." Supporting, [8.1](../../DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps): "A

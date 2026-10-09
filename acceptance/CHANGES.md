@@ -20,10 +20,9 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   receives and that its verdict is final unless a rule was misapplied, that an open judgement is
   made as a careful reader of the document would, and defines a keyed item, quoting (consecutive
   words of any length, verbatim apart from case, quotation-mark style and markup), a correct
-  load-bearing answer, read with its quotation for the gist of the key's answer, asserting
-  nothing the document does not state and omitting nothing the key says it is wrong to omit, a
-  passage found confusing, which excludes one named only to explain another, a miss traceable
-  to the text,
+  load-bearing answer, read with its quotation, asserting nothing the document does not state
+  and omitting no element of the key's answer that answers the question, each read for its
+  gist, a miss traceable to the text,
   including a question 1 bullet that quotes the document, which a key can add to but never
   remove, an unanswered item and the same passage. The thresholds apply to the readers whose answers count and block on a single
   reader for the first and third rows and on two readers for the fourth, and the fourth row says what a fresh cohort no
@@ -36,9 +35,8 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   output and the marker's instruction, posted on the pull request and never edited, hidden or
   deleted, or a run not already failed is void. The keys are marked at
   the commit the readers read and no longer limit which misses count against the document,
-  removing such a limit is named as raising the bar; the method key's "half right" is a miss, and
-  each key names what a question 2 answer is wrong to omit. No marking rule was on `next`
-  before, so none relaxes it.
+  removing such a limit is named as raising the bar; the method key's "half right" is a miss.
+  Each marking rule writes down how runs 16 to 18 marked or is stricter, so none relaxes `next`.
   The process files include the checks that enforce them, and a process change goes through
   steps 1, 3 and 6 of `CONTRIBUTING.md`, applies to runs made after it merges, or earlier
   ones made under it at a named commit, and is recorded here, not in the changelog. `CONTRIBUTING.md` requires a reviewer who did not draft the change, points to
