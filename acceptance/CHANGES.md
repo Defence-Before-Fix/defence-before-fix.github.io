@@ -5,7 +5,7 @@ describes: a line is added at the top for each change, naming its pull request. 
 not a specification and is not versioned, and a change to it is not tested by a cohort. Changes
 to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
 
-- Pull request #PR: the cohort can be run and marked without judgement calls that the rules
+- [Pull request #13](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/13): the cohort can be run and marked without judgement calls that the rules
   leave open; this applies to runs made after it merges, and to run 19 if made under it, and
   runs 16 to 18 stand as recorded. A cohort is an odd
   number of readers started, at least five, larger at the editor's choice the more obligations
