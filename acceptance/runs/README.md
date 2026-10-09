@@ -12,8 +12,9 @@ machine applies managed (policy) settings to the readers; that the editor attest
 isolation; the readers set aside and the cause; the run number within that pull request, counting
 void runs; who marked and, for a delegated marker, how it was started; the marks per reader per
 question against the key, with any judgement made in marking and, on a re-mark, which rule and
-why; the passages quoted as confusing and by how many readers; the findings applied to the text
-as a result; whether the run was made under a process change before that change merged; and the
+why; the passages quoted as confusing, each with the words quoted, verbatim, and its clause, and
+by how many readers; the findings applied to the text as a result; whether the run was made
+under a process change before that change merged and, if so, at which commit; and the
 verdict against the criteria in `ACCEPTANCE.md`, with a link to the answer sheets. Earlier
 records show the style only; where one differs from this order, this file wins. Answer sheets
 are not kept in this repository, and the marks are the record; the sheets, each the reader's

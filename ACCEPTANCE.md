@@ -30,7 +30,8 @@ test is run with a low-strength model so that clarity is measured at the floor, 
   count; no reader is set aside for any other cause, and the record shows the cause. If any
   reader is set aside, the run is void and a fresh cohort runs, unless the readers whose answers
   count already fail a criterion, when the run fails; a run never passes with a reader set
-  aside. A void run takes a run number, has a record and posted sheets like any other, and
+  aside. A set-aside reader's sheet is still marked, and a miss traceable to the text in it fails
+  the run. A void run takes a run number, has a record and posted sheets like any other, and
   counts towards the number of runs.
 
 - Each reader receives **only its packet**: the document's question set, the changed document
@@ -96,17 +97,21 @@ separate marker that has seen neither the drafting nor the review. Whoever marks
 in this file. A delegated marker receives only these: the document, its question set, the
 fixture the questions name and its key, each at the commit the readers read; this file and
 `acceptance/runs/README.md`; the earlier run records of the same pull request, and those of
-other pull requests as examples of style only; the answer sheets; and, from the editor, the
-facts the record states that the sheets do not, which are the pull request and the commit, the
-cohort size and model, how the readers were isolated and the command they were started with, the
-readers set aside and why, how the marker was started, and the run number. The marker writes the record, stating those facts as the editor supplied them, and the
-editor adds the findings applied and the link to the posted sheets after marking. A delegated
-marker's verdict, its marks and its PASS or FAIL, is final unless the editor shows that a rule
-in this file was misapplied; the editor then re-marks what the misapplied rule affected, and the
-record says which rule and why. Each sheet is marked question by question, as follows.
+other pull requests as examples of style only; the document at the commit each earlier run of
+the pull request read; the answer sheets; and, from the editor, the facts the record states that
+the sheets do not, which are the pull request and the commit, the cohort size and model, how the
+readers were isolated and the command they were started with, whether the machine applies
+managed (policy) settings to the readers, that the editor attests the rest of the isolation, the
+readers set aside and why, how the marker was started, the run number, and whether the run was
+made under a process change before that change merged and, if so, at which commit. The marker
+writes the record, stating those facts as the editor supplied them, and the editor adds the
+findings applied and the link to the posted sheets after marking. A delegated marker's verdict,
+its marks and its PASS or FAIL, is final unless the editor shows that a rule in this file was
+misapplied; the editor then re-marks what the misapplied rule affected, and the record says
+which rule and why. Each sheet is marked question by question, as follows.
 
 - **Keyed items.** Question 1 as a whole is one keyed item, and so is each item of question 2
-  and each clause verdict and each summary verdict of question 3.
+  and each answer of question 3 for which the key gives an intended answer.
 - **Quoting.** A reader quotes the document when it gives consecutive words of the document, in
   the document's order and of any length, as a quotation, in quotation marks or a block quote.
   The words are verbatim apart from letter case, quotation-mark or apostrophe style, and markdown
@@ -114,24 +119,27 @@ record says which rule and why. Each sheet is marked question by question, as fo
 - **Questions 1 and 3** are marked as the key states for each item.
 - **Question 2.** An answer is correct when its sentence states each thing the key's answer
   states, unless the key says it may be left out, asserts nothing the key says makes an answer
-  wrong, and quotes the document in support. The quotation need not be the one the key gives.
+  wrong, and quotes in support words of the document that by themselves state at least one
+  thing the key's answer states. The quotation need not be the one the key gives.
 - **A miss traceable to the text**, under questions 2 and 3, is a miss whose reasoning quotes the
   document or states, in the reader's own words, what the document says or requires. Such a miss
   is traceable even where it also misreads the fixture, and whatever the key says of it. Only a
   miss whose reasoning states nothing about the document, such as a misread fixture alone, is the
-  reader's. A miss under any question is also traceable where the key says it counts against the
-  document: the key can add to these misses, never take one away. Any other miss on question 1
-  is the reader's.
+  reader's. A reasoning that only reports facts of the fixture, attributing no requirement,
+  condition or meaning to the document or a clause of it, states nothing about the document;
+  naming the clause a case fails or meets attributes a requirement to it. A miss under any
+  question is also traceable where the key says it counts against the document: the key can add
+  to these misses, never take one away. A miss on question 1 is also traceable where the bullet
+  it turns on quotes the document; any other miss on question 1 is the reader's.
 - **An unanswered question.** Each keyed item left unanswered is one miss, not traceable to the
   text, so a sheet that leaves three items of question 3 blank has three misses. Question 4 left
   unanswered counts as no passage quoted. A sheet with any answer text is marked as it stands,
   whatever its process returned; one whose answer text is empty is set aside, as
   [The cohort](#the-cohort) says.
-- **The same passage.** A quotation under question 4, of any length, covers every sentence
-  containing any part of the quoted words taken as one run of words, in every place that run
-  appears, and a passage named without a quotation, by clause number or description, covers
-  every sentence of what it names. A heading,
-  list item or table row counts as one sentence. Two passages are the same when they cover a
+- **The same passage.** A quotation under question 4, of any length, covers every sentence that
+  an occurrence of the quoted words, taken as one run, overlaps, at every place that run occurs,
+  and a passage named without a quotation, by clause number or description, covers every
+  sentence of what it names. A heading, list item or table row counts as one sentence. Two passages are the same when they cover a
   sentence in common or lie in the same paragraph, and a list item or table row is its own
   paragraph.
 
@@ -145,13 +153,13 @@ The change passes when all of the following hold on a single run. The thresholds
 readers whose answers count; with five such readers, "every reader" is five of five and "all but
 one" is four of five.
 
-| Criterion                                              | Threshold                                                                                                                                                                                                                                                   |
-| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Load-bearing statements (question 2)                   | **Every** reader correct on every one                                                                                                                                                                                                                       |
-| Restatement and application (questions 1 and 3)        | **All but one** reader correct on each keyed item                                                                                                                                                                                                           |
-| A miss traceable to the text                           | **None.** Any such miss, as [Marking](#marking) defines it, is a finding, whatever the count                                                                                                                                                                |
-| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage of the changed text that is the same as it, as [Marking](#marking) defines the same passage |
-| Anything else from one reader only                     | Recorded; applied at the editor's discretion; does not block                                                                                                                                                                                                |
+| Criterion                                              | Threshold                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Load-bearing statements (question 2)                   | **Every** reader correct on every one                                                                                                                                                                                                                                                                                      |
+| Restatement and application (questions 1 and 3)        | **All but one** reader correct on each keyed item                                                                                                                                                                                                                                                                          |
+| A miss traceable to the text                           | **None.** Any such miss, as [Marking](#marking) defines it, is a finding, whatever the count                                                                                                                                                                                                                               |
+| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage that covers a sentence of the paragraph the earlier passage lay in, as that paragraph reads in the changed document, or a sentence the change kept from it |
+| Anything else from one reader only                     | Recorded; applied at the editor's discretion; does not block                                                                                                                                                                                                                                                               |
 
 Every row must hold, and the last covers only what none of the others catches. The first, third
 and fourth rows block on what a single reader, or for the fourth two readers, did, and the second
@@ -203,10 +211,10 @@ readers were isolated and the command they were started with, whether the machin
 managed (policy) settings to the readers, that the editor attests the rest of the isolation, the
 readers set aside and the cause, the run number in that pull request, counting void runs, who
 marked and, for a delegated marker, how it was started, the marks per reader per question, any
-judgement made in marking, on a re-mark which rule and why, the passages quoted as confusing and
-by how many readers, the findings applied, whether it was made under a process change before
-that change merged, whether it passed, and a link to the answer sheets. The answer sheets are
-not kept in this repository: every reader's sheet, which is its whole output as its process
+judgement made in marking, on a re-mark which rule and why, the passages quoted as confusing,
+each with the words quoted, verbatim, and its clause, and by how many readers, the findings
+applied, whether it was made under a process change before that change merged and, if so, at
+which commit, whether it passed, and a link to the answer sheets. The answer sheets are not kept in this repository: every reader's sheet, which is its whole output as its process
 returned it (the JSON, where the command asks for JSON), with a set-aside reader's marked as set
 aside, and the instruction a delegated marker was given, which is its task prompt and the agent
 definition it ran under, are posted in one or more comments on the pull request, each linked
@@ -214,8 +222,9 @@ from the record, so that an owner can check the marks. The comments also hold th
 every reader received and the command and the form of the working directory the readers were
 started in; a sheet cannot show how its process was started, which is why the editor attests the
 rest of the isolation. The comments are never edited, hidden or deleted after posting; if one
-is, the run is void and a fresh cohort runs. The changelog line for the change names the file. CI refuses a specification change whose pull
-request adds no run file; it checks for at least one, and a pull request that changes two
+is before the change merges, the run is void and a fresh cohort runs, unless the run had already
+failed, when it stays failed. The changelog line for the change names the file. CI refuses a
+specification change whose pull request adds no run file; it checks for at least one, and a pull request that changes two
 documents adds a run for each.
 
 Each published version's changelog entry carries the lines of the changes it contains, so a
@@ -232,10 +241,10 @@ a change to this process. They are not specifications, and a change to them is n
 cohort: the cohort measures whether a low-strength reader can follow a specification, and the
 process is followed by the editor. Such a change names the runs or the case that showed the need
 for it, and goes through steps 1, 3 and 6 of `CONTRIBUTING.md`, with no scope, key or cohort
-step; its review reads every process file it changes. It names the run number it applies from;
-a run under it made before it merges follows all of it, never part, and its record says so. It
-is recorded by a line added at
-the top of [acceptance/CHANGES.md](acceptance/CHANGES.md), naming its pull request, not in the
+step; its review reads every process file it changes. It applies to every run made after it
+merges; a run made before then may be made under it, follows all of it at a named commit, never
+part, and its record says so and names that commit. It is recorded by a line added at the top
+of [acceptance/CHANGES.md](acceptance/CHANGES.md), naming its pull request, not in the
 changelog, which is for the three specifications. It is bound by
 [the section on the bar](#the-bar-only-moves-up): it may raise a criterion, never relax one. A
 change to a question set, key or fixture is not a change to this process; `acceptance/README.md`

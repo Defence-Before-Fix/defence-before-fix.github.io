@@ -78,7 +78,7 @@ or the detector document's section [8](../../DETECTOR-SPEC.md#8-conformance) dif
 
 ## 4. Confusion
 
-No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
-finding that blocks until the text is changed and a fresh cohort no longer names it. What to
-change is the editor's decision; the reader is not asked and any suggestion it volunteers is
-discarded unread.
+No keyed answer. Record every passage quoted. Two or more readers naming the same passage, as
+`ACCEPTANCE.md` defines it, is a finding that blocks until the text is changed and a fresh
+cohort no longer names it. What to change is the editor's decision; the reader is not asked
+and any suggestion it volunteers is discarded unread.
