@@ -193,8 +193,9 @@ rather than deciding in advance whether it is expressible. Failing to write a [R
 clause 3.1's bounds is itself the evidence that the [Defect] is out of scope, and it is cheaper and
 more reliable than a judgement made before trying. The conclusion that no pattern exists MUST be
 stated in one sentence, naming at least two independent techniques tried at expressing the
-[Rule], in the vocabulary clause 3.1 uses for a search, and recorded where the project's
-other decisions are enumerable under clause 8.7, not only with the fix. It is the cheapest way
+[Rule], and recorded where the project's other decisions are enumerable under clause 8.7, not
+only with the fix. Two techniques are independent, as clause 3.1 defines it for a search, when
+they would miss different things. It is the cheapest way
 out of the method and the only one that would otherwise leave no trace; enumerating it is how an
 [Owner] sees an [Agent] routing around the method, and naming the techniques is what lets
 them judge whether the attempt was one.
@@ -326,12 +327,12 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   missing [Rule] does. One report on code that does not carry the [Hazard] is enough; there is no
   tolerated rate.
 
-**Both bounds measure breadth within one level; the level itself is a separate question, answered
-against the report.**
-Where the [Defect] was reported as a behaviour, a check that reported clean having run nothing, a
-process that stopped before its work, the [Class] a [Detector] can read usually sits one level
-below that [Hazard]: the mechanism of this [Instance], not the failure the report opens with.
-That [Class] is the right one to build, because no [Detector] reads "this check still produces
+**The bounds say how broad the [Class] is. Its level is a separate question: does the [Class]
+name the failure the report describes, or the mechanism in the code that caused it?**
+Where the [Defect] was reported as a behaviour, such as a check that reported clean having run
+nothing, or a process that stopped before its work, a [Detector] usually cannot read that failure.
+The [Class] it can read sits one level lower: the mechanism of this [Instance], not the failure
+the report opens with. That [Class] is the right one to build, because no [Detector] reads "this check still produces
 its signal". It is not the whole answer. The record MUST state whether the reported behaviour is also
 pinned by a check a [Runner] executes, under section 6, either one added with this remediation or
 an existing one named, and where neither is offered, why not. A [Class] drawn at the mechanism with
@@ -415,19 +416,24 @@ be written in the strongest kind of [Detector] that can express it: a [Semantic]
 Enabling an existing [Rule], or tightening its thresholds, is not writing one, and the
 off-the-shelf paragraph above covers it; giving an existing [Rule] a pattern of the project's own,
 or changing the pattern of a [Rule] the project wrote, is writing one. A
-weaker kind is allowed only where the stronger kind cannot express the [Rule], as where the
-[Rule] reads a file the [Semantic] [Detector] does not parse, or where the language has no
-[Detector] of the stronger kind that accepts bespoke [Rules]. The language has one when the
+weaker kind is allowed on one of two grounds only:
+
+1. the stronger kind cannot express the [Rule], as where the [Rule] reads a file the [Semantic]
+   [Detector] does not parse; or
+2. the language has no [Detector] of the stronger kind that accepts bespoke [Rules].
+
+For the second ground, the language has such a [Detector] when the
 project already runs it or the language's own [Detector] ecosystem offers it, the same check
 section 2 asks for before a [Toolchain] gap is recorded. A stronger configuration of a [Detector]
 the project runs is one; a [Detector] or configuration of the stronger kind available only
 through a hosted service or a licence tier is not. A [Detector] accepts bespoke [Rules] when the
 project can add a [Rule] of its own to it through a documented extension point, such as a plugin
-interface or an API for writing [Rules], whether or not it meets the rest of the [detector specification](DETECTOR-SPEC.md); a [Rule] whose
-construct its extension points cannot reach is one that [Detector] cannot express, and one its
-kind cannot express where no other [Detector] of that kind reaches it. On the [Remediation docs] of a [Rule] they
+interface or an API for writing [Rules], whether or not it meets the rest of the [detector specification](DETECTOR-SPEC.md).
+Where those extension points cannot reach the construct a [Rule] is about, that [Detector]
+cannot express the [Rule]. Where no [Detector] of that kind can reach it, the kind cannot express
+the [Rule], and the first ground holds. On the [Remediation docs] of a [Rule] they
 write, the [Practitioner] MUST name the [Detector] and its kind. Where that kind is weaker than [Semantic], the [Practitioner] MUST also
-record, for each step down from [Semantic], which of those two reasons holds and why, naming the
+record, for each step down from [Semantic], which of the two grounds holds and why, naming the
 [Detectors] of the stronger kind that were considered, on the [Rule]'s [Remediation docs] and in
 the description of the commit that adds the [Rule], moves it to another [Detector], or first
 records the reason. The [Practitioner] judges whether a reason holds, as section 4 gives them the choice of [Detector]; a
@@ -522,6 +528,11 @@ claim the remediation [Conforms]. How the project merges is its own business und
 what must survive the merge is not.
 
 **Part B: [Narrowing].**
+
+A [Narrowing] is a change to the [Rule] itself, so that it stops matching some code. An
+[Instance] left in place behind an inline ignore comment, an ignore entry or a [Baseline] is not
+a [Narrowing]: the [Rule] is unchanged and still matches it. That is a [Suppression] of the
+[Instance], and clauses 3.4 and 3.5 and section 4 govern it, not this clause.
 
 **The decision comes first, and it turns on one sentence.** Can the [Practitioner] write down why
 the [Hazard] cannot arise in the code being excluded? If they can, the exclusion is a [Narrowing],
@@ -687,8 +698,8 @@ been seen. "All examined" with nothing behind it is a claim, not a record.
 stops only when the next [Instance] needs a decision they lack the authority to make, and section 4
 says which decisions those are; a hundred [Instances], or a thousand, is work rather than a
 decision. A [Baseline] of the existing [Instances], so that the [Rule] blocks only new ones, MAY
-be adopted where fixing every [Instance] is genuinely unfeasible, and the scale at which that
-becomes true is tremendous. **No threshold is given here deliberately.** Any figure would be
+be adopted where fixing every [Instance] is genuinely unfeasible. That is rare: fixing every
+[Instance] becomes unfeasible only when the change it needs is very large indeed. **No threshold is given here deliberately.** Any figure would be
 calibrated to the [Toolchain] of the moment rather than to anything durable, and the honest measure is
 the size of the change rather than the hours it would take, since the hours depend entirely on what
 is doing the work.
