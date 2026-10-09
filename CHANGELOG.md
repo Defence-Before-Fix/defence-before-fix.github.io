@@ -17,12 +17,16 @@ version entry with no cohort line has not been accepted and is not published.
   configuration it runs in; enabling or configuring an existing rule is not writing one. A weaker
   kind is allowed only where the stronger cannot express the rule or the language has no
   detector of that kind that accepts bespoke rules; a stronger configuration of a detector the
-  project runs counts, and one only a hosted service or licence tier provides does not. The
+  project runs counts, and one only a hosted service or licence tier provides does not. A
+  detector accepts bespoke rules when the project can add its own through a documented extension
+  point, and a rule its extension points cannot reach is one it cannot express. The
   remediation docs of a rule the practitioner writes MUST name its detector and kind, and for
   each step down from semantic the reason, with the stronger detectors considered, MUST be
   recorded there and in the description of the commit that adds or moves the rule or first
-  records the reason. The practitioner judges it; a project MAY require the owner's sign-off, recorded
-  where it records its calibrations, which section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) and the section [3](SPEC.md#3-the-method) map note. Section [1](SPEC.md#1-terminology)
+  records the reason. The practitioner judges it; a project MAY require the owner's sign-off by
+  recording that requirement where it records its calibrations, the sign-off then recorded with
+  the reason, which section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) and the section [3](SPEC.md#3-the-method) map note. Clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)'s list of what the
+  remediation docs state defers to what clause [3.2](SPEC.md#32-build-the-net) adds. Section [1](SPEC.md#1-terminology)
   defines textual, syntactic and semantic by whether a rule can ask the type of any expression
   and what any name refers to across the whole program, section
   [7](SPEC.md#7-conformance)'s conforming defence carries the kind, and Appendix A carries the requirement. Prompted by

@@ -418,14 +418,19 @@ weaker kind is allowed only where the stronger kind cannot express the [Rule], a
 project already runs it or the language's own [Detector] ecosystem offers it, the same check
 section 2 asks for before a [Toolchain] gap is recorded. A stronger configuration of a [Detector]
 the project runs is one; a [Detector] or configuration of the stronger kind available only
-through a hosted service or a licence tier is not. On the [Remediation docs] of a [Rule] they
+through a hosted service or a licence tier is not. A [Detector] accepts bespoke [Rules] when the
+project can add a [Rule] of its own to it through a documented extension point, such as a plugin
+interface or an API for writing [Rules], whether or not it meets the rest of the [detector specification](DETECTOR-SPEC.md); a [Rule] whose
+construct its extension points cannot reach is one that [Detector] cannot express, and one its
+kind cannot express where no other [Detector] of that kind reaches it. On the [Remediation docs] of a [Rule] they
 write, the [Practitioner] MUST name the [Detector] and its kind. Where that kind is weaker than [Semantic], the [Practitioner] MUST also
 record, for each step down from [Semantic], which of those two reasons holds and why, naming the
 [Detectors] of the stronger kind that were considered, on the [Rule]'s [Remediation docs] and in
 the description of the commit that adds the [Rule], moves it to another [Detector], or first
 records the reason. The [Practitioner] judges whether a reason holds, as section 4 gives them the choice of [Detector]; a
-project MAY require its [Owner]'s sign-off on a weaker kind as well, recorded where it records
-its [Calibrations], and where it has recorded no such requirement none is needed.
+project MAY require its [Owner]'s sign-off on a weaker kind as well, by recording that
+requirement where it records its [Calibrations]; the sign-off is then recorded with the reason,
+and where the project has recorded no such requirement none is needed.
 
 **A worked example.** Take a [Rule] against calling a method named `context` on one type. A
 [Detector] that cannot see types reports every call named `context`, whatever type it is called
@@ -749,7 +754,8 @@ pressure, which is the condition under which the original [Defect] was written.
 The failure [Message] MUST be terse, and it MUST carry a stable [Identifier] that resolves to
 [Remediation docs] shipped with the project.
 
-That documentation MUST state three things: what the [Rule] is about, why it exists, and how to
+That documentation MUST state three things, besides what clause 3.2 adds for a [Rule] the
+[Practitioner] writes: what the [Rule] is about, why it exists, and how to
 fix a violation correctly using the project's preferred approach.
 
 A [Practitioner] who finds that an existing [Rule]'s printed [Identifier] does not resolve records
@@ -1095,12 +1101,13 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 > Put it in a [Semantic] [Detector], one in which a [Rule] can ask the type of any expression and
 > what any name refers to, across the whole program; failing that, one that sees syntax; and only
 > then one that sees text. Use a weaker one only where the stronger one cannot express the [Rule],
-> or the language has none that takes custom [Rules]: none the project runs, in any configuration,
-> and none its ecosystem offers outside a hosted service or a licence tier. Name the [Detector] and
-> its kind in the [Rule]'s documentation. Where you use a weaker one, write down which reason
-> holds, and why, naming the stronger [Detectors] you considered, there and in the description of
-> the commit that adds the [Rule], moves it to another [Detector], or first records the reason,
-> and where the project requires its [Owner]'s sign-off on a weaker one, get it. Draw
+> or the language has none that takes custom [Rules]: none the project runs, in any configuration
+> it can use without a hosted service or a licence tier, and none its ecosystem offers outside
+> one. Name the [Detector] and its kind in the [Rule]'s documentation. Where you use a weaker one,
+> write down which reason holds, and why, naming the stronger [Detectors] you considered, there and
+> in the description of the commit that adds the [Rule], moves it to another [Detector], or first
+> records the reason, and where the project requires its [Owner]'s sign-off on a weaker one, get
+> it and record it with the reason. Draw
 > the [Rule] so that it catches more than the single [Instance] you started from, but never so
 > broadly that it matches code which does not carry the [Hazard].
 >
