@@ -24,8 +24,8 @@ bullet asserting an obligation the document does not state, is a correct restate
 
 Wrong if it asserts: the practitioner fixes the reported instance first and defends afterwards;
 a test may serve as the detector; an agent may baseline the remaining instances; only a semantic
-detector may host a rule. A bullet saying that rules go in a semantic detector, with no
-fallback, names an obligation the document states and is correct.
+detector may host a rule. A bullet that names the semantic kind and does not mention the fallback
+is correct; a bullet that says no weaker kind is ever allowed is wrong.
 
 ## 2. Load-bearing statements
 
@@ -64,7 +64,8 @@ fallback, names an obligation the document states and is correct.
   elements, and may leave out everything else above: (i) the strongest kind that can express the
   rule, in the order semantic, syntactic, textual; (ii) a weaker kind only where the stronger
   cannot express the rule or the language has no detector of that kind that takes bespoke rules,
-  both grounds; (iii) the reason recorded, in either of the two places. An answer that misses one
+  both grounds; (iii) the reason recorded; naming one of the two places is enough, and an answer
+  that presents them as alternatives is wrong. An answer that misses one
   of the three, that says any detector is as good as another, that the semantic kind is only
   preferred and may be passed over for another reason, that a weaker kind is never allowed, or
   that the owner must always approve a weaker kind (the practitioner judges it unless the
@@ -99,7 +100,10 @@ differently, which counts against the document; a reader who grades [3.4](../../
 fixture. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Partial or No only because no reason for a weaker kind is recorded has the verdict on a
 ground the fixture does not show: the reason is owed only where the rule is in a weaker kind than
 semantic. That is not marked wrong, and counts against the document only if the reasoning quotes
-[3.2](../../SPEC.md#32-build-the-net) as requiring the reason whatever the detector. A reader who attributes
+[3.2](../../SPEC.md#32-build-the-net) as requiring the reason whatever the detector. A reader who grades [3.2](../../SPEC.md#32-build-the-net) Yes is marked
+wrong, including one who assigns the wiki page's failure to [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) alone: a rule with no
+conforming remediation docs has its detector and kind named on none, so [3.2](../../SPEC.md#32-build-the-net) fails either
+way, and the miss counts against the document where the reasoning quotes it. A reader who attributes
 the suppression to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) rather than [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) has read the narrowing passage of [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) as covering it, which is a fair reading and is not marked wrong.
 
 ## 4. Confusion
