@@ -11,7 +11,7 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   questions per document. Adding a keyed question raises the bar, as "The bar only moves up"
   allows. Prompted by the change to method clause 3.2 in the same pull request.
 - [Pull request #13](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/13): the cohort can be run and marked without judgement calls that the rules
-  leave open; this applies to runs made after it merges, and to run 19 if made under it, and
+  leave open; this applies to runs made after it merges, and to runs 19 and 20, which were made under it at a695010, and
   runs 16 to 18 stand as recorded. A cohort is an odd
   number of readers started, at least five, larger at the editor's choice the more obligations
   the change touches, each a separate process with no tools and no project context, started from
@@ -19,14 +19,15 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   `CLAUDE.md`, skills, plugins, hooks, MCP servers or saved session. A reader is set aside only
   if its answer text is empty, its process reports an error, it shared the editor's context, it
   was not started as required or it reported another model, and a run with a reader set
-  aside is void, or fails if the readers who count already fail it or its own sheet has a miss
-  traceable to the text; a void run has a number, a record and posted sheets. The packet is the question set, the document and the fixture, each
+  aside is void, or fails if the readers who count already fail it, if it fails with the set-aside
+  sheet's answered items counted too, or if that sheet has a miss traceable to the text; a void run has a number, a record and posted sheets. The packet is the question set, the document and the fixture, each
   after one `===== FILE: <name> =====` line. A new marking section says what a delegated marker
-  receives and that its verdict is final unless a rule was misapplied, that open judgements take
-  the stricter reading, and defines a keyed item, quoting (consecutive words of any length,
-  verbatim apart from case, quotation-mark style and markup), a correct load-bearing answer,
-  which asserts nothing the document does not state and whose quotation must itself state part
-  of the key's answer, a miss traceable to the text,
+  receives and that its verdict is final unless a rule was misapplied, that an open judgement is
+  made as a careful reader of the document would, and defines a keyed item, quoting (consecutive
+  words of any length, verbatim apart from case, quotation-mark style and markup), a correct
+  load-bearing answer, read with its quotation, asserting nothing the document does not state
+  and omitting no element of the key's answer that answers the question, each read for its
+  gist, a miss traceable to the text,
   including a question 1 bullet that quotes the document, which a key can add to but never
   remove, an unanswered item and the same passage. The thresholds apply to the readers whose answers count and block on a single
   reader for the first and third rows and on two readers for the fourth, and the fourth row says what a fresh cohort no
@@ -39,7 +40,8 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   output and the marker's instruction, posted on the pull request and never edited, hidden or
   deleted, or a run not already failed is void. The keys are marked at
   the commit the readers read and no longer limit which misses count against the document,
-  removing such a limit is named as raising the bar, and the method key's "half right" is a miss.
+  removing such a limit is named as raising the bar; the method key's "half right" is a miss.
+  Each marking rule writes down how runs 16 to 18 marked or is stricter, so none relaxes `next`.
   The process files include the checks that enforce them, and a process change goes through
   steps 1, 3 and 6 of `CONTRIBUTING.md`, applies to runs made after it merges, or earlier
   ones made under it at a named commit, and is recorded here, not in the changelog. `CONTRIBUTING.md` requires a reviewer who did not draft the change, points to

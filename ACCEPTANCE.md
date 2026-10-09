@@ -33,8 +33,8 @@ test is run with a low-strength model so that clarity is measured at the floor, 
   cohort's model. No reader is set aside for any other cause, and the record shows the cause. If any
   reader is set aside, the run is void and a fresh cohort runs, unless the readers whose answers
   count already fail a criterion, when the run fails; a run never passes with a reader set
-  aside. A set-aside reader's sheet is still marked, and a miss traceable to the text in it fails
-  the run. A void run takes a run number, has a record and posted sheets like any other, and
+  aside. A set-aside reader's sheet is still marked, and the run fails if any criterion fails when its
+  answered items are counted with the other readers', or if it has a miss traceable to the text. A void run takes a run number, has a record and posted sheets like any other, and
   counts towards the number of runs.
 
 - Each reader receives **only its packet**: the document's question set, the changed document
@@ -101,7 +101,7 @@ separate marker that has seen neither the drafting nor the review. Whoever marks
 in this file. A delegated marker receives only these: the document, its question set, the
 fixture the questions name and its key, each at the commit the readers read; this file and
 `acceptance/runs/README.md`, at the named commit where the run is made under a process change
-before that change merges; the earlier run records of the same pull request, and those of
+before that change merges, and otherwise as they stand on `next` when the readers start; the earlier run records of the same pull request, and those of
 other pull requests as examples of style only; the document at the commit each earlier run of
 the pull request read; the answer sheets; and, from the editor, the facts the record states that
 the sheets do not, which are the pull request and the commit, the cohort size and model, how the
@@ -123,10 +123,13 @@ which rule and why. Each sheet is marked question by question, as follows.
   The words are verbatim apart from letter case, quotation-mark or apostrophe style, and markdown
   link or emphasis markup. Naming a clause number, or paraphrasing, is not quoting.
 - **Questions 1 and 3** are marked as the key states for each item.
-- **Question 2.** An answer is correct when its sentence states each thing the key's answer
-  states, unless the key says it may be left out, asserts nothing the document does not state
-  and nothing the key says makes an answer wrong, and quotes in support words of the document that by themselves state at least one
-  thing the key's answer states. The quotation need not be the one the key gives.
+- **Question 2.** An answer is the reader's sentence and its quotation read together. It is
+  correct when, so read, it states what the key's answer states, in the document's words or the
+  reader's own (a paraphrase, a synonym, or a defined term used in its defined sense states what
+  it means), asserts nothing the document does not state or the key says makes an answer wrong,
+  omits no element of the key's answer that answers a part of the question, nor anything the key
+  says an answer is wrong to omit, and quotes the document in support. Each element is read for
+  its gist, not its exact words. The quotation need not be the one the key gives.
 - **A miss traceable to the text**, under questions 2 and 3, is a miss whose reasoning quotes the
   document or states, in the reader's own words, what the document says or requires. Such a miss
   is traceable even where it also misreads the fixture, and whatever the key says of it. Only a
@@ -149,9 +152,8 @@ which rule and why. Each sheet is marked question by question, as follows.
   sentence in common or lie in the same paragraph, and a list item or table row is its own
   paragraph.
 
-Where a mark needs a judgement these rules do not settle, the marker makes it, taking the stricter
-reading, the one that records more misses or findings, and the record states the judgement and
-why.
+Where a mark needs a judgement these rules do not settle, the marker makes it as a careful reader
+of the document would, and the record states the judgement and why.
 
 ## Pass criteria
 
@@ -164,7 +166,7 @@ one" is four of five.
 | Load-bearing statements (question 2)                   | **Every** reader correct on every one                                                                                                                                                                                                                                                                                      |
 | Restatement and application (questions 1 and 3)        | **All but one** reader correct on each keyed item                                                                                                                                                                                                                                                                          |
 | A miss traceable to the text                           | **None.** Any such miss, as [Marking](#marking) defines it, is a finding, whatever the count                                                                                                                                                                                                                               |
-| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage that covers a sentence of the paragraph the earlier passage lay in, as that paragraph reads in the changed document, or a sentence the change kept from it |
+| A passage found confusing (question 4), by two or more | **None outstanding.** It is a finding and blocks until the text is changed and a fresh cohort no longer names it: no reader of the fresh cohort names a passage that covers a sentence of any paragraph an earlier passage lay in, as that paragraph reads in the changed document, or a sentence the change kept from one |
 | Anything else from one reader only                     | Recorded; applied at the editor's discretion; does not block                                                                                                                                                                                                                                                               |
 
 Every row must hold, and the last covers only what none of the others catches. The first and
@@ -206,7 +208,7 @@ the release branch needs no cohort of its own unless it changes specification te
 change is any change to the document's text after the readers read it, from any source (a
 review finding, the editor, or `next` merged into the branch), except a version number or date
 that `PUBLISHING.md` or step 5 of `CONTRIBUTING.md` has the editor set, in the header, the status
-section, the citation or the closing table. Any other change to those paragraphs is a wording
+paragraph, the citation or the closing table. Any other change to those paragraphs is a wording
 change. Readers are never reused.
 
 ## The record
@@ -219,7 +221,7 @@ managed (policy) settings to the readers, that the editor attests the rest of th
 readers set aside and the cause, the run number in that pull request, counting void runs, who
 marked and, for a delegated marker, how it was started, the marks per reader per question, any
 judgement made in marking, on a re-mark which rule and why, the passages quoted as confusing,
-each with the words quoted, verbatim, and its clause, and by how many readers, the findings
+each with the words quoted, verbatim, or the description used where none were quoted, and its clause, and by how many readers, the findings
 applied, whether it was made under a process change before that change merged and, if so, at
 which commit, whether it passed, and a link to the answer sheets. The answer sheets are not kept in this repository: every reader's sheet, which is its whole output as its process
 returned it (the JSON, where the command asks for JSON), with a set-aside reader's marked as set
