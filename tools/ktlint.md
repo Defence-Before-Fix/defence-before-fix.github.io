@@ -1,6 +1,6 @@
 ---
 title: ktlint and Defence Before Fix
-summary: Custom rule sets, ktlint-test and author-chosen rule ids meet 4.1 to 4.3; no documentation ships with the binary, failing 6.2 and 6.3; a file-level @Suppress hides a project rule, leaving 7.1 partial
+summary: Custom rule sets, ktlint-test and author-chosen rule ids meet 4.1 to 4.3; ids resolve only by searching an online page anchored on titles, leaving 6.1 partial, and no documentation ships with the binary, failing 6.2 and 6.3; a file-level @Suppress hides a project rule, leaving 7.1 partial
 language: Kotlin
 kind: tool
 readiness: 🟢
