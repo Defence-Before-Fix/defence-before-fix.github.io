@@ -218,9 +218,10 @@ given. The lookup they can actually perform is the only one that counts.
 
 ### 6.2 Resolution of a bundled rule's identifier MUST work from the installed copy, without network access
 
-The page an [Identifier] of a [Bundled rule] resolves to is in the documentation that clause 6.3
-requires to ship with the [Rule], at a version tracked together with it, so the installed copy
-already holds it.
+Resolution reads the documentation that clause 6.3 requires to ship with the [Rule], at a version
+tracked together with it, and the installed copy is where that documentation is. This clause asks
+that the lookup reach what is there without network access. A page missing from that
+documentation fails clause 6.3, not this clause.
 
 **Why**: an [Agent] working offline, behind a proxy, or against a URL that has since moved needs
 the answer to be on disk. A dependency the project already installed is on disk by definition. A
@@ -382,7 +383,8 @@ a licence tier, since under clause 5.4 a finding reported only there does not [C
 
 This clause binds whoever gives the verdict, anyone grading a [Detector] under clause 8.1
 included, and asks nothing of the [Detector] itself; a maintainer who gives a verdict on their
-own [Detector] is bound by it like anyone else. A [Detector] is judged on
+own [Detector] is bound by it like anyone else. A declaration under clause 8.1 is the
+maintainer's claim, not a verdict, and this clause asks nothing of it. A [Detector] is judged on
 sections 4 to 7, as section 8 says, and the kind is not a level of [Conformance] and does not
 change the verdict: a [Textual] [Detector] can [Conform], and a [Semantic] one can fail to. A
 verdict that leaves the kind out has not met this clause, but what it finds about [Conformance]

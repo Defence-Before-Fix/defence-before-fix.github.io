@@ -10,12 +10,14 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   must host a rule the practitioner writes, so `ACCEPTANCE.md` lists three or more such
   questions per document. Adding a keyed question raises the bar, as "The bar only moves up"
   allows. Prompted by the change to method clause 3.2 in the same pull request. After run 30, on
-  the author's instruction, "The bar only moves up" allows a question to be reworded only where
+  the editor's instruction, "The bar only moves up" allows a question to be reworded only where
   the new wording asks the same thing with the same certainty, marked against its key unchanged
   and no less strictly; whether it does is the editor's decision for each rewording, not
   delegated, the rewording is used from the next run whose readers start after it is committed
   and changes no earlier marks, and its line here gives the old and new wording and the element
-  of the unchanged key each added part asks for. `acceptance/README.md` and "After a failure"
+  of the unchanged key each added part asks for, or says that it asks for none; the two
+  sentences that said "the author's instruction" now say "the editor's", the one party
+  `CONTRIBUTING.md` names. `acceptance/README.md` and "After a failure"
   point to it, and the sentence saying the fix is never to a question names it. No question is
   reworded by this change. Prompted by runs 29 and 30, in which method 2d's key requires the
   order of the kinds and readers left it out, and two readers of run 30 quoted only one of the

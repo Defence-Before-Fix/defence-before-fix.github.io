@@ -39,8 +39,8 @@ allowed when a new clause is load-bearing; removing or softening one to make a r
 and rewording one is allowed only as [the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up)
 allows: where the new wording asks the same thing with the same certainty, on the editor's
 decision for that rewording, from the next run whose readers start after it is committed, and
-recorded in [CHANGES.md](CHANGES.md) with the element of the unchanged key each added part asks
-for.
+recorded in [CHANGES.md](CHANGES.md) with the old and the new wording and, for each part the new
+wording adds, the element of the unchanged key it asks for, or a statement that it asks for none.
 A process change may remove a limit a key puts on which misses count against the document, as
 [the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up) allows.
 The reader may quote a passage it found confusing; it is never asked to rate the document, say

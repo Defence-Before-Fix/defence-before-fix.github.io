@@ -91,7 +91,7 @@ not there to design the text, and a document shaped by what its weakest reader s
 a document designed by that reader. The signals this test takes from the cohort are a keyed
 answer missed, a wrong verdict reasoned from the document, and a passage pointed at; what to do
 about any of them is the editor's decision. An earlier version of this test asked the reader
-what would make a clause clearer and for a clarity rating; both were removed on the author's
+what would make a clause clearer and for a clarity rating; both were removed on the editor's
 instruction for that reason, and neither is reinstated.
 
 ## Marking
@@ -194,12 +194,13 @@ a key's limit on which misses count against the document may be removed, which r
 none of those makes a failing run pass. A question may be reworded only where the new wording asks
 the same thing with the same certainty, so that it is marked against its key unchanged and no less
 strictly. Whether a rewording asks the same thing is the editor's decision, taken for each
-rewording and not delegated, and a rewording is made only once the editor has taken it. It is used from the next run whose readers start after it is committed, and never
-changes the marks of a run already made. The line recording it in
+rewording and not delegated, and a rewording is made only once the editor has taken it. The
+rewording is used from the next run whose readers start after it is committed, and never changes
+the marks of a run already made. The line recording it in
 [acceptance/CHANGES.md](acceptance/CHANGES.md) gives the old and the new wording and names, for
 each part the new wording adds, the element of the unchanged key it asks for, or says that it asks
 for none. Such a rewording is not a relaxation, and it makes no failing run pass either. The
-one time a threshold was relaxed, after three runs, the relaxation was reversed on the author's
+one time a threshold was relaxed, after three runs, the relaxation was reversed on the editor's
 instruction and is recorded here so that it is not tried again. Removing the clarity rating and
 the request for suggestions was not a relaxation: it changed what the cohort is asked, not how
 strictly an answer is marked.

@@ -479,11 +479,14 @@ The second is a mechanism gap: the project's [Toolchain] lacks a mechanism the
 [toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an [Identifier]
 resolver. A mechanism gap does not put the [Class] out of reach. The [Practitioner] still builds
 the [Rule] and records the mechanism gap alongside it. Where the missing mechanism would have
-served clause 3.3 or 3.6, the [Practitioner] uses what those clauses allow in its place: the
-acceptance or smoke check that clause 3.3 accepts where a [Detector] makes [Fixture]-based testing
-impractical, and an [Identifier] in a form clause 3.6 allows that can be followed without a
-resolver, such as an anchor in a documentation file. Every obligation of those clauses that the substitute
-does not stand in for still applies in full. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
+served clause 3.3 or 3.6, the [Practitioner] uses a substitute only where that clause allows one,
+and only for what it stands in for. Clause 3.3's acceptance or smoke check is allowed only where
+a [Detector] makes [Fixture]-based testing impractical, and it stands in only for the
+[Fixture]-based test that clause's test-first paragraph asks for: Part A's red run, and Part C's
+proof using [Fixture] code where the pattern is absent, are still owed. Clause 3.6's [Identifier]
+in a form that can be followed without a resolver, such as an anchor in a documentation file,
+stands in only for the resolver. Every other obligation of those clauses still applies in full.
+A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
 own obligations, such as a [Toolchain] that cannot run its [Defences] on its own source, is recorded
 against the [Toolchain]'s claim under section 7 as well, because that is the fact its [Owner] needs.
 Where that record lives is the [Toolchain]'s own [Conformance] declaration, under the
