@@ -39,6 +39,7 @@ definition; the ones this document leans on most are, in short:
 | -------------- | ------------------------------------------------------------------------------ |
 | [Detector]     | A tool that reads code without executing it and reports what it finds          |
 | [Rule]         | One check a [Detector] evaluates                                               |
+| [Message]      | The text a [Rule] prints when it fires, carrying its [Identifier]              |
 | [Identifier]   | The stable name printed with a finding that leads to its documentation         |
 | [Practitioner] | Whoever is doing the work, a person or an [Agent]                              |
 | [Toolchain]    | Everything a project assembles to run its checks through, [Detectors] included |
@@ -157,7 +158,10 @@ any.
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
-carry both a usable summary and the location of the remainder.
+carry both a usable summary and the location of the remainder. The remainder is any finding the
+summary leaves out. A summary that prints every finding, each with where it is and its
+[Identifier], leaves none out, so extra detail about those findings written elsewhere, such as a
+code snippet in a report file, is not a remainder whose location must be printed.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
 report that arrives after the decision it was meant to inform.
@@ -183,13 +187,16 @@ Two cases, by who wrote the [Rule]:
 | The project's own | The project                    | Print the [Identifier] unaltered; the lookup is the [Toolchain]'s to give |
 
 In both, the mechanism is keyed on **the [Identifier] exactly as printed**. A command, an index
-file or a URL are all acceptable forms. Each case in turn:
+file or a URL are all acceptable forms. This clause asks for the mechanism, not for every page:
+where the mechanism works but a [Bundled rule]'s [Identifier] has no documentation to resolve to,
+that fails clause 6.3, not this clause. Each case in turn:
 
 **For a [Bundled rule]**, the [Detector] supplies the documentation and the
 lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier]
 presented alone, because the reader who needs it most has the [Identifier] from a log, a
-ticket or a colleague and not the [Message]. A [Message] that carries its own
-documentation path resolves that [Message], not the [Identifier].
+ticket or a colleague and not the [Message]. A documentation path printed in the [Message] is
+therefore not enough: it helps only a reader who has the [Message], and the [Identifier] alone
+still leads nowhere.
 
 **For a project's own [Rule]**, the [Detector] cannot know the documentation, so what
 it owes is the half it can give: the [Identifier] printed unaltered under clause 4.3, and no
@@ -236,7 +243,7 @@ An automated check over every [Identifier] a [Bundled rule] can print, applying 
 family list or pattern of clause 6.5 where one is used, that blocks the release when any of them
 lands on no page.
 
-**Why**: clause 6.1 is the clause most easily believed to be satisfied whilst being broken, because
+**Why**: clause 6.3 is the clause most easily believed to be satisfied whilst being broken, because
 the documentation is written by the same person who wrote the [Rule] and its absence is
 invisible from the inside. Where the [Detector] is shipped inside a [Toolchain],
 the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a MUST for the [Toolchain]; a

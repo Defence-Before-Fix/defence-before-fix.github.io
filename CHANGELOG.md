@@ -90,8 +90,14 @@ pass it.
 - Clarity, no obligation changed: the term Harness in section [2](DETECTOR-SPEC.md#2-terminology) is now Rule harness, used in
   that form in sections [3](DETECTOR-SPEC.md#3-the-division-of-responsibility), [4.2](DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) and [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps), and its definition says it is not the environment an
   agent runs in. Prompted by readers taking "harness" in its AI-agent sense, the environment
-  around a language model, rather than the route that runs one rule on supplied code. Accepted
-  by run NNN.
+  around a language model, rather than the route that runs one rule on supplied code.
+  [Run 32](acceptance/runs/032-defined-terms-detector-run-1.md) failed on passages the change had
+  kept, and the same change makes them clearer: the section [2](DETECTOR-SPEC.md#2-terminology) table glosses Message, after four
+  readers could not read clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)'s sentence on a documentation path in the message without it;
+  clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) says the remainder is any finding the summary leaves out, after every reader took
+  it for extra detail about findings already printed; clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says it asks for the mechanism,
+  and a bundled identifier with no page fails clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), with clause [6.4](DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation)'s Why naming [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) to
+  match. Accepted by run NNN.
 
 ### 1.0.0, 2026-09-08
 
