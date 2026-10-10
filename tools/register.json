@@ -2114,7 +2114,7 @@
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": "; rule pages are online only, leaving "
+          "text": "; the offline documentation API resolves 59 of 93 bundled ids alone, leaving "
         },
         {
           "text": "6.2",
@@ -2175,14 +2175,14 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " partial; one-line --list descriptions leave "
+          "text": " partial; --list resolves every bundled id offline to its shipped one-line description, meeting "
         },
         {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
+          "text": "6.1",
+          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " partial and rule pages online only fail "
+          "text": " to "
         },
         {
           "text": "6.3",
@@ -2688,21 +2688,14 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " is partial, and check metadata ships with no lookup, so "
+          "text": " is partial, and check metadata ships with no lookup and the online list links by category and lower-cased name, so "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " is partial and "
-        },
-        {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
-        },
-        {
-          "text": " and "
+          "text": " to "
         },
         {
           "text": "6.3",
@@ -2841,14 +2834,14 @@
           "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
         },
         {
-          "text": " partial; bundled rule names resolve only through the online rule index, leaving "
+          "text": " partial; bundled rule names are found only by searching an online index keyed on category and lower-cased name, failing "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " partial, and their descriptions ship in the jar with no lookup, failing "
+          "text": ", and their descriptions ship in the jar with no lookup, failing "
         },
         {
           "text": "6.2",
@@ -3055,21 +3048,14 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " is partial; documentation is online only, leaving "
+          "text": " is partial; documentation is online only, at addresses keyed on the rule set and lower-cased id, failing "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " partial and failing "
-        },
-        {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
-        },
-        {
-          "text": " and "
+          "text": " to "
         },
         {
           "text": "6.3",
@@ -3123,14 +3109,14 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": "; ids resolve only by searching an online page anchored on titles, leaving "
+          "text": "; bundled ids can only be searched for on an online page anchored on titles, failing "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " partial, and no documentation ships with the binary, failing "
+          "text": ", and no documentation ships with the binary, failing "
         },
         {
           "text": "6.2",
@@ -3450,21 +3436,14 @@
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": "; check pages are online only, leaving "
+          "text": "; check pages are online only, at addresses keyed on a module path rather than the name, failing "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " partial and failing "
-        },
-        {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
-        },
-        {
-          "text": " and "
+          "text": " to "
         },
         {
           "text": "6.3",
