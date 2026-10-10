@@ -283,9 +283,11 @@ this clause; neither requires the [Detector] to remove or forbid the route. A ro
 neither switched off nor detected does not [Conform].
 
 A route is detectable when the project can find every use of it, in one of two ways. The first is
-a [Rule] the project writes for itself, under clause 4.1, and the [Detector] runs. That way works
-only where the [Detector] lets such a [Rule] see every use of the route, and the [Detector] need
-not ship the [Rule] itself. The second is a mechanical check that the [Detector] itself documents, such as a
+a [Rule] the project writes for itself, under clause 4.1, and the [Detector] runs; the [Detector]
+need not ship the [Rule] itself. That way works only where such a [Rule] can match every use of
+the route: each ignore comment or directive where it is written in the code, and each entry of a
+generated [Baseline]. A [Detector] whose [Rules] never see comments, for example, cannot make an
+ignore comment detectable this way. The second is a mechanical check that the [Detector] itself documents, such as a
 text search it documents for the route's spelling. Switching the route off or detecting it is what
 lets a project that decides to forbid the route enforce that decision.
 
@@ -323,29 +325,16 @@ summary for an [Agent]'s context, are obligations on a project's assembled [Tool
 and are stated in the [toolchain specification](TOOLING-SPEC.md), so there is no separate [Agent]-support level
 for a [Detector].
 
-**A verdict on a [Detector] MUST name its kind, [Semantic], [Syntactic] or [Textual], in each
-configuration the verdict grades.** A configuration here is one way of setting the [Detector] up
-to run, and one [Detector] can have several: ESLint, for example, is [Syntactic] run without type
-information and [Semantic] run with it. The kind is what a [Rule] can ask in that configuration,
-as section 2 glosses it. The kind named is the one the [Detector] has without a hosted service or
-a licence tier, since under clause 5.4 a finding reported only there does not [Conform].
-
-This MUST is on whoever gives the verdict, not on the [Detector], so it is not one of the MUSTs
-in sections 4 to 7 that [Conformance] is judged on: the kind is not a level of [Conformance] and
-does not change the verdict. A [Textual] [Detector] can [Conform], and a [Semantic] one can fail
-to. A verdict that leaves the kind out has not met this duty, but what it finds about
-[Conformance] still stands. The kind is named because the method specification's clause 3.2
-requires a [Rule] to be written in the strongest kind of [Detector] that can express it.
-
 ### 8.1 A maintainer MAY declare the version of this document the detector conforms to, and the declaration records known gaps
 
 The declaration is machine-readable, in whatever form the [Detector]'s ecosystem uses to
 record dependencies. The same declaration is where a known gap is recorded. A gap is a MUST in
-sections 4 to 7 that the [Detector] fails. Once its maintainer knows of a gap, from the
+sections 4 to 7 that the [Detector] does not satisfy. Once its maintainer knows of a gap, from the
 [Detector]'s own checks or from a [Practitioner]'s report under the method's clause 3.2, a
 [Detector] that declares a version MUST record the gap alongside that version, in the same file
-as the declaration or in a file the declaration names. A declaration that records no gap claims
-[Conformance]. A declaration that records a gap does not; it says where the [Detector] stands.
+as the declaration or in a file the declaration names. A declaration is the maintainer's claim.
+One that records no gap claims [Conformance]; one that records a gap does not, and says where the
+[Detector] stands. A [Detector] with no declaration claims nothing, either way.
 
 A [Detector] that predates this document, or whose maintainer has never read it, MAY be graded
 [Conforming] on evidence: a declaration is optional. Anyone may grade a [Detector], by checking it
@@ -378,9 +367,29 @@ a specific installed artefact, checkable by anyone, including mechanically, and 
 never [Conform] until its maintainer had heard of this document, which grades the
 maintainer's reading rather than the [Detector].
 
+### 8.2 A verdict on a detector MUST name its kind in each configuration it grades
+
+A verdict on a [Detector] MUST name its kind, [Semantic], [Syntactic] or [Textual], in each
+configuration the verdict grades. A configuration here is one way of setting the [Detector] up to
+run, and one [Detector] can have several: ESLint, for example, is [Syntactic] run without type
+information and [Semantic] run with it. The kind is what a [Rule] can ask in that configuration,
+as section 2 glosses it. The kind named is the one the [Detector] has without a hosted service or
+a licence tier, since under clause 5.4 a finding reported only there does not [Conform].
+
+This clause binds whoever gives the verdict, anyone grading a [Detector] under clause 8.1
+included, and asks nothing of the [Detector] or its maintainer. A [Detector] is judged on
+sections 4 to 7, as section 8 says, and the kind is not a level of [Conformance] and does not
+change the verdict: a [Textual] [Detector] can [Conform], and a [Semantic] one can fail to. A
+verdict that leaves the kind out has not met this clause, but what it finds about [Conformance]
+still stands.
+
+**Why**: the method specification's clause 3.2 requires a [Rule] to be written in the strongest
+kind of [Detector] that can express it, and a verdict of [Conforming] alone presents a [Textual]
+[Detector] as an equal host.
+
 ## 9. Relationship to the other specifications
 
-This document adds no obligations to a [Practitioner] and relaxes none. Section 8 adds one on
+This document adds no obligations to a [Practitioner] and relaxes none. Clause 8.2 adds one on
 whoever gives a verdict on a [Detector]: to name its kind. Every clause here
 exists to make a clause of the method specification achievable with a [Detector] in hand.
 

@@ -194,14 +194,14 @@ produces [Detectors] that fire on innocent code, which is worse than having no [
 rather than deciding in advance whether it is expressible. Failing to write a [Rule] that satisfies
 clause 3.1's bounds is itself the evidence that the [Defect] is out of scope, and it is cheaper and
 more reliable than a judgement made before trying. The conclusion that no pattern exists MUST be
-stated in one sentence, naming at least two independent techniques tried at expressing the
-[Rule], and recorded where the project's other decisions are enumerable under clause 8.7, not
-only with the fix. A technique here is a way of trying to write the [Rule]. Two such techniques
-are independent when they would miss different things, which is the same test clause 3.1 applies
-to ways of searching for [Instances]. That conclusion is the cheapest way
-out of the method and the only one that would otherwise leave no trace; enumerating it is how an
-[Owner] sees an [Agent] routing around the method, and naming the techniques is what lets
-them judge whether the attempt was one.
+stated in one sentence, naming at least two independent ways of writing the [Rule] that were
+tried, and recorded where the project's other decisions are enumerable under clause 8.7, not
+only with the fix. Two ways of writing the [Rule] are independent when they would miss different
+things. That is the test clause 3.1 applies to its search techniques, but a way of writing the
+[Rule] is not a technique in clause 3.1's sense, which is a way of searching for [Instances].
+That conclusion is the cheapest way out of the method and the only one that would otherwise
+leave no trace; enumerating it is how an [Owner] sees an [Agent] routing around the method, and
+naming the ways tried is what lets them judge whether the attempt was one.
 
 There are three ways out of the method and they are recorded differently. No pattern exists: the
 [Defect] is out of scope under this section, and only the sentence above is recorded. A pattern exists but the
@@ -222,8 +222,8 @@ puts it in front of them. Reporting it in conversation does not satisfy this: th
 ends, and with it the only trace that the [Defect] was ever seen.
 
 **Why**: each of the three ways out costs the [Practitioner] something to take and leaves
-something an [Owner] can read: a recorded sentence naming two techniques tried, or a [Toolchain]
-gap. Deferral costs nothing, and without this record it would leave nothing, which makes it
+something an [Owner] can read: a recorded sentence naming two ways of writing the [Rule] that
+were tried, or a [Toolchain] gap. Deferral costs nothing, and without this record it would leave nothing, which makes it
 cheaper still than the sentence above and unseen from outside. A [Defect] mentioned once and
 never written down cannot be told apart from a [Defect] nobody found, so neither the [Class] nor
 the [Defence] it implies is ever reached.
@@ -359,7 +359,8 @@ second technique that turns up new [Instances] means a third is owed; a second t
 new means the search is done. That is a test the [Practitioner] can apply and record without a
 threshold, and it is the standard clause 3.4 refers back to.
 
-In this clause a technique is a way of searching the codebase for [Instances]. Two techniques are
+A technique, here and wherever this specification uses the word, is a way of searching the
+codebase for [Instances]. Two techniques are
 independent when they would miss different things. A text search for the token and a reading of
 the code that consumes the value are independent, and asking someone who knows the system is a
 third. Two text searches for two spellings of the same token are one technique, because they miss
@@ -471,13 +472,16 @@ A gap is recorded in the project record where the [Toolchain] defines one, as th
 then the only requirement is that somebody deciding what to invest in the [Toolchain] would find
 it. A gap recorded where nobody looks has been forgotten with extra steps.
 
-There are two kinds of gap and they lead to different work. The language having no extensible
-[Detector] of a kind that can express the [Rule] within clause 3.1's bounds, and no practical
-bespoke one, is the gap above, and the [Class] waits for one. The project's [Toolchain]
-lacking a mechanism the [toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an
-[Identifier] resolver, is a mechanism gap, and it does not put the [Class] out of reach: the
-[Practitioner] builds the [Rule], uses the substitutes clauses 3.3 and 3.6 already allow, and records
-the mechanism gap alongside it. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
+There are two kinds of gap and they lead to different work. The first is the [Toolchain] gap
+of the paragraphs above: the language has no extensible [Detector] of a kind that can express the
+[Rule] within clause 3.1's bounds, and no bespoke one is practical, so the [Class] waits for one.
+The second is a mechanism gap: the project's [Toolchain] lacks a mechanism the
+[toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an [Identifier]
+resolver. A mechanism gap does not put the [Class] out of reach. The [Practitioner] still builds
+the [Rule], records the mechanism gap alongside it, and meets clauses 3.3 and 3.6 by the
+substitutes those clauses accept: for testing the [Rule], the acceptance or smoke check clause 3.3
+accepts in place of a [Fixture]-based test; for resolution, an [Identifier] in a form clause 3.6
+allows that needs no resolver, such as an anchor in a documentation file. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
 own obligations, such as a [Toolchain] that cannot run its [Defences] on its own source, is recorded
 against the [Toolchain]'s claim under section 7 as well, because that is the fact its [Owner] needs.
 Where that record lives is the [Toolchain]'s own [Conformance] declaration, under the
@@ -758,14 +762,15 @@ that invocation covers, and see the [Rule] reported there. A [Toolchain] that wr
 who bypasses it has proven the [Rule] and not the [Defence].
 
 A [Bundled defence] is a [Defence] that a shipped [Toolchain] enables by default in every
-project that installs it from somebody else. The project whose entry point demonstrates it is any project the
-[Toolchain] is genuinely installed into, whether the [Toolchain]'s own or somebody else's, since
-that is where the [Rule] will be enforced. A mechanism gap that stops the [Toolchain] running its
-own entry point on its own source moves the demonstration to such a project; it does not weaken it. The
-substitutes clause 3.2 allows, for proving under clause 3.3 and for resolution under clause 3.6, do
-not extend to this clause: the demonstration here is through an entry point or it is not made. A
-project created for the purpose, with the [Toolchain] installed into it from the source under
-test, is such a project, so a [Toolchain] with no consumer yet is not excused.
+project that installs it from somebody else. Its enforcement can be demonstrated through the
+entry point of any project the [Toolchain] is genuinely installed into, whether the [Toolchain]'s
+own or somebody else's, since that is where the [Rule] will be enforced. A project created for the
+purpose, with the [Toolchain] installed into it from the source under test, is such a project, so
+a [Toolchain] with no consumer yet is not excused. Where a mechanism gap, as clause 3.2 defines
+it, stops the [Toolchain] running its own entry point on its own source, the demonstration is made
+in such a project instead, and is owed there in full. Clause 3.2 lets the [Practitioner] meet
+clauses 3.3 and 3.6 by substitutes when a mechanism is missing; it allows none for this clause.
+The demonstration here is through an entry point or it is not made.
 
 **Why**: the purpose is that the mistakes of the past become structurally impossible to repeat, and
 a [Warning] is not structure. A [Warning] is a suggestion, and suggestions decay under deadline
@@ -865,7 +870,7 @@ knowingly leave an [Instance] unfixed on its own authority, whatever the [Instan
 be.
 
 **The default position is that none of these are permitted at all.** [Suppressions], [Baselines] and
-every other means of evading a [Defence] are not techniques with a threshold governing their use; they are
+every other means of evading a [Defence] are not practices with a threshold governing their use; they are
 [Exceptions] to the method, and the standing answer is no. An [Exception] exists only where a human has
 discussed it, agreed it and documented it for that project. Nothing an [Agent] concludes on its own
 creates one.

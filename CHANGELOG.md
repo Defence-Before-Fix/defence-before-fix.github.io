@@ -77,7 +77,16 @@ version entry with no cohort line has not been accepted and is not published.
   permanence and the recorded decision behind every suppression; section [2](SPEC.md#2-when-the-method-applies) and clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) each say
   what a technique is there, and clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s paragraph on independent techniques is three short
   paragraphs, saying that a run of the rule belongs to the proof or the sweep. Each after readers
-  of run 27 missed or named the passage. Accepted by run NNN. Minor version when released.
+  of run 27 missed or named the passage. After run 29, clarity edits: section [2](SPEC.md#2-when-the-method-applies)'s sentence that
+  no pattern exists names two independent ways of writing the rule that were tried, in place of
+  "techniques", and says these are not clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s techniques; the MUST it carries is reworded, not
+  changed. Clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) says a technique is a way of searching for instances wherever the
+  specification uses the word, and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) no longer uses it otherwise; clause [3.2](SPEC.md#32-build-the-net)'s
+  paragraph on the two kinds of gap gives each kind a sentence of its own and names the
+  substitutes clauses [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) and [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) accept for a missing mechanism; and clause [3.5](SPEC.md#35-enforce-permanently-and-block)'s paragraph on a
+  bundled defence says in shorter sentences where its demonstration is made and that those
+  substitutes give no way round it. Each after two readers of run 29 named the passage. Accepted
+  by run NNN. Minor version when released.
 
 ### 1.1.0, 2026-10-02
 
@@ -139,7 +148,7 @@ pass it.
 
 ### Unreleased
 
-- New obligation, section [8](DETECTOR-SPEC.md#8-conformance): a verdict on a detector MUST name the kind, semantic, syntactic
+- New obligation, clause [8.2](DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades): a verdict on a detector MUST name the kind, semantic, syntactic
   or textual, of each configuration it grades, as the detector has it without any hosted service
   or licence tier. It is not a level of conformance and does not change the verdict; it
   is stated because method clause [3.2](SPEC.md#32-build-the-net) now requires a rule to be written in the strongest kind of
@@ -181,7 +190,15 @@ pass it.
   needing the other specifications; section [8](DETECTOR-SPEC.md#8-conformance)'s paragraph on the kind says what a
   configuration is and, in a paragraph of its own, that the duty is not one of the MUSTs
   conformance is judged on and that a verdict leaving the kind out still stands on conformance.
-  Each after readers of run 28 missed or named the passage. Accepted by run NNN. Minor version
+  Each after readers of run 28 missed or named the passage. After run 30, the duty to name the
+  kind moves, unchanged, from section [8](DETECTOR-SPEC.md#8-conformance)'s paragraphs to a clause [8.2](DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades) of its own, with a Why,
+  out of the section that states the conformance test, and says it binds whoever gives the
+  verdict, anyone grading under clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) included; section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) names the clause. Clarity edits:
+  clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says what a project's own rule must be able to match for the route to be
+  detectable that way, each ignore comment or directive where it is written and each entry of a
+  generated baseline; clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says a gap is a MUST the detector does not satisfy, that a
+  declaration is the maintainer's claim, and that a detector with no declaration claims nothing.
+  Each after two or more readers of run 30 named the passage. Accepted by run NNN. Minor version
   when released.
 
 ### 1.0.0, 2026-09-08

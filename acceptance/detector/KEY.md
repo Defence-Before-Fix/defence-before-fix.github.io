@@ -20,7 +20,7 @@ bullet asserting an obligation the document does not state, is a correct restate
 - Make any inline suppression route detectable or disableable ([7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)).
 
 A bullet saying that a verdict on a detector names the kind, semantic, syntactic or textual, of
-each configuration it grades (section [8](../../DETECTOR-SPEC.md#8-conformance)) is correct too, though it is an obligation on whoever
+each configuration it grades (clause [8.2](../../DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades)) is correct too, though it is an obligation on whoever
 gives the verdict, as section [9](../../DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) says. A bullet saying that the detector, or a verdict on it, must state
 its kind is marked correct as this obligation, although the document puts it on the verdict.
 
@@ -43,8 +43,10 @@ agent summary (those belong to the toolchain specification).
   configuration, or make the route detectable. Either alone satisfies this clause; neither requires
   the Detector to remove or forbid the route."; "A route is detectable when the project can find
   every use of it, in one of two ways. The first is a Rule the project writes for itself, under
-  clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), and the Detector runs. That way works only where the Detector lets such a Rule see
-  every use of the route, and the Detector need not ship the Rule itself. The second is a
+  clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), and the Detector runs; the Detector need not ship the Rule itself. That way works
+  only where such a Rule can match every use of the route: each ignore comment or directive where
+  it is written in the code, and each entry of a generated Baseline. A Detector whose Rules never
+  see comments, for example, cannot make an ignore comment detectable this way. The second is a
   mechanical check that the Detector itself documents". An answer that says the detector must forbid the route, or must require a
   reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD), is wrong.
 - **2c.** With the rule, in the installed copy, at a version tracked together, and yes, offline.
@@ -74,7 +76,7 @@ described as conformance. A reader who grades [6.3](../../DETECTOR-SPEC.md#63-a-
 has read the clause differently and that counts against the document.
 
 The fixture does not say what Lintomatic can see. A reader who names its kind as unknown, or names
-none, is not marked on it; a reader who makes the verdict turn on its kind has read section [8](../../DETECTOR-SPEC.md#8-conformance)
+none, is not marked on it; a reader who makes the verdict turn on its kind has read clause [8.2](../../DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades)
 differently, which counts against the document: "the kind is not a level of Conformance and does
 not change the verdict".
 
