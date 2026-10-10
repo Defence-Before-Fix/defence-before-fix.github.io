@@ -10,7 +10,7 @@ In your own words and in at most six bullets, what does this document require of
 
 ## 2. Load-bearing statements
 
-Answer each in one sentence, followed by the sentence or sentences of the document you are relying on, quoted.
+Answer each in one sentence, followed by the sentence of the document you are relying on, quoted.
 
 - 2a. What does it mean for a detector to conform, and can a detector that was written before
   this document existed, and has never heard of it, conform?

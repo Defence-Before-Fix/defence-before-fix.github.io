@@ -62,8 +62,7 @@ document, so that marking is mechanical. Each reader answers all of them.
 
    - `SPEC.md`: what a practitioner does before fixing a defect, in order; who may baseline or
      suppress; what "conforms" means for a remediation; which kind of detector must host a
-     rule the practitioner writes and the order of the kinds, on what grounds a weaker one is
-     allowed, and what is recorded then.
+     rule the practitioner writes, when a weaker one is allowed, and what is recorded then.
    - `DETECTOR-SPEC.md`: what "conforms" means and whether a tool that predates the document can
      conform; what a detector must do about an inline suppression route; where a bundled rule's
      documentation must live.
@@ -189,12 +188,17 @@ the reader can justify from the document is always the document's fault.
 
 No criterion in this document is ever relaxed to let a change through. If the cohort is confused,
 the test is working and the text is wrong; the fix is to the text, never to the threshold, the
-question, the fixture or the key. A threshold may be raised, a keyed question may be added, a key
-may be corrected where it misquoted the document, and a key's limit on which misses count against
-the document may be removed, which raises the bar; none of those makes a failing run pass. A
-question may be reworded, on the author's instruction, only where the new wording asks the same
-thing with the same certainty, so that it is marked against its key unchanged and no less
-strictly; that is not a relaxation, and it makes no failing run pass either. The
+fixture or the key, nor to a question beyond the rewording this section allows. A threshold may be
+raised, a keyed question may be added, a key may be corrected where it misquoted the document, and
+a key's limit on which misses count against the document may be removed, which raises the bar;
+none of those makes a failing run pass. A question may be reworded only where the new wording asks
+the same thing with the same certainty, so that it is marked against its key unchanged and no less
+strictly. Whether a rewording asks the same thing is the editor's decision, taken for each
+rewording and not delegated, and a rewording is made only once the editor has taken it. It is used from the next run whose readers start after it is committed, and never
+changes the marks of a run already made. The line recording it in
+[acceptance/CHANGES.md](acceptance/CHANGES.md) gives the old and the new wording and names, for
+each part the new wording adds, the element of the unchanged key it asks for, or says that it asks
+for none. Such a rewording is not a relaxation, and it makes no failing run pass either. The
 one time a threshold was relaxed, after three runs, the relaxation was reversed on the author's
 instruction and is recorded here so that it is not tried again. Removing the clarity rating and
 the request for suggestions was not a relaxation: it changed what the cohort is asked, not how

@@ -36,7 +36,11 @@ matches the document is a defect in this directory, not a reason to mark a reade
 
 Questions are fixed so that runs can be compared across versions. Adding a keyed question is
 allowed when a new clause is load-bearing; removing or softening one to make a run pass is not,
-and rewording one is allowed only where it asks the same thing with the same certainty.
+and rewording one is allowed only as [the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up)
+allows: where the new wording asks the same thing with the same certainty, on the editor's
+decision for that rewording, from the next run whose readers start after it is committed, and
+recorded in [CHANGES.md](CHANGES.md) with the element of the unchanged key each added part asks
+for.
 A process change may remove a limit a key puts on which misses count against the document, as
 [the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up) allows.
 The reader may quote a passage it found confusing; it is never asked to rate the document, say

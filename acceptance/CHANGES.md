@@ -11,13 +11,15 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   questions per document. Adding a keyed question raises the bar, as "The bar only moves up"
   allows. Prompted by the change to method clause 3.2 in the same pull request. After run 30, on
   the author's instruction, "The bar only moves up" allows a question to be reworded only where
-  it asks the same thing with the same certainty, marked against its key unchanged, and
-  `acceptance/README.md` and "After a failure" point to it; question 2d asks for the order of the
-  kinds and the grounds, which its key already required, and each question set's question 2 asks
-  for the sentence or sentences relied on, since the keys for method 2d and detector 2c quote
-  more than one. Prompted by runs 29 and 30, where readers who answered 2d as asked were marked
-  wrong for leaving out the order, and two readers of run 30 quoted only one of the two sentences
-  detector 2c turns on.
+  the new wording asks the same thing with the same certainty, marked against its key unchanged
+  and no less strictly; whether it does is the editor's decision for each rewording, not
+  delegated, the rewording is used from the next run whose readers start after it is committed
+  and changes no earlier marks, and its line here gives the old and new wording and the element
+  of the unchanged key each added part asks for. `acceptance/README.md` and "After a failure"
+  point to it, and the sentence saying the fix is never to a question names it. No question is
+  reworded by this change. Prompted by runs 29 and 30, in which method 2d's key requires the
+  order of the kinds and readers left it out, and two readers of run 30 quoted only one of the
+  two sentences detector 2c turns on, whilst question 2 asks for one sentence.
 - [Pull request #13](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/13): the cohort can be run and marked without judgement calls that the rules
   leave open; this applies to runs made after it merges, and to runs 19 to 30, which were made under it at the commits their records name, and
   runs 16 to 18 stand as recorded. A cohort is an odd
