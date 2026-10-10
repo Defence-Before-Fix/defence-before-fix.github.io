@@ -31,8 +31,9 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   sheet's answered items counted too, or if that sheet has a miss traceable to the text; a void run has a number, a record and posted sheets. The packet is the question set, the document and the fixture, each
   after one `===== FILE: <name> =====` line. A new marking section says what a delegated marker
   receives and that its verdict is final unless a rule was misapplied, that an open judgement is
-  made as a careful reader of the document would, that an earlier run's judgement does not bind
-  a later run where a rule it rested on has since changed, and defines a keyed item, quoting (consecutive
+  made as a careful reader of the document would, that an earlier run's judgement binds no
+  later run, one that applied a rule not in force when it was made is never followed, and a
+  record says where its marker departs from an earlier judgement and why, and defines a keyed item, quoting (consecutive
   words of any length, verbatim apart from case, quotation-mark style and markup), a correct
   load-bearing answer, read with its quotation, asserting nothing the document does not state
   and omitting no element of the key's answer that answers the question, each read for its
@@ -61,6 +62,7 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   rows both covered a single reader's traceable miss, and nothing settled an unanswered question
   or "the same passage". The rule on an earlier run's judgement was prompted by run 22, which
   made a judgement by the stricter reading, a tie-break this change had already replaced with a
-  careful reader's, and which later runs of pull request 14 then followed as precedent. [Run
+  careful reader's before run 22 was made, so that the rule it applied was not in force, and which
+  later runs of pull request 14 then followed as precedent. [Run
   16](runs/016-deferral-clause-run-1.md), [run 17](runs/017-deferral-clause-run-2.md) and
   [run 18](runs/018-deferral-clause-run-3.md) ruled on these case by case.
