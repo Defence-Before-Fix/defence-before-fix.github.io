@@ -3,7 +3,7 @@
 
 Each tools/<slug>.md carries its grades in front matter:
   summary:    one line of notes, clause numbers as plain text
-  language:   PHP | JavaScript and TypeScript | Python | Go | Rust | Multi-language
+  language:   a group in LANGUAGE_ORDER below, such as PHP, Python or Multi-language
   kind:       tool | toolchain
   readiness, detector: a grade, one of the three marks
   toolchain, project:  a grade, toolchains only
@@ -37,6 +37,19 @@ LANGUAGE_ORDER = [
     "Python",
     "Go",
     "Rust",
+    "HTML",
+    "CSS",
+    "C#",
+    "F#",
+    "Java",
+    "Kotlin",
+    "Swift",
+    "Ruby",
+    "C and C++",
+    "PowerShell",
+    "SQL",
+    "Shell",
+    "YAML",
     "Multi-language",
 ]
 GRADES = {"🟢": "green", "🟡": "amber", "🔴": "red"}
