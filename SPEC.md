@@ -174,7 +174,11 @@ Defence Before Fix applies to a [Defect] when that [Defect] can be attributed to
 idiom or configuration that a [Detector] can be made to recognise.
 
 When it can, building the [Defence] is not optional and MUST be attempted before the [Defect] is
-fixed. This is the substance of the method rather than a preliminary to it.
+fixed. This is the substance of the method rather than a preliminary to it. In order, the steps
+are section 3's: attribute the [Defect] to a [Class] (clause 3.1), express the [Class] as a
+[Rule] in a [Detector] (clause 3.2) and prove the [Rule] fires (clause 3.3), all whilst the
+reported [Instance] is still unfixed; then [Sweep] the codebase, record the count and fix every
+[Instance] found (clause 3.4).
 
 When it cannot, the [Defect] is outside the method's scope and is fixed conventionally. Not every
 [Defect] is an [Instance] of a detectable pattern, and forcing a [Rule] where no pattern exists
@@ -306,10 +310,11 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   too narrowly and MUST be widened, unless the independent search below has found no other
   [Instance] and the [Practitioner] records that the [Class] is genuinely singular today. A
   [Rule] that matches exactly one thing is an [Instance] [Detector] wearing a [Rule]'s clothes.
-  A [Rule] drawn to the exact value or name found in the [Defect] is the same [Narrowing] however
-  it is spelt, and where it stays because the search found nothing wider, the record MUST also name the next
+  A [Rule] drawn to the exact value or name found in the [Defect] is drawn to the [Instance] in the
+  same way, however it is spelt. Where it stays because the search found nothing wider, the record MUST also name the next
   wider [Rule], the one with the [Instance]'s distinguishing detail dropped, and state why it was
-  rejected. That rejection is tested as a [Narrowing] is under clause 3.3: a sentence stating why the
+  rejected. Keeping the narrower [Rule] excludes what that wider [Rule] would add, so the rejection
+  is tested as a [Narrowing] is under clause 3.3: a sentence stating why the
   [Hazard] cannot arise in the code the wider [Rule] would add, confirmed by search, with uncertainty
   routed upwards under section 4.
 - **Upper bound.** If the [Rule] matches code that does not carry the [Hazard], the [Class] is drawn
@@ -317,11 +322,13 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   missing [Rule] does. One report on code that does not carry the [Hazard] is enough; there is no
   tolerated rate.
 
-**Both bounds measure breadth within one level; the level itself is a separate question, answered
-against the report.**
+**The two bounds settle how wide the [Class] is drawn, not at which level of abstraction.** Each
+compares the [Rule] with a wider or a narrower [Rule] for the same kind of code. Which level the
+[Class] is drawn at, the behaviour the report describes or the mechanism in the code that produces
+it, is a separate question, and what the report describes answers it.
 Where the [Defect] was reported as a behaviour, a check that reported clean having run nothing, a
 process that stopped before its work, the [Class] a [Detector] can read usually sits one level
-below that [Hazard]: the mechanism of this [Instance], not the failure the report opens with.
+below that behaviour: the mechanism of this [Instance], not the failure the report opens with.
 That [Class] is the right one to build, because no [Detector] reads "this check still produces
 its signal". It is not the whole answer. The record MUST state whether the reported behaviour is also
 pinned by a check a [Runner] executes, under section 6, either one added with this [Remediation] or
@@ -501,6 +508,11 @@ that cannot be confirmed is a sentence that cannot be written, and the exclusion
   by clause 3.1's upper bound.
 - If the [Practitioner] **is not sure which**, the exclusion is [Suppression], and it goes to the
   [Owner] with the doubt stated.
+
+An exclusion here is one drawn into the [Rule]'s own scope, what the [Rule] is written or
+configured not to match. An ignore comment or ignore entry placed on one [Instance] is not one: it
+leaves the [Rule] as proven and stops it reporting that [Instance]. That is a [Suppression] at the
+call site, which clause 3.4 forbids as a fix and section 4 gives to the [Owner].
 
 A [Rule] MUST NOT be narrowed because its [Instance] count is uncomfortably high. A high count is a
 finding about the codebase, not a [Defect] in the [Rule]. **Firing on more than the originating

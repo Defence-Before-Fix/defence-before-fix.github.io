@@ -18,7 +18,14 @@ version entry with no cohort line has not been accepted and is not published.
   "correction loop". Clauses [3.2](SPEC.md#32-build-the-net) and [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) name the detector specification's rule harness where
   they said "proving harness" and "rule-testing harnesses". Prompted by a review that found
   section [7](SPEC.md#7-conformance) defining when a remediation conforms without the word being defined, and "harness"
-  read as the environment an agent runs in. Accepted by run NNN.
+  read as the environment an agent runs in. [Run 31](acceptance/runs/031-defined-terms-method-run-1.md)
+  failed on passages the change had kept, and the same change makes them clearer: section [2](SPEC.md#2-when-the-method-applies)
+  gives section [3](SPEC.md#3-the-method)'s steps in order, after two readers left steps out quoting it; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) says what
+  its two bounds compare and what the separate question of level is, and its lower bound no
+  longer calls a rule drawn to the instance "the same Narrowing", after readers took both
+  sentences two ways; clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire)'s Part B says an ignore placed on one instance is a call-site
+  suppression under clause [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance), not an exclusion from the rule's scope, after a reader failed the fixture
+  under both clauses for the one ignore. Accepted by run NNN.
 
 ### 1.1.0, 2026-10-02
 
