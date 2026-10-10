@@ -132,7 +132,16 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   section [2](TOOLING-SPEC.md#2-terminology) gloss, the section [3](TOOLING-SPEC.md#3-the-division-of-responsibility) table and clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification), and the method specification's newly
   defined Remediation is linked in clause [4.5](TOOLING-SPEC.md#45-the-toolchains-entry-point-must-run-detectors-before-runners-and-must-stop-on-a-detector-failure); the section [3](TOOLING-SPEC.md#3-the-division-of-responsibility) table's "remediation text" reads
   "remediation docs content". Prompted by "harness" read in its AI-agent sense and by
-  remediation being used undefined. Accepted by run NNN.
+  remediation being used undefined. [Run 33](acceptance/runs/033-defined-terms-toolchain-run-1.md)
+  failed on passages the change had kept, and the same change makes them clearer: the section [2](TOOLING-SPEC.md#2-terminology)
+  table glosses every term the document borrows, as section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says it does, Remediation and
+  Remediation docs among them, and says that a blocking rule with no documentation is still
+  reached by clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access), [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation), after three readers set its Defence row against them; clause
+  [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) says one identifier that does not resolve fails it and names the acceptable forms of
+  lookup, after two readers graded it as met in part; clause [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-every-suppression-route-that-bypasses-the-project-record-by-disabling-it-or-by-a-defence-of-its-own)'s heading names disabling as well as a defence,
+  as its body does, after four readers set the two against each other; clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) says what
+  "nothing else built around it" counts; clause [9.2](TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance) says its gap record binds a project that
+  declares, and that a gap method clause [3.2](SPEC.md#32-build-the-net) requires is recorded either way. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
@@ -160,7 +169,7 @@ again by a later clause; three readers of run 8 graded it so from the text. Find
 across the runs: an eleven-term gloss and a reading note in sections [1](TOOLING-SPEC.md#1-what-this-document-is-for) and [2](TOOLING-SPEC.md#2-terminology); long sentences
 split; [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) opens by listing the detector specification's MUSTs and its point 2
 leads with a three-case table of wrapped pairs, then the one question behind it; [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) says it
-widens the detector document's reach to the project's own rules; [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record) loses its double negative;
+widens the detector document's reach to the project's own rules; [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-every-suppression-route-that-bypasses-the-project-record-by-disabling-it-or-by-a-defence-of-its-own) loses its double negative;
 [5.2](TOOLING-SPEC.md#52-the-listing-must-be-derived-from-the-active-configuration) gives the derived-listing test; [6.2](TOOLING-SPEC.md#62-every-exception-in-the-project-record-must-carry-a-written-justification-that-names-the-hazard-and-the-scope-and-the-toolchain-must-reject-a-generic-one)'s heading carries the generic-justification rejection;
 [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) is consistent with [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) on third-party catalogues. Runs 1 to 7 also asked readers what would
 make a clause clearer and for a clarity rating; both questions were withdrawn before run 8, as
