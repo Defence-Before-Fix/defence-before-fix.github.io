@@ -9,7 +9,15 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   the `SPEC.md` question set gains a fourth load-bearing question, 2d, on which kind of detector
   must host a rule the practitioner writes, so `ACCEPTANCE.md` lists three or more such
   questions per document. Adding a keyed question raises the bar, as "The bar only moves up"
-  allows. Prompted by the change to method clause 3.2 in the same pull request.
+  allows. Prompted by the change to method clause 3.2 in the same pull request. After run 30, on
+  the author's instruction, "The bar only moves up" allows a question to be reworded only where
+  it asks the same thing with the same certainty, marked against its key unchanged, and
+  `acceptance/README.md` and "After a failure" point to it; question 2d asks for the order of the
+  kinds and the grounds, which its key already required, and each question set's question 2 asks
+  for the sentence or sentences relied on, since the keys for method 2d and detector 2c quote
+  more than one. Prompted by runs 29 and 30, where readers who answered 2d as asked were marked
+  wrong for leaving out the order, and two readers of run 30 quoted only one of the two sentences
+  detector 2c turns on.
 - [Pull request #13](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/13): the cohort can be run and marked without judgement calls that the rules
   leave open; this applies to runs made after it merges, and to runs 19 to 30, which were made under it at the commits their records name, and
   runs 16 to 18 stand as recorded. A cohort is an odd

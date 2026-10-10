@@ -24,8 +24,9 @@ fixture cases the application question uses live in `fixtures/`, the record of e
 4. The result is recorded as a file under [runs/](runs/), stating what `ACCEPTANCE.md` lists,
    with the answer sheets posted on the pull request and linked from it, and the change's
    `Unreleased` changelog line names that file.
-   A run that fails is followed by a change to the text, never to the questions, and a fresh
-   cohort.
+   A run that fails is followed by a change to the text, never to the questions beyond the
+   rewording [the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up) allows, and a
+   fresh cohort.
 
 ## Keeping the keys honest
 
@@ -34,7 +35,8 @@ the same commit, and the change is one the acceptance run itself then tests. A k
 matches the document is a defect in this directory, not a reason to mark a reader wrong.
 
 Questions are fixed so that runs can be compared across versions. Adding a keyed question is
-allowed when a new clause is load-bearing; removing or softening one to make a run pass is not.
+allowed when a new clause is load-bearing; removing or softening one to make a run pass is not,
+and rewording one is allowed only where it asks the same thing with the same certainty.
 A process change may remove a limit a key puts on which misses count against the document, as
 [the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up) allows.
 The reader may quote a passage it found confusing; it is never asked to rate the document, say

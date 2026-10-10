@@ -62,7 +62,8 @@ document, so that marking is mechanical. Each reader answers all of them.
 
    - `SPEC.md`: what a practitioner does before fixing a defect, in order; who may baseline or
      suppress; what "conforms" means for a remediation; which kind of detector must host a
-     rule the practitioner writes, when a weaker one is allowed, and what is recorded then.
+     rule the practitioner writes and the order of the kinds, on what grounds a weaker one is
+     allowed, and what is recorded then.
    - `DETECTOR-SPEC.md`: what "conforms" means and whether a tool that predates the document can
      conform; what a detector must do about an inline suppression route; where a bundled rule's
      documentation must live.
@@ -189,7 +190,10 @@ No criterion in this document is ever relaxed to let a change through. If the co
 the test is working and the text is wrong; the fix is to the text, never to the threshold, the
 question, the fixture or the key. A threshold may be raised, a keyed question may be added, a key
 may be corrected where it misquoted the document, and a key's limit on which misses count against
-the document may be removed, which raises the bar; none of those makes a failing run pass. The
+the document may be removed, which raises the bar; none of those makes a failing run pass. A
+question may be reworded, on the author's instruction, only where the new wording asks the same
+thing with the same certainty, so that it is marked against its key unchanged and no less
+strictly; that is not a relaxation, and it makes no failing run pass either. The
 one time a threshold was relaxed, after three runs, the relaxation was reversed on the author's
 instruction and is recorded here so that it is not tried again. Removing the clarity rating and
 the request for suggestions was not a relaxation: it changed what the cohort is asked, not how
@@ -197,7 +201,8 @@ strictly an answer is marked.
 
 ## After a failure
 
-Fix the text, never the questions, and run a fresh cohort. Readers are not reused across runs.
+Fix the text, never the questions beyond the rewording
+[the section on the bar](#the-bar-only-moves-up) allows, and run a fresh cohort. Readers are not reused across runs.
 The number of runs it took is recorded; a document that needed three runs is telling its editor
 something.
 
