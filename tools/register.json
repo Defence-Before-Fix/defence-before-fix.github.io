@@ -32,32 +32,32 @@
       },
       "notes": [
         {
-          "text": "Harness, resolver, derived listing, justified record and agent summary verified by running them; PHPStan's own identifiers resolve offline and the PHPArkitect tier prints identifiers with a harness of its own; PHPArkitect as wrapped takes no single-file run and its shipped consumer API-boundary rule prints no identifier, so detector "
+          "text": "Harness, resolver, derived listing, justified record and agent summary verified by running them; PHPStan's own identifiers resolve offline; PHPArkitect as wrapped gives a rule no identifier beyond the text of its because clause, leaving detector "
         },
         {
           "text": "4.3",
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": ", "
+          "text": " partial, takes no single-file run, and ships a consumer API-boundary rule with nothing to resolve, so detector "
+        },
+        {
+          "text": "6.3",
+          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": " fails, "
         },
         {
           "text": "5.2",
           "href": "/DETECTOR-SPEC.html#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file"
         },
         {
-          "text": ", "
+          "text": " and "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
-        },
-        {
-          "text": " and "
-        },
-        {
-          "text": "6.3",
-          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
           "text": " are partial and toolchain "
@@ -74,7 +74,14 @@
           "href": "/TOOLING-SPEC.html#44-the-toolchains-own-invocation-must-satisfy-the-detector-specifications-reporting-clauses-for-every-defence-it-routes"
         },
         {
-          "text": " fail; the listing omits the PHPArkitect rules (toolchain "
+          "text": " fail; a trailing @phpstan-ignore on a block's last statement escapes the inline-ignore rule (toolchain "
+        },
+        {
+          "text": "4.3",
+          "href": "/TOOLING-SPEC.html#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record"
+        },
+        {
+          "text": " partial); the listing omits the PHPArkitect rules (toolchain "
         },
         {
           "text": "5.1",
@@ -152,7 +159,14 @@
           "href": "/DETECTOR-SPEC.html#6-resolving-an-identifier"
         },
         {
-          "text": "."
+          "text": "; a report written with --output leaves the command's output with no summary, "
+        },
+        {
+          "text": "5.3",
+          "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
+        },
+        {
+          "text": " partial."
         }
       ],
       "checked": "2026-10-10, version 4.7.2"
@@ -316,7 +330,14 @@
           "href": "/DETECTOR-SPEC.html#5-reporting"
         },
         {
-          "text": "; the code is derived from the directory structure and class name, failing "
+          "text": " bar --report-file, which leaves the output with no summary ("
+        },
+        {
+          "text": "5.3",
+          "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
+        },
+        {
+          "text": " partial); the code is derived from the directory structure and class name, failing "
         },
         {
           "text": "4.3",
@@ -451,14 +472,14 @@
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": " is partial; documentation online only fails "
+          "text": " is partial; a documentation link printed only inside a finding, and online only, fails "
         },
         {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
+          "text": "6.1",
+          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " and "
+          "text": " to "
         },
         {
           "text": "6.3",
@@ -575,18 +596,18 @@
           "text": ", and the shipped issue index meets "
         },
         {
-          "text": "6.1",
-          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
+          "text": "6.2",
+          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
         },
         {
           "text": " and "
         },
         {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
+          "text": "6.1",
+          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": "; the printed issue type is the issue class's short name, failing "
+          "text": " in part; the printed issue type is the issue class's short name, failing "
         },
         {
           "text": "4.3",
@@ -700,7 +721,21 @@
       },
       "notes": [
         {
-          "text": "Harness, resolver, derived listing and justified record all hold for the ESLint lane; the dependency-cruiser defence is outside all three, an eslint-suppressions.json silences a bundled defence, and a Tier A rule is never enabled; declares toolchain 0.2.0 at both levels with the gaps recorded"
+          "text": "Harness, resolver, derived listing and justified record all hold for the ESLint lane; the dependency-cruiser defence is outside all three and core rules resolve online only, so detector "
+        },
+        {
+          "text": "6.3",
+          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": " fails; an eslint-suppressions.json silences a bundled defence and a directive naming the ban silences the ban, so detector "
+        },
+        {
+          "text": "7.1",
+          "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
+        },
+        {
+          "text": " is partial; a Tier A rule is never enabled; declares toolchain 0.2.0 at both levels with the gaps recorded"
         }
       ],
       "checked": "2026-09-08, main at commit 46fac6a, declaration merged at ea2020b"
@@ -762,6 +797,16 @@
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": "; --reporter-file leaves the output with no summary, "
+        },
+        {
+          "text": "5.3",
+          "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
+        },
+        {
+          "text": " partial"
         }
       ],
       "checked": "2026-10-10, version 2.5.15"
@@ -825,7 +870,14 @@
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": " holds; "
+          "text": " holds; --output-to leaves the command's output empty, "
+        },
+        {
+          "text": "5.3",
+          "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
+        },
+        {
+          "text": " partial; "
         },
         {
           "text": "4.2",
@@ -894,6 +946,16 @@
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": "; -o leaves the command's output empty, "
+        },
+        {
+          "text": "5.3",
+          "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
+        },
+        {
+          "text": " partial"
         }
       ],
       "checked": "2026-10-10, version 10.12.0"
@@ -1148,14 +1210,28 @@
           "href": "/DETECTOR-SPEC.html#5-reporting"
         },
         {
-          "text": "; "
+          "text": ", bar an -o option that leaves the output empty ("
+        },
+        {
+          "text": "5.3",
+          "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
+        },
+        {
+          "text": " partial); "
         },
         {
           "text": "7.1",
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": " is partial through ESLint, whose eslint-suppressions.json cannot be switched off; bundled rule pages are online only, failing "
+          "text": " is partial through ESLint, whose eslint-suppressions.json cannot be switched off; bundled rule URLs drop the plugin namespace ("
+        },
+        {
+          "text": "6.1",
+          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
+        },
+        {
+          "text": " partial) and the pages are online only, failing "
         },
         {
           "text": "6.2",
@@ -1230,7 +1306,7 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " fail; -o leaves the command's output empty, "
+          "text": " fail; -o leaves the command's output with no summary, "
         },
         {
           "text": "5.3",
@@ -1676,14 +1752,21 @@
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " to "
+          "text": " partial, help linters meets "
+        },
+        {
+          "text": "6.2",
+          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
+        },
+        {
+          "text": " offline, and wrapped tool codes resolving to nothing shipped fail "
         },
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " partial; default issue limits drop findings, "
+          "text": "; default issue limits drop findings and an output file goes unnamed, "
         },
         {
           "text": "5.3",
@@ -2223,6 +2306,16 @@
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": "; --output leaves the file unnamed, "
+        },
+        {
+          "text": "5.3",
+          "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
+        },
+        {
+          "text": " partial"
         }
       ],
       "checked": "2026-10-10, version 1.180.0"
