@@ -34,8 +34,8 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   after one `===== FILE: <name> =====` line. A new marking section says what a delegated marker
   receives and that its verdict is final unless a rule was misapplied, that an open judgement is
   made as a careful reader of the document would, that an earlier run's judgement binds no
-  later run, one that applied a rule not in force when it was made is never followed, and a
-  record says where its marker departs from an earlier judgement and why, and defines a keyed item, quoting (consecutive
+  later run, and that a record says where its marker departs from a judgement an earlier run of
+  the same pull request recorded, and why, and defines a keyed item, quoting (consecutive
   words of any length, verbatim apart from case, quotation-mark style and markup), a correct
   load-bearing answer, read with its quotation, asserting nothing the document does not state
   and omitting no element of the key's answer that answers the question, each read for its
