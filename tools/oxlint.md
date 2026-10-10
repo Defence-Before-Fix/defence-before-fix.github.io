@@ -12,7 +12,7 @@ checked: 2026-10-10, version 1.87.0
 
 {% include tool-grades.html %}
 
-oxlint is the Rust linter from the Oxc project. It ships several hundred built-in rules ported from ESLint and its plugin ecosystem and runs them fast enough to sit in front of everything else in a pipeline as a pre-filter. Since March 2026 it can also load JavaScript plugins written against an ESLint-compatible API, which is the route by which a project's own defences reach it.
+oxlint is the Rust linter from the Oxc project. It ships several hundred built-in rules ported from ESLint and its plugin ecosystem and runs them fast enough to sit in front of everything else in a pipeline as a pre-filter. It can also load JavaScript plugins written against an ESLint-compatible API, previewed in October 2025 ([JS plugins preview](https://oxc.rs/blog/2025-10-09-oxlint-js-plugins)) and in alpha since March 2026 ([JS plugins alpha](https://oxc.rs/blog/2026-03-11-oxlint-js-plugins-alpha)), which is the route by which a project's own defences reach it.
 
 ## How it is conformant
 
