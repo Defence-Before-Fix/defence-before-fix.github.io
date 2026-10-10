@@ -31,10 +31,151 @@ Every grade is against the detector specification 1.0.0 and, for a toolchain, th
 specification 0.2.0; each page's clause table names the clauses that decided it.
 
 Toolchains are listed first in each group; a toolchain's page also lists the tools it bundles
-and which of them can host a bespoke defence. Each page was written against the tool's official
-documentation on the date shown, and a grade is only as current as that date. To have a tool
-added or a grade corrected, open an issue or a pull request on
+and which of them can host a bespoke defence. Each page was written against runs of the release
+it names, and against the tool's documentation and source at that release, on the date shown,
+and a grade is only as current as that date. To have a tool added or a grade corrected, open an
+issue or a pull request on
 [the repository](https://github.com/Defence-Before-Fix/defence-before-fix.github.io).
+
+## How the clauses are read
+
+The same fact turns up on many pages, and a clause read one way on one page and another way on
+the next makes the register disagree with itself. The readings below are applied to every page.
+Each comes from the words of the clause it reads, and where those words allow two readings the
+register takes the one under which fewer tools meet the clause. A case none of them decides is
+settled the same way and added here.
+
+### Grades
+
+1. **What is structural.** A structural MUST, for the detector grade, is one whose failure nothing
+   outside the detector can make good: [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) (no rule of the project's own can be written), [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) (no
+   rule can be run on its own), [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) (no rule can carry a stable identifier), [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure) and [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally) (no local
+   run) and [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file) (no run over a single file). A No on any of them makes the detector grade 🔴. A
+   No anywhere else is not structural, because the toolchain specification gives that gap to the
+   toolchain built on the detector to close, and a toolchain can: a result the detector writes
+   elsewhere, a resolver for its identifiers and a defence against its suppression routes, under
+   toolchain clauses [4.4](../TOOLING-SPEC.md#44-the-toolchains-own-invocation-must-satisfy-the-detector-specifications-reporting-clauses-for-every-defence-it-routes), [4.2](../TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) and [4.3](../TOOLING-SPEC.md#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record).
+   A No on any other detector clause leaves the detector grade 🟡 and is named on the page.
+   Partial is never structural.
+2. **Readiness** asks the three questions of the grade table, which are clauses [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) and [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding)
+   seen from the practitioner's side. A workaround that answers one of them, such as an
+   identifier the rule's author writes at the start of its message where the detector prints the
+   message whole, moves readiness from 🔴 to 🟡; it does not meet [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding), which asks the detector to
+   carry and print the identifier.
+3. **A toolchain's detector column** takes, clause by clause, the lowest result over every
+   detector the toolchain routes a defence through, each as wrapped. A wrapped detector carries an
+   identifier where the toolchain's wrapping requires it of a rule by a check of its own and keys
+   its harness and its resolver on it; that holds for the rules the check covers and for no
+   others.
+
+### Authoring and identifiers (4.1 to 4.4)
+
+4. **A one-rule configuration as the harness.** Where the only way to run one rule alone is a
+   configuration the practitioner writes for it, [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) is Partial. A flag or command that selects
+   one rule, or a test harness, is Yes.
+5. **A derived identifier.** An identifier derived from the rule's class name, file path or
+   position in a configuration, as in the table under [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding), fails [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding), and where no rule can carry
+   any other identifier, [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) is No. Where the project's own rules carry an identifier their author
+   chooses but the bundled rules print one derived from their class names, [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) is Partial: the
+   clause holds for the rules a defence is written as, and fails for the others. A stable,
+   author-chosen identifier that the detector prints only under a flag, or alters by default and
+   prints unaltered under a documented flag, is Partial as well.
+6. **An altered identifier.** A constant prefix or suffix the detector joins to the identifier in
+   any output format, so that the printed token differs from the identifier (`detekt.proj.X`,
+   `l:unlicensed`, `proj(rule)`), alters it: [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) Partial. Text printed beside the identifier as a
+   separately delimited token (`[X from proj]`) leaves it unaltered.
+7. **Enforcement by construction.** A detector that refuses at load a rule whose identifier is
+   missing or malformed enforces part of [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) and is Partial on [4.4](../DETECTOR-SPEC.md#44-the-detector-should-enforce-43-with-a-rule-of-its-own). A rule over the rules that
+   fails a rule reporting without a stable identifier is Yes.
+
+### Reporting (5.1 to 5.4)
+
+8. **A report written elsewhere.** Default output that prints the findings is the result, and
+   meets [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran). Where an option the detector offers writes the findings elsewhere and the command's
+   own output then lacks either the summary or the location, [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) is Partial.
+9. **A file the detector cannot parse.** Exiting 0, or reporting nothing, on a file the detector
+   cannot parse is not graded under [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran), since the result that exists reaches the practitioner. It
+   is recorded on the page, because a defence routed through that detector stops defending
+   without a sign.
+
+### Resolving an identifier (6.1 to 6.5)
+
+10. **A mechanism the detector provides.** The mechanism of [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) is one the detector provides: a
+    command it ships, a file or directory it installs, or a URL it prints with its findings or
+    whose form, the identifier placed in a fixed address, its documentation states as the way to
+    look one up. An address keyed on the identifier exactly that the detector neither prints nor
+    states in that way is not one it provides, however exactly it is keyed, and neither is a
+    function of its programming interface, which a reader holding an identifier from a log cannot
+    call without writing a program.
+11. **Keyed on the identifier exactly as printed.** A mechanism is keyed on the identifier when
+    the identifier exactly as printed, in full, is what reaches the documentation: the address or
+    anchor of its page, the name of its file, the argument a command takes, or the label of an
+    entry in an index whose entry holds the documentation itself, as a listing that prints each
+    identifier with its description does. One that needs the printed identifier changed first, cut
+    to a part, lower-cased or re-spelt, put under a category path or swapped for a number, is keyed
+    on something else and resolves nothing ("An index keyed on anything else does not resolve
+    it"). A list that names each identifier but links it to documentation at a transformed address
+    is keyed on that address, and resolves nothing either.
+12. **What documentation is.** Documentation is text the detector ships to explain a rule: a
+    page, a help entry, or a description its own command prints for the identifier. Clauses [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) to
+    [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) set no bar on its length, so a one-line description a mechanism resolves to meets them for
+    that identifier, and its brevity is recorded on the page. A rule's source file is not
+    documentation, even where it is named by the identifier and carries a description, unless a
+    mechanism of the detector's own presents that description.
+13. **A project's own rule under [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation).** The detector owes the identifier printed unaltered and no
+    more. A default documentation address it prints for a project's rule that leads nowhere is
+    recorded on the page as a dangling reference, and the row is decided by the bundled half.
+14. **[6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access) and [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) follow [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)'s mechanism.** Clause [6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access) asks of each bundled identifier whether the
+    mechanism of [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) resolves it from the installed copy with no network: Yes where every one
+    does, Partial where some do, and No where none does or where no mechanism exists, whatever
+    documentation sits on disk unresolved. Clause [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) is Yes or No, never Partial: "One Identifier
+    that does not resolve fails this clause".
+15. **A family page.** A page documenting a family meets [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) for a member only where a mechanism
+    keyed on that member's full printed identifier lands on it, under [6.5](../DETECTOR-SPEC.md#65-one-page-may-document-a-family-of-identifiers-and-should-name-its-members-so-a-check-can-confirm-them). An address keyed on the
+    family's prefix alone is keyed on part of the identifier, under reading 11.
+
+### Suppression (7.1 and 7.2)
+
+16. **Every route, one row.** Clause [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) is asked of each suppression route the detector offers.
+    The row is Yes where every route is disableable or detectable; No where any route is neither,
+    since "A route that can be neither switched off nor seen does not Conform"; and Partial where
+    no route is neither but one is closed or seen only in part.
+17. **Disableable.** A route is disableable by a documented setting or flag under which the
+    detector does not apply it. Pointing the route at another file is not one: the detector still
+    applies whatever that file holds.
+18. **Detectable.** A route is detectable where the detector reports its use, listing or counting
+    what it suppressed, by default or under a documented flag or command, in its output or a
+    machine-readable format; or where a rule the project writes in the detector sees it. A file
+    the detector reads from a documented path without reporting it is not detectable by the
+    detector: checking that the file exists is the project's own check, not one the detector
+    documents.
+19. **A route that silences the rule written to detect it.** Where the only detection of a route
+    is a project rule, and the same route, naming that rule or in a blanket form, silences it, the
+    route is detected only in part: [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) Partial. That holds unless the detector documents a way to
+    make the detecting rule unsuppressible or a setting closes the route; an escape observed but
+    not documented is not such a way.
+
+## Attributes
+
+Each page ends with attributes no clause grades, for choosing between tools that grade alike. An
+attribute is never a grade and never moves one. A row is there only where its fact was
+established at the release the page names, by a run or from the tool's documentation or source,
+so a missing row means not established, not absent.
+
+| Attribute      | What it records                                                                                                                     |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Kind           | Detector, type checker, formatter, compiler, dependency auditor, runner, host or toolchain                                          |
+| Depth          | Lexical (text or tokens), syntactic (a parse tree) or semantic (resolved names and types), with data flow where values are followed |
+| Rule form      | How a project's own rule is written: a pattern language, a query language, or code against a plugin interface, and in what language |
+| Output formats | Every format the command can print or write, and whether SARIF is native                                                            |
+| Exit codes     | What the command exits with on a finding, on its own failure, and on a file it cannot parse                                         |
+| Report file    | Whether one run can write the full report to a named file whilst the console carries a short summary                                |
+| Fix mode       | Whether it rewrites code to fix a finding, and whether it keeps unsafe fixes apart                                                  |
+| Cache          | A result cache, a daemon or a changed-files mode that makes a run on every edit cheap                                               |
+| Baseline       | Whether it records existing findings to report only new ones, and how                                                               |
+| Unused ignores | Whether it reports a suppression that no longer suppresses anything                                                                 |
+| Rule listing   | A command that lists the rules active under the configuration, with their identifiers                                               |
+| Licence        | The licence of the release named, and any paid tier                                                                                 |
 
 ## The register
 
