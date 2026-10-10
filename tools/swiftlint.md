@@ -3,7 +3,7 @@ title: SwiftLint and Defence Before Fix
 summary: Regex rules in configuration meet 4.1, with native rules by a custom build as the stronger route, and --only-rule meets 4.2; swiftlint rules meets 6.1 to 6.3 offline; Checkstyle, Code Climate, JUnit and HTML drop or alter the id, so 4.3 is partial; --output prints a count but not the file's location, leaving 5.3 partial; a native rule meets 7.1
 language: Swift
 kind: tool
-readiness: 🟡
+readiness: 🟢
 detector: 🟡
 checked: 2026-10-10, version 0.65.1
 ---
@@ -30,7 +30,7 @@ Clause [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-st
 
 The regex route is weaker than the native one for [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): a regex rule matching `swiftlint:disable` in comments found the directives on their own lines, but `// swiftlint:disable:this all`, or one naming the regex rule, on the same line as code hid that line's finding from it, ran. Only a native rule, which needs a custom build, sees every route. No bundled rule checks rules for identifiers ([4.4](../DETECTOR-SPEC.md#44-the-detector-should-enforce-43-with-a-rule-of-its-own)), no release gate over rule documentation was found ([6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation), not verified), and a disable command has no field for a reason ([7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)).
 
-Readiness is 🟡 rather than 🟢 because it rests on a workaround: the regex route meets [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) but is a pattern over text that a same-line disable command can silence, so a defence that sees every suppression route needs a native rule, and a native rule requires a custom Bazel build. The detector grade is 🟡 because of [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) and [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran). SwiftLint declares no version of this document.
+Readiness is 🟢 because all three of its criteria hold: bespoke rules ([4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)), a single rule run against a single file with `--only-rule` ([4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)), and a stable identifier printed with every finding in the default output. The regex route is the weaker of the two for suppression, since it is a pattern over text that a same-line disable command can silence, so a defence that sees every suppression route needs a native rule, and a native rule requires a custom Bazel build; that bears on [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable), which the native route meets, not on readiness. The detector grade is 🟡 because of [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) and [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran). SwiftLint declares no version of this document.
 
 ## Clause by clause
 

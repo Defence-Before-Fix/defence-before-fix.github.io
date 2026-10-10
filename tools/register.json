@@ -3212,8 +3212,8 @@
       "language": "Swift",
       "kind": "tool",
       "readiness": {
-        "mark": "🟡",
-        "level": "amber"
+        "mark": "🟢",
+        "level": "green"
       },
       "detector": {
         "mark": "🟡",
