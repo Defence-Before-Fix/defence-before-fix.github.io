@@ -154,8 +154,9 @@ which rule and why. Each sheet is marked question by question, as follows.
 
 Where a mark needs a judgement these rules do not settle, the marker makes it as a careful reader
 of the document would, and the record states the judgement and why. A judgement an earlier run
-recorded does not bind a later run where a rule it rested on has since changed: the marker makes
-it afresh under the rules as they now stand, and the record names the rule that changed.
+recorded binds no later run, and one that applied a rule not in force when it was made is never
+followed: the marker makes each judgement afresh under this file as it applies to the run being
+marked, and where it departs from an earlier run's judgement, the record says so and why.
 
 ## Pass criteria
 
