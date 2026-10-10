@@ -471,9 +471,9 @@ place its [Owner] and its consumers can learn of it.
 
 The declaration is optional. The gap record above is part of it: the duty to record a gap there
 binds a project or artefact that declares a version, and one that declares none makes no claim
-for a gap to qualify.
-A gap that method clause 3.2 requires to be recorded is still recorded where that clause says,
-with a declaration or without one. A [Toolchain] assembled before this document existed, or by a
+for a gap record to qualify. A gap that method clause 3.2 requires to be recorded is still
+recorded as that clause says, in the [Project record] where the [Toolchain] defines one, with a
+declaration or without one. A [Toolchain] assembled before this document existed, or by a
 project that has never read it, MAY be graded [Conforming] on evidence by anyone who exercises
 the clauses above against it. A verdict on any [Toolchain], declared or not, rests on that
 exercise and not on the claim.
