@@ -1,6 +1,7 @@
 # Answer key for DETECTOR-SPEC.md
 
-Marked against the document at the version named in the changelog entry that records the run.
+Marked against the document at the commit the readers read, with this key, its question set and
+fixture at that same commit.
 Quotations below are from the document; when a clause is reworded, update the quotation here in
 the same commit.
 
@@ -60,18 +61,14 @@ agent summary (those belong to the toolchain specification).
 
 Section [8](../../DETECTOR-SPEC.md#8-conformance) verdict: **does not conform**, because [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) fails and partial conformance MUST NOT be
 described as conformance. A reader who grades [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) Partial on the grounds that thirty-eight resolve
-has read the clause differently and that counts against the document; a reader who grades [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) Yes
-because they missed the last paragraph of the fixture has misread the fixture, not the document.
+has read the clause differently and that counts against the document.
 
 Clause [6.4](../../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation): **does not change the verdict**. It is a SHOULD, and Lintomatic's failure to check its
 own identifiers in CI is a missed SHOULD, not a further MUST failure; the MUST that fails is [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together).
 
-A reader who marks [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) No because the comment takes no reason has confused [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) with [7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason), which is
-SHOULD; that counts against the document if the reasoning quotes [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) or [7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason).
-
 ## 4. Confusion
 
-No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
-finding that blocks until the text is changed and a fresh cohort no longer quotes it. What to
-change is the editor's decision; the reader is not asked and any suggestion it volunteers is
-discarded unread.
+No keyed answer. Record every passage quoted. Two or more readers naming the same passage, as
+`ACCEPTANCE.md` defines it, is a finding that blocks until the text is changed and a fresh
+cohort no longer names it. What to change is the editor's decision; the reader is not asked
+and any suggestion it volunteers is discarded unread.
