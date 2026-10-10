@@ -55,9 +55,9 @@ Whoever writes a [Rule]. May be the [Detector]'s maintainer, a [Toolchain]'s mai
 
 A [Rule] the [Detector] ships, or fetches on the [Practitioner]'s behalf from a source the [Detector]'s maintainer controls. Its [Rule author] will never see the codebases it runs in, so everything a [Practitioner] needs in order to act on it has to travel with it.
 
-#### Harness
+#### Rule harness
 
-The route by which one [Rule] is run against supplied code and its findings observed, without the project's own test suite and without every other [Rule] running alongside it.
+The route by which one [Rule] is run against supplied code and its findings observed, without the project's own test suite and without every other [Rule] running alongside it. It is not the environment an [Agent] runs in, which this document never means by the word *harness*.
 
 The distinction between a [Bundled rule] and a project's own [Rule] matters throughout.
 The [Detector] owns the documentation of the first and can be held to shipping it; it cannot
@@ -72,7 +72,7 @@ Each mechanism the method needs has two halves. Stating only one of them is what
 | Requirement                          | The [Detector] MUST provide                             | The [Rule author] supplies                              |
 | ------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------- |
 | Bespoke [Rules]                      | The authoring and registration route                    | The [Rules]                                             |
-| The red proof                        | A [Harness]                                             | The [Fixture] and the red run                           |
+| The red proof                        | A [Rule harness]                                        | The [Fixture] and the red run                           |
 | Running the [Rule]                   | A local invocation, including subsets                   | Running it                                              |
 | The [Identifier]                     | A place to carry it, and printing it with every finding | Choosing it once                                        |
 | Resolution of a [Bundled rule]       | The lookup, and the documentation, on disk              | Nothing                                                 |
@@ -98,7 +98,7 @@ project's own, which is the half that carries its institutional knowledge.
 
 ### 4.2 The detector MUST provide a harness that runs a single rule against supplied code
 
-A [Harness] reports, for a given input, whether the [Rule] fired and what it printed, without
+A [Rule harness] reports, for a given input, whether the [Rule] fired and what it printed, without
 executing the project's own test suite and without the other [Rules] obscuring the answer.
 This applies to every [Rule] the [Detector] runs, bundled or bespoke; a
 [Detector] failing 4.1 is graded here on its [Bundled rules].
@@ -321,7 +321,7 @@ condition of it. A [Detector] that predates this document, or whose maintainer h
 it, MAY be graded [Conforming] on evidence by anyone who exercises the clauses above against
 it, and a verdict on any [Detector], declared or not, rests on that exercise and not on the
 claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
-the reader still runs the [Harness].
+the reader still runs the [Rule harness].
 
 The shape is illustrative rather than prescribed. In a Composer manifest:
 
@@ -385,7 +385,6 @@ does not have to.
 [detector]: SPEC.md#detector
 [detectors]: SPEC.md#detector
 [fixture]: SPEC.md#fixture
-[harness]: #harness
 [hazards]: SPEC.md#hazard
 [identifier]: SPEC.md#identifier
 [identifiers]: SPEC.md#identifier
@@ -395,6 +394,7 @@ does not have to.
 [project record]: TOOLING-SPEC.md#project-record
 [rule]: SPEC.md#rule
 [rule author]: #rule-author
+[rule harness]: #rule-harness
 [rules]: SPEC.md#rule
 [suppression]: SPEC.md#suppression
 [toolchain]: SPEC.md#toolchain

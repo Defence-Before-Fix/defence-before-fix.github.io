@@ -88,6 +88,10 @@ A **[Blocking]** [Rule] together with the supporting documentation that clarifie
 
 The accumulated set of [Defences] a project has built. Every [Defect] handled under this method extends it.
 
+#### Remediation
+
+The work done on one [Defect] under this method, its fix included, whether or not every clause of section 3 was followed. Section 7 states when a [Remediation] [Conforms].
+
 #### Remediation docs
 
 The fuller documentation a failure [Message] points to, explaining what a [Rule] is about, why it exists and how to fix a violation correctly.
@@ -295,7 +299,7 @@ legitimate and the [Owner] has not decided whether that is a [Hazard]. Step 5 wr
 things down.
 
 A [Defect] usually belongs to several overlapping [Classes] at different levels of abstraction, and
-choosing between them determines the [Rule], the [Instance] count and the scope of the remediation.
+choosing between them determines the [Rule], the [Instance] count and the scope of the [Remediation].
 Two bounds apply, and both are checkable during the work rather than matters of taste:
 
 - **Lower bound.** If the [Rule] catches only the originating [Instance], the [Class] is probably drawn
@@ -320,7 +324,7 @@ process that stopped before its work, the [Class] a [Detector] can read usually 
 below that [Hazard]: the mechanism of this [Instance], not the failure the report opens with.
 That [Class] is the right one to build, because no [Detector] reads "this check still produces
 its signal". It is not the whole answer. The record MUST state whether the reported behaviour is also
-pinned by a check a [Runner] executes, under section 6, either one added with this remediation or
+pinned by a check a [Runner] executes, under section 6, either one added with this [Remediation] or
 an existing one named, and where neither is offered, why not. A [Class] drawn at the mechanism with
 the behaviour left unpinned defends the [Instance] thoroughly and the report not at all.
 
@@ -416,7 +420,7 @@ it. A gap recorded where nobody looks has been forgotten with extra steps.
 
 There are two kinds of gap and they lead to different work. The language having no extensible
 [Detector] and no practical bespoke one is the gap above, and the [Class] waits for one. The project's [Toolchain]
-lacking a mechanism the [toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an
+lacking a mechanism the [toolchain specification](TOOLING-SPEC.md) requires, such as a [Rule harness] or an
 [Identifier] resolver, is a mechanism gap, and it does not put the [Class] out of reach: the
 [Practitioner] builds the [Rule], uses the substitutes clauses 3.3 and 3.6 already allow, and records
 the mechanism gap alongside it. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
@@ -470,7 +474,7 @@ proof that passes only there does not survive.
 Both commits MUST remain individually reachable in the history the reviewer inspects. A merge that
 flattens them into one destroys the proof, so a project whose merge policy does that MUST keep the
 [Defence] commit reachable by another recorded reference, a tag or the retained branch, or MUST NOT
-claim the remediation [Conforms]. How the project merges is its own business under section 8;
+claim the [Remediation] [Conforms]. How the project merges is its own business under section 8;
 what must survive the merge is not.
 
 **Part B: [Narrowing].**
@@ -557,7 +561,7 @@ clause 3.1's upper bound requires the [Narrowing]. Exclude it as precisely as po
 sentence, and keep a test that proves the exclusion reaches nothing else.
 
 **[Rules] are software, and SHOULD be built test-first like any other software.** How practical
-that is varies considerably between [Detectors], some of which offer purpose-built [Rule]-testing harnesses
+that is varies considerably between [Detectors], some of which offer a purpose-built [Rule harness]
 and some of which offer nothing, so this is a best-effort requirement rather than an absolute one.
 Where a [Detector] makes [Fixture]-based testing impractical, an acceptance or smoke check that
 demonstrates the [Rule] firing is an acceptable substitute.
@@ -716,7 +720,7 @@ fix a violation correctly using the project's preferred approach.
 
 A [Practitioner] who finds that an existing [Rule]'s printed [Identifier] does not resolve records
 it where clause 3.2's gaps are recorded, naming the [Rule] and the [Identifier], with no [Rule] build of
-their own to attach it to. It does not block the remediation. Where the mechanism cannot resolve
+their own to attach it to. It does not block the [Remediation]. Where the mechanism cannot resolve
 [Identifiers] at all, it is a [Toolchain] gap and blocks the [Toolchain]'s claim under section 7
 until fixed; where the mechanism resolves others and only this [Rule]'s documentation is missing, it is a
 fault in that [Rule]'s [Remediation docs], owned by whoever wrote the [Rule], and bears on
@@ -832,7 +836,7 @@ required, which means an [Exception] is being contemplated, or when they are unc
 exclusion carries the [Hazard]. It is not what they do because the number is uncomfortable. Five
 hundred [Instances] with no [Exception] needed is five hundred [Instances] to fix.
 
-A remediation MAY be delivered across several changes where the volume warrants it, **provided the
+A [Remediation] MAY be delivered across several changes where the volume warrants it, **provided the
 [Rule] does not become [Blocking] until every [Instance] is fixed**, since a [Blocking] [Rule] merged over a
 codebase that still violates it either fails continuously or has been weakened to avoid doing so.
 No [Instance] may be knowingly left unfixed at the end without the [Owner]'s decision.
@@ -856,7 +860,7 @@ being treated as meaningful.
 
 This constrains the **sequence of checks**, not the infrastructure that runs them. How the project
 expresses that sequence is out of scope, per section 8. It is a property of the project, not a step
-in any one remediation: a [Practitioner] handling a [Defect] is not required to reorder the
+in any one [Remediation]: a [Practitioner] handling a [Defect] is not required to reorder the
 project's checks, and a project whose checks run in another order is a project that does not
 [Conform], which is a finding to record, not work to do on the way to a fix.
 
@@ -868,7 +872,7 @@ costs time diagnosing symptoms of a problem the first level would have named dir
 ## 6. Relationship to test-driven development
 
 Defence Before Fix neither replaces nor competes with TDD. They operate at different levels, and
-a full remediation uses both: a test, executed by a [Runner], pins the [Instance]; a [Rule], evaluated by
+a full [Remediation] uses both: a test, executed by a [Runner], pins the [Instance]; a [Rule], evaluated by
 a [Detector], catches the [Class].
 
 | Concern            | TDD                                | Defence Before Fix                           |
@@ -890,7 +894,7 @@ evidence is gone and the opportunity closes with it.
 [Conformance] is claimed at one of four levels. Partial [Conformance] MUST NOT be described as
 [Conformance].
 
-**A remediation [Conforms]** if all six clauses of section 3 were followed for that [Defect], and
+**A [Remediation] [Conforms]** if all six clauses of section 3 were followed for that [Defect], and
 the verdict that they were rests on reproduction, as this section closes by requiring, not on the
 report.
 
@@ -900,7 +904,7 @@ was proven to fire against either the originating [Instance] or [Fixture] code, 
 than warns, and its [Message] is terse and resolves to [Remediation docs] versioned alongside
 it. A [Defence] can [Conform] whilst the [Sweep] is incomplete; what that describes is a
 [Conforming] [Defence] over a codebase with known [Instances], which section 4 requires to be
-recorded, not a [Conforming] remediation.
+recorded, not a [Conforming] [Remediation].
 
 **A [Toolchain] [Conforms]** if it permits bespoke custom [Rules], supports the ordering in section 5,
 and satisfies clauses 8.1 to 8.5 and 8.7: the [Practitioner] can run it, the result reaches them in
@@ -928,7 +932,7 @@ that a project can meet its own. The summary here is normative and sufficient to
 [Toolchain] by; the companion documents are where a [Detector] maintainer and a
 [Toolchain] author should work from.
 
-A verdict on a remediation or a [Defence] MUST rest on reproduction, not on the report: the reviewer
+A verdict on a [Remediation] or a [Defence] MUST rest on reproduction, not on the report: the reviewer
 reruns the [Defence] red at the commit that introduced it and green at the final commit, through the
 project's own entry point for accepting changes, and reruns the originating symptom against the fix.
 Where the [Rule] was proven against a [Fixture] under clause 3.3, the red run is against the
@@ -952,7 +956,7 @@ For a human developer, a failure [Message] that teaches is good practice. They m
 internalise it, may ignore it, and which of those happens depends on their seniority, their
 workload and how many times they have seen the [Message] before.
 
-For an [Agent], the failure [Message] is the entire remediation loop. It is consumed as instruction,
+For an [Agent], the failure [Message] is the entire correction loop. It is consumed as instruction,
 in the same turn, every time, with no fatigue and no seniority gradient. A [Message] that resolves
 to documentation explaining the correct approach does not simply block the [Agent], it redirects it,
 and it does so identically on the thousandth occurrence as on the first.
@@ -1107,7 +1111,7 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 | ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 1.0.0   | 2026-09-08 | Initial specification, formalising the method published on 22 February 2026. Revised before publication after three independent cold readers understood the method correctly and still could not execute its judgement calls.                                                                                                                                                                                                                                                                                                                                                        |
 | 1.0.1   | 2026-09-08 | Clarity, no obligation changed: section 3 opens with a map of the six clauses; clause 3.1 opens with its five steps and closes with what it leaves on the record; clause 3.3 is in three named parts and its [Narrowing] part opens with the decision. The header and the terminology entries for [Detector], [Toolchain] and [Conform] name the [detector specification](DETECTOR-SPEC.md) 1.0.0 alongside the [toolchain specification](TOOLING-SPEC.md) 0.2.0, and [Conform] extends to the companion specification being claimed. Accepted under [ACCEPTANCE.md](ACCEPTANCE.md). |
-| 1.1.0   | 2026-10-02 | New obligation: a [Defect] whose fix is deferred is recorded where the project's other decisions are enumerable under clause 8.7, naming the [Class] where apparent; whether it stays unfixed is the [Owner]'s decision under section 4, and a mention in conversation is not a record. Appendix A carries the sentence for an [Agent]. Section 7's definition of a [Conforming] remediation names reproduction in the same sentence. Accepted under [ACCEPTANCE.md](ACCEPTANCE.md).                                                                                                 |
+| 1.1.0   | 2026-10-02 | New obligation: a [Defect] whose fix is deferred is recorded where the project's other decisions are enumerable under clause 8.7, naming the [Class] where apparent; whether it stays unfixed is the [Owner]'s decision under section 4, and a mention in conversation is not a record. Appendix A carries the sentence for an [Agent]. Section 7's definition of a [Conforming] [Remediation] names reproduction in the same sentence. Accepted under [ACCEPTANCE.md](ACCEPTANCE.md).                                                                                               |
 
 <!-- Term link definitions -->
 
@@ -1150,8 +1154,10 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 [narrowing]: #narrowing
 [owner]: #owner
 [practitioner]: #practitioner
+[remediation]: #remediation
 [remediation docs]: #remediation-docs
 [rule]: #rule
+[rule harness]: DETECTOR-SPEC.md#rule-harness
 [rules]: #rule
 [runner]: #runner
 [runners]: #runner

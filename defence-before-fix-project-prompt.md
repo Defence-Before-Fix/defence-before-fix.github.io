@@ -78,8 +78,8 @@ The rendered site is https://defence-before-fix.github.io/. The US spelling, Def
 ## What to expect from the toolchain
 
 A detector that conforms to the detector specification gives you: a way to write a bespoke rule
-in the project; a harness that runs one rule against one file; a stable identifier printed with
-every finding; and resolution of a printed identifier to its documentation. A project's toolchain
+in the project; a rule harness that runs one rule against one file; a stable identifier printed
+with every finding; and resolution of a printed identifier to its documentation. A project's toolchain
 that conforms to the toolchain specification adds: resolution of the project's own identifiers
 without network access; a listing of every defence active in the project, derived from the live
 configuration, with the project's recorded exceptions in the same listing; the inline suppression

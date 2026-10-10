@@ -61,7 +61,7 @@ capitalised term links to its definition; the ones this document leans on most a
 | [Practitioner] | Whoever is doing the work, a person or an [Agent]                                   |
 | [Owner]        | The human who decides what the codebase may keep                                    |
 | [Bundled rule] | A [Rule] a [Detector] ships rather than one the project wrote                       |
-| [Harness]      | The route by which one [Rule] is run against supplied code on its own               |
+| [Rule harness] | The route by which one [Rule] is run against supplied code on its own               |
 
 These are additional.
 
@@ -91,10 +91,10 @@ part of it does so.
 | Requirement             | The mechanism, and where it is stated                                                                       | The project supplies                 |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | Bespoke [Defences]      | The authoring and registration route, [detector specification](DETECTOR-SPEC.md) 4.1                        | The [Rules]                          |
-| The red proof           | A [Harness], [detector specification](DETECTOR-SPEC.md) 4.2                                                 | The [Fixture] and the red run        |
+| The red proof           | A [Rule harness], [detector specification](DETECTOR-SPEC.md) 4.2                                            | The [Fixture] and the red run        |
 | Running the [Defence]   | A local invocation, including subsets, [detector specification](DETECTOR-SPEC.md) 5                         | Running it                           |
 | [Identifier] resolution | The lookup, [detector specification](DETECTOR-SPEC.md) 6 for [Bundled rules], clause 4.2 here for the rest  | The documentation content            |
-| Correct construction    | A place for it to live, clause 4.2 here                                                                     | The remediation text                 |
+| Correct construction    | A place for it to live, clause 4.2 here                                                                     | The [Remediation docs] content       |
 | Enumeration             | The listing, section 5 here                                                                                 | The [Defences] listed                |
 | [Agent]-context summary | Generation and delivery, section 7 here                                                                     | The terse lines                      |
 | Recorded decisions      | A location it reads itself, section 6 here                                                                  | The decisions                        |
@@ -117,7 +117,7 @@ It makes any inline [Suppression] route detectable or disableable. A [Detector] 
 one of those, after wrapping, fails this clause. Three points govern how that is met.
 
 1. **Wrapping is permitted.** The [Toolchain] MAY supply a mechanism the
-   [Detector] lacks by wrapping it, with a [Harness] script or a
+   [Detector] lacks by wrapping it, with a [Rule harness] script or a
    resolver of its own. The [Detector] together with that wrapping is then what the
    [Practitioner] uses and what is judged.
 
@@ -234,7 +234,7 @@ project expresses that sequence, and where it runs, remain out of scope under me
 
 **Why**: method section 5. A [Detector] is preventive and a test is diagnostic, and a failure
 at the [Detector] level produces confusing results at every level above it. The method makes
-the ordering a property of the project rather than of any one remediation, which is exactly the
+the ordering a property of the project rather than of any one [Remediation], which is exactly the
 kind of property that lives in the [Toolchain] and nowhere else.
 
 ## 5. Enumeration
@@ -495,7 +495,6 @@ does not have to build them alone.
 [exception]: SPEC.md#exception
 [exceptions]: SPEC.md#exception
 [fixture]: SPEC.md#fixture
-[harness]: DETECTOR-SPEC.md#harness
 [hazard]: SPEC.md#hazard
 [identifier]: SPEC.md#identifier
 [identifiers]: SPEC.md#identifier
@@ -505,9 +504,11 @@ does not have to build them alone.
 [practitioner]: SPEC.md#practitioner
 [practitioners]: SPEC.md#practitioner
 [project record]: #project-record
+[remediation]: SPEC.md#remediation
 [remediation docs]: SPEC.md#remediation-docs
 [rule]: SPEC.md#rule
 [rule author]: DETECTOR-SPEC.md#rule-author
+[rule harness]: DETECTOR-SPEC.md#rule-harness
 [rules]: SPEC.md#rule
 [runner]: SPEC.md#runner
 [runners]: SPEC.md#runner

@@ -10,6 +10,16 @@ version entry with no cohort line has not been accepted and is not published.
 
 ## Method specification (SPEC.md)
 
+### Unreleased
+
+- Clarity, no obligation changed: remediation is a defined term in section [1](SPEC.md#1-terminology), the work done on
+  one defect under the method, its fix included, whether or not every clause of section [3](SPEC.md#3-the-method) was
+  followed, and every use links to it; section [8](SPEC.md#8-operating-a-defence-under-ai-assisted-development)'s "remediation loop", a different sense, reads
+  "correction loop". Clauses [3.2](SPEC.md#32-build-the-net) and [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) name the detector specification's rule harness where
+  they said "proving harness" and "rule-testing harnesses". Prompted by a review that found
+  section [7](SPEC.md#7-conformance) defining when a remediation conforms without the word being defined, and "harness"
+  read as the environment an agent runs in. Accepted by run NNN.
+
 ### 1.1.0, 2026-10-02
 
 - New obligation, section [2](SPEC.md#2-when-the-method-applies): a defect whose fix is deferred MUST be recorded where the project's
@@ -68,6 +78,14 @@ pass it.
 
 ## Detector specification (DETECTOR-SPEC.md)
 
+### Unreleased
+
+- Clarity, no obligation changed: the term Harness in section [2](DETECTOR-SPEC.md#2-terminology) is now Rule harness, used in
+  that form in sections [3](DETECTOR-SPEC.md#3-the-division-of-responsibility), [4.2](DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) and [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps), and its definition says it is not the environment an
+  agent runs in. Prompted by readers taking "harness" in its AI-agent sense, the environment
+  around a language model, rather than the route that runs one rule on supplied code. Accepted
+  by run NNN.
+
 ### 1.0.0, 2026-09-08
 
 First version, split out of toolchain specification 0.1.0 on the same day. States what a detector,
@@ -94,6 +112,14 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
 `ACCEPTANCE.md` records.
 
 ## Toolchain specification (TOOLING-SPEC.md)
+
+### Unreleased
+
+- Clarity, no obligation changed: the detector specification's Harness is Rule harness in the
+  section [2](TOOLING-SPEC.md#2-terminology) gloss, the section [3](TOOLING-SPEC.md#3-the-division-of-responsibility) table and clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification), and the method specification's newly
+  defined Remediation is linked in clause [4.5](TOOLING-SPEC.md#45-the-toolchains-entry-point-must-run-detectors-before-runners-and-must-stop-on-a-detector-failure); the section [3](TOOLING-SPEC.md#3-the-division-of-responsibility) table's "remediation text" reads
+  "remediation docs content". Prompted by "harness" read in its AI-agent sense and by
+  remediation being used undefined. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
