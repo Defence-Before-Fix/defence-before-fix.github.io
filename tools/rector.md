@@ -5,7 +5,7 @@ language: PHP
 kind: tool
 readiness: 🟡
 detector: 🔴
-checked: 2026-09-08, version 2.6.6
+checked: 2026-10-10, version 2.7.0
 ---
 
 # Rector
@@ -24,22 +24,22 @@ Clause [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-st
 
 ## Clause by clause
 
-| Document | Clause | Result       | Evidence                                                                                                                  |
-| -------- | ------ | ------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| Detector | [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)    | Yes          | `AbstractRector` and `withRules()`, [custom rule](https://getrector.com/documentation/custom-rule)                        |
-| Detector | [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)    | Yes          | `AbstractRectorTestCase` fixtures and `--only`, [run single rule](https://getrector.com/documentation/run-single-rule)    |
-| Detector | [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding)    | No           | Prints the rule class name, which the clause forbids                                                                      |
-| Detector | [4.4](../DETECTOR-SPEC.md#44-the-detector-should-enforce-43-with-a-rule-of-its-own)    | No           | Nothing enforces an identifier                                                                                            |
-| Detector | [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure)    | Yes          | `vendor/bin/rector --dry-run` runs locally                                                                                |
-| Detector | [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file)    | Yes          | Path argument accepted                                                                                                    |
-| Detector | [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)    | Yes          | Diff and rule name print to the terminal                                                                                  |
-| Detector | [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally)    | Yes          | No CI-only mode                                                                                                           |
-| Detector | [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)    | No           | No resolver keyed on a printed identifier                                                                                 |
-| Detector | [6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access)    | No           | Bundled rule catalogue is on the website                                                                                  |
-| Detector | [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together)    | No           | Same                                                                                                                      |
-| Detector | [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation)    | Not verified | Not found                                                                                                                 |
-| Detector | [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)    | Yes          | `@noRector` removed; skips are configuration only, [pull request 3148](https://github.com/rectorphp/rector-src/pull/3148) |
-| Detector | [7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)    | No           | No inline route; `withSkip()` carries no reason field                                                                     |
+| Document | Clause                                                                                                                                                           | Result       | Evidence                                                                                                                  |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| Detector | [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)                                                        | Yes          | `AbstractRector` and `withRules()`, [custom rule](https://getrector.com/documentation/custom-rule)                        |
+| Detector | [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)                                                  | Yes          | `AbstractRectorTestCase` fixtures and `--only`, [run single rule](https://getrector.com/documentation/run-single-rule)    |
+| Detector | [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding)                                   | No           | Prints the rule class name, which the clause forbids                                                                      |
+| Detector | [4.4](../DETECTOR-SPEC.md#44-the-detector-should-enforce-43-with-a-rule-of-its-own)                                                                              | No           | Nothing enforces an identifier                                                                                            |
+| Detector | [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure)                                                  | Yes          | `vendor/bin/rector --dry-run` runs locally                                                                                |
+| Detector | [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file)                                                        | Yes          | Path argument accepted                                                                                                    |
+| Detector | [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)                                                       | Yes          | Diff and rule name print to the terminal                                                                                  |
+| Detector | [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally) | Yes          | No CI-only mode                                                                                                           |
+| Detector | [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)                                      | No           | No resolver keyed on a printed identifier                                                                                 |
+| Detector | [6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access)                                  | No           | Bundled rule catalogue is on the website                                                                                  |
+| Detector | [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together)                                                | No           | Same                                                                                                                      |
+| Detector | [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation)                                          | Not verified | Not found                                                                                                                 |
+| Detector | [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)                                        | Yes          | `@noRector` removed; skips are configuration only, [pull request 3148](https://github.com/rectorphp/rector-src/pull/3148) |
+| Detector | [7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)                                                                        | No           | No inline route; `withSkip()` carries no reason field                                                                     |
 
 ## Notes for a practitioner
 

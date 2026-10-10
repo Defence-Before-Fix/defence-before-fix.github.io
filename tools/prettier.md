@@ -5,7 +5,7 @@ language: JavaScript and TypeScript
 kind: tool
 readiness: 🔴
 detector: 🔴
-checked: 2026-09-08, version 3.9.6
+checked: 2026-10-10, version 3.9.9
 ---
 
 # Prettier

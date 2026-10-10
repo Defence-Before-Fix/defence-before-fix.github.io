@@ -5,7 +5,7 @@ language: JavaScript and TypeScript
 kind: tool
 readiness: 🟡
 detector: 🟡
-checked: 2026-09-08, version 18.2.0
+checked: 2026-10-10, version 18.5.0
 ---
 
 # dependency-cruiser
