@@ -21,9 +21,9 @@ Edit SPEC.md or _data/site.yml, never the outputs.
 
 from __future__ import annotations
 
+import argparse
 import re
 import shutil
-import sys
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -184,10 +184,14 @@ def write_site(site: Path, data: dict) -> None:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="Write the agent prompt and llms.txt, and optionally the deploy-time files.")
+    parser.add_argument("--check", action="store_true", help="fail if the prompt or llms.txt is stale, write nothing")
+    parser.add_argument("--site", type=Path, help="also write the raw documents and llms-full.txt under this built site")
+    args = parser.parse_args()
     data = load_data()
     spec = (HERE / "SPEC.md").read_text()
     outputs = {PROMPT: prompt(data, spec), LLMS: llms(data)}
-    if "--check" in sys.argv:
+    if args.check:
         stale = [p.name for p, text in outputs.items() if not p.exists() or p.read_text() != text]
         if stale:
             print(f"agent surfaces stale: {', '.join(stale)}; run build-agent-surfaces.py")
@@ -197,8 +201,8 @@ def main() -> int:
         for p, text in outputs.items():
             p.write_text(text)
         print("agent surfaces: rebuilt")
-    if "--site" in sys.argv:
-        write_site(Path(sys.argv[sys.argv.index("--site") + 1]), data)
+    if args.site is not None:
+        write_site(args.site, data)
     return 0
 
 
