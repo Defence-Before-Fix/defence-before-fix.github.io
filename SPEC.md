@@ -198,7 +198,7 @@ stated in one sentence, naming at least two independent ways of writing the [Rul
 tried, and recorded where the project's other decisions are enumerable under clause 8.7, not
 only with the fix. Two ways of writing the [Rule] are independent when they would miss different
 things. That is the test clause 3.1 applies to its search techniques, but a way of writing the
-[Rule] is not a technique in clause 3.1's sense, which is a way of searching for [Instances].
+[Rule] is not a technique, which clause 3.1 defines as a way of searching for [Instances].
 That conclusion is the cheapest way out of the method and the only one that would otherwise
 leave no trace; enumerating it is how an [Owner] sees an [Agent] routing around the method, and
 naming the ways tried is what lets them judge whether the attempt was one.
@@ -478,10 +478,12 @@ of the paragraphs above: the language has no extensible [Detector] of a kind tha
 The second is a mechanism gap: the project's [Toolchain] lacks a mechanism the
 [toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an [Identifier]
 resolver. A mechanism gap does not put the [Class] out of reach. The [Practitioner] still builds
-the [Rule], records the mechanism gap alongside it, and meets clauses 3.3 and 3.6 by the
-substitutes those clauses accept: for testing the [Rule], the acceptance or smoke check clause 3.3
-accepts in place of a [Fixture]-based test; for resolution, an [Identifier] in a form clause 3.6
-allows that needs no resolver, such as an anchor in a documentation file. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
+the [Rule] and records the mechanism gap alongside it. Where the missing mechanism would have
+served clause 3.3 or 3.6, the [Practitioner] uses what those clauses allow in its place: the
+acceptance or smoke check that clause 3.3 accepts where a [Detector] makes [Fixture]-based testing
+impractical, and an [Identifier] in a form clause 3.6 allows that can be followed without a
+resolver, such as an anchor in a documentation file. Every obligation of those clauses that the substitute
+does not stand in for still applies in full. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
 own obligations, such as a [Toolchain] that cannot run its [Defences] on its own source, is recorded
 against the [Toolchain]'s claim under section 7 as well, because that is the fact its [Owner] needs.
 Where that record lives is the [Toolchain]'s own [Conformance] declaration, under the
@@ -768,8 +770,9 @@ own or somebody else's, since that is where the [Rule] will be enforced. A proje
 purpose, with the [Toolchain] installed into it from the source under test, is such a project, so
 a [Toolchain] with no consumer yet is not excused. Where a mechanism gap, as clause 3.2 defines
 it, stops the [Toolchain] running its own entry point on its own source, the demonstration is made
-in such a project instead, and is owed there in full. Clause 3.2 lets the [Practitioner] meet
-clauses 3.3 and 3.6 by substitutes when a mechanism is missing; it allows none for this clause.
+through the entry point of another project the [Toolchain] is genuinely installed into, and is
+owed there in full. Clause 3.2 lets the [Practitioner] use the substitutes it names for clauses
+3.3 and 3.6 when a mechanism is missing; it allows none for this clause.
 The demonstration here is through an entry point or it is not made.
 
 **Why**: the purpose is that the mistakes of the past become structurally impossible to repeat, and
@@ -871,7 +874,7 @@ be.
 
 **The default position is that none of these are permitted at all.** [Suppressions], [Baselines] and
 every other means of evading a [Defence] are not practices with a threshold governing their use; they are
-[Exceptions] to the method, and the standing answer is no. An [Exception] exists only where a human has
+[Exceptions] to the method, and the standing answer is no. An [Exception] exists only where the [Owner] has
 discussed it, agreed it and documented it for that project. Nothing an [Agent] concludes on its own
 creates one.
 

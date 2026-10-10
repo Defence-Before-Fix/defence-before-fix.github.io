@@ -79,14 +79,21 @@ version entry with no cohort line has not been accepted and is not published.
   paragraphs, saying that a run of the rule belongs to the proof or the sweep. Each after readers
   of run 27 missed or named the passage. After run 29, clarity edits: section [2](SPEC.md#2-when-the-method-applies)'s sentence that
   no pattern exists names two independent ways of writing the rule that were tried, in place of
-  "techniques", and says these are not clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s techniques; the MUST it carries is reworded, not
-  changed. Clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) says a technique is a way of searching for instances wherever the
-  specification uses the word, and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) no longer uses it otherwise; clause [3.2](SPEC.md#32-build-the-net)'s
-  paragraph on the two kinds of gap gives each kind a sentence of its own and names the
-  substitutes clauses [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) and [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) accept for a missing mechanism; and clause [3.5](SPEC.md#35-enforce-permanently-and-block)'s paragraph on a
-  bundled defence says in shorter sentences where its demonstration is made and that those
-  substitutes give no way round it. Each after two readers of run 29 named the passage. Accepted
-  by run NNN. Minor version when released.
+  "techniques", and says a way of writing the rule is not a technique, which clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) defines;
+  the MUST it carries is reworded, not changed. Clause [3.2](SPEC.md#32-build-the-net)'s paragraph on the two kinds of gap
+  gives each kind a sentence of its own and names, for a missing mechanism, the substitutes
+  clauses [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) and [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) already allow, each under the condition its clause sets, and says every
+  other obligation of those clauses still applies; and clause [3.5](SPEC.md#35-enforce-permanently-and-block)'s paragraph on a bundled
+  defence says in shorter sentences that, where a mechanism gap stops the toolchain running its
+  own entry point, the demonstration is made through another project's entry point and owed
+  there in full, and that clause [3.2](SPEC.md#32-build-the-net)'s substitutes give no way round it. Each after two readers of
+  run 29 named the passage. Clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) says a technique is a way of searching for instances
+  wherever the specification uses the word, after one reader of run 29 named run 25's open
+  passage there, and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) calls suppressions and baselines practices, not techniques, to
+  follow it. Section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) says an exception exists only where the owner, not "a human", has
+  discussed, agreed and documented it, as the owner's terminology entry and the section's own
+  list already say, after a reader of run 29 answered 2b with "a human" and not the owner. Accepted by run
+  NNN. Minor version when released.
 
 ### 1.1.0, 2026-10-02
 
@@ -153,8 +160,9 @@ pass it.
   or licence tier. It is not a level of conformance and does not change the verdict; it
   is stated because method clause [3.2](SPEC.md#32-build-the-net) now requires a rule to be written in the strongest kind of
   detector that can express it, and a verdict of conforming alone presents a textual detector as
-  an equal host. Section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) still adds no obligation to a practitioner and names this
-  one as binding whoever gives a verdict on a detector, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss carries the three terms. After run 20, changed obligation, clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran): the
+  an equal host. Section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) still adds no obligation to the method a practitioner
+  follows and names this one as binding whoever gives a verdict on a detector, a practitioner
+  included when they give one, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss carries the three terms. After run 20, changed obligation, clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran): the
   usable summary gives each finding in it with its location and identifier, and the location of
   the rest is owed only where the summary leaves a finding out, so output that prints every
   finding conforms though extra detail goes to a file it does not name; the old text owed that
@@ -190,15 +198,20 @@ pass it.
   needing the other specifications; section [8](DETECTOR-SPEC.md#8-conformance)'s paragraph on the kind says what a
   configuration is and, in a paragraph of its own, that the duty is not one of the MUSTs
   conformance is judged on and that a verdict leaving the kind out still stands on conformance.
-  Each after readers of run 28 missed or named the passage. After run 30, the duty to name the
-  kind moves, unchanged, from section [8](DETECTOR-SPEC.md#8-conformance)'s paragraphs to a clause [8.2](DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades) of its own, with a Why,
-  out of the section that states the conformance test, and says it binds whoever gives the
-  verdict, anyone grading under clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) included; section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) names the clause. Clarity edits:
-  clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says what a project's own rule must be able to match for the route to be
-  detectable that way, each ignore comment or directive where it is written and each entry of a
-  generated baseline; clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says a gap is a MUST the detector does not satisfy, that a
+  Each after readers of run 28 missed or named the passage. After run 30, the MUST to name the
+  kind moves, unchanged, from the body of section [8](DETECTOR-SPEC.md#8-conformance), beside the conformance test, to a clause
+  [8.2](DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades) of its own, with a Why; the paragraph after it says, in new words, that it binds whoever
+  gives the verdict, anyone grading under clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) and a maintainer grading their own detector
+  included, and asks nothing of the detector itself; section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) names the clause and says it
+  binds a practitioner who gives a verdict. Clarity edits: clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says, route by route, what
+  a project's own rule must be able to match for the route to be detectable that way: for an
+  ignore comment or a per-line directive each place it is written, for a generated baseline each
+  of its entries; clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says a gap is a MUST the detector does not satisfy, that a
   declaration is the maintainer's claim, and that a detector with no declaration claims nothing.
-  Each after two or more readers of run 30 named the passage. Accepted by run NNN. Minor version
+  Each after two or more readers of run 30 named the passage. Clause [6.2](DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access) gains a sentence
+  saying that the page an identifier resolves to is in the documentation clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) requires to
+  ship with the rule, at a version tracked together with it, after two readers of run 30 answered
+  2c from clause [6.2](DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access) alone and left out the version. Accepted by run NNN. Minor version
   when released.
 
 ### 1.0.0, 2026-09-08

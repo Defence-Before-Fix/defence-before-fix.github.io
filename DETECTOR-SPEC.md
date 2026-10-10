@@ -218,6 +218,10 @@ given. The lookup they can actually perform is the only one that counts.
 
 ### 6.2 Resolution of a bundled rule's identifier MUST work from the installed copy, without network access
 
+The page an [Identifier] of a [Bundled rule] resolves to is in the documentation that clause 6.3
+requires to ship with the [Rule], at a version tracked together with it, so the installed copy
+already holds it.
+
 **Why**: an [Agent] working offline, behind a proxy, or against a URL that has since moved needs
 the answer to be on disk. A dependency the project already installed is on disk by definition. A
 catalogue on the [Detector]'s website, however complete, is the right documentation in the wrong
@@ -285,8 +289,8 @@ neither switched off nor detected does not [Conform].
 A route is detectable when the project can find every use of it, in one of two ways. The first is
 a [Rule] the project writes for itself, under clause 4.1, and the [Detector] runs; the [Detector]
 need not ship the [Rule] itself. That way works only where such a [Rule] can match every use of
-the route: each ignore comment or directive where it is written in the code, and each entry of a
-generated [Baseline]. A [Detector] whose [Rules] never see comments, for example, cannot make an
+the route: for an ignore comment or a per-line directive, each place it is written in the code;
+for a generated [Baseline], each of its entries. A [Detector] whose [Rules] never see comments, for example, cannot make an
 ignore comment detectable this way. The second is a mechanical check that the [Detector] itself documents, such as a
 text search it documents for the route's spelling. Switching the route off or detecting it is what
 lets a project that decides to forbid the route enforce that decision.
@@ -377,7 +381,8 @@ as section 2 glosses it. The kind named is the one the [Detector] has without a 
 a licence tier, since under clause 5.4 a finding reported only there does not [Conform].
 
 This clause binds whoever gives the verdict, anyone grading a [Detector] under clause 8.1
-included, and asks nothing of the [Detector] or its maintainer. A [Detector] is judged on
+included, and asks nothing of the [Detector] itself; a maintainer who gives a verdict on their
+own [Detector] is bound by it like anyone else. A [Detector] is judged on
 sections 4 to 7, as section 8 says, and the kind is not a level of [Conformance] and does not
 change the verdict: a [Textual] [Detector] can [Conform], and a [Semantic] one can fail to. A
 verdict that leaves the kind out has not met this clause, but what it finds about [Conformance]
@@ -389,8 +394,9 @@ kind of [Detector] that can express it, and a verdict of [Conforming] alone pres
 
 ## 9. Relationship to the other specifications
 
-This document adds no obligations to a [Practitioner] and relaxes none. Clause 8.2 adds one on
-whoever gives a verdict on a [Detector]: to name its kind. Every clause here
+This document adds no obligation to the method a [Practitioner] follows, and relaxes none.
+Clause 8.2 adds one on whoever gives a verdict on a [Detector], a [Practitioner] included when
+they give one: to name its kind. Every clause here
 exists to make a clause of the method specification achievable with a [Detector] in hand.
 
 Where this document and the method specification disagree, the method specification governs. It

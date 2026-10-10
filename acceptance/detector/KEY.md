@@ -44,8 +44,9 @@ agent summary (those belong to the toolchain specification).
   the Detector to remove or forbid the route."; "A route is detectable when the project can find
   every use of it, in one of two ways. The first is a Rule the project writes for itself, under
   clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), and the Detector runs; the Detector need not ship the Rule itself. That way works
-  only where such a Rule can match every use of the route: each ignore comment or directive where
-  it is written in the code, and each entry of a generated Baseline. A Detector whose Rules never
+  only where such a Rule can match every use of the route: for an ignore comment or a per-line
+  directive, each place it is written in the code; for a generated Baseline, each of its entries.
+  A Detector whose Rules never
   see comments, for example, cannot make an ignore comment detectable this way. The second is a
   mechanical check that the Detector itself documents". An answer that says the detector must forbid the route, or must require a
   reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD), is wrong.
