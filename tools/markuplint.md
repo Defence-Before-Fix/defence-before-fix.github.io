@@ -1,0 +1,54 @@
+---
+title: markuplint and Defence Before Fix
+summary: createRule plugins and mlRuleTest meet 4.1 and 4.2, with the configured name printed for 4.3; no lookup in the tool leaves 6.1 partial and online-only pages fail 6.2 and 6.3; no inline route, so 7.1 holds
+language: HTML
+kind: tool
+readiness: 🟢
+detector: 🟡
+checked: 2026-10-10, version 5.1.1
+---
+
+# markuplint
+
+{% include tool-grades.html %}
+
+markuplint is an HTML linter for Node.js that checks markup against data drawn from the HTML Living Standard and WAI-ARIA, with parsers for Vue, Svelte, Astro and other template languages. Its presets wrap base rules such as `no-duplicate-id` in named rules such as `html-standard/id-duplication` and `a11y/id-duplication`. In a pipeline it is the conformance and accessibility check on markup, and it accepts rules a project writes as a plugin.
+
+## How it is conformant
+
+A bespoke rule is made with `createRule()` and registered by `createPlugin({ name, create })`, whose `name` becomes the rule's namespace ([custom rules](https://markuplint.dev/docs/guides/custom-rule)). A plugin named `proj` with a rule `no-bold`, listed under `plugins` and enabled as `proj/no-bold`, ran beside the bundled rules ([4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)). The harness ships in the package: `mlRuleTest(rule, source)`, exported from `markuplint`, ran the rule on a supplied string and reported the finding, and nothing on the clean string; on the command line `--no-search-config -c one.json`, with a configuration holding only that rule, printed only its finding, and the same worked for the bundled `no-duplicate-id` ([4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)). The identifier is the name of the rule as configured, the namespace chosen once in `createPlugin` and the rule's key, and a run in all four formats printed it unaltered: `(proj/no-bold)` in Standard and GitHub, `proj/no-bold` in Simple, and `ruleId` in JSON ([4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding)). For a named rule from a preset, the text formats print the named rule, `html-standard/id-duplication`, and JSON prints it as `name` beside the base rule's `ruleId`, `no-duplicate-id`.
+
+Section [5](../DETECTOR-SPEC.md#5-reporting) holds for files. markuplint ran locally with no infrastructure and on a single file, and every finding was printed in the command's output ([5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure) to [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally)).
+
+Clause [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) holds. markuplint has no inline comment route: `<!-- markuplint-disable -->` and similar comments had no effect in the run, and the documentation describes only configuration (`excludeFiles`, `nodeRules`, `childNodeRules`, `overrides`) for ignoring code ([ignoring code](https://markuplint.dev/docs/guides/ignoring-code)). The one generated route is the experimental bulk suppressions file: `--suppress` wrote `markuplint-suppressions.json` with a count per file and rule, and the next run read it by default and reported nothing. That file has a documented default path, so a project can check for its presence mechanically, and `--suppressions-location` points a run at another file, which ignored it in the run.
+
+## How it is not conformant
+
+Clause [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) is partial. Nothing in the tool resolves an identifier: no command, no URL in any output format and none in the installed rules. The website has a page per base rule at `https://markuplint.dev/docs/rules/<id>`, and the named rules are listed with descriptions in tables on [the presets page](https://markuplint.dev/docs/guides/presets). But the identifier the default output prints for a preset finding does not resolve at that address, `https://markuplint.dev/docs/rules/html-standard/id-duplication` returned HTTP 404, and of the 107 base rules exported by `@markuplint/rules` in this release, `no-redundant-accessible-name` had no page (HTTP 404). Clauses [6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access) and [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) fail: the rule packages ship code and JSON schemas, whose `$ref`s point at the `main` branch on GitHub, and no rule documentation.
+
+No bundled rule fails a rule that reports without an identifier ([4.4](../DETECTOR-SPEC.md#44-the-detector-should-enforce-43-with-a-rule-of-its-own)). The suppressions file records a count and an optional scope selector, and no reason ([7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)). No release gate over rule pages was found ([6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation), not verified).
+
+Three behaviours outside the clauses are worth knowing. With `-f JSON`, a run with five errors exited 0, although [the CLI page](https://markuplint.dev/docs/guides/cli) says the exit code is 1 when violations are found; the Standard, Simple and GitHub formats exited 1. A nonexistent file printed nothing and exited 0, with or without `--allow-empty-input`. Piping a file in, as the help text's example `cat verifyee.html | markuplint` shows, printed the help text and exited 1. `mlRuleTest` reported the one `<b>` in the fixture twice and returned 119 configuration warnings with it, where the command line reported it once.
+
+## Clause by clause
+
+| Document | Clause | Result       | Evidence                                                                                                                               |
+| -------- | ------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)    | Yes          | Ran a `createPlugin` rule as `proj/no-bold` ([custom rules](https://markuplint.dev/docs/guides/custom-rule))                           |
+| Detector | [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)    | Yes          | Ran `mlRuleTest` red and green; `-c` with a one-rule configuration on a fixture                                                        |
+| Detector | [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding)    | Yes          | Ran Standard, Simple, GitHub and JSON: the configured name printed unaltered in each                                                   |
+| Detector | [4.4](../DETECTOR-SPEC.md#44-the-detector-should-enforce-43-with-a-rule-of-its-own)    | No           | No rule over the rules                                                                                                                 |
+| Detector | [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure)    | Yes          | Ran locally, no infrastructure                                                                                                         |
+| Detector | [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file)    | Yes          | Ran on one file; standard input printed the help text                                                                                  |
+| Detector | [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)    | Yes          | Findings in the command's output                                                                                                       |
+| Detector | [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally)    | Yes          | Every rule runs in the local package                                                                                                   |
+| Detector | [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)    | Partial      | No lookup in the tool; base rules have web pages, named rules 404 at the same address, `no-redundant-accessible-name` 404              |
+| Detector | [6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access)    | No           | Documentation on the website only                                                                                                      |
+| Detector | [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together)    | No           | Rule packages ship code and schemas, no documentation                                                                                  |
+| Detector | [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation)    | Not verified | No release gate over rule pages found                                                                                                  |
+| Detector | [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)    | Yes          | Ran: no inline route; suppressions file at a [documented path](https://markuplint.dev/docs/guides/ignoring-code), redirected by a flag |
+| Detector | [7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)    | No           | Suppressions file entries carry no reason                                                                                              |
+
+## Notes for a practitioner
+
+Write the rule with `createRule` in a project plugin whose `name` is the project's namespace, prove it with `mlRuleTest` and with a one-rule configuration on the fixture, and keep its documentation in the project, since markuplint has nowhere to put a link. Do not adopt the bulk suppressions file, or fail the build when `markuplint-suppressions.json` exists. Read the Standard or Simple output rather than JSON where the exit status matters, and pass files by path rather than on standard input.

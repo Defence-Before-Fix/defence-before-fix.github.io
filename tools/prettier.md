@@ -5,7 +5,7 @@ language: JavaScript and TypeScript
 kind: tool
 readiness: 🔴
 detector: 🔴
-checked: 2026-09-08, version 3.9.6
+checked: 2026-10-10, version 3.9.9
 ---
 
 # Prettier
@@ -24,22 +24,22 @@ Clause [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-writ
 
 ## Clause by clause
 
-| Document | Clause | Result | Evidence                                                                                                                  |
-| -------- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------- |
-| Detector | [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)    | No     | Plugins add parsers and printers, not diagnostics ([plugins](https://prettier.io/docs/plugins))                           |
-| Detector | [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)    | No     | Nothing to harness                                                                                                        |
-| Detector | [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding)    | No     | A `--check` finding is a file name                                                                                        |
-| Detector | [4.4](../DETECTOR-SPEC.md#44-the-detector-should-enforce-43-with-a-rule-of-its-own)    | No     | Not applicable                                                                                                            |
-| Detector | [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure)    | Yes    | Runs locally                                                                                                              |
-| Detector | [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file)    | Yes    | Single file path                                                                                                          |
-| Detector | [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)    | Yes    | Output of the command                                                                                                     |
-| Detector | [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally)    | Yes    | Same everywhere                                                                                                           |
-| Detector | [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)    | No     | Nothing to resolve                                                                                                        |
-| Detector | [6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access)    | No     | Same                                                                                                                      |
-| Detector | [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together)    | No     | Same                                                                                                                      |
-| Detector | [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation)    | No     | Not applicable                                                                                                            |
-| Detector | [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)    | No     | `prettier-ignore` and `.prettierignore` cannot be disabled or reported ([ignoring code](https://prettier.io/docs/ignore)) |
-| Detector | [7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)    | No     | No reason on `prettier-ignore`                                                                                            |
+| Document | Clause                                                                                                                                                           | Result         | Evidence                                                                                                                  |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Detector | [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)                                                        | No             | Plugins add parsers and printers, not diagnostics ([plugins](https://prettier.io/docs/plugins))                           |
+| Detector | [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)                                                  | No             | Nothing to harness                                                                                                        |
+| Detector | [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding)                                   | No             | A `--check` finding is a file name                                                                                        |
+| Detector | [4.4](../DETECTOR-SPEC.md#44-the-detector-should-enforce-43-with-a-rule-of-its-own)                                                                              | Not applicable | No rules or identifiers to enforce                                                                                        |
+| Detector | [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure)                                                  | Yes            | Runs locally                                                                                                              |
+| Detector | [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file)                                                        | Yes            | Single file path                                                                                                          |
+| Detector | [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)                                                       | Yes            | Output of the command                                                                                                     |
+| Detector | [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally) | Yes            | Same everywhere                                                                                                           |
+| Detector | [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)                                      | No             | Nothing to resolve                                                                                                        |
+| Detector | [6.2](../DETECTOR-SPEC.md#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access)                                  | No             | Same                                                                                                                      |
+| Detector | [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together)                                                | No             | Same                                                                                                                      |
+| Detector | [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation)                                          | Not applicable | No identifiers to document                                                                                                |
+| Detector | [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)                                        | No             | `prettier-ignore` and `.prettierignore` cannot be disabled or reported ([ignoring code](https://prettier.io/docs/ignore)) |
+| Detector | [7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)                                                                        | No             | No reason on `prettier-ignore`                                                                                            |
 
 ## Notes for a practitioner
 
