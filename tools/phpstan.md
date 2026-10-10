@@ -12,7 +12,7 @@ checked: 2026-10-10, version 2.3.1
 
 {% include tool-grades.html %}
 
-PHPStan is a static analyser that reads PHP without running it and reports type errors, dead code and any pattern a rule class describes. It is the detector most PHP pipelines already run, and it is the detector both reference toolchains for this method build on, so it is the natural host for a bespoke defence in PHP.
+PHPStan is a static analyser that reads PHP without running it and reports type errors, dead code and any pattern a rule class describes. It is the detector most PHP pipelines already run, and it is the detector the PHP reference toolchain, [php-qa-ci](php-qa-ci.md), builds on, so it is the natural host for a bespoke defence in PHP.
 
 ## How it is conformant
 

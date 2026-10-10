@@ -1,6 +1,6 @@
 ---
 title: dependency-cruiser and Defence Before Fix
-summary: Named forbidden rules with comments meet 4.1, but allowed rules cannot carry a name, so 4.3 is partial; the bundled recommended rules ship with their comments on disk, but nothing resolves a printed name to them and one file is not named by its rule, so 6.1 is partial and 6.3 fails; the baseline is opt-in so 7.1 holds; --output-to leaves the command's output empty, 5.3 partial; 4.2 needs a one-rule config workaround
+summary: Named forbidden rules with comments meet 4.1, but allowed rules cannot carry a name, so 4.3 is partial; the bundled recommended rules ship with their comments on disk, and their files are named by the printed name for six of seven, with no command or index, so 6.1 is partial and 6.3 fails; the baseline is opt-in so 7.1 holds; --output-to leaves the command's output empty, 5.3 partial; 4.2 needs a one-rule config workaround
 language: JavaScript and TypeScript
 kind: tool
 readiness: 🟡

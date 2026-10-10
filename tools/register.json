@@ -195,8 +195,8 @@
         "level": "amber"
       },
       "detector": {
-        "mark": "🔴",
-        "level": "red"
+        "mark": "🟡",
+        "level": "amber"
       },
       "toolchain": {
         "mark": "·",
@@ -215,14 +215,14 @@
           "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
         },
         {
-          "text": ", the class name printed fails "
+          "text": ", a project mutator's own getName is printed unaltered but every bundled mutator prints its short class name, so "
         },
         {
           "text": "4.3",
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": ", infection-ignore-all fails "
+          "text": " is partial, and infection-ignore-all fails "
         },
         {
           "text": "7.1",
@@ -499,14 +499,14 @@
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": " is partial; the online rules index is keyed on the printed name but omits 16 of the 61 bundled rules, so "
+          "text": " is partial; the online rules index and the verbose link are keyed on the ruleset and the lower-cased name, not the name as printed, so "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " is partial, and nothing installed resolves a name, failing "
+          "text": " fails for the bundled rules, and nothing installed resolves a name, failing "
         },
         {
           "text": "6.2",
@@ -947,7 +947,7 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " is partial; the bundled recommended rules ship with their comments on disk, but nothing resolves a printed name to them and one file is not named by its rule, so "
+          "text": " is partial; the bundled recommended rules ship with their comments on disk, and their files are named by the printed name for six of seven, with no command or index, so "
         },
         {
           "text": "6.1",
@@ -4348,14 +4348,14 @@
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": "; its bundled meta hooks resolve only through a list on the website, so "
+          "text": "; its bundled meta hooks are listed only on the website, under anchors that transform the printed id, so "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " holds and "
+          "text": ", "
         },
         {
           "text": "6.2",
