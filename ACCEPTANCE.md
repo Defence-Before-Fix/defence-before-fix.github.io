@@ -154,7 +154,9 @@ which rule and why. Each sheet is marked question by question, as follows.
   paragraph.
 
 Where a mark needs a judgement these rules do not settle, the marker makes it as a careful reader
-of the document would, and the record states the judgement and why.
+of the document would, and the record states the judgement and why. A judgement an earlier run
+recorded does not bind a later run where a rule it rested on has since changed: the marker makes
+it afresh under the rules as they now stand, and the record names the rule that changed.
 
 ## Pass criteria
 
