@@ -37,8 +37,8 @@ a test may serve as the detector; an agent may baseline the remaining instances.
   default owner paragraph in the terminology entry for Owner still requires a recorded decision).
 - **2c.** All six clauses of section [3](../../SPEC.md#3-the-method) were followed for that defect, and the verdict rests on the
   reviewer reproducing the red and green runs, not on the report. Key quotations, section [7](../../SPEC.md#7-conformance): "A
-  remediation Conforms if all six clauses of section [3](../../SPEC.md#3-the-method) were followed for that Defect, and the
-  verdict that they were rests on reproduction"; "A verdict on a remediation or a Defence MUST
+  Remediation Conforms if all six clauses of section [3](../../SPEC.md#3-the-method) were followed for that Defect, and the
+  verdict that they were rests on reproduction"; "A verdict on a Remediation or a Defence MUST
   rest on reproduction, not on the report". An answer that accepts the pull request description
   as the verdict is wrong, and so is one that states the six clauses and says nothing of
   reproduction.
