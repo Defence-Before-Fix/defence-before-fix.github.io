@@ -482,8 +482,10 @@ the [Rule] and records the mechanism gap alongside it. Where the missing mechani
 served clause 3.3 or 3.6, the [Practitioner] uses a substitute only where that clause allows one,
 and only for what it stands in for. Clause 3.3's acceptance or smoke check is allowed only where
 a [Detector] makes [Fixture]-based testing impractical, and it stands in only for the
-[Fixture]-based test that clause's test-first paragraph asks for: Part A's red run, and Part C's
-proof using [Fixture] code where the pattern is absent, are still owed. Clause 3.6's [Identifier]
+[Fixture]-based test that clause's test-first paragraph asks for. Part A's red run, and Part C's
+proof using [Fixture] code where the pattern is absent, are still owed, and the smoke check may
+be the run that makes either, run on the code that proof names: the originating [Instance] for
+Part A, [Fixture] code for Part C. Clause 3.6's [Identifier]
 in a form that can be followed without a resolver, such as an anchor in a documentation file,
 stands in only for the resolver. Every other obligation of those clauses still applies in full.
 A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
@@ -775,7 +777,7 @@ a [Toolchain] with no consumer yet is not excused. Where a mechanism gap, as cla
 it, stops the [Toolchain] running its own entry point on its own source, the demonstration is made
 through the entry point of another project the [Toolchain] is genuinely installed into, and is
 owed there in full. Clause 3.2 lets the [Practitioner] use the substitutes it names for clauses
-3.3 and 3.6 when a mechanism is missing; it allows none for this clause.
+3.3 and 3.6, under the conditions it sets; it allows none for this clause.
 The demonstration here is through an entry point or it is not made.
 
 **Why**: the purpose is that the mistakes of the past become structurally impossible to repeat, and

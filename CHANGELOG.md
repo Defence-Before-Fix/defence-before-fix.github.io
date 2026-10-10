@@ -95,8 +95,12 @@ version entry with no cohort line has not been accepted and is not published.
   passage there, and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) calls suppressions and baselines practices, not techniques, to
   follow it. Section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) says an exception exists only where the owner, not "a human", has
   discussed, agreed and documented it, as the owner's terminology entry and the section's own
-  list already say, after a reader of run 29 answered 2b with "a human" and not the owner. Accepted by run
-  NNN. Minor version when released.
+  list already say, after a reader of run 29 answered 2b with "a human" and not the owner. Clause [3.2](SPEC.md#32-build-the-net) then says that the
+  smoke check may be the run that makes Part A's red run, on the originating instance, and Part
+  C's proof, on fixture code, as clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) sets neither proof's means, and clause [3.5](SPEC.md#35-enforce-permanently-and-block)'s summary
+  of clause [3.2](SPEC.md#32-build-the-net) gives its substitutes under the conditions clause [3.2](SPEC.md#32-build-the-net) sets, after an
+  independent review found "still owed" could be read as leaving a rule with no pattern unprovable.
+  Accepted by run NNN. Minor version when released.
 
 ### 1.1.0, 2026-10-02
 
