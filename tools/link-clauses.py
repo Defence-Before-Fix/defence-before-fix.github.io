@@ -11,6 +11,7 @@ to the wrong document is well-formed markdown in the wrong sense.
 
 from __future__ import annotations
 
+import argparse
 import difflib
 import sys
 from pathlib import Path
@@ -20,7 +21,9 @@ import clauses
 
 
 def main() -> int:
-    diff = "--diff" in sys.argv
+    parser = argparse.ArgumentParser(description="Link every clause and section reference on the covered pages.")
+    parser.add_argument("--diff", action="store_true", help="print what would change, change nothing")
+    diff = parser.parse_args().diff
     changed = 0
     for page in clauses.pages():
         before = (clauses.ROOT / page).read_text()
