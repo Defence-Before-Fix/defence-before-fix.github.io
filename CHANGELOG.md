@@ -10,6 +10,15 @@ version entry with no cohort line has not been accepted and is not published.
 
 ## Method specification (SPEC.md)
 
+### Unreleased
+
+- Clarity edit, clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation): a mechanism that cannot resolve identifiers at all is called a mechanism gap
+  under clause [3.2](SPEC.md#32-build-the-net), which names an identifier resolver as such a mechanism, not a toolchain gap,
+  which clause [3.2](SPEC.md#32-build-the-net) keeps for a language with no extensible detector and no practical bespoke one;
+  it still blocks the toolchain's claim under section [7](SPEC.md#7-conformance) until fixed, as a breach of the toolchain
+  specification's own obligations. Prompted by a review reading that found the two clauses giving
+  one case two names. Accepted by run NNN. Patch version when released.
+
 ### 1.1.0, 2026-10-02
 
 - New obligation, section [2](SPEC.md#2-when-the-method-applies): a defect whose fix is deferred MUST be recorded where the project's

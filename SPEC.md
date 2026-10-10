@@ -717,8 +717,9 @@ fix a violation correctly using the project's preferred approach.
 A [Practitioner] who finds that an existing [Rule]'s printed [Identifier] does not resolve records
 it where clause 3.2's gaps are recorded, naming the [Rule] and the [Identifier], with no [Rule] build of
 their own to attach it to. It does not block the remediation. Where the mechanism cannot resolve
-[Identifiers] at all, it is a [Toolchain] gap and blocks the [Toolchain]'s claim under section 7
-until fixed; where the mechanism resolves others and only this [Rule]'s documentation is missing, it is a
+[Identifiers] at all, it is a mechanism gap under clause 3.2, not a [Toolchain] gap, and since it
+also breaches the [toolchain specification](TOOLING-SPEC.md)'s own obligations it blocks the
+[Toolchain]'s claim under section 7 until fixed; where the mechanism resolves others and only this [Rule]'s documentation is missing, it is a
 fault in that [Rule]'s [Remediation docs], owned by whoever wrote the [Rule], and bears on
 the project's claim rather than the [Toolchain]'s.
 
