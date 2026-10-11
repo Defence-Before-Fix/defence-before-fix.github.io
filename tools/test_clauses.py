@@ -55,6 +55,20 @@ class LinkifyTest(unittest.TestCase):
         text = "version 2.2.13, PHP 8.4, `rule 4.1`, [4.1](../DETECTOR-SPEC.md#41-x), Attribution 4.0 and 0.2.0"
         self.assertEqual(clauses.linkify(text, default="detector", rel="../"), text)
 
+    def test_a_version_whose_numbers_begin_with_a_clause_is_left_alone(self) -> None:
+        for text in ("Psalm 6.20.0 ships its pages", "released 6.20.0.", "6.20.0", "fixed in 4.10 and 5.30.2"):
+            with self.subTest(text=text):
+                self.assertEqual(clauses.linkify(text, default="detector", rel="../"), text)
+
+    def test_a_shell_release_is_left_alone(self) -> None:
+        for text in ("Bash 5.3", "bash 5.3 parses it"):
+            with self.subTest(text=text):
+                self.assertEqual(clauses.linkify(text, default="detector", rel="../"), text)
+
+    def test_a_clause_beside_a_version_is_still_linked(self) -> None:
+        out = clauses.linkify("6.20.0 meets 6.2", default="detector", rel="../")
+        self.assertTrue(out.startswith("6.20.0 meets [6.2](../DETECTOR-SPEC.md#62-"))
+
     def test_table_row_document_column_governs_the_clause_cell_only(self) -> None:
         row = "| Toolchain | 4.1    | No     | as wrapped fails 5.2 |"
         out = clauses.linkify(row, default="detector", rel="../")

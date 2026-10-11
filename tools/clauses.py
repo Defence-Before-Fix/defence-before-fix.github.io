@@ -36,8 +36,9 @@ QUALIFIER = r"(?P<doc>method|detector|toolchain)(?:[ '’]s|['’]s)?(?: specifi
 WORD = r"(?P<word>clauses?|sections?)"
 NUMBER = r"(?P<num>\d+\.\d+|\d+)"
 # A number that is a clause or section reference and not a version, a licence or a year:
-# not preceded by a word character, a dot or a digit, and not followed by another dot-number.
-BARE = r"(?<![\w.])" + NUMBER + r"(?![\w.]\w|\.\d)"
+# not preceded by a word character, a dot or a digit, and not followed by a digit or another
+# dot-number, so that 6.20.0 is not read as 6.2 followed by 0.0.
+BARE = r"(?<![\w.])" + NUMBER + r"(?!\d|[\w.]\w|\.\d)"
 REFERENCE = re.compile(
     rf"(?:{QUALIFIER}\s+)?(?:{WORD}\s+)?{BARE}",
     re.I,
@@ -45,7 +46,7 @@ REFERENCE = re.compile(
 PROTECTED = re.compile(r"`[^`]*`|\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\[[^\]]*\]|https?://\S+")
 # A number after one of these is a version, a licence or a release, never a clause. Lintomatic is
 # the acceptance fixture's detector, whose name carries its version.
-VERSION_WORDS = re.compile(r"(?:version|v|since|from|at|php|python|node|go|zig|rust|typescript|attribution|lintomatic)\s*$", re.I)
+VERSION_WORDS = re.compile(r"(?:version|v|since|from|at|php|python|node|go|zig|rust|typescript|bash|attribution|lintomatic)\s*$", re.I)
 SENTENCE_END = re.compile(r"[.;:!?]\s|\n")
 TABLE_DOC = re.compile(r"^\|\s*(Method|Detector|Toolchain)\s*\|", re.I)
 LINK = re.compile(r"\[([^\]]+)\]\(([^)#]*)#([^)]+)\)")

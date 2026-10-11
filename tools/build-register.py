@@ -3,7 +3,7 @@
 
 Each tools/<slug>.md carries its grades in front matter:
   summary:    one line of notes, clause numbers as plain text
-  language:   PHP | JavaScript and TypeScript | Python | Go | Rust | Multi-language
+  language:   a group in LANGUAGE_ORDER below, such as PHP, Python or Multi-language
   kind:       tool | toolchain
   readiness, detector: a grade, one of the three marks
   toolchain, project:  a grade, toolchains only
@@ -18,6 +18,7 @@ after any page changes; CI fails when either output is stale.
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -37,6 +38,19 @@ LANGUAGE_ORDER = [
     "Python",
     "Go",
     "Rust",
+    "HTML",
+    "CSS",
+    "C#",
+    "F#",
+    "Java",
+    "Kotlin",
+    "Swift",
+    "Ruby",
+    "C and C++",
+    "PowerShell",
+    "SQL",
+    "Shell",
+    "YAML",
     "Multi-language",
 ]
 GRADES = {"🟢": "green", "🟡": "amber", "🔴": "red"}
@@ -124,7 +138,9 @@ def register(rows: list[dict[str, str]]) -> str:
 
 
 def main() -> int:
-    check = "--check" in sys.argv
+    parser = argparse.ArgumentParser(description="Build tools/index.md's table and tools/register.json from the tool pages.")
+    parser.add_argument("--check", action="store_true", help="fail if either output is stale, write nothing")
+    check = parser.parse_args().check
     pages = sorted(p for p in HERE.glob("*.md") if p.name != "index.md")
     rows = ordered([parse(p) for p in pages])
     text = INDEX.read_text()
