@@ -277,9 +277,8 @@ An inline ignore comment, a per-line directive and a generated [Baseline] are al
 routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
 alone satisfies this clause: make the route disableable by configuration; or make the route
 detectable, by a [Rule] the project can write in the [Detector] itself or by a mechanical check
-the [Detector] documents. That [Rule], or that check, reports each use of the route. The project
-writes the [Rule], in the [Detector]'s own [Rule] language, and the [Detector] runs it as it runs
-any bespoke [Rule] under clause 4.1. Either lets a project which decides to forbid
+the [Detector] documents. The [Detector] need not ship that [Rule]: it is enough that the
+project can write it, as a bespoke [Rule] under clause 4.1. Either lets a project which decides to forbid
 the route enforce that decision. A route that can be neither switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]

@@ -135,7 +135,11 @@ pass it.
   sentence after it narrowing the duty, which two readers set against the MUST; and clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)
   says that the rule or the mechanical check reports each use of the route and that the project
   writes the rule, after two readers could not tell who writes it or what the check is.
-  Accepted by run NNN.
+  [Run 45](acceptance/runs/045-defined-terms-detector-run-5.md) failed on clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) again,
+  after three readers could not tell whether the detector must ship the detecting rule or only
+  let the project write one: the two sentences after the MUST are now one, saying the detector
+  need not ship it, and "the Detector's own Rule language", which a reader could not place, is
+  gone. Accepted by run NNN.
 
 ### 1.0.0, 2026-09-08
 
