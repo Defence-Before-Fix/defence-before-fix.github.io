@@ -204,7 +204,7 @@ transformation of it. Where the [Identifier] is itself a URL, as method clause 3
 the [Detector] prints that URL and has done what this clause asks. What this clause forbids is
 a documentation path printed alongside a shorter [Identifier] that cannot be looked up on its
 own. The lookup for such
-a [Rule] is an obligation on the project's assembled [Toolchain], under clause 4.2
+a [Rule], from the [Identifier] to its documentation on disk, is an obligation on the project's assembled [Toolchain], under clause 4.2
 of the [toolchain specification](TOOLING-SPEC.md), and a [Detector] that offers it as well has
 gone further than this clause asks.
 
@@ -277,8 +277,8 @@ An inline ignore comment, a per-line directive and a generated [Baseline] are al
 routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
 alone satisfies this clause: make the route disableable by configuration; or make the route
 detectable, by a [Rule] the project can write in the [Detector] itself or by a mechanical check
-the [Detector] documents. The [Detector] need not ship that [Rule]: it is enough that the
-project can write it, as a bespoke [Rule] under clause 4.1. Either lets a project which decides to forbid
+the [Detector] documents. A [Rule] "in the [Detector] itself" is a bespoke [Rule] under clause
+4.1. Either lets a project which decides to forbid
 the route enforce that decision. A route that can be neither switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]

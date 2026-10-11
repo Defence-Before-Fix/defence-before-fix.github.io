@@ -142,7 +142,11 @@ pass it.
   after three readers could not tell whether the detector must ship the detecting rule or only
   let the project write one: the two sentences after the MUST are now one, saying the detector
   need not ship it, and "the Detector's own Rule language", which a reader could not place, is
-  gone. Accepted by run NNN.
+  gone. [Run 48](acceptance/runs/048-defined-terms-detector-run-6.md) failed on two passages:
+  clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s sentence after the MUST now says only that a rule "in the Detector itself" is
+  a bespoke rule under clause [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), after four readers could not square that phrase with "need not
+  ship"; and clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says what the toolchain's lookup gives, after two readers without the
+  toolchain specification could not tell. Accepted by run NNN.
 
 ### 1.0.0, 2026-09-08
 
