@@ -154,7 +154,7 @@ A [Practitioner] that is an automated system. Everything said of a [Practitioner
 
 #### Owner
 
-Whoever holds authority over a project's [Exceptions] and [Calibrations]. Always a human. The project decides who, and clause 8.7 requires the answer to be findable. Where the project has recorded nobody, the [Owner] is whoever instructed the [Practitioner], and [Escalation] goes there. One limit applies to that default. The default [Owner] is usually the person under the same deadline as the [Practitioner], so a decision they take under section 4 to keep an [Instance] unfixed, [Suppress], [Baseline] or remove a [Rule] MUST be recorded in the project record with its justification. That record MUST mark the decision as taken by a default [Owner] and state why nobody better placed was reachable, where the next reader can see who decided and why. Such a decision SHOULD be revisited by someone not under that deadline before the next release. A project that wants the separation section 4 describes names an [Owner]; the default exists so work is not blocked, not to certify that a second judgement was applied.
+Whoever holds authority over a project's [Exceptions] and [Calibrations]. Always a human. The project decides who, and clause 8.7 requires the answer to be findable. Where the project has recorded nobody, the [Owner] is whoever instructed the [Practitioner], and [Escalation] goes there. That default [Owner] takes the decisions section 4 gives the [Owner], but is usually the person under the same deadline as the [Practitioner], so a decision of theirs to keep an [Instance] unfixed, [Suppress], [Baseline] or remove a [Rule] MUST be recorded in the project record with its justification. That record MUST mark the decision as taken by a default [Owner] and state why nobody better placed was reachable, where the next reader can see who decided and why. Such a decision SHOULD be revisited by someone not under that deadline before the next release. A project that wants the separation section 4 describes names an [Owner]; the default exists so work is not blocked, not to certify that a second judgement was applied.
 
 #### Escalation
 
@@ -457,6 +457,8 @@ be instantly green.
 [Narrowing], which is the [Practitioner]'s to decide only when they can write down why the
 [Hazard] cannot arise in what is excluded, and is [Suppression] for the [Owner] otherwise. Part C:
 proving a [Rule] when the pattern is absent from the codebase, and what a [Rule]'s own code owes.
+An ignore comment or ignore entry placed on one [Instance] counts against none of the three: it
+leaves the [Rule] and its proof as they were, and clause 3.4 and section 4 judge it.
 
 **Part A: the proof.**
 
@@ -489,11 +491,7 @@ what must survive the merge is not.
 **Part B: [Narrowing].**
 
 **This Part is about the [Rule]'s own scope.** An exclusion here is one drawn into the [Rule]:
-what the [Rule] is written or configured not to match. An ignore comment or ignore entry placed on
-one [Instance] is not such an exclusion, and this Part does not judge it: it leaves the [Rule] and
-its proof as they were and stops the [Rule] reporting that one [Instance]. That is a
-[Suppression] at the call site, which clause 3.4 forbids as a fix and section 4 gives to the
-[Owner].
+what the [Rule] is written or configured not to match.
 
 **The decision comes first, and it turns on one sentence.** Can the [Practitioner] write down why
 the [Hazard] cannot arise in the code being excluded? If they can, the exclusion is a [Narrowing],
@@ -659,8 +657,8 @@ been seen. "All examined" with nothing behind it is a claim, not a record.
 stops only when the next [Instance] needs a decision they lack the authority to make, and section 4
 says which decisions those are; a hundred [Instances], or a thousand, is work rather than a
 decision. A [Baseline] of the existing [Instances], so that the [Rule] blocks only new ones, MAY
-be adopted where fixing every [Instance] is genuinely unfeasible, and the scale at which that
-becomes true is tremendous. **No threshold is given here deliberately.** Any figure would be
+be adopted by the [Owner] where fixing every [Instance] is genuinely unfeasible, and only a very
+large change is unfeasible. **No threshold is given here deliberately.** Any figure would be
 calibrated to the [Toolchain] of the moment rather than to anything durable, and the honest measure is
 the size of the change rather than the hours it would take, since the hours depend entirely on what
 is doing the work.

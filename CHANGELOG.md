@@ -38,7 +38,13 @@ version entry with no cohort line has not been accepted and is not published.
   Section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s item on the next wider rule is restated as one test, the Hazard sentence, after three
   readers each named a different sentence of it; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s level sentence, section [2](SPEC.md#2-when-the-method-applies)'s
   "the first from the second" and clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)'s "no Rule build of their own" are reworded after one
-  reader each. Accepted by run NNN.
+  reader each. [Run 41](acceptance/runs/041-defined-terms-method-run-4.md) failed on three
+  passages: clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) says before its Parts that an ignore placed on one instance counts against none
+  of them, and Part B no longer calls it a suppression, after a third reader failed the ignore
+  under both clauses from that paragraph; the Owner entry says the default owner takes section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s
+  decisions, after two readers could not tell from "a decision they take" whether it may; and
+  clause [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance)'s baseline MAY names the owner and says "a very large change" for "tremendous", after
+  two readers could not tell what that measured. Accepted by run NNN.
 
 ### 1.1.0, 2026-10-02
 
