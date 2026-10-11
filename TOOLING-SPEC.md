@@ -80,8 +80,9 @@ capitalised term links to its definition, and every one this document borrows is
 | [Rule harness]     | The route by which one [Rule] is run against supplied code on its own                              |
 
 A [Rule] the [Toolchain] runs as [Blocking] alongside its [Defences], but whose documentation
-is missing, is not yet a [Defence]. Clauses 4.2, 5.1 and 8.1 still reach it: its missing
-documentation is the failure clauses 4.2 and 8.1 exist to catch, not a reason they do not apply.
+is missing, is not yet a [Defence]. Clauses 4.2, 5.1 and 8.1 apply to it as if it were one: it
+belongs in the listing clause 5.1 requires, and its missing documentation fails what each of the
+three requires of documentation, which is the failure they exist to catch.
 
 The three terms below are this document's own, defined here rather than borrowed.
 
@@ -128,8 +129,9 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 ### 4.1 Every detector the toolchain routes a defence through MUST conform to the [detector specification](DETECTOR-SPEC.md)
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
-[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs, in brief,
-are six. The [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
+[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
+its sections 4 to 7, and every one applies; in brief, they are six. The [Detector] hosts
+bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
 resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
@@ -466,16 +468,16 @@ carries both levels of clause 9.1 in that declaration, each named separately.
 The same declaration is where a gap is recorded once it is known. A project or artefact that has
 learnt that it fails a MUST of the document it declares against MUST record that gap alongside the
 version, in the same file or one it names. It may learn that from its own self-audit under section 8
-or from a [Practitioner]'s report under the method's clause 3.2. That duty falls on a project or
-artefact that has a declaration, because the gap is recorded alongside the version declared. A declaration with a non-empty gap record is
+or from a [Practitioner]'s report under the method's clause 3.2. This duty, to record the gap in
+the declaration, falls only on a project or artefact that has one. A declaration with a non-empty gap record is
 a statement of where the project stands and is not a claim of [Conformance]. A mechanism gap
 is by its nature one the [Toolchain] could not detect for itself, so the record is the only
 place its [Owner] and its consumers can learn of it.
 
 The declaration is optional. A project or artefact with no declaration therefore has no gap record
-under this clause. A gap that method clause 3.2 requires to be recorded is still recorded as that clause
-says, in the [Project record] where the [Toolchain] defines one, with a
-declaration or without one. A [Toolchain] assembled before this document existed, or by a
+under this clause. Method clause 3.2's duty to record a gap is a separate one, and applies with a
+declaration or without one: the gap is recorded as that clause says, in the [Project record]
+where the [Toolchain] defines one. A [Toolchain] assembled before this document existed, or by a
 project that has never read it, MAY be graded [Conforming] on evidence by anyone who exercises
 the clauses above against it. A verdict on any [Toolchain], declared or not, rests on that
 exercise and not on the claim.
