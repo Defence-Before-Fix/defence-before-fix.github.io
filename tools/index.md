@@ -66,7 +66,9 @@ settled the same way and added here.
    detector the toolchain routes a defence through, each as wrapped. A wrapped detector carries an
    identifier where the toolchain's wrapping requires it of a rule by a check of its own and keys
    its harness and its resolver on it; that holds for the rules the check covers and for no
-   others.
+   others. The toolchain and project columns are graded on the clauses of their own documents: a
+   result in the detector column counts there only where a toolchain clause asks about it, as
+   toolchain clause [4.4](../TOOLING-SPEC.md#44-the-toolchains-own-invocation-must-satisfy-the-detector-specifications-reporting-clauses-for-every-defence-it-routes) asks about the reporting clauses.
 
 ### Authoring and identifiers (4.1 to 4.4)
 
@@ -124,7 +126,10 @@ settled the same way and added here.
     [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) set no bar on its length, so a one-line description a mechanism resolves to meets them for
     that identifier, and its brevity is recorded on the page. A rule's source file is not
     documentation, even where it is named by the identifier and carries a description, unless a
-    mechanism of the detector's own presents that description.
+    mechanism of the detector's own presents that description. Nor is the title or name the
+    detector gives a rule, however much it says (`Ensure that S3 bucket has versioning enabled`,
+    `Avoid implicit culture-sensitive methods`): it names the rule, where a description, however
+    short, is the text the detector gives as the rule's explanation.
 13. **A project's own rule under [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation).** The detector owes the identifier printed unaltered and no
     more. A default documentation address it prints for a project's rule that leads nowhere is
     recorded on the page as a dangling reference, and the row is decided by the bundled half.
@@ -172,23 +177,34 @@ same rule.
     same identifier (`MA0240`, `TOPL_ERROR`) or one derived from its name or location, [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) is No,
     and structural under reading 1, however the bundled rules are identified. An identifier the
     author writes into the message moves readiness only (reading 2), and a toolchain's check makes
-    good the gap only for the rules it covers (reading 3).
+    good the gap only for the rules it covers (reading 3). Where a project can write rules in more
+    than one form and some forms carry an identifier of their own whilst others cannot, [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) is
+    Partial: it holds for the rules written in the forms that do.
 21. **A print filter is not a harness.** An option that runs every rule and prints the findings of
     one does not run a single rule, as [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) asks: [4.2](../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) is Partial, as under reading 4. So is
     selecting one rule through an environment variable, or through a schema or file the
-    practitioner writes for the run, which is configuration.
+    practitioner writes for the run, which is configuration, and reaching one rule only by
+    excluding every other rule by name.
 22. **A single file through configuration.** Clause [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file) asks for invocation over a single file.
     An option of the command that names the file is Yes; one that reaches it only by excluding
     every other file is Partial; and where only a configuration the practitioner writes for the
-    run restricts it to the file, [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file) is No, and structural under reading 1.
+    run restricts it to the file, [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file) is No, and structural under reading 1. So is a run whose smallest unit
+    is a package, crate, project or dependency graph holding the file, where no option names the
+    file: it reaches no single file. Where the command names a single file for some of the
+    languages it reads and reaches one only through configuration for others, [5.2](../DETECTOR-SPEC.md#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file) is Partial, as
+    reading 24 grades a licence needed for only some findings.
 23. **A library with no command.** A detector reached only through its programming interface, so
     that the practitioner must write a program to run it over code, is not invocable by the
     practitioner, as reading 10 reads a programming-interface function under [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation): [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure) is No. A
-    separate package that wraps it in a command is another tool, graded on its own.
+    separate package that wraps it in a command is another tool, graded on its own. What the
+    practitioner's program prints is that program's output, not the detector's, so a library that
+    prints nothing of its own prints no identifier and no result: [4.3](../DETECTOR-SPEC.md#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding) and [5.3](../DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) are No as well, and
+    an identifier the program prints from the library's result is a workaround under reading 2.
 24. **A licence tier.** A finding reportable only under a licence the practitioner must buy or
     apply for is one they cannot invoke locally until they hold it. Clause [5.4](../DETECTOR-SPEC.md#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally) is Partial where
     some findings, or the findings on some projects, need such a licence (rules of a paid edition,
-    a licence free only for public code), and No where every finding does. A server the
+    a licence free only for public code or only for uses other than commercial ones), and No where
+    every finding does. A server the
     practitioner runs on their own machine is not a hosted service, but it is infrastructure
     under [5.1](../DETECTOR-SPEC.md#51-the-detector-must-be-invocable-by-the-practitioner-locally-with-no-infrastructure).
 25. **No findings in the default output.** Where the command prints no findings unless it is told
@@ -210,20 +226,35 @@ same rule.
 27. **Every identifier the command prints.** The identifiers [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) to [6.3](../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) ask about are all those
     the command prints where it prints a rule's identifier, including those of a compiler, parser
     or wrapped tool it runs as part of the command (rustc's lints under `cargo clippy`, a parse
-    error's code, a wrapped linter's codes). A parse or internal error printed without an
+    error's code, a wrapped linter's codes). Rules packaged to run inside a host (an analyser pack
+    in a compiler, a plugin in a linter) are run by the host's command, so the identifiers that
+    command prints count on the pack's page as well. A parse or internal error printed without an
     identifier is recorded under reading 9 and not graded here.
-28. **A release gate where nothing resolves.** Clause [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation) is No where the release named shipped a
-    bundled identifier whose documentation resolves nowhere, online or offline, since a gate of
-    the kind [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation) asks for would have failed it. Where every identifier resolves somewhere and no
-    release process was found, the row is Not verified.
+28. **A release gate where nothing resolves.** Clause [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation) asks for a check that blocks the release
+    when an identifier a bundled rule can print "lands on no page". An identifier lands on a page
+    where a mechanism of the kind [6.1](../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) asks for, keyed on it as printed (readings 10 and 11),
+    resolves it, online or offline; a page that exists but that no such mechanism reaches is not
+    landed on. Clause [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation) is No where the release named shipped a bundled identifier that lands on
+    no page, as at that release, since a gate of the kind [6.4](../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation) asks for would have failed it; where
+    bundled rules print no identifier at all, since each of them lacks resolvable documentation;
+    and where every identifier lands on a page but the release process, read at that release,
+    holds no check of the kind. It is Partial where such a check covers some bundled identifiers
+    and not others, Not verified only where every identifier lands on a page and the release
+    process could not be read, and Not applicable only where the detector bundles no rules.
 29. **Configuration is not a suppression route.** The routes [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) asks about are of the kinds it
     names: a comment, directive, annotation or attribute in the checked code that silences a
     finding there, and a file of entries each naming a finding, or a rule at a line or a named
-    subject, to accept, generated or written by hand, wherever the detector reads it from.
-    Configuration that selects the rules, their severity or the files a run covers, including a
+    subject, to accept, generated or written by hand, wherever the detector reads it from. A
+    marker in the checked code that makes the detector skip the file or a region of it, such as a
+    generated-code header, is such a comment. Configuration that selects the rules, their severity or the files a run covers, including a
     rule turned off for a path and an ignore file listing paths, is the project's configuration,
     in the project record a toolchain governs, and not a route under [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable). A page records where
     such configuration hides findings without a sign.
+30. **A reason on every route.** Clause [7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is asked, as [7.1](../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) is under reading 16, of every route
+    reading 29 names, each entry of a file of them included, whether generated or written by
+    hand: Yes where every route rejects, or can be configured to reject, a suppression without a
+    reason and supplies none by default; No where none does; Partial between. Where the detector
+    offers no route at all, [7.2](../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is Not applicable.
 
 ## Attributes
 
