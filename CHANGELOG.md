@@ -25,7 +25,11 @@ version entry with no cohort line has not been accepted and is not published.
   longer calls a rule drawn to the instance "the same Narrowing", after readers took both
   sentences two ways; clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire)'s Part B says an ignore placed on one instance is a call-site
   suppression under clause [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance), not an exclusion from the rule's scope, after a reader failed the fixture
-  under both clauses for the one ignore. Accepted by run NNN.
+  under both clauses for the one ignore. [Run 35](acceptance/runs/035-defined-terms-method-run-2.md)
+  failed on two of these passages: clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire)'s Part B now opens by saying it judges the rule's own
+  scope and not an ignore placed on one instance, after a reader still failed the ignore under
+  both clauses; and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s item on the next wider rule says which rule and which rejection
+  it reaches, after two readers could not tell what its last sentence limited. Accepted by run NNN.
 
 ### 1.1.0, 2026-10-02
 

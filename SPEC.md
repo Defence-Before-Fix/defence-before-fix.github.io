@@ -486,6 +486,13 @@ what must survive the merge is not.
 
 **Part B: [Narrowing].**
 
+**This Part is about the [Rule]'s own scope.** An exclusion here is one drawn into the [Rule]:
+what the [Rule] is written or configured not to match. An ignore comment or ignore entry placed on
+one [Instance] is not such an exclusion, and this Part does not judge it: it leaves the [Rule] and
+its proof as they were and stops the [Rule] reporting that one [Instance]. That is a
+[Suppression] at the call site, which clause 3.4 forbids as a fix and section 4 gives to the
+[Owner].
+
 **The decision comes first, and it turns on one sentence.** Can the [Practitioner] write down why
 the [Hazard] cannot arise in the code being excluded? If they can, the exclusion is a [Narrowing],
 it is theirs to make, and they record that sentence. If they cannot, or are not sure, the exclusion
@@ -508,11 +515,6 @@ that cannot be confirmed is a sentence that cannot be written, and the exclusion
   by clause 3.1's upper bound.
 - If the [Practitioner] **is not sure which**, the exclusion is [Suppression], and it goes to the
   [Owner] with the doubt stated.
-
-An exclusion here is one drawn into the [Rule]'s own scope, what the [Rule] is written or
-configured not to match. An ignore comment or ignore entry placed on one [Instance] is not one: it
-leaves the [Rule] as proven and stops it reporting that [Instance]. That is a [Suppression] at the
-call site, which clause 3.4 forbids as a fix and section 4 gives to the [Owner].
 
 A [Rule] MUST NOT be narrowed because its [Instance] count is uncomfortably high. A high count is a
 finding about the codebase, not a [Defect] in the [Rule]. **Firing on more than the originating
@@ -799,8 +801,10 @@ they do not.
   it was rejected because no [Instance] of it exists today rather than because the [Hazard] cannot
   arise there. The absence of an [Instance] is the [Practitioner]'s reason not to widen unasked; it
   is not authority to exclude the extension, and recording it as a known gap does not change whose
-  decision it is. This does not reopen a [Class] whose bounds a [Hazard] sentence has settled, and
-  it reaches no further than the one wider [Rule] already on the record.
+  decision it is. Only that one wider [Rule], the one the record names, comes to the [Owner] this
+  way, and only when it was rejected for want of an [Instance]. Where it was rejected because a
+  [Hazard] sentence shows the [Hazard] cannot arise in what that [Rule] would add, the [Class]'s bounds
+  are settled and remain the [Practitioner]'s decision under clause 3.1.
 - Leaving a [Rule] narrower than an independent search under clause 3.1 showed it should be, where
   the reason is that the wider check is harder to build without [False positives] rather
   than that the [Hazard] is absent from what it would add. The [Instances] the search found are
