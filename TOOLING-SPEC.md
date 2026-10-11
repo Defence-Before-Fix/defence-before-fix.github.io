@@ -83,7 +83,7 @@ A [Rule] the [Toolchain] runs as [Blocking] alongside its [Defences], but whose 
 is missing, is not yet a [Defence]. Clauses 4.2, 5.1 and 8.1 still reach it: its missing
 documentation is the failure clauses 4.2 and 8.1 exist to catch, not a reason they do not apply.
 
-These are additional.
+The three terms below are this document's own, defined here rather than borrowed.
 
 #### Consuming project
 
@@ -210,7 +210,9 @@ route that bypasses the [Project record], or MUST run a [Blocking]
 silenced through it without an entry appearing in the [Project record]: an inline
 [Suppression] comment, a per-line ignore and a silently generated [Baseline] all do. The
 obligation covers every such route in every [Detector] the [Toolchain] routes a
-[Defence] through. Irreducible cases MUST be directed to the [Project record],
+[Defence] through. The routes are the ones each [Detector] offers: where a [Detector]'s only
+route is an ignore comment, this clause is met for that [Detector] once the comment is disabled
+or a [Blocking] [Defence] fails on its use, and nothing is owed for a route it does not have. Irreducible cases MUST be directed to the [Project record],
 where clause 6.2 requires a justification.
 
 The [detector specification](DETECTOR-SPEC.md) permits a [Detector] to ship such a route provided
@@ -464,15 +466,15 @@ carries both levels of clause 9.1 in that declaration, each named separately.
 The same declaration is where a gap is recorded once it is known. A project or artefact that has
 learnt that it fails a MUST of the document it declares against MUST record that gap alongside the
 version, in the same file or one it names. It may learn that from its own self-audit under section 8
-or from a [Practitioner]'s report under the method's clause 3.2. A declaration with a non-empty gap record is
+or from a [Practitioner]'s report under the method's clause 3.2. That duty falls on a project or
+artefact that has a declaration, because the gap is recorded alongside the version declared. A declaration with a non-empty gap record is
 a statement of where the project stands and is not a claim of [Conformance]. A mechanism gap
 is by its nature one the [Toolchain] could not detect for itself, so the record is the only
 place its [Owner] and its consumers can learn of it.
 
-The declaration is optional. The gap record above is part of it: the duty to record a gap there
-binds a project or artefact that declares a version, and one that declares none makes no claim
-for a gap record to qualify. A gap that method clause 3.2 requires to be recorded is still
-recorded as that clause says, in the [Project record] where the [Toolchain] defines one, with a
+The declaration is optional. A project or artefact with no declaration therefore has no gap record
+under this clause. A gap that method clause 3.2 requires to be recorded is still recorded as that clause
+says, in the [Project record] where the [Toolchain] defines one, with a
 declaration or without one. A [Toolchain] assembled before this document existed, or by a
 project that has never read it, MAY be graded [Conforming] on evidence by anyone who exercises
 the clauses above against it. A verdict on any [Toolchain], declared or not, rests on that

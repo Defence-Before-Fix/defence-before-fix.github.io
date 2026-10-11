@@ -150,7 +150,14 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   lookup, after two readers graded it as met in part; clause [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-every-suppression-route-that-bypasses-the-project-record-by-disabling-it-or-by-a-defence-of-its-own)'s heading names disabling as well as a defence,
   as its body does, after four readers set the two against each other; clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) says what
   "nothing else built around it" counts; clause [9.2](TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance) says its gap record binds a project that
-  declares, and that a gap method clause [3.2](SPEC.md#32-build-the-net) requires is recorded either way. Accepted by run NNN.
+  declares, and that a gap method clause [3.2](SPEC.md#32-build-the-net) requires is recorded either way.
+  [Run 37](acceptance/runs/037-defined-terms-toolchain-run-2.md) failed on three passages: clause [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-every-suppression-route-that-bypasses-the-project-record-by-disabling-it-or-by-a-defence-of-its-own)
+  says the routes it covers are the ones each detector offers, after two readers graded it as met
+  in part because the fixture did not rule out other routes; clause [9.2](TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance) says beside its gap MUST
+  that the duty falls on a project that has a declaration, and drops "makes no claim for a gap
+  record to qualify", which three readers could not parse; and section [2](TOOLING-SPEC.md#2-terminology)'s "These are
+  additional." says which terms it introduces, after two readers could not tell. Accepted by run
+  NNN.
 
 ### 0.2.0, 2026-09-08
 
