@@ -535,7 +535,7 @@ the search confirms it. Code a [Narrowing] excludes MUST be searched to the stan
 3.1, and an [Instance] that search finds there disproves the sentence and reverses the
 [Narrowing]. Every [Narrowing] MUST be enumerable by the
 same means as the project's [Exceptions], so the [Owner] sees them in one place, and a
-[Narrowing] that excludes more code than the [Rule] still covers MUST be reported to the [Owner]
+[Narrowing] that excludes more code than it leaves the [Rule] covering MUST be reported to the [Owner]
 as if it were a [Suppression]. The sentence remains the test of whether an exclusion is honest;
 the search and the listing are what make a fluent dishonest one visible.
 Where the [Toolchain]'s own listing shows the [Narrowing] with its sentence, that listing is
@@ -582,7 +582,7 @@ demonstrates the [Rule] firing is an acceptable substitute.
 
 [Fixtures] are part of the [Rule] and are versioned with it, under the co-location requirement in
 clause 3.6. A [Fixture] is input to the [Rule]'s test, not part of the code the [Defence] enforces:
-the [Sweep] excludes it under clause 3.4, and the enforced run does not report it, so there is no
+the [Sweep] excludes it under clause 3.4, so there is no
 circularity in a [Fixture] that deliberately fails the [Rule] it proves. Writing the [Fixture] is the [Practitioner]'s own decision under section 4, not something
 to refer upwards.
 

@@ -44,7 +44,11 @@ version entry with no cohort line has not been accepted and is not published.
   under both clauses from that paragraph; the Owner entry says the default owner takes section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s
   decisions, after two readers could not tell from "a decision they take" whether it may; and
   clause [3.4](SPEC.md#34-sweep-the-codebase-then-fix-every-instance)'s baseline MAY names the owner and says "a very large change" for "tremendous", after
-  two readers could not tell what that measured. Accepted by run NNN.
+  two readers could not tell what that measured. [Run 44](acceptance/runs/044-defined-terms-method-run-5.md)
+  failed on two passages of clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire): Part C no longer says the enforced run does not report a
+  fixture, after a reader failed the fixture's red run for reporting it; and Part B's reporting
+  MUST says "more code than it leaves the Rule covering", after two readers could not tell what
+  "more code than the Rule still covers" compared. Accepted by run NNN.
 
 ### 1.1.0, 2026-10-02
 
