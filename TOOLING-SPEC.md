@@ -80,9 +80,8 @@ capitalised term links to its definition, and every one this document borrows is
 | [Rule harness]     | The route by which one [Rule] is run against supplied code on its own                              |
 
 A [Rule] the [Toolchain] runs as [Blocking] alongside its [Defences], but whose documentation
-is missing, is not yet a [Defence]. Clauses 4.2, 5.1 and 8.1 apply to it as if it were one: it
-belongs in the listing clause 5.1 requires, and its missing documentation fails what each of the
-three requires of documentation, which is the failure they exist to catch.
+is missing, is not yet a [Defence]; where clauses 4.2, 5.1 and 8.1 say [Defence], they
+include it.
 
 The three terms below are this document's own, defined here rather than borrowed.
 
@@ -96,7 +95,7 @@ A [Defence] a shipped [Toolchain] carries and enables by default in every [Consu
 
 #### Project record
 
-The place a project writes down the judgements the method specification delegates to it: [Calibrations], [Exceptions] and conventions.
+The one place a project writes down every judgement the method specification delegates to it, whether a [Calibration], an [Exception] or a convention.
 
 The distinction between a [Bundled defence] and a project's own is significant throughout. A bundled
 [Defence] is authored once and runs in codebases its author will never see, so everything a
@@ -194,8 +193,9 @@ only the prohibition, specifically enough to act on, as method clause 8.4 requir
 This clause closes what the [detector specification](DETECTOR-SPEC.md) leaves open. That document holds a
 [Detector] to on-disk resolution of its own [Bundled rules] and
 no further, because it cannot know a project's documentation. A third-party [Detector]'s
-native catalogue, which the [Toolchain] orchestrates without claiming as its own, is
-resolved under that document's clause 6 and is not re-shipped here.
+native catalogue, which the [Toolchain] orchestrates without claiming as its own, is not
+re-shipped here: an [Identifier] the [Detector] resolves under that document's clause 6 meets
+this clause, and one that nothing resolves fails it.
 
 **Why**: method specification clauses 3.6 and 8.3. The [Identifier] has to resolve for the
 reader, which for an [Agent] means mechanically and on disk, and the project's own
@@ -449,8 +449,9 @@ counts only what the shipped [Toolchain] itself supplies, never a script or conf
 project's own [Rules] in the listing of section 5 or the decisions in its [Project record], the
 artefact is graded on the mechanism, the middle column of the section 3 table, and not on the
 content. The two
-verdicts MUST be graded and declared separately, and neither implies the other. Section 8 bears on
-the artefact grade only; clause 5.3 is its project-level counterpart.
+verdicts MUST be graded and declared separately, and neither implies the other. Section 8, which
+section 9 adds where the [Toolchain] is one the project ships, bears on the artefact grade
+only; clause 5.3 is its project-level counterpart.
 
 **Why**: the two questions have different readers. A contributor to the artefact wants to know
 whether the project practises what it ships; a [Consuming project] wants to know what it
@@ -516,7 +517,6 @@ does not have to build them alone.
 [bundled rule]: DETECTOR-SPEC.md#bundled-rule
 [bundled rules]: DETECTOR-SPEC.md#bundled-rule
 [calibration]: SPEC.md#calibration
-[calibrations]: SPEC.md#calibration
 [class]: SPEC.md#class
 [conform]: SPEC.md#conform
 [conformance]: SPEC.md#conform
@@ -530,7 +530,6 @@ does not have to build them alone.
 [detector]: SPEC.md#detector
 [detectors]: SPEC.md#detector
 [exception]: SPEC.md#exception
-[exceptions]: SPEC.md#exception
 [fixture]: SPEC.md#fixture
 [hazard]: SPEC.md#hazard
 [identifier]: SPEC.md#identifier

@@ -188,7 +188,16 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   a rule that is not a defence; clause [9.2](TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance) names the declaration's gap duty and method clause [3.2](SPEC.md#32-build-the-net)'s as two
   duties, after two readers took them for one; and clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) says every MUST of the detector
   specification's sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression) applies and the six are a summary, after two readers
-  could not tell. Accepted by run NNN.
+  could not tell. [Run 43](acceptance/runs/043-defined-terms-toolchain-run-4.md) failed on
+  three passages and one entry: section [2](TOOLING-SPEC.md#2-terminology)'s sentence on an undocumented blocking rule is cut
+  to "where clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access), [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) say Defence, they include it", and clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access)'s
+  sentence on a third-party detector's native catalogue says an identifier it resolves meets the
+  clause and one nothing resolves fails it, after three readers of the first and two of the
+  second could not tell which governs a third-party detector's undocumented bundled rules; clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately)'s sentence on
+  section [8](TOOLING-SPEC.md#8-self-audit) says it is the section [9](TOOLING-SPEC.md#9-conformance) addition for a shipped toolchain that bears on the
+  artefact grade only, after three readers took the two as contradicting each other; and the
+  Project record entry says it is one place for every kind of judgement, after two readers
+  graded clause [6.1](TOOLING-SPEC.md#61-the-toolchain-must-define-a-location-for-the-project-record-and-must-read-it-itself) as met in part for want of a location for each kind. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
