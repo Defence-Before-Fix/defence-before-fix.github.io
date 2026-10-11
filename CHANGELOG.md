@@ -48,7 +48,10 @@ version entry with no cohort line has not been accepted and is not published.
   failed on two passages of clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire): Part C no longer says the enforced run does not report a
   fixture, after a reader failed the fixture's red run for reporting it; and Part B's reporting
   MUST says "more code than it leaves the Rule covering", after two readers could not tell what
-  "more code than the Rule still covers" compared. Accepted by run NNN.
+  "more code than the Rule still covers" compared. [Run 47](acceptance/runs/047-defined-terms-method-run-6.md)
+  failed on section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s "Decisions that MUST go to whoever owns the codebase": the Owner entry
+  says that phrase means the Owner, after two readers could not tell whether it named the same
+  person as the entry, the default owner included. Accepted by run NNN.
 
 ### 1.1.0, 2026-10-02
 
