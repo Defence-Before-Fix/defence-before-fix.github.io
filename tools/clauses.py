@@ -36,8 +36,9 @@ QUALIFIER = r"(?P<doc>method|detector|toolchain)(?:[ '’]s|['’]s)?(?: specifi
 WORD = r"(?P<word>clauses?|sections?)"
 NUMBER = r"(?P<num>\d+\.\d+|\d+)"
 # A number that is a clause or section reference and not a version, a licence or a year:
-# not preceded by a word character, a dot or a digit, and not followed by another dot-number.
-BARE = r"(?<![\w.])" + NUMBER + r"(?![\w.]\w|\.\d)"
+# not preceded by a word character, a dot or a digit, and not followed by a digit or another
+# dot-number, so that 6.20.0 is not read as 6.2 followed by 0.0.
+BARE = r"(?<![\w.])" + NUMBER + r"(?!\d|[\w.]\w|\.\d)"
 REFERENCE = re.compile(
     rf"(?:{QUALIFIER}\s+)?(?:{WORD}\s+)?{BARE}",
     re.I,
