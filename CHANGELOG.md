@@ -221,7 +221,10 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   place; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) says every MUST applies "not only the six summarised here", after two
   readers still could not tell whether the six were the whole; and clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately)'s sentence on
   section [8](TOOLING-SPEC.md#8-self-audit) is as it was, since the rewording did not stop two readers setting it against
-  section [9](TOOLING-SPEC.md#9-conformance). Accepted by run NNN.
+  section [9](TOOLING-SPEC.md#9-conformance). [Run 49](acceptance/runs/049-defined-terms-toolchain-run-6.md) failed on section [2](TOOLING-SPEC.md#2-terminology)'s
+  sentence again: it now says what makes such a rule count, that its firing fails the
+  toolchain's run, where it said "runs as Blocking", after three readers could not tell whether a
+  rule enabled in configuration is blocking. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 

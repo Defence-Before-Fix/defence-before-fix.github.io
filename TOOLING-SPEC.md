@@ -79,8 +79,8 @@ capitalised term links to its definition, and every one this document borrows is
 | [Bundled rule]     | A [Rule] a [Detector] ships rather than one the project wrote                                      |
 | [Rule harness]     | The route by which one [Rule] is run against supplied code on its own                              |
 
-In clauses 4.2, 5.1 and 8.1, [Defence] also covers a [Rule] the [Toolchain] runs as [Blocking]
-alongside its [Defences] whose documentation is missing.
+In clauses 4.2, 5.1 and 8.1, [Defence] also covers a [Rule] whose documentation is missing but
+whose firing fails the [Toolchain]'s run.
 
 The three terms below are this document's own, defined here rather than borrowed.
 
