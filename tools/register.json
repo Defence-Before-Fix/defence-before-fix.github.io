@@ -28,12 +28,12 @@
       "language": "PHP",
       "kind": "toolchain",
       "readiness": {
-        "mark": "🟢",
-        "level": "green"
-      },
-      "detector": {
         "mark": "🟡",
         "level": "amber"
+      },
+      "detector": {
+        "mark": "🔴",
+        "level": "red"
       },
       "toolchain": {
         "mark": "🟡",
@@ -45,21 +45,35 @@
       },
       "notes": [
         {
-          "text": "Harness, resolver, derived listing, justified record and agent summary verified by running them; PHPStan's own identifiers resolve offline; under reading 3 the detector column is the lower of PHPStan and PHPArkitect as wrapped, and PHPArkitect as wrapped carries an identifier only for the tier rules a check of the toolchain's requires one of, so detector "
+          "text": "Resolver, derived listing, justified record and agent summary verified by running them; PHPStan's own identifiers resolve offline; under reading 3 the detector column is the lower of PHPStan and PHPArkitect as wrapped, and PHPArkitect as wrapped carries an identifier only for the tier rules a check of the toolchain's requires one of and for no rule a project writes, so detector "
         },
         {
           "text": "4.3",
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " is partial, takes no single-file run, and ships a consumer API-boundary rule with nothing to resolve, so detector "
+          "text": " fails, structurally under reading 20; both single-rule commands run every rule and filter what is printed, so detector "
+        },
+        {
+          "text": "4.2",
+          "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
+        },
+        {
+          "text": " is partial; the PHPArkitect harness reaches one file only by setting the rest of its directory aside, and a consumer API-boundary rule ships with nothing to resolve, so detector "
         },
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " fails, "
+          "text": " and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fail, "
         },
         {
           "text": "5.2",
@@ -612,14 +626,21 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " is partial; the documentation address is printed only when an agent is detected, so "
+          "text": " is partial; the rule interface's return type and the identifier's format check enforce "
+        },
+        {
+          "text": "4.4",
+          "href": "/DETECTOR-SPEC.html#44-the-detector-should-enforce-43-with-a-rule-of-its-own"
+        },
+        {
+          "text": " in part; the documentation address is printed only when an agent is detected, which is no mechanism, so "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " is partial, and bundled documentation online only fails "
+          "text": " fails, and bundled documentation online only fails "
         },
         {
           "text": "6.2",
@@ -801,12 +822,12 @@
       "language": "JavaScript and TypeScript",
       "kind": "toolchain",
       "readiness": {
-        "mark": "🟢",
-        "level": "green"
-      },
-      "detector": {
         "mark": "🟡",
         "level": "amber"
+      },
+      "detector": {
+        "mark": "🔴",
+        "level": "red"
       },
       "toolchain": {
         "mark": "🟡",
@@ -818,21 +839,35 @@
       },
       "notes": [
         {
-          "text": "Harness, resolver, derived listing and justified record all hold for the ESLint lane; the dependency-cruiser defence is outside all three, so its no-circular resolves to nothing, detector "
+          "text": "Resolver, derived listing and justified record hold for the ESLint lane, whose single-rule command filters a full lint run, so detector "
         },
         {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
+          "text": "4.2",
+          "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": " is partial and "
+          "text": " is partial; the dependency-cruiser defence is outside all three, reaches a single file only through its scan-roots configuration, so detector "
+        },
+        {
+          "text": "5.2",
+          "href": "/DETECTOR-SPEC.html#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file"
+        },
+        {
+          "text": " fails structurally, and its no-circular resolves to nothing, so detector "
+        },
+        {
+          "text": "6.1",
+          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
+        },
+        {
+          "text": " to "
         },
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " fails, whilst a core rule resolves offline only to its one-line description; dependency-cruiser's unnamed allowed rules leave detector "
+          "text": " fail, whilst a core rule resolves offline only to its one-line description; dependency-cruiser's unnamed allowed rules leave detector "
         },
         {
           "text": "4.3",
@@ -1535,8 +1570,8 @@
       "language": "Python",
       "kind": "tool",
       "readiness": {
-        "mark": "🟢",
-        "level": "green"
+        "mark": "🟡",
+        "level": "amber"
       },
       "detector": {
         "mark": "🟡",
@@ -1559,14 +1594,21 @@
           "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
         },
         {
-          "text": " to "
+          "text": " and "
         },
         {
           "text": "4.3",
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": "; disable-noqa meets "
+          "text": ", but --select runs every plugin and filters the output, so "
+        },
+        {
+          "text": "4.2",
+          "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
+        },
+        {
+          "text": " is partial; disable-noqa meets "
         },
         {
           "text": "7.1",
@@ -1783,14 +1825,14 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": "; the language server's documentation link, keyed on the rule name, meets "
+          "text": "; the pyright command prints no documentation address and only its language server sends one, so "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": ", but the documentation is online only, failing "
+          "text": " fails, and the documentation is online only, failing "
         },
         {
           "text": "6.2",
@@ -1996,14 +2038,14 @@
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": "; the linter name as identifier leaves "
+          "text": "; plugin analyzers print their names but ruleguard rules print none of their own, "
         },
         {
           "text": "4.3",
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " partial; help linters resolves linter names offline but not wrapped tool codes or typecheck, so "
+          "text": " partial; help linters resolves linter names offline but not wrapped tool codes or typecheck, which resolves nowhere, so "
         },
         {
           "text": "6.1",
@@ -2024,7 +2066,14 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " fails; default issue limits drop findings and an output file goes unnamed, "
+          "text": " and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fail; default issue limits drop findings and an output file goes unnamed, "
         },
         {
           "text": "5.3",
@@ -2074,14 +2123,14 @@
           "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
         },
         {
-          "text": " fails; the checks flag meets "
+          "text": " fails; the checks flag runs every check and filters what is printed, "
         },
         {
           "text": "4.2",
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": "; -explain resolves every check offline but not the compile and staticcheck codes it also prints, so "
+          "text": " partial; -explain resolves every check offline but not the compile and staticcheck codes it also prints, documented nowhere, so "
         },
         {
           "text": "6.1",
@@ -2102,14 +2151,21 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " fails; -show-ignored meets "
+          "text": " and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fail; -show-ignored disables the ignore directives, but a generated-code header silences many checks unseen, "
         },
         {
           "text": "7.1",
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": "; the release cannot analyse Go 1.27 code, a fault outside every clause"
+          "text": " fails; the release cannot analyse Go 1.27 code, a fault outside every clause"
         }
       ],
       "checked": "2026-10-10, version 2026.2.1 (v0.8.1)"
@@ -2152,14 +2208,14 @@
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": " and "
+          "text": " partial, and the whole dependency graph is the unit, failing "
         },
         {
           "text": "5.2",
           "href": "/DETECTOR-SPEC.html#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file"
         },
         {
-          "text": " partial; SARIF prefixes the code, so "
+          "text": "; SARIF prefixes the code, so "
         },
         {
           "text": "4.3",
@@ -2176,8 +2232,15 @@
           "text": " to "
         },
         {
-          "text": "6.3",
-          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": "; std-replacements.ignore silences replaced-in-std with no switch and no report, failing "
+        },
+        {
+          "text": "7.1",
+          "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         }
       ],
       "checked": "2026-10-10, version 0.20.2"
@@ -2213,21 +2276,28 @@
           "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
         },
         {
-          "text": " fails; the lint name prints on its first finding only, "
+          "text": " fails; level flags still run and print other lints, so "
+        },
+        {
+          "text": "4.2",
+          "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
+        },
+        {
+          "text": " is partial; the lint name prints on its first finding only, "
         },
         {
           "text": "4.3",
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " partial; per-crate runs leave "
+          "text": " partial; nothing runs one file, only a crate, failing "
         },
         {
           "text": "5.2",
           "href": "/DETECTOR-SPEC.html#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file"
         },
         {
-          "text": " partial; --explain resolves every Clippy lint offline but not the rustc lints the same command prints, so "
+          "text": "; --explain resolves every Clippy lint offline but not the rustc lints the same command prints, so "
         },
         {
           "text": "6.1",
@@ -2316,14 +2386,14 @@
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": " is partial; the printed rule URL meets "
+          "text": " is partial; the printed rule URL resolves every rule but not the parser-error the engine prints, "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " but needs the network, and the documentation API is not a mechanism, failing "
+          "text": " partial, and needs the network, and the documentation API is not a mechanism, failing "
         },
         {
           "text": "6.2",
@@ -2452,25 +2522,25 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": "; the documented rule address is keyed on the base rule, not on the named rule the text formats print, leaving "
+          "text": "; no command or printed address resolves a rule, the address form being stated only in an agent skill, so "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " partial, and online-only pages fail "
-        },
-        {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
-        },
-        {
-          "text": " and "
+          "text": " to "
         },
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": " fail, and the config-error it prints is documented nowhere, failing "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
         },
         {
           "text": "; no inline route, but the suppressions file has no switch and silences the project rule that sees it, leaving "
@@ -2601,32 +2671,28 @@
           "href": "/DETECTOR-SPEC.html#5-reporting"
         },
         {
-          "text": "; a project rule can see every inline suppression under "
+          "text": "; the SARIF log lists every pragma and SuppressMessage suppression under "
         },
         {
           "text": "7.1",
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": "; only the CA family ships an offline index, leaving "
+          "text": "; the printed addresses are lower-cased, the compiler's appear only in the SARIF rules table, and the CA index ships only in a package the default installation does not use, so "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " and "
-        },
-        {
-          "text": "6.2",
-          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
-        },
-        {
-          "text": " partial and failing "
+          "text": " to "
         },
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": " fail"
         }
       ],
       "checked": "2026-10-10, .NET SDK version 10.0.401"
@@ -3104,28 +3170,28 @@
       },
       "notes": [
         {
-          "text": "Detector plugins and the test harness meet "
+          "text": "Detector plugins meet "
         },
         {
           "text": "4.1",
           "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
         },
         {
-          "text": " and "
+          "text": "; -visitors runs a whole detector, and the test harness and -include filter a fuller run, so "
         },
         {
           "text": "4.2",
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": "; default text prints a shared abbreviation, not the bug type, so "
+          "text": " is partial; default text prints a shared abbreviation, not the bug type, so "
         },
         {
           "text": "4.3",
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " is partial; the messages.xml installed in the jar is an index keyed on the type, meeting "
+          "text": " is partial; no command or printed address resolves a type, and messages.xml is the analyser's message resource, so "
         },
         {
           "text": "6.1",
@@ -3139,7 +3205,7 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": "; a report written to a file silences the terminal, leaving "
+          "text": " fail; a report written to a file silences the terminal, leaving "
         },
         {
           "text": "5.3",
@@ -3169,8 +3235,8 @@
         "level": "green"
       },
       "detector": {
-        "mark": "🟡",
-        "level": "amber"
+        "mark": "🔴",
+        "level": "red"
       },
       "toolchain": {
         "mark": "·",
@@ -3203,7 +3269,14 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": "; a report file written from the command line without --exitcode leaves no summary on the console, so "
+          "text": "; one file is reached only through a project description written for the run, failing "
+        },
+        {
+          "text": "5.2",
+          "href": "/DETECTOR-SPEC.html#52-the-detector-must-support-invocation-over-a-subset-at-minimum-a-single-file"
+        },
+        {
+          "text": " structurally; a report file written from the command line without --exitcode leaves no summary on the console, so "
         },
         {
           "text": "5.3",
@@ -3299,14 +3372,11 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": "; a project rule sees every @Suppress form only by an undocumented escape, so "
+          "text": "; the Gradle plugin applies a baseline from a default path whenever it exists, with no setting and no report, failing "
         },
         {
           "text": "7.1",
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
-        },
-        {
-          "text": " is partial"
         }
       ],
       "checked": "2026-10-10, version 1.23.8"
@@ -3528,6 +3598,13 @@
         {
           "text": "5.3",
           "href": "/DETECTOR-SPEC.html#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran"
+        },
+        {
+          "text": " partial; a licence that charges for commercial use leaves "
+        },
+        {
+          "text": "5.4",
+          "href": "/DETECTOR-SPEC.html#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally"
         },
         {
           "text": " partial; nothing resolves a printed identifier, failing "
@@ -3819,7 +3896,7 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": "; Get-ScriptAnalyzerRule resolves bundled names offline, but the alias rule prints InvalidSyntaxAroundProcessBlock, which resolves to nothing, leaving "
+          "text": "; Get-ScriptAnalyzerRule resolves bundled names offline, but the alias rule's InvalidSyntaxAroundProcessBlock and the parser's names such as MissingEndCurlyBrace resolve to nothing, leaving "
         },
         {
           "text": "6.1",
@@ -3894,21 +3971,28 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " partial; the sqlfluff rules listing, labelled by code and name with each rule's summary, meets "
+          "text": " partial; the sqlfluff rules listing resolves every rule offline but not the PRS, TMP and LXR codes printed for parse errors, leaving "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " to "
+          "text": " and "
+        },
+        {
+          "text": "6.2",
+          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
+        },
+        {
+          "text": " partial and failing "
         },
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " offline; disable-noqa closes noqa, but in-file sqlfluff directives can exclude any rule, cannot be switched off and are seen only by a project rule they can silence, leaving "
+          "text": "; disable-noqa closes noqa, but in-file sqlfluff directives can exclude any rule, cannot be switched off and are seen only by a project rule they can silence, leaving "
         },
         {
           "text": "7.1",
@@ -3951,14 +4035,14 @@
           "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
         },
         {
-          "text": " fails; -i meets "
+          "text": " fails; -i filters what is printed, leaving "
         },
         {
           "text": "4.2",
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": " for bundled checks; JSON prints the code as an integer, leaving "
+          "text": " partial; JSON prints the code as an integer, leaving "
         },
         {
           "text": "4.3",
@@ -4141,8 +4225,8 @@
       "language": "YAML",
       "kind": "tool",
       "readiness": {
-        "mark": "🟢",
-        "level": "green"
+        "mark": "🟡",
+        "level": "amber"
       },
       "detector": {
         "mark": "🟡",
@@ -4158,14 +4242,14 @@
       },
       "notes": [
         {
-          "text": "CEL custom checks, --include and printed check names meet "
+          "text": "CEL custom checks and printed check names meet "
         },
         {
           "text": "4.1",
           "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
         },
         {
-          "text": " to "
+          "text": ", "
         },
         {
           "text": "4.3",
@@ -4179,7 +4263,14 @@
           "href": "/DETECTOR-SPEC.html#5-reporting"
         },
         {
-          "text": ", and refusing a nameless check meets "
+          "text": "; --include adds to every custom check rather than selecting one, leaving "
+        },
+        {
+          "text": "4.2",
+          "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
+        },
+        {
+          "text": " partial; refusing a nameless check meets "
         },
         {
           "text": "4.4",
@@ -4283,6 +4374,16 @@
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": "; an override at a JSON pointer silences the project rule written to see it, leaving "
+        },
+        {
+          "text": "7.1",
+          "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
+        },
+        {
+          "text": " partial"
         }
       ],
       "checked": "2026-10-10, version 6.17.0"
@@ -4532,14 +4633,14 @@
           "href": "/DETECTOR-SPEC.html#5-reporting"
         },
         {
-          "text": ", and SKIP, its only way to silence a hook, is printed as Skipped, meeting "
+          "text": ", and it offers no suppression route, meeting "
         },
         {
           "text": "7.1",
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": "; nothing it provides resolves its bundled meta hooks' ids, which are documented only on the website, so "
+          "text": ", since SKIP is configuration and printed as Skipped; nothing it provides resolves its bundled meta hooks' ids, which are documented only on the website, so "
         },
         {
           "text": "6.1",
@@ -4603,14 +4704,21 @@
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": "; a path-derived prefix printed by default leaves "
+          "text": "; a path-derived prefix printed by default, which --no-rewrite-rule-ids removes, and an emacs format that keeps only the identifier's last segment leave "
         },
         {
           "text": "4.3",
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": " partial, and --no-rewrite-rule-ids removes it; registry rules resolve online only, failing "
+          "text": " and "
+        },
+        {
+          "text": "6.1",
+          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
+        },
+        {
+          "text": " partial; registry rules resolve online only, failing "
         },
         {
           "text": "6.2",
