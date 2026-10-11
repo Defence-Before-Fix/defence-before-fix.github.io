@@ -1,0 +1,69 @@
+---
+title: go-critic and Defence Before Fix
+summary: Ruleguard rules loaded at run time meet 4.1, and -enable with -@ruleguard.enable runs one rule for 4.2; a ruleguard finding prints only ruleguard, so a project rule has no identifier of its own and 4.3 is partial; gocritic doc resolves every checker offline for 6.1 to 6.3; no inline suppression route, so 7.1 holds
+language: Go
+kind: tool
+readiness: 🟡
+detector: 🟡
+checked: 2026-10-10, version v0.15.0 (go-ruleguard v0.4.5)
+---
+
+# go-critic
+
+{% include tool-grades.html %}
+
+go-critic is a Go linter of 108 checkers, such as `appendAssign` and `rangeValCopy`, that look for bugs, performance traps and style problems the compiler and go vet do not ([README at v0.15.0](https://github.com/go-critic/go-critic/blob/v0.15.0/README.md)). One of them, `ruleguard`, runs rules written by the project in the [go-ruleguard](https://github.com/quasilyte/go-ruleguard/blob/v0.4.5/README.md) DSL, read from a Go file at run time with no rebuild. In a pipeline go-critic runs as the `gocritic` command or, far more often, as the `gocritic` linter inside golangci-lint, which is how most projects reach ruleguard; this page grades the `gocritic` command at v0.15.0, which is built against go-ruleguard v0.4.5.
+
+## How it is conformant
+
+Clause 4.1 is met. A ruleguard rule is a Go function over `dsl.Matcher`, such as `` m.Match(`os.Remove($p)`).Report(`use the safe deleter`) ``, with `Where` filters on the matched expressions' types, kept in a file the build ignores and named with `-@ruleguard.rules` ([go-ruleguard README](https://github.com/quasilyte/go-ruleguard/blob/v0.4.5/README.md), [`ruleguard` in the checker overview](https://github.com/go-critic/go-critic/blob/v0.15.0/docs/overview.md#ruleguard)). Run with `gocritic check -enable ruleguard -@ruleguard.rules=rules/rules.go ./pkg`, version v0.15.0 printed `./pkg/a.go:6:6: ruleguard: use the safe deleter` and exited 1, and a rule filtered on `` m["x"].Type.Is(`string`) `` fired on a string argument under Go 1.26.8 and Go 1.27.2 alike (ran). Clause 4.2 is met by flags: `-enable <checker>` runs one checker, and `-enable ruleguard -@ruleguard.enable projNoOsRemove` runs one rule group of the project's file and nothing else (ran). A rules file that does not compile is reported, `ruleguard init error, skip rules2/broken.go: ... filter refers to a non-existing var q`, and the run exits 1 (ran).
+
+The command runs locally on a package or a single file, `gocritic check ./pkg/a.go`, and prints each finding to its own output (standard error) as the position, the checker's name and the message, which meets 5.1 to 5.4 (ran). Section 6 is met for the bundled checkers: `gocritic doc <name>` prints a checker's summary, before and after examples and parameters from the binary, and a loop over the 108 names `gocritic doc` lists resolved every one under `unshare -rn`, with no network (ran). A ruleguard finding prints `ruleguard`, and `gocritic doc ruleguard` resolves that too. The documentation is the `CheckerInfo` compiled into each checker, so it ships with the rule at the same version (6.3), and the repository's `TestDocs` fails when a checker lacks a summary ([`checkers_test.go`](https://github.com/go-critic/go-critic/blob/v0.15.0/checkers/checkers_test.go#L81)), a test in the continuous-integration workflow but not a release step, so 6.4 is partial.
+
+Clause 7.1 holds by omission: the `gocritic` command has no inline suppression route. A `//nolint:gocritic // reason` and a `//lint:ignore appendAssign reason` over findings were both ignored, and every finding was printed (ran), and the source of the command and its `linter` package has no directive handling ([`check.go`](https://github.com/go-critic/go-critic/blob/v0.15.0/cmd/gocritic/check.go)). The `-disable`, `-@ruleguard.disable` and `-checkGenerated` flags choose what runs, and are configuration the project can simply not set. Clause 7.2 is not applicable. Under golangci-lint, its `//nolint` route applies instead, as its page describes.
+
+## How it is not conformant
+
+Clause 4.3 is partial. Each bundled checker prints its name, a string its maintainers assign once (`appendAssign:`), but every ruleguard rule prints the one name `ruleguard` and its message: the checker reports `report.message` alone ([`ruleguard_checker.go`](https://github.com/go-critic/go-critic/blob/v0.15.0/checkers/ruleguard_checker.go#L313)), so the rule group's name, `projNoOsRemove`, is never printed (ran). That name is the Go function's name in any case, and an identifier derived from a name in code fails 4.3 under reading 5. A project's rule therefore has an identifier only where its author writes one into the message, as `proj.typed-sprint: Sprint of a string` did (ran), which is the workaround reading 2 counts towards readiness and not towards 4.3. The clause holds for the bundled checkers and fails for the rules a defence is written as. There is one output format, plain text, so no machine-readable format carries anything more.
+
+Clause 4.4 is not met. `validateCheckerName` refuses a checker whose name is not `^\w+$` when it is registered ([`helpers.go`](https://github.com/go-critic/go-critic/blob/v0.15.0/linter/helpers.go#L110)), but that covers checkers compiled into go-critic, not ruleguard rules, which carry no identifier to check; its companion `validateCheckerDocumentation` is an empty `TODO`.
+
+Three behaviours a defence routed through go-critic should know of, recorded under reading 9 where it applies. A package whose file does not parse printed nothing and exited 0, with the default checkers or with `-enableAll` (ran). A misspelt group, `-@ruleguard.enable noSuchGroup`, ran no rule, printed nothing and exited 0, so a typo in a red proof looks like a pass; a misspelt checker, by contrast, printed `empty checkers set selected` and exited 1 (ran). A usage error exits 1, the code a finding gets (ran).
+
+The detector grade is 🟡: no structural MUST is No, and the MUST not met in full is 4.3. Readiness is 🟡: bespoke rules and a single-rule run are there, but a project's rule prints an identifier only when its author writes one into the message.
+
+## Clause by clause
+
+| Document | Clause | Result         | Evidence                                                                                                                                                                                                  |
+| -------- | ------ | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Yes            | Ruleguard rules loaded with `-@ruleguard.rules` ([go-ruleguard README](https://github.com/quasilyte/go-ruleguard/blob/v0.4.5/README.md); ran)                                                             |
+| Detector | 4.2    | Yes            | `-enable <checker>`; `-enable ruleguard -@ruleguard.enable <group>` (ran)                                                                                                                                 |
+| Detector | 4.3    | Partial        | Checker names printed; every ruleguard finding prints `ruleguard` and the message ([`ruleguard_checker.go`](https://github.com/go-critic/go-critic/blob/v0.15.0/checkers/ruleguard_checker.go#L313); ran) |
+| Detector | 4.4    | No             | Checker names checked against `^\w+$` at registration, not ruleguard rules ([`helpers.go`](https://github.com/go-critic/go-critic/blob/v0.15.0/linter/helpers.go#L110))                                   |
+| Detector | 5.1    | Yes            | `gocritic check` locally (ran)                                                                                                                                                                            |
+| Detector | 5.2    | Yes            | `gocritic check ./pkg/a.go` (ran)                                                                                                                                                                         |
+| Detector | 5.3    | Yes            | Findings in the command's output; no report-file option (ran)                                                                                                                                             |
+| Detector | 5.4    | Yes            | Every checker runs locally                                                                                                                                                                                |
+| Detector | 6.1    | Yes            | `gocritic doc <name>`, including `ruleguard` (ran)                                                                                                                                                        |
+| Detector | 6.2    | Yes            | All 108 checker names resolved under `unshare -rn` (ran)                                                                                                                                                  |
+| Detector | 6.3    | Yes            | Documentation is the `CheckerInfo` compiled into each checker                                                                                                                                             |
+| Detector | 6.4    | Partial        | `TestDocs` requires a summary per checker ([`checkers_test.go`](https://github.com/go-critic/go-critic/blob/v0.15.0/checkers/checkers_test.go#L81)); a CI test, not a release step                        |
+| Detector | 7.1    | Yes            | No inline route in the `gocritic` command; `//nolint` and `//lint:ignore` were ignored (ran)                                                                                                              |
+| Detector | 7.2    | Not applicable | No inline route to require a reason on                                                                                                                                                                    |
+
+## Notes for a practitioner
+
+Write a pattern class as a ruleguard rule, begin its `Report` message with a stable identifier of the project's own, since nothing else will print one, and prove it with `-enable ruleguard -@ruleguard.enable <group>` against the originating file, checking that the output is not empty: a misspelt group name passes silently. Do not treat a clean `gocritic` run as proof on a package that may not parse, since it exits 0 there. Most projects enforce the same rules through golangci-lint's `gocritic` linter, which adds the `//nolint` route and prints `(gocritic)` after each finding; see that page for how to keep the route visible. Use `gocritic doc <name>` to look up any checker offline.
+
+## Attributes
+
+| Attribute      | Value                                                                                        | Source                                                                                       |
+| -------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Kind           | Detector                                                                                     | [README](https://github.com/go-critic/go-critic/blob/v0.15.0/README.md)                      |
+| Depth          | Semantic: checkers and ruleguard rules see the typed AST                                     | [go-ruleguard README](https://github.com/quasilyte/go-ruleguard/blob/v0.4.5/README.md); ran  |
+| Rule form      | The go-ruleguard DSL, Go functions over `dsl.Matcher` with gogrep patterns and type filters  | [go-ruleguard README](https://github.com/quasilyte/go-ruleguard/blob/v0.4.5/README.md)       |
+| Output formats | Plain text on standard error only; no SARIF                                                  | ran; [`check.go`](https://github.com/go-critic/go-critic/blob/v0.15.0/cmd/gocritic/check.go) |
+| Exit codes     | 1 on a finding (`-exitCode` changes it), 1 on a usage error, 0 on a file that does not parse | ran                                                                                          |
+| Report file    | No                                                                                           | ran (`check -help`)                                                                          |
+| Rule listing   | `gocritic doc` lists every checker with its tags, not only those enabled                     | ran                                                                                          |
+| Licence        | MIT; go-ruleguard BSD 3-Clause                                                               | [LICENSE](https://github.com/go-critic/go-critic/blob/v0.15.0/LICENSE)                       |

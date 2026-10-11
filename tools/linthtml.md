@@ -1,0 +1,71 @@
+---
+title: LintHTML and Defence Before Fix
+summary: Plugin rules with a required namespace meet 4.1 and 4.3, and refusing an unnamed or unnamespaced rule is 4.4 partial; one rule runs alone only through a configuration, 4.2 partial; no rule documentation ships or resolves, failing 6.1 to 6.3; linthtml-disable silences the rule that detects it and .linthtmlignore is read with no switch or report, failing 7.1
+language: HTML
+kind: tool
+readiness: 🟡
+detector: 🟡
+checked: 2026-10-10, version 0.10.2
+---
+
+# LintHTML
+
+{% include tool-grades.html %}
+
+LintHTML is a linter for HTML written in JavaScript, the maintained fork of htmllint. It parses markup with htmlparser2 into its own tree, calls each activated rule on every node, and prints each finding with the rule's name. Its rules are configured in a `.linthtmlrc` file, it accepts rules a project writes as plugins, and a custom parser can feed it templates such as Pug. In a pipeline it is a check on hand-written HTML beside or in place of HTMLHint.
+
+## How it is conformant
+
+Clause 4.1 is met. A plugin is a module exporting `rules`, each with a `name` of the form `<plugin-name>/<rule-id>` and a `lint(node, config, { report })` function, listed under `plugins` in the configuration and switched on under `rules` ([writing plugins](https://github.com/linthtml/linthtml/blob/v0.10.2/doc/docs/developer-guide/plugins.mdx)). A plugin rule `proj/no-b` loaded that way reported `Do not use <b>` beside the bundled `id-no-dup` and `img-req-alt` in the same run (ran at 0.10.2). The plugin is imported as a module specifier, so a relative path in the configuration failed with `Cannot find plugin` and an absolute path or a package name worked (ran; [`read-config.ts`](https://github.com/linthtml/linthtml/blob/v0.10.2/packages/core/src/read-config.ts)).
+
+Clause 4.3 is met. The identifier is the rule's `name`, which the author writes once, namespace included, and which the documentation says "will be used to print the rule name along side an reported issue"; the default output printed `proj/no-b`, `id-no-dup` and `img-req-alt` unaltered at the end of each line. That is the only output: the command offers no other format (`--help`, ran). Clause 4.4 is partial under reading 7: a plugin rule without a `name` and one whose name has no namespace were both refused at load, with "Plugin rules have to be namespaced", and exit 1; a name with spaces, `proj/Bad Name With Spaces`, was accepted and printed as given (ran).
+
+Section 5 is met. LintHTML ran locally with the network removed (`unshare -rn`), on a single file named on the command line, and printed every finding and a count in its own output, with exit 1 ([usage](https://github.com/linthtml/linthtml/blob/v0.10.2/doc/docs/user-guide/installation-and-usage.md)); it has no option that writes the report elsewhere.
+
+## How it is not conformant
+
+Clause 4.2 is partial under reading 4. No flag selects a rule (`--help` lists `--config`, `--init`, `--print-config` and colour only), and no test harness is documented, so the only way to run one rule alone is a configuration written for it: `--config one.json` with only `proj/no-b` activated printed that rule's finding alone (ran).
+
+Section 6 fails. No command lists or explains a rule, no address is printed with a finding, and the installed packages ship `bin` and `dist` with a short README that describes no rule. Each bundled rule has a README in the repository, as [`id-no-dup`](https://github.com/linthtml/linthtml/blob/v0.10.2/packages/core/src/rules/id-no-dup/README.md) does, and the website lists them, but nothing of LintHTML's own leads from a printed identifier to them, so 6.1 is No, 6.2 is No under reading 14 and 6.3 is No. Version 0.10.2 was released with no identifier resolving, so 6.4 is No.
+
+Clause 7.1 fails under reading 16. The inline routes are `<!-- linthtml-disable -->`, with or without a list of rules, and its `linthtml-enable` pair ([ignoring code](https://github.com/linthtml/linthtml/blob/v0.10.2/doc/docs/user-guide/ignore-code.md)), and `<!-- linthtml-configure rule=false -->`, which the source accepts as well and which switched `proj/no-b` off for the rest of a file (ran). They are read from every comment with no option to turn them off ([`inline_config.ts`](https://github.com/linthtml/linthtml/blob/v0.10.2/packages/core/src/inline_config.ts), [`linter.ts`](https://github.com/linthtml/linthtml/blob/v0.10.2/packages/core/src/linter.ts)). A project rule sees comment nodes, and `proj/no-directive` reported `linthtml-disable id-no-dup` and `linthtml-disable proj/no-b`, but a directive applies to the comment that carries it: `<!-- linthtml-disable proj/no-directive -->` was not reported, and a bare `<!-- linthtml-disable -->` hid itself and everything after it, with exit 0 (ran). Under reading 19 that route is detected only in part. The file route is neither disableable nor detectable: LintHTML reads `.linthtmlignore` from the working directory, and with `a.html` listed in it, `linthtml a.html` printed `Found 0 files` and `There's no problem, good job` and exited 0, even with the file named on the command line and with an `ignoreFiles` setting in the configuration (ran). The output counts files found, not files ignored, and no setting stops the file being read. No route asks for a reason (7.2).
+
+Three failures pass silently, which a defence routed through LintHTML needs to know: an unknown option such as `--bogus` printed `Invalid option` and exited 0, a path that does not exist exited 0, and markup the parser could not make sense of, such as an unclosed attribute or a binary file, was linted as whatever htmlparser2 recovered, with no finding and exit 0 (ran; reading 9). An unknown rule in the configuration did fail, with exit 1.
+
+The detector grade is 🟡: no structural MUST fails, and 4.2, 6.1, 6.2, 6.3 and 7.1 are the MUSTs that do not hold. Readiness is 🟡: bespoke rules and a printed stable identifier are there, but one rule runs alone only through a configuration written for it. LintHTML declares no version of this document.
+
+## Clause by clause
+
+| Document | Clause | Result  | Evidence                                                                                                                                                                                                                                                                            |
+| -------- | ------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Yes     | Plugin rules ([writing plugins](https://github.com/linthtml/linthtml/blob/v0.10.2/doc/docs/developer-guide/plugins.mdx)); `proj/no-b` reported beside bundled rules (ran)                                                                                                           |
+| Detector | 4.2    | Partial | No rule flag or harness (`--help`); one rule only through `--config` naming a one-rule file (ran), reading 4                                                                                                                                                                        |
+| Detector | 4.3    | Yes     | Author-written `name` printed unaltered in the only output format (ran)                                                                                                                                                                                                             |
+| Detector | 4.4    | Partial | A rule with no name or no namespace is refused at load; a malformed name is accepted (ran), reading 7                                                                                                                                                                               |
+| Detector | 5.1    | Yes     | Ran locally with the network removed                                                                                                                                                                                                                                                |
+| Detector | 5.2    | Yes     | One file on the command line (ran)                                                                                                                                                                                                                                                  |
+| Detector | 5.3    | Yes     | Findings and a count in the command's output; no report-file option (ran)                                                                                                                                                                                                           |
+| Detector | 5.4    | Yes     | Every rule runs in the local package                                                                                                                                                                                                                                                |
+| Detector | 6.1    | No      | No command, printed address or installed index; rule READMEs are in the repository only ([`id-no-dup`](https://github.com/linthtml/linthtml/blob/v0.10.2/packages/core/src/rules/id-no-dup/README.md))                                                                              |
+| Detector | 6.2    | No      | No mechanism exists, reading 14                                                                                                                                                                                                                                                     |
+| Detector | 6.3    | No      | The packages ship `bin` and `dist` only                                                                                                                                                                                                                                             |
+| Detector | 6.4    | No      | Released with no identifier resolving                                                                                                                                                                                                                                               |
+| Detector | 7.1    | No      | Directives cannot be switched off and one naming the detecting rule hides itself (ran, reading 19); `.linthtmlignore` is read with no switch and no report (ran; [ignoring code](https://github.com/linthtml/linthtml/blob/v0.10.2/doc/docs/user-guide/ignore-code.md)), reading 16 |
+| Detector | 7.2    | No      | No route asks for a reason                                                                                                                                                                                                                                                          |
+
+## Notes for a practitioner
+
+Write the class as a plugin rule named with the project's namespace, load the plugin by absolute path or as a package, and prove it with `--config` pointing at a file that activates that rule alone. Keep the rule's documentation in the project, since LintHTML gives a reader nothing to look a name up with. Forbid `linthtml-` comments and a `.linthtmlignore` file with a check outside LintHTML, because neither can be switched off and a blanket directive hides the rule meant to catch it. Check the exit status of a wrapper as well as LintHTML's own, since a misspelt option, a missing path and an ignored file all exit 0.
+
+## Attributes
+
+| Attribute      | Value                                                                                                                     | Source                                                                                                    |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Kind           | Detector                                                                                                                  | ran                                                                                                       |
+| Depth          | Syntactic: an htmlparser2 tree, node by node, bundled and bespoke                                                         | [writing plugins](https://github.com/linthtml/linthtml/blob/v0.10.2/doc/docs/developer-guide/plugins.mdx) |
+| Rule form      | JavaScript: a plugin module exporting rules with `name` and `lint`                                                        | [writing plugins](https://github.com/linthtml/linthtml/blob/v0.10.2/doc/docs/developer-guide/plugins.mdx) |
+| Output formats | One human-readable format; no JSON or SARIF                                                                               | `--help`, ran                                                                                             |
+| Exit codes     | 1 on an error-level finding and on a bad configuration; 0 on an unknown option, a missing file and a file it cannot parse | ran                                                                                                       |
+| Report file    | None                                                                                                                      | `--help`                                                                                                  |
+| Fix mode       | None                                                                                                                      | `--help`                                                                                                  |
+| Licence        | ISC                                                                                                                       | [LICENSE](https://github.com/linthtml/linthtml/blob/v0.10.2/LICENSE), package metadata                    |

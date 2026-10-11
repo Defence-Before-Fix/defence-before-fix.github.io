@@ -1,0 +1,63 @@
+---
+title: Konsist and Defence Before Fix
+summary: Tests written with its API meet 4.1, scopeFromFile and the test runner meet 4.2 and section 5; the identifier is the test function's name unless testName is passed, so 4.3 is partial; @Suppress naming a test cannot be switched off, and a project test that detects it is silenced by the same annotation, so 7.1 is partial
+language: Kotlin
+kind: tool
+readiness: 🟢
+detector: 🟡
+checked: 2026-10-10, version 0.18.1
+---
+
+# Konsist
+
+{% include tool-grades.html %}
+
+Konsist is a Kotlin library for checking a codebase's structure in unit tests: a test takes a scope of source files, such as `Konsist.scopeFromProduction()`, filters its declarations, and asserts a condition over them with `assertTrue` or `assertFalse`, or asserts layer dependencies with `assertArchitecture`. It reads Kotlin source through the compiler's syntax tree and ships no rules of its own. In a project's checks it runs in the test suite, under JUnit or Kotest, so the test runner's command is the one the practitioner invokes.
+
+## How it is conformant
+
+Every Konsist rule is the project's own (4.1). Ran at 0.18.1 with JUnit 5 through Gradle 9.8.1 and Kotlin 2.4.21 on JDK 21: a test asserting that no class name ends in `Manager` failed with `Assert 'proj.no-manager-suffix' was violated (2 times). Invalid declarations:` and one line per class with its file, line and column. One rule runs alone against supplied code (4.2): `Konsist.scopeFromFile(path)` builds a scope from one file, relative to the project root ([`KoScopeCreator.kt` at the tag](https://github.com/LemonAppDev/konsist/blob/v0.18.1/lib/src/main/kotlin/com/lemonappdev/konsist/api/container/KoScopeCreator.kt)), and `gradle test --tests 't.KoTest.oneFile'` ran that test alone and reported the one class in that file. The same call is the single-file run (5.2); Konsist reads source, so nothing has to be compiled first.
+
+The run is local, with no service (5.1, 5.4). The result reaches the command's output (5.3): with Gradle's default test logging the console names the failing test and prints the path of the HTML report, and with `exceptionFormat = 'full'` it prints the whole message; the build exits 1, ran. A project's identifier passed as `testName` is printed unaltered between quotes, and Konsist ships no bundled rules, so 6.1 holds and 6.2 to 6.4 have nothing to apply to.
+
+## How it is not conformant
+
+Clause 4.3 is partial. The identifier printed is `testName` where the author passes one, and otherwise the name of the test function, read from the call stack ([`KoDeclarationAndProviderAssertCore.kt` at the tag](https://github.com/LemonAppDev/konsist/blob/v0.18.1/lib/src/main/kotlin/com/lemonappdev/konsist/core/verify/KoDeclarationAndProviderAssertCore.kt)): ran, the same assertion without `testName` printed `Assert 'classesShouldNotEndWithManager' was violated`, which changes when the function is renamed. An author-chosen identifier that a rule carries only when one is passed, with a derived one by default, is graded as reading 5 grades one printed only under a flag. `testName` is described in the documentation as the name that "helps with suppression" ([assert](https://docs.konsist.lemonappdev.com/features/assert)). Konsist offers no machine-readable format of its own; the runner's JUnit XML carries the message under the test function's name. There is no rule over the rules (4.4).
+
+Clause 7.1 is partial. `@Suppress("<name>")` or `@Suppress("konsist.<name>")`, with the test's identifier, on a declaration, any declaration containing it, or the file, removes that declaration from the assertion ([suppressing a Konsist test](https://docs.konsist.lemonappdev.com/writing-tests/suppressing-konsist-test)); ran, a class annotation with the prefix and a file annotation without it both silenced the rule. The check runs on every assertion, with no setting to turn it off, and nothing reports what it removed. A project test can see the annotations, since Konsist reads them: ran, `proj.no-konsist-suppress` reported the two classes whose `@Suppress` named a test with the `konsist.` prefix. But a third class annotated `@Suppress("konsist.proj.no-manager-suffix", "konsist.proj.no-konsist-suppress")` was silenced for both tests in the same run, so the route is detected only in part (reading 19). `@Suppress` takes no reason (7.2).
+
+Readiness is 🟢: a bespoke rule, a single-rule run and an author-chosen identifier printed with every finding all hold, once `testName` is passed. The detector grade is 🟡 because of 4.3 and 7.1; no structural MUST fails. A file that does not parse was read without complaint, and its class was still reported, ran. Konsist takes the project root from a Gradle or Maven wrapper or a Git directory ([`ProjectRootDirProviderFactory.kt`](https://github.com/LemonAppDev/konsist/blob/v0.18.1/lib/src/main/kotlin/com/lemonappdev/konsist/core/filesystem/ProjectRootDirProviderFactory.kt)); in a probe without either, nested in a larger repository, `scopeFromProduction()` covered the whole enclosing repository until the probe had a `.git` of its own, ran. Konsist declares no version of this document.
+
+## Clause by clause
+
+| Document | Clause | Result         | Evidence                                                                                                                                                                                                                                                               |
+| -------- | ------ | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Yes            | Assertion tests of the project's own, ran                                                                                                                                                                                                                              |
+| Detector | 4.2    | Yes            | `scopeFromFile` ([`KoScopeCreator.kt`](https://github.com/LemonAppDev/konsist/blob/v0.18.1/lib/src/main/kotlin/com/lemonappdev/konsist/api/container/KoScopeCreator.kt)) with one test selected, ran                                                                   |
+| Detector | 4.3    | Partial        | `testName` printed unaltered, ran; without it, the test function's name ([`KoDeclarationAndProviderAssertCore.kt`](https://github.com/LemonAppDev/konsist/blob/v0.18.1/lib/src/main/kotlin/com/lemonappdev/konsist/core/verify/KoDeclarationAndProviderAssertCore.kt)) |
+| Detector | 4.4    | No             | No rule over the rules                                                                                                                                                                                                                                                 |
+| Detector | 5.1    | Yes            | Runs in the local test suite, ran                                                                                                                                                                                                                                      |
+| Detector | 5.2    | Yes            | `scopeFromFile` on one source file, ran                                                                                                                                                                                                                                |
+| Detector | 5.3    | Yes            | Failing test and report path on the console, exit 1, ran                                                                                                                                                                                                               |
+| Detector | 5.4    | Yes            | Every assertion runs locally                                                                                                                                                                                                                                           |
+| Detector | 6.1    | Yes            | Project identifiers printed unaltered; no bundled rules                                                                                                                                                                                                                |
+| Detector | 6.2    | Not applicable | No bundled rules                                                                                                                                                                                                                                                       |
+| Detector | 6.3    | Not applicable | No bundled rules                                                                                                                                                                                                                                                       |
+| Detector | 6.4    | Not applicable | No bundled rules                                                                                                                                                                                                                                                       |
+| Detector | 7.1    | Partial        | `@Suppress` with the test's name has no switch; a project test sees it but is silenced by the same annotation naming it, ran ([suppressing](https://docs.konsist.lemonappdev.com/writing-tests/suppressing-konsist-test)); reading 19                                  |
+| Detector | 7.2    | No             | `@Suppress` takes no reason                                                                                                                                                                                                                                            |
+
+## Notes for a practitioner
+
+Pass `testName = "proj.<name>"` to every assertion, so the printed identifier does not move when the test function is renamed, and keep the index from those names to their documentation in the repository. Prove the rule with `scopeFromFile` on a fixture file, and run it alone through the test runner's filter. If inline suppression is to be forbidden, write a test over declarations and files that fails on any `@Suppress` argument naming a Konsist test, and remember that the same annotation can name that test too, so review is still needed. Give the project a `.git` or a build wrapper at its root, so that a scope covers the project and nothing above it.
+
+## Attributes
+
+| Attribute      | Value                                                                                                | Source                                                                                                         |
+| -------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Kind           | Detector (a test library run by the project's test runner)                                           | [README](https://github.com/LemonAppDev/konsist/blob/v0.18.1/README.md)                                        |
+| Depth          | Syntactic: the Kotlin compiler's PSI tree, read without type resolution                              | [source](https://github.com/LemonAppDev/konsist/tree/v0.18.1/lib/src/main/kotlin/com/lemonappdev/konsist), ran |
+| Rule form      | Kotlin code: a scope, declaration filters and an `assertTrue`, `assertFalse` or `assertArchitecture` | ran                                                                                                            |
+| Output formats | An assertion message in the test runner's output and reports; no format of its own; no SARIF         | ran                                                                                                            |
+| Exit codes     | The test runner's: Gradle exits 1 on a failed assertion                                              | ran                                                                                                            |
+| Licence        | Apache-2.0                                                                                           | [LICENSE](https://github.com/LemonAppDev/konsist/blob/v0.18.1/LICENSE)                                         |

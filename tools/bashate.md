@@ -1,0 +1,72 @@
+---
+title: bashate and Defence Before Fix
+summary: Fixed catalogue so 4.1 fails; -i isolates one check only through a regular expression, leaving 4.2 partial; E codes in its one output format meet 4.3; bashate -s lists every code with its explanation offline, meeting 6.1 to 6.3; no inline route, so 7.1 holds
+language: Shell
+kind: tool
+readiness: 🔴
+detector: 🔴
+checked: 2026-10-10, version 2.1.1
+---
+
+# bashate
+
+{% include tool-grades.html %}
+
+bashate is a style checker for bash scripts from the OpenStack project, modelled on pycodestyle: a small Python package that reads a script line by line, applies a fixed set of checks such as trailing whitespace, tab indents, `then` on its own line and deprecated `$[` arithmetic, and runs `bash -n` over the file to report syntax errors. Each check has a code from `E001` to `E044`. In a pipeline it sits beside ShellCheck as the layout and convention step, since ShellCheck says nothing about indentation or keyword placement. It is a fixed-catalogue detector: a project chooses which codes to ignore or treat as warnings and cannot add a check of its own.
+
+## How it is conformant
+
+Every finding is printed as `file:line:1: CODE message`, for example `ba.bash:2:1: E001 Trailing Whitespace`, followed by a count such as `4 bashate error(s) found`, and the command exits 1 (ran, version 2.1.1). The codes are assigned once by the maintainers in the message table, [`messages.py`](https://github.com/openstack/bashate/blob/2.1.1/bashate/messages.py), from which every finding is printed, and bashate has one output format, so the code reaches every finding unaltered (4.3). It runs locally on one file, with no infrastructure and nothing held back for a service or tier (5.1, 5.2, 5.4), and the findings are the command's own output (5.3).
+
+`bashate -s` prints the whole table: every code, its default level, its message and, for most, a paragraph of explanation, such as `[E] E011 : Then keyword is not on same line as if or elif keyword` followed by its rationale (ran). That is a listing that prints each identifier with its description, which reading 11 counts as keyed on the identifier, so a printed code resolves to its documentation (6.1). It ran with the network removed (`unshare -rn bashate -s`, exit 0), so resolution works from the installed copy (6.2). The explanation lives in the same table the finding is printed from, so a code cannot be printed without an entry, and the documentation ships in the package at the same version as the check (6.3). Some entries are one line only: `E001` has its message and no explanation, which reading 12 accepts and this page records.
+
+bashate has no inline suppression route. Its source handles no ignore comment ([`bashate.py`](https://github.com/openstack/bashate/blob/2.1.1/bashate/bashate.py)): comments are skipped as comments, and the only ways to silence a check are the `-i` (ignore) and `-w` (warn) options on the command line, which the project's invocation owns (7.1).
+
+## How it is not conformant
+
+Clause 4.1 fails outright. The checks are functions called in a fixed order from `check_files` in [`bashate.py`](https://github.com/openstack/bashate/blob/2.1.1/bashate/bashate.py), with no plugin interface and no option that loads one (`bashate --help`), so a project cannot express a pattern of its own, and clause 4.4 has nothing to apply to.
+
+Clause 4.2 is graded on the bundled checks, and is partial. No option selects one check. `-i` takes a comma-separated list that bashate joins into a regular expression anchored at the start of each message (`register_ignores`), so a single check is isolated by ignoring everything else with a negative lookahead: `bashate -i '(?!E011)' ba.bash` printed only the `E011` finding (ran). That is a workaround the practitioner writes for each check, the case of reading 4. The same prefix matching makes `-i E00` ignore `E001` to `E006` (ran), which a project listing ignores should know.
+
+No release gate checks the documentation, though the single table makes one unnecessary for the codes it holds (6.4). There is no inline route to require a reason on (7.2).
+
+A file bashate cannot parse can pass silently. Syntax errors come from `bash -n`, and bashate reports one only where bash's message contains the words `syntax error`; for an unterminated quote bash 5.2.15 printed `unexpected EOF while looking for matching '"'` and exited 2, and `bashate parse.bash` printed nothing and exited 0 (ran). Under reading 9 this is not graded under 5.3, but a defence routed through bashate stops defending on such a file without a sign. Findings at warning level (`E005`, `E006`, `E042`, `E043` by default, and any code passed to `-w`) are printed and counted but leave the exit code at 0.
+
+Readiness is 🔴 because no bespoke rule can be written. The detector grade is 🔴 because 4.1 fails, a structural MUST under reading 1; 4.2 is partial and 4.4 and 6.4 fail. bashate declares no version of this document.
+
+## Clause by clause
+
+| Document | Clause | Result         | Evidence                                                                                                                                                                    |
+| -------- | ------ | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | No             | Checks are fixed functions in [`bashate.py`](https://github.com/openstack/bashate/blob/2.1.1/bashate/bashate.py); no load option (`--help`)                                 |
+| Detector | 4.2    | Partial        | Bundled checks: no select option; `-i '(?!E011)'` left only `E011` (ran); a per-check workaround, reading 4                                                                 |
+| Detector | 4.3    | Yes            | `ba.bash:2:1: E001 Trailing Whitespace` in the one output format (ran); codes fixed in [`messages.py`](https://github.com/openstack/bashate/blob/2.1.1/bashate/messages.py) |
+| Detector | 4.4    | No             | No bespoke rules for it to apply to                                                                                                                                         |
+| Detector | 5.1    | Yes            | Ran locally, no infrastructure                                                                                                                                              |
+| Detector | 5.2    | Yes            | Ran on one file                                                                                                                                                             |
+| Detector | 5.3    | Yes            | Findings and a count on standard output; exit 1 on an error-level finding (ran)                                                                                             |
+| Detector | 5.4    | Yes            | Every check runs in the local package                                                                                                                                       |
+| Detector | 6.1    | Yes            | `bashate -s` lists every code with its message and explanation (ran), a listing keyed on the code, reading 11                                                               |
+| Detector | 6.2    | Yes            | `bashate -s` ran with the network removed                                                                                                                                   |
+| Detector | 6.3    | Yes            | Explanations ship in `messages.py`, the table every finding is printed from; `E001` has one line only                                                                       |
+| Detector | 6.4    | No             | No release check; none is needed for the table's own codes                                                                                                                  |
+| Detector | 7.1    | Yes            | No inline route in [`bashate.py`](https://github.com/openstack/bashate/blob/2.1.1/bashate/bashate.py); `-i` and `-w` are command-line options                               |
+| Detector | 7.2    | Not applicable | No inline route to require a reason on                                                                                                                                      |
+
+## Notes for a practitioner
+
+bashate cannot hold a project's own defence; put that rule in a pattern engine with a bash grammar, such as [ast-grep](ast-grep.md) or [Semgrep](semgrep.md), and keep bashate for layout. Prove a bundled check on a fixture with `-i '(?!CODE)'`, and write each entry of an ignore list in full, since `-i E00` silences six checks. Run `bash -n` beside it, or ShellCheck, which does report an unterminated quote, because bashate passes a file whose syntax error bash words differently. Pass `-e` for any code whose finding must fail the run, since warnings exit 0.
+
+## Attributes
+
+| Attribute      | Value                                                                                                               | Source                                                                             |
+| -------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Kind           | Detector                                                                                                            | ran                                                                                |
+| Depth          | Lexical (line patterns), with `bash -n` for syntax errors                                                           | [`bashate.py`](https://github.com/openstack/bashate/blob/2.1.1/bashate/bashate.py) |
+| Output formats | One text format, `file:line:1: CODE message`; no SARIF                                                              | ran                                                                                |
+| Exit codes     | 1 on an error-level finding or a missing file; 0 on warnings only and on the unparsed file above; 2 on a bad option | ran                                                                                |
+| Report file    | None                                                                                                                | `--help`, ran                                                                      |
+| Fix mode       | None                                                                                                                | `--help`, ran                                                                      |
+| Baseline       | None                                                                                                                | `--help`, ran                                                                      |
+| Rule listing   | `bashate -s`, every code with its level and explanation                                                             | ran                                                                                |
+| Licence        | Apache-2.0                                                                                                          | [LICENSE](https://github.com/openstack/bashate/blob/2.1.1/LICENSE)                 |

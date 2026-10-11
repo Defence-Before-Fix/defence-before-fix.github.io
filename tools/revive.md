@@ -1,0 +1,70 @@
+---
+title: revive and Defence Before Fix
+summary: Rules of the project's own through revive as a library meet 4.1; one rule runs only through a configuration, 4.2 partial; the default formatter omits the rule name and others fold it into a URL, 4.3 partial; the printed revive.run URL is online only and misses the directive names, 6.1 partial with 6.2 and 6.3 failing; a disable naming the detecting rule hides itself, 7.1 partial
+language: Go
+kind: tool
+readiness: 🟡
+detector: 🟡
+checked: 2026-10-10, version v1.17.1
+---
+
+# revive
+
+{% include tool-grades.html %}
+
+revive is the configurable successor to golint: about a hundred rules, such as `var-naming` and `exported`, enabled and tuned from a TOML file, with comment directives to disable them in place ([README at v1.17.1](https://github.com/revive-lint/revive/blob/v1.17.1/README.md)). In a pipeline it runs on its own or as the `revive` linter inside golangci-lint. It is built to be extended: a project can write rules in Go and build a revive binary that runs them beside the bundled ones.
+
+## How it is conformant
+
+Clause 4.1 is met. The README's "Using revive as a library" section has a project implement the `lint.Rule` interface, a `Name()` and an `Apply()` over the parsed file, and pass it to `cli.RunRevive(revivelib.NewExtraRule(&myRule{}, lint.RuleConfig{}))` in a `main` package of its own ([README](https://github.com/revive-lint/revive/blob/v1.17.1/README.md)). Built against v1.17.1, such a binary ran a rule named `proj-no-os-remove` and a second, `proj-no-revive-directive`, that reads the file's comments, beside the bundled rules, with the same configuration, directives and formatters (ran). The name is a string the rule's author returns, chosen once and not derived from the type's name, and the bundled rules' names are assigned the same way by the maintainers.
+
+The binary runs locally on a single file, `revive a.go`, or on package patterns, and prints findings in the command's own output; there is no option that writes them elsewhere, which meets 5.1 to 5.4 (ran). Clause 7.2 is met by configuration: with `[directive.specify-disable-reason]` a directive with no trailing text was reported as `reason of lint disabling not found` and no longer suppressed the finding under it (ran), and the README documents `[directive.specify-disable-rule]` as forbidding a directive that names no rule ([README](https://github.com/revive-lint/revive/blob/v1.17.1/README.md)). Both are off by default.
+
+## How it is not conformant
+
+Clause 4.2 is partial under reading 4. There is no flag that selects a rule, and the rule tests in the repository's `test` package are not importable by a project ([`test/`](https://github.com/revive-lint/revive/tree/v1.17.1/test)), so one rule runs alone only through a configuration that names it; and a rule added with `NewExtraRule` is enabled whether the configuration names it or not ([`core.go`](https://github.com/revive-lint/revive/blob/v1.17.1/revivelib/core.go#L52)), so that configuration must also disable every other project rule: a configuration naming only `proj-no-os-remove` still printed a `proj-no-revive-directive` finding (ran).
+
+Clause 4.3 is partial. The `default` formatter, the one used when none is named, prints no rule name: `a.go:6:6: use the safe deleter` (ran). The `unix` formatter prints `[proj-no-os-remove]`, and `json`, `ndjson` and `sarif` carry the name unaltered as `RuleName` and `ruleId`. The `plain`, `friendly` and `stylish` formatters print it only inside `https://revive.run/r#proj-no-os-remove`, and `checkstyle` as `source="revive/proj-no-os-remove"`, a constant prefix joined to the name, which alters it under reading 6 (ran). Clause 4.4 is not met: `revivelib.New` registers an extra rule under whatever `Name()` returns, with no check of its form ([`core.go`](https://github.com/revive-lint/revive/blob/v1.17.1/revivelib/core.go)).
+
+Section 6 rests on that printed URL, which reading 10 accepts as the mechanism, and its anchor is the identifier exactly. On 2026-10-10 the page at `https://revive.run/r/` had an anchor for each of the 105 rule names in the source at v1.17.1, but revive also prints `specify-disable-reason` and `specify-disable-rule` as rule names for the directive checks, and neither has an anchor there (ran), so 6.1 is partial. The page is on the web only: the release archive holds the binary, the README and the licence, and nothing that resolves a name from the installed copy, so 6.2 and 6.3 fail. The README's table of rules, which ships in the archive, names each rule beside a one-line description, but it is not a lookup revive points to, and `go install` does not install it. For a project's own rule the formatters print `https://revive.run/r#proj-no-os-remove`, a documentation address that leads nowhere, which reading 13 records as a dangling reference. No release check over the rules' documentation was found (6.4, not verified).
+
+Clause 7.1 is partial. No setting switches the `//revive:disable`, `disable-line` and `disable-next-line` directives off ([README](https://github.com/revive-lint/revive/blob/v1.17.1/README.md), [`config.go`](https://github.com/revive-lint/revive/blob/v1.17.1/lint/config.go)), and revive reports nothing about what they suppress, so the route is detected only by a project rule, as `proj-no-revive-directive` did by reading `f.AST.Comments` (ran). The same route silences that rule: `//revive:disable:proj-no-os-remove,proj-no-revive-directive legacy code` hid both findings under the strictest directive settings and the run exited 0, and a bare `//revive:disable` hid the detecting rule's finding on its own line (ran). That is reading 19. The `-exclude` flag, per-rule `Exclude` lists, `Disabled` and the confidence threshold are configuration the project can simply not set.
+
+Two behaviours outside every clause. By default revive exits 0 with findings; `-set_exit_status`, or `errorCode` and `warningCode` in the configuration, makes it fail. Under reading 9, a file that does not parse is printed as a finding with an empty rule name, `bad.go:3:9: invalid file bad.go: ...`, and exits 0 unless `-set_exit_status` is given, when it exits 1 like any finding (ran).
+
+The detector grade is 🟡: no structural MUST is No, and the MUSTs not met in full are 4.2, 4.3, 6.1, 6.2, 6.3 and 7.1. Readiness is 🟡: bespoke rules are supported, but one rule runs alone only through a configuration and the default output omits the identifier.
+
+## Clause by clause
+
+| Document | Clause | Result       | Evidence                                                                                                                                                                                |
+| -------- | ------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Yes          | `lint.Rule` built in with `revivelib.NewExtraRule` ([README](https://github.com/revive-lint/revive/blob/v1.17.1/README.md); ran)                                                        |
+| Detector | 4.2    | Partial      | Reading 4: a configuration naming the rule, which must also disable every other extra rule (ran; [`core.go`](https://github.com/revive-lint/revive/blob/v1.17.1/revivelib/core.go#L52)) |
+| Detector | 4.3    | Partial      | Absent from `default`; unaltered in `unix`, `json`, `ndjson`, `sarif`; inside a URL in `plain`, `friendly`, `stylish`; `revive/` prefix in `checkstyle` (ran; reading 6)                |
+| Detector | 4.4    | No           | No check of an extra rule's name ([`core.go`](https://github.com/revive-lint/revive/blob/v1.17.1/revivelib/core.go))                                                                    |
+| Detector | 5.1    | Yes          | Runs locally (ran)                                                                                                                                                                      |
+| Detector | 5.2    | Yes          | `revive a.go` (ran)                                                                                                                                                                     |
+| Detector | 5.3    | Yes          | Findings in the command's output; no report-file option (ran)                                                                                                                           |
+| Detector | 5.4    | Yes          | Every rule runs locally                                                                                                                                                                 |
+| Detector | 6.1    | Partial      | Printed `revive.run/r#<name>` resolves the 105 rule names; `specify-disable-reason` and `specify-disable-rule` have no anchor (ran)                                                     |
+| Detector | 6.2    | No           | The page is online only; nothing installed resolves a name                                                                                                                              |
+| Detector | 6.3    | No           | Documentation is not shipped with the binary                                                                                                                                            |
+| Detector | 6.4    | Not verified | No release check over the rules' documentation found                                                                                                                                    |
+| Detector | 7.1    | Partial      | Reading 19: no switch for directives; a project rule sees them, and a disable naming it hid it (ran)                                                                                    |
+| Detector | 7.2    | Yes          | `[directive.specify-disable-reason]`, off by default; a reasonless directive no longer suppressed (ran)                                                                                 |
+
+## Notes for a practitioner
+
+Write the class as a `lint.Rule` with a stable name, build the project's revive binary around `cli.RunRevive` with it, and prove it red with a configuration that enables that rule and disables every other extra rule, run against the originating file. Run the enforced invocation with `-formatter unix` or `json` so that every finding carries its rule name, and with `-set_exit_status` so that a finding fails the build. Enable `[directive.specify-disable-reason]` and `[directive.specify-disable-rule]` from the start. A project that forbids the directives can write a rule over comments, as above, but must back it with a text search outside revive, because a directive naming that rule silences it. To look a bundled rule up offline, keep a copy of the [rule descriptions](https://github.com/revive-lint/revive/blob/v1.17.1/RULES_DESCRIPTIONS.md) at the pinned version, since revive installs none.
+
+## Attributes
+
+| Attribute      | Value                                                                                                      | Source                                                                 |
+| -------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Kind           | Detector                                                                                                   | [README](https://github.com/revive-lint/revive/blob/v1.17.1/README.md) |
+| Depth          | Syntactic, with some rules using type information; project rules receive the same parsed and typed file    | [README](https://github.com/revive-lint/revive/blob/v1.17.1/README.md) |
+| Rule form      | Go code against the `lint.Rule` interface, built into a binary of the project's own                        | [README](https://github.com/revive-lint/revive/blob/v1.17.1/README.md) |
+| Output formats | default, plain, unix, friendly, stylish, json, ndjson, checkstyle, sarif; SARIF native                     | ran                                                                    |
+| Exit codes     | 0 on a finding by default, 1 with `-set_exit_status`; 2 on a usage error; an unparseable file is a finding | ran                                                                    |
+| Report file    | No                                                                                                         | ran (`-h`)                                                             |
+| Licence        | MIT                                                                                                        | [LICENSE](https://github.com/revive-lint/revive/blob/v1.17.1/LICENSE)  |

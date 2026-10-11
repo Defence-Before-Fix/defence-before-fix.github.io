@@ -1,0 +1,70 @@
+---
+title: "@eslint/css and Defence Before Fix"
+summary: ESLint's CSS language, so project rules on the CSS tree, RuleTester and printed rule names meet 4.1 to 4.3, and ESLint's -o leaves 5.3 partial; rule URLs point at the main branch and drop the css/ namespace, 6.1 partial, and the README's rule table is keyed the same way, failing 6.2 and 6.3; eslint-suppressions.json cannot be switched off, 7.1 partial
+language: CSS
+kind: tool
+readiness: 🟢
+detector: 🟡
+checked: 2026-10-10, version 2.0.0
+---
+
+# @eslint/css
+
+{% include tool-grades.html %}
+
+`@eslint/css` is the ESLint team's language plugin for CSS: a parser built on CSSTree, a `css/css` language for ESLint's flat configuration and fifteen rules, from `no-invalid-properties` and `no-empty-blocks` to `use-baseline`. It lets a project lint its style sheets with the same host, configuration and directives as its JavaScript. It is a plugin rather than a detector of its own, so it is graded here as rules hosted in ESLint, as [typescript-eslint](typescript-eslint.md) is: everything outside the rules and their documentation is ESLint's, set out on [the ESLint page](eslint.md). It was run with ESLint 10.12.0.
+
+## How it is conformant
+
+Clause 4.1 is met. With `language: "css/css"` in the flat configuration, a project rule written as an ordinary ESLint rule visits the CSS tree; a local plugin `projcss` with a rule `no-colour` on `Declaration` nodes reported `write color` beside `css/no-invalid-properties` and `css/no-empty-blocks` in the same file (ran at 2.0.0). Clause 4.2 is met by ESLint's `RuleTester` given the same language, which passed valid and invalid cases for `projcss/no-colour` and for the bundled `no-empty-blocks` (ran). Clause 4.3 is met: each finding prints the rule name under its plugin's namespace, `projcss/no-colour` and `css/no-empty-blocks`, unaltered in `stylish`, `json` and `html`, and as `ruleId` in SARIF through `@microsoft/eslint-formatter-sarif` (all ran).
+
+Clauses 5.1, 5.2 and 5.4 are met through ESLint: `eslint a.css` ran locally on one file and every rule runs in the installed package. A file that does not parse is reported, `Parsing error: Missing closing }`, with exit 1 (ran). For 7.1, `--no-inline-config` made a `/* eslint-disable-next-line css/no-empty-blocks -- legacy */` comment inert, so the finding it hid was printed (ran).
+
+## How it is not conformant
+
+Clause 5.3 is partial under reading 8, inherited from ESLint: `eslint -o o.txt a.css` wrote the findings to the file and printed nothing on standard output or standard error, with exit 1 (ran).
+
+Clause 7.1 is partial, inherited from ESLint: after `eslint --suppress-all a.css`, a plain `eslint a.css` read `eslint-suppressions.json` and exited 0 on a file whose findings had failed it before (ran). The file is read by default, nothing switches it off, and no rule can see it ([bulk suppressions](https://eslint.org/docs/latest/use/suppressions)).
+
+Clause 6.1 is partial. Every one of the fifteen rules carries a `meta.docs.url`, but of the form `https://github.com/eslint/css/blob/main/docs/rules/<name>.md`: keyed on the rule name with the `css/` namespace removed, so under reading 11 on something other than the printed identifier, and on the repository's `main` branch rather than the installed version, so the page can describe a later rule than the one that fired (read from the installed package). A project rule's identifier is printed unaltered, which is all 6.1 asks for it. The installed README has a table of all fifteen rules, each with a one-line description, which works offline; but each entry is labelled by the bare name, `no-empty-blocks`, not `css/no-empty-blocks`, and links to `./docs/rules/no-empty-blocks.md`, a directory the package does not ship ([README at the tag](https://github.com/eslint/css/blob/css-v2.0.0/README.md)). Under readings 11 and 14 nothing resolves the printed identifier offline (6.2 No), and the pages in [`docs/rules`](https://github.com/eslint/css/tree/css-v2.0.0/docs/rules) do not ship with the rules (6.3 No). Whether a missing page blocks a release is not documented (6.4, not verified).
+
+There is no rule over the rules (4.4), and an `eslint-disable` comment's reason after `--` is optional (7.2).
+
+The detector grade is 🟡: no structural MUST fails, and 5.3, 6.1, 6.2, 6.3 and 7.1 are the MUSTs that do not hold in full. Readiness is 🟢: bespoke rules, `RuleTester` and a printed stable identifier. `@eslint/css` declares no version of this document.
+
+## Clause by clause
+
+| Document | Clause | Result       | Evidence                                                                                                                                     |
+| -------- | ------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Yes          | A local plugin rule on `Declaration` nodes reported beside the bundled rules (ran)                                                           |
+| Detector | 4.2    | Yes          | ESLint's `RuleTester` with `language: "css/css"` (ran)                                                                                       |
+| Detector | 4.3    | Yes          | `projcss/no-colour` and `css/no-empty-blocks` unaltered in `stylish`, `json`, `html` and SARIF (ran)                                         |
+| Detector | 4.4    | No           | No rule checks that rules carry an identifier                                                                                                |
+| Detector | 5.1    | Yes          | Runs through ESLint locally (ran)                                                                                                            |
+| Detector | 5.2    | Yes          | One file through ESLint (ran)                                                                                                                |
+| Detector | 5.3    | Partial      | ESLint's `-o <file>` leaves the command's output empty (ran), reading 8                                                                      |
+| Detector | 5.4    | Yes          | Every rule runs in the installed package                                                                                                     |
+| Detector | 6.1    | Partial      | `meta.docs.url` keyed on the name without `css/`, on the `main` branch (read from the package); project ids printed unaltered                |
+| Detector | 6.2    | No           | The README's offline table is keyed on the bare name ([README](https://github.com/eslint/css/blob/css-v2.0.0/README.md)), readings 11 and 14 |
+| Detector | 6.3    | No           | [`docs/rules`](https://github.com/eslint/css/tree/css-v2.0.0/docs/rules) is not in the package, which ships `dist` and the README            |
+| Detector | 6.4    | Not verified | No release gate over rule pages documented                                                                                                   |
+| Detector | 7.1    | Partial      | `--no-inline-config` closes CSS directives (ran); `eslint-suppressions.json` is read by default and cannot be switched off or seen (ran)     |
+| Detector | 7.2    | No           | `eslint-disable` reasons are optional                                                                                                        |
+
+## Notes for a practitioner
+
+`@eslint/css` is the way to put CSS classes in the same host and toolchain as the project's JavaScript; stylelint remains the stronger CSS host for suppression, since it can switch its directives off and require a description on each. Write the rule as an ESLint rule on the CSS tree, prove it with `RuleTester` configured with the `css/css` language, and give it a `meta.docs.url` in the project's own repository. Look a bundled rule up in the `docs/rules` folder at the installed release's tag rather than at the URL the rule carries, which follows `main`. Set `linterOptions.noInlineConfig`, keep `-o` out of the enforced invocation, and fail the project's own checks on an `eslint-suppressions.json`.
+
+## Attributes
+
+| Attribute      | Value                                                                                        | Source                                                                             |
+| -------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Kind           | Detector (an ESLint language and rule set)                                                   | ran                                                                                |
+| Depth          | Syntactic: a CSSTree syntax tree, bundled and bespoke                                        | [README](https://github.com/eslint/css/blob/css-v2.0.0/README.md), ran             |
+| Rule form      | JavaScript: an ESLint rule module visiting CSSTree node types such as `Declaration`          | ran                                                                                |
+| Output formats | ESLint's `stylish`, `json`, `json-with-metadata`, `html`; SARIF through a separate formatter | ran                                                                                |
+| Exit codes     | 1 on an error finding and on a parse error; 2 on an unknown option                           | ran                                                                                |
+| Report file    | ESLint's `-o`, which leaves the console empty                                                | ran                                                                                |
+| Baseline       | ESLint's `--suppress-all` and `eslint-suppressions.json`, read by default                    | ran                                                                                |
+| Rule listing   | The README's table of the fifteen rules, keyed on bare names                                 | [README](https://github.com/eslint/css/blob/css-v2.0.0/README.md)                  |
+| Licence        | Apache-2.0                                                                                   | [LICENSE](https://github.com/eslint/css/blob/css-v2.0.0/LICENSE), package metadata |

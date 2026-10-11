@@ -1,0 +1,70 @@
+---
+title: Nu Html Checker and Defence Before Fix
+summary: Messages carry no identifier in any format, failing 4.3 and with it section 6; nothing runs one check alone, failing 4.2; a project RELAX NG schema through --schema replaces the bundled one, 4.1 partial; local, single-file and stdin runs meet section 5; no inline route, and the message filters are flags a project can leave out, meeting 7.1
+language: HTML
+kind: tool
+readiness: 🔴
+detector: 🔴
+checked: 2026-10-10, version 26.10.9
+---
+
+# Nu Html Checker
+
+{% include tool-grades.html %}
+
+The Nu Html Checker, `vnu`, is the HTML conformance checker behind the W3C's online validator, shipped as a Java jar, a runtime image and the `vnu-jar` npm package. It parses a document with the HTML parser, validates it against a RELAX NG schema of the HTML standard and runs Java checkers for the rules a schema cannot express, such as duplicate IDs and the `alt` requirement; `--css` and `--svg` check those languages too. In a pipeline it is the check that markup is valid HTML, run over built pages or rendered templates.
+
+## How it is conformant
+
+Section 5 is met. `java -jar vnu.jar a.html` ran locally with the network removed (`unshare -rn`) and printed every finding with its position and exited 1; it takes one file, a directory or `-` for standard input ([`vnu.1.md`](https://github.com/validator/validator/blob/3d97faa/docs/vnu.1.md); ran), so 5.1, 5.2 and 5.4 hold. Findings go to standard error, or standard output with `--stdout`, and nothing is written elsewhere, so 5.3 holds.
+
+Clause 7.1 is met. A document can carry no instruction to the checker: a `<!-- vnu-disable -->` comment above an image without `alt` left the error in place (ran), and the documentation lists no inline route ([message filtering](https://github.com/validator/validator/blob/3d97faa/docs/wiki/Message-filtering.md)). The routes it does offer for the command line, `--filterfile` and `--filterpattern`, drop any message matching a regular expression, and they apply only when the invocation names them, so a project that leaves them out has them off. The servlet's global `resources/message-filters.txt` belongs to a self-hosted service, not to the command. With no inline route, 7.2 does not apply.
+
+## How it is not conformant
+
+Clause 4.3 fails, and under reading 5 it is No: no check carries an identifier. The default GNU output prints the file, position, severity and message, `5.1-5.10: error: Duplicate ID “x”.`, and the JSON messages carry `type`, `subType`, `message`, `extract` and positions; the XML and text formats likewise carry the message alone (all four formats ran). A message is the only thing a reader holds, and it changes with the wording. Section 6 fails with it: there is no identifier for a mechanism to resolve, so 6.1, 6.2 and 6.3 are No (reading 14), and 6.4 is No. Some messages carry their own guidance, such as the `alt` message's link to the WAI images tutorial in the XML output, which resolves that message, not an identifier.
+
+Clause 4.2 fails. No option selects one check (`--help`, ran): the options choose the language, the parser, the severity printed and the filters. A `--filterpattern` can hide every message but those matching a text, but that filters output by wording, and with no identity to select a check by, no check can be run on its own.
+
+Clause 4.1 is partial. The `--schema` option, listed in `--help` without a description, takes an `http:`, `https:` or `file:` URL and makes that schema the main one ([`SimpleCommandLineValidator.java`](https://github.com/validator/validator/blob/3d97faa/src/nu/validator/client/SimpleCommandLineValidator.java)). A project schema in RELAX NG compact syntax that included the bundled `http://s.validator.nu/html5-all.rnc` and set `b.elem = notAllowed` loaded offline and reported `Element “b” not allowed as child of element “p”` (ran), so a pattern of the project's own can be expressed. It does not run with the same standing as the bundled checks: replacing the main schema dropped the bundled `alt` check from the same run, and the project's finding, like every other, has no identifier. No rule over the rules exists (4.4).
+
+A path that does not exist printed nothing and exited 0, and an unknown option such as `--bogus` was ignored with exit 0 (ran); the checker never fails to parse HTML, since the HTML parser recovers from anything, and a binary file was reported as a list of errors with exit 1.
+
+The detector grade is 🔴 because 4.2 and 4.3 are No, both structural under reading 1; 4.1 and 6.1 to 6.3 fail as well. Readiness is 🔴: no finding carries a stable identifier. The checker declares no version of this document.
+
+## Clause by clause
+
+| Document | Clause | Result         | Evidence                                                                                                                                                                                                                           |
+| -------- | ------ | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Partial        | `--schema file:` loads a project RELAX NG schema ([source](https://github.com/validator/validator/blob/3d97faa/src/nu/validator/client/SimpleCommandLineValidator.java)); it replaced the bundled schema and its `alt` check (ran) |
+| Detector | 4.2    | No             | No option selects a check (`--help`, ran); `--filterpattern` filters message text                                                                                                                                                  |
+| Detector | 4.3    | No             | No identifier in GNU, JSON, XML or text output (ran), reading 5                                                                                                                                                                    |
+| Detector | 4.4    | No             | None                                                                                                                                                                                                                               |
+| Detector | 5.1    | Yes            | Ran locally from the jar with the network removed                                                                                                                                                                                  |
+| Detector | 5.2    | Yes            | One file, or `-` for standard input ([`vnu.1.md`](https://github.com/validator/validator/blob/3d97faa/docs/vnu.1.md); ran)                                                                                                         |
+| Detector | 5.3    | Yes            | Findings in the command's output; no report-file option (ran)                                                                                                                                                                      |
+| Detector | 5.4    | Yes            | Every check runs in the local jar                                                                                                                                                                                                  |
+| Detector | 6.1    | No             | No identifier to resolve                                                                                                                                                                                                           |
+| Detector | 6.2    | No             | No mechanism exists, reading 14                                                                                                                                                                                                    |
+| Detector | 6.3    | No             | No mechanism exists, reading 14                                                                                                                                                                                                    |
+| Detector | 6.4    | No             | No identifiers for a release check to cover                                                                                                                                                                                        |
+| Detector | 7.1    | Yes            | No inline route (ran); `--filterfile` and `--filterpattern` apply only when given ([message filtering](https://github.com/validator/validator/blob/3d97faa/docs/wiki/Message-filtering.md))                                        |
+| Detector | 7.2    | Not applicable | No inline route to require a reason on                                                                                                                                                                                             |
+
+## Notes for a practitioner
+
+Run the checker for what it is, the authority on whether markup is valid HTML, and write the project's own markup classes in a host that carries identifiers, such as html-validate or ESLint with `@html-eslint`. A defence routed through it would have to be keyed on message text, which is not stable. Keep `--filterfile` and `--filterpattern` out of the enforced invocation or review the filter file as a record, since nothing reports what a filter dropped, and check that the files given exist, since a missing path and a misspelt option both pass with exit 0. The npm package `vnu-jar` pins a release of the jar; the GitHub release named `latest` moves.
+
+## Attributes
+
+| Attribute      | Value                                                                                                               | Source                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Kind           | Detector (conformance checker for HTML, CSS and SVG)                                                                | [`vnu.1.md`](https://github.com/validator/validator/blob/3d97faa/docs/vnu.1.md)                                            |
+| Depth          | Syntactic: the parsed document against a RELAX NG schema, with Java checkers; bespoke schema the same               | ran                                                                                                                        |
+| Rule form      | A RELAX NG schema passed with `--schema`, replacing the main schema                                                 | [source](https://github.com/validator/validator/blob/3d97faa/src/nu/validator/client/SimpleCommandLineValidator.java), ran |
+| Output formats | `gnu` (default), `json`, `xml`, `text`; no SARIF                                                                    | `--help`, ran                                                                                                              |
+| Exit codes     | 1 on an error; 0 on warnings unless `--Werror`; 0 on a missing file and on an unknown option; 1 on a bad `--format` | ran                                                                                                                        |
+| Report file    | None                                                                                                                | `--help`                                                                                                                   |
+| Fix mode       | None                                                                                                                | `--help`                                                                                                                   |
+| Baseline       | A `--filterfile` of message patterns can serve as one                                                               | [message filtering](https://github.com/validator/validator/blob/3d97faa/docs/wiki/Message-filtering.md)                    |
+| Licence        | MIT                                                                                                                 | [LICENSE](https://github.com/validator/validator/blob/3d97faa/LICENSE), `vnu-jar` package metadata                         |

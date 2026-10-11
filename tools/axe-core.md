@@ -1,0 +1,70 @@
+---
+title: axe-core and Defence Before Fix
+summary: A rules engine run over a rendered DOM, a runner more than a detector; axe.configure rules, runOnly and rule ids in every reporter meet 4.1 to 4.3, and refusing a rule without an id is 4.4 partial; with no command of its own, only a result handed to the caller, 5.1 and 5.3 are partial; every result's helpUrl is keyed on its rule id, meeting 6.1, but the pages are online only, failing 6.2 and 6.3; no route lives in the document, meeting 7.1
+language: HTML
+kind: tool
+readiness: 🟢
+detector: 🟡
+checked: 2026-10-10, version 4.14.0
+---
+
+# axe-core
+
+{% include tool-grades.html %}
+
+axe-core is Deque's accessibility rules engine, a JavaScript library that runs inside a page and tests the document it finds there against rules such as `image-alt`, `label` and `color-contrast`. It is not a command: a browser driver, a test framework or a script calls `axe.run()` on a document, in a browser or in a DOM implementation such as jsdom, and receives the results as an object. In a pipeline it runs in end-to-end or component tests, or through wrappers such as `@axe-core/cli` and `@axe-core/playwright`, which are separate packages not graded here.
+
+Under the method's definitions it is closer to a runner than a detector. It does not read source: it reads the document as rendered, and in a browser that is the page after its scripts, styles and layout have run, so a finding is about the paths the page happened to take on that load, which is what the method calls a runner's answer. Handed static markup in jsdom with scripts off, as in the runs below, it reads only the parsed document and behaves as a detector over it, though rules that need layout, such as `color-contrast`, cannot then decide: a paragraph of grey on grey came back as `incomplete` (ran). It is graded against the detector specification all the same.
+
+## How it is conformant
+
+Clause 4.1 is met. `axe.configure` is documented as the way "to add new rules, which must be registered with the library to execute" ([API at v4.14.0](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md)): a rule has an `id`, a CSS `selector` and lists of checks, and a check's `evaluate` may be a function, as the shipped `axe.d.ts` declares. A rule `proj-no-b` with a check that fails on every `<b>` reported beside the bundled `image-alt` in the same run (ran at 4.14.0 under jsdom 30.1.2). Clause 4.2 is met: `runOnly: { type: 'rule', values: ['proj-no-b'] }` ran that rule alone and returned only its violation, and `runOnly` with an unknown id rejected with "unknown rule" and the id (ran). Clause 4.3 is met: the rule's `id`, chosen once by its author, is the `id` of each result, unaltered in every reporter the API offers, `v1` (the default), `v2`, `raw`, `rawEnv` and `no-passes` (ran; the API documents the fourth as `raw-env`, a name that returned the default format instead); the bundled ids are assigned by the maintainers, not derived from file names. Clause 4.4 is partial under reading 7: a rule with no `id` or an empty one was refused, "Rules must be an object with at least an id property", but `Bad Id With Spaces` was accepted and reported as given (ran).
+
+Clauses 5.2 and 5.4 are met. The engine tests the one document it is given, and a context of selectors narrows it further ([API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md)), so a single file is tested by loading that file, as every run here did; and every rule runs in the local library, with no service or licence tier: the runs needed only Node and jsdom, with the network removed (`unshare -rn`).
+
+Clause 6.1 is met for the bundled rules. Every result carries a `helpUrl` of the form `https://dequeuniversity.com/rules/axe/4.14/<id>?application=axeAPI`, keyed on the id exactly as printed; all 105 rules that `axe.getRules()` lists in 4.14.0 had such a URL, and each landed on a page carrying that rule's id and help text (ran). For a project rule the identifier is printed unaltered, which is what 6.1 asks. Its default `helpUrl` is built the same way and lands on Deque's list of rules, a dangling reference under reading 13, unless the rule's `metadata.helpUrl` sets one, which a run printed as given.
+
+Clause 7.1 is met. The document under test carries no instruction to axe: there is no comment or attribute route. Every way to silence a rule is an option of the call, the `rules` option with `enabled: false`, `runOnly`, a context `exclude`, or `axe.configure` with `disableOtherRules` ([API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md)), which a project that does not pass them does not have. With no inline route, 7.2 does not apply.
+
+## How it is not conformant
+
+Clauses 6.2 and 6.3 fail. The pages a `helpUrl` leads to are on Deque University, and the installed package holds `axe.js`, `axe.min.js`, the type definitions, `locales/`, a README and licences; the README's link to [`doc/rule-descriptions.md`](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/rule-descriptions.md) points at a file the package does not ship. Without the network the mechanism resolves nothing (6.2 No, reading 14), and the documentation does not ship with the rules (6.3 No). Two things on disk come close and are not mechanisms under reading 10: `axe.getRules()` returns each id with its description and help offline, but it is a function of the programming interface; and `locales/_template.json` holds every id's description and help, but it is a translation template, generated at build "using each rule's `description` and `help` properties" ([locales](https://github.com/dequelabs/axe-core/blob/v4.14.0/locales/README.md)), not something axe-core presents for looking an identifier up. No release gate over the Deque University pages was found (6.4, not verified).
+
+Clauses 5.1 and 5.3 are partial, because axe-core ships no command. To invoke it locally the practitioner writes a program that loads a document into a DOM, calls `axe.run()` and prints the result, as each run here did, or installs a wrapper such as `@axe-core/cli`, which is another package and drives a browser. The whole result is returned to that program and nothing is written elsewhere, but axe-core puts nothing in any output itself, and it decides nothing either: `axe.run` resolves with the violations and has no exit status, so whether a violation fails the command is the caller's choice.
+
+The detector grade is 🟡: no structural MUST fails, since every result reaches the caller and a local run needs no infrastructure, and 5.1, 5.3, 6.2 and 6.3 are the MUSTs that do not hold in full. Readiness is 🟢: bespoke rules, `runOnly` and a printed stable id. axe-core declares no version of this document.
+
+## Clause by clause
+
+| Document | Clause | Result         | Evidence                                                                                                                                                                    |
+| -------- | ------ | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Yes            | `axe.configure` adds rules and checks ([API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md)); `proj-no-b` reported beside `image-alt` (ran)                 |
+| Detector | 4.2    | Yes            | `runOnly` with one rule id (ran)                                                                                                                                            |
+| Detector | 4.3    | Yes            | Rule `id` unaltered in `v1`, `v2`, `raw`, `rawEnv` and `no-passes` (ran)                                                                                                    |
+| Detector | 4.4    | Partial        | A rule with no `id` is refused; a malformed id is accepted (ran), reading 7                                                                                                 |
+| Detector | 5.1    | Partial        | No command of its own; ran through a script of the project's under Node and jsdom, with the network removed                                                                 |
+| Detector | 5.2    | Yes            | One document, narrowed by a context of selectors ([API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md)); ran on one file                                    |
+| Detector | 5.3    | Partial        | The whole result is returned to the caller, which alone prints it; no exit status                                                                                           |
+| Detector | 5.4    | Yes            | Every rule runs in the local library                                                                                                                                        |
+| Detector | 6.1    | Yes            | `helpUrl` keyed on the id; all 105 bundled ids landed on their page (ran); a project id prints unaltered, its default URL dangles                                           |
+| Detector | 6.2    | No             | The pages are on Deque University; `getRules()` and `locales/_template.json` are not mechanisms under reading 10, reading 14                                                |
+| Detector | 6.3    | No             | No rule documentation in the package; the README's [`doc/rule-descriptions.md`](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/rule-descriptions.md) is not shipped |
+| Detector | 6.4    | Not verified   | No release gate over the help pages found                                                                                                                                   |
+| Detector | 7.1    | Yes            | No route in the document; `rules`, `runOnly`, `exclude` and `disableOtherRules` are call options ([API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md))     |
+| Detector | 7.2    | Not applicable | No inline route to require a reason on                                                                                                                                      |
+
+## Notes for a practitioner
+
+axe-core is a sound host for an accessibility class that shows in markup: write the rule with `axe.configure`, give it a project-prefixed `id` and a `metadata.helpUrl` in the project's own documentation, and prove it with `runOnly` on a fixture loaded into jsdom, which needs no browser. A class that depends on layout or on what scripts do needs a real browser, at which point the check is a runner's, true of the page as it loaded that time. The calling script owns the output, so make it print each violation's `id` and `helpUrl` and exit non-zero on a violation, since axe-core returns results and decides nothing. Keep the `rules`, `runOnly` and `exclude` options of the enforced call in reviewed code, because that is where every exception lives.
+
+## Attributes
+
+| Attribute      | Value                                                                                                             | Source                                                                                       |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Kind           | Runner over a rendered DOM; a detector over static markup with scripts off                                        | [API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md), ran                    |
+| Depth          | Semantic over the DOM: roles, accessible names and, in a browser, computed style; bespoke the same                | [developer guide](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/developer-guide.md) |
+| Rule form      | JavaScript: a rule object with a CSS selector and checks, registered with `axe.configure`                         | [API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md), `axe.d.ts`             |
+| Output formats | A result object through the `v1`, `v2`, `raw`, `rawEnv` and `no-passes` reporters, or a custom reporter; no SARIF | [API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md), ran                    |
+| Exit codes     | None of its own; `axe.run` resolves with the results or rejects on a bad option                                   | ran                                                                                          |
+| Rule listing   | `axe.getRules()`, with ids, descriptions and help URLs                                                            | [API](https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md), ran                    |
+| Licence        | MPL-2.0                                                                                                           | [LICENSE](https://github.com/dequelabs/axe-core/blob/v4.14.0/LICENSE), package metadata      |

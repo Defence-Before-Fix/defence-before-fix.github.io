@@ -1,0 +1,73 @@
+---
+title: cpplint and Defence Before Fix
+summary: Categories printed in every format meet 4.3; project checks only through ProcessFile's extra_check_functions in a driver of the project's own leave 4.1 partial; --filter is a print filter, leaving 4.2 partial; category names with no descriptions fail 6.1 to 6.3; NOLINT silences the check that detects it and CPPLINT.cfg filters are read unreported, failing 7.1
+language: C and C++
+kind: tool
+readiness: 🟡
+detector: 🟡
+checked: 2026-10-10, version 2.0.2
+---
+
+# cpplint
+
+{% include tool-grades.html %}
+
+cpplint is the maintained fork of Google's `cpplint.py`, a single-file Python linter that checks C and C++ source against the Google C++ Style Guide line by line, with regular expressions over the source with comments and strings elided. Each finding carries a category such as `whitespace/braces` and a confidence from 1 to 5. In a pipeline it sits beside clang-format and clang-tidy as a quick lexical check of layout, header guards, include order and a handful of unsafe calls.
+
+## How it is conformant
+
+Every finding is printed with its category in brackets, `a.cc:3:  Missing space before {  [whitespace/braces] [5]`, and the category was printed unaltered in the default `emacs` output and in `eclipse`, `vs7`, `junit`, `sed` and `gsed` (ran at 2.0.2). The categories are listed in `_ERROR_CATEGORIES` ([`cpplint.py`](https://github.com/cpplint/cpplint/blob/2.0.2/cpplint.py#L297)) and chosen once by the maintainers (4.3). cpplint runs locally on a single file with no service, prints its findings and a total in the command's own output, and exits 1 when it finds anything; the `junit` report goes to standard error, still in the command's output, and there is no report-file option (5.1, 5.2, 5.3, 5.4; ran).
+
+## How it is not conformant
+
+Clause 4.1 is partial. The command loads nothing of the project's: `--help` documents filters, line length, header extensions and the `CPPLINT.cfg` file, and no plugin option. The route is the library. `ProcessFile(filename, vlevel, extra_check_functions)` takes "an array of additional check functions that will be run on each source line" ([`cpplint.py`](https://github.com/cpplint/cpplint/blob/2.0.2/cpplint.py#L7518)), documented only in that docstring. A driver script of the project's own that imports `cpplint`, parses the arguments and calls `ProcessFile` with two check functions printed `p.cc:4:  gets() is forbidden  [proj/no-gets] [5]` beside the bundled findings, with the author's category unaltered and the same filters and exit code (ran). For `NOLINT(proj/no-gets)` to suppress it, and not be reported as `Unknown NOLINT error category: proj/no-gets  [readability/nolint]`, the driver also had to append its categories to the private `_ERROR_CATEGORIES` list (ran). This is the case of a rule reached only through the library, which the register grades partial, as on the actionlint page.
+
+Clause 4.2 is partial. `--filter=-,+whitespace/braces` leaves only that category, and the help documents it as a filter of what is printed: "only error messages whose category names pass the filters will be printed" ([`cpplint.py`](https://github.com/cpplint/cpplint/blob/2.0.2/cpplint.py#L66)). Every check still runs, and the filter hides the rest, so it selects the output and not the rule. The register takes the stricter of the two readings this allows, as on the Mago page.
+
+There is no rule over the rules: a check function may pass any string as its category and it is printed, registered or not (ran) (4.4).
+
+Resolution fails. `--filter=` with no argument prints the 66 bundled category names, one per line, and nothing else (ran, under `unshare -rn`), and no command, file or printed address gives a category's description; the finding's message is the only text, and a message that carries its own explanation resolves that message, not the identifier. A list of names is not documentation under reading 12, so 6.1, 6.2 and 6.3 fail, and no release gate was found (6.4, not verified).
+
+Clause 7.1 fails. `NOLINT`, `NOLINT(category)`, `NOLINTNEXTLINE` and `NOLINTBEGIN` with `NOLINTEND` are documented in `--help` with no setting that turns them off. A project check function sees the raw line, and one that reports any `NOLINT` printed `NOLINT is forbidden here  [proj/no-nolint]`, but a bare `// NOLINT` or `// NOLINT(*)` on the same line silenced both it and the finding it was meant to expose (ran), so the inline route is detected only in part (reading 19). The bundled `readability/nolint` reports only a malformed directive or an unknown category, and a `NOLINT(whitespace/braces)` that suppressed nothing exited 0 without remark (ran). The second route is `CPPLINT.cfg`, read from the file's own directory and every directory above it: a `CPPLINT.cfg` holding `filter=-whitespace` in a subdirectory removed two findings from a file there and the run printed nothing about it (ran). Its `exclude_files` is reported (`Ignoring "sub/a.cc": file excluded by ...`), but its `filter` is not, and `--config=filename` only changes the name searched for, which does not disable the route (reading 17). That route is neither disableable nor detectable (readings 16 and 18). No reason is asked for on any directive (7.2).
+
+A file cpplint cannot read stops it from defending without a sign (reading 9): `nofile.cc` printed `Skipping input 'nofile.cc': Can't open for reading` and exited 0. There is no parse step to fail: a binary file and a file with an unterminated string were linted line by line, exit 1 (ran).
+
+Readiness is 🟡: a bespoke rule and a single-rule run need the driver and the filter workarounds, and the identifier is printed. The detector grade is 🟡 because no structural MUST is No: 4.1 and 4.2 are partial, and 6.1, 6.2, 6.3 and 7.1 fail. cpplint declares no version of this document.
+
+## Clause by clause
+
+| Document | Clause | Result       | Evidence                                                                                                                                                       |
+| -------- | ------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | Partial      | Only through `extra_check_functions` of [`ProcessFile`](https://github.com/cpplint/cpplint/blob/2.0.2/cpplint.py#L7518) in a driver of the project's own (ran) |
+| Detector | 4.2    | Partial      | `--filter=-,+<category>` filters what is printed; every check still runs ([`--help`](https://github.com/cpplint/cpplint/blob/2.0.2/cpplint.py#L66); ran)       |
+| Detector | 4.3    | Yes          | `[whitespace/braces]` and `[proj/no-gets]` unaltered in all six formats (ran)                                                                                  |
+| Detector | 4.4    | No           | Any category string is printed, registered or not (ran)                                                                                                        |
+| Detector | 5.1    | Yes          | Ran locally, no infrastructure                                                                                                                                 |
+| Detector | 5.2    | Yes          | Ran on one file                                                                                                                                                |
+| Detector | 5.3    | Yes          | Findings and total in the command's output; `junit` on standard error; no report-file option (ran)                                                             |
+| Detector | 5.4    | Yes          | Every check runs in the local script                                                                                                                           |
+| Detector | 6.1    | No           | `--filter=` lists names only; no description resolves, reading 12 (ran)                                                                                        |
+| Detector | 6.2    | No           | No mechanism, reading 14                                                                                                                                       |
+| Detector | 6.3    | No           | No category resolves to shipped documentation                                                                                                                  |
+| Detector | 6.4    | Not verified | No release gate found                                                                                                                                          |
+| Detector | 7.1    | No           | `NOLINT` has no switch and silences the project check that sees it, reading 19; a `CPPLINT.cfg` `filter` is read unreported, readings 16 to 18 (ran)           |
+| Detector | 7.2    | No           | No reason asked for on any directive                                                                                                                           |
+
+## Notes for a practitioner
+
+cpplint is a style checker first; put a project's own C or C++ rule in a host that registers one, such as [clang-tidy](clang-tidy.md) or [Cppcheck](cppcheck.md) addons, unless the rule is a line-level text pattern and the project is content to keep a driver script that calls `ProcessFile` with its check functions and appends its categories to `_ERROR_CATEGORIES`. Prove a check with `--filter=-,+<category>` on a fixture. Forbid `NOLINT` and `CPPLINT.cfg` with a search outside cpplint, since a check inside it is silenced by a bare `NOLINT` on the same line and nothing in it reports a `CPPLINT.cfg` filter; put `set noparent` in the top-level `CPPLINT.cfg` so that no file above the repository applies. Look a category up in the style guide by its message, since cpplint ships nothing keyed on the category. Check that every file passed was read, since an unreadable file exits 0.
+
+## Attributes
+
+| Attribute      | Value                                                                                      | Source                                                                              |
+| -------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| Kind           | Detector                                                                                   | ran                                                                                 |
+| Depth          | Lexical (lines, with comments and strings elided), bundled and bespoke                     | [`cpplint.py`](https://github.com/cpplint/cpplint/blob/2.0.2/cpplint.py#L7518)      |
+| Rule form      | A Python function over each line, passed to `ProcessFile` by a driver of the project's own | [`cpplint.py`](https://github.com/cpplint/cpplint/blob/2.0.2/cpplint.py#L7518), ran |
+| Output formats | `emacs` (default), `eclipse`, `vs7`, `junit`, `sed` and `gsed`; no JSON or SARIF           | `--help`, ran                                                                       |
+| Exit codes     | 1 on a finding; 1 on a usage error; 0 on a file it cannot open                             | ran                                                                                 |
+| Report file    | None                                                                                       | `--help`, ran                                                                       |
+| Fix mode       | `sed` and `gsed` print `sed` commands for some findings                                    | `--help`, ran                                                                       |
+| Unused ignores | Not reported; unknown categories in `NOLINT` are                                           | ran                                                                                 |
+| Rule listing   | `--filter=` with no argument lists the category names                                      | ran                                                                                 |
+| Licence        | BSD-3-Clause                                                                               | [LICENSE](https://github.com/cpplint/cpplint/blob/2.0.2/LICENSE), package metadata  |

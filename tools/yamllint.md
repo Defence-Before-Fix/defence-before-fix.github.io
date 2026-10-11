@@ -1,0 +1,68 @@
+---
+title: yamllint and Defence Before Fix
+summary: Fixed catalogue so 4.1 fails; a one-rule -d configuration leaves 4.2 partial; rule ids printed in every format meet 4.3; documentation only in module docstrings and online, with no lookup, fails 6.1 to 6.3; disable comments with no switch fail 7.1
+language: YAML
+kind: tool
+readiness: 🔴
+detector: 🔴
+checked: 2026-10-10, version 1.38.0
+---
+
+# yamllint
+
+{% include tool-grades.html %}
+
+yamllint is the general linter for YAML files, in Python: beyond checking that a file parses, it reports duplicate keys, truthy values such as `yes`, octal and float spellings, and layout such as indentation, line length and spacing, through 23 rules each named by an id such as `truthy` or `key-duplicates`. A project configures it from `.yamllint` and runs it over every YAML file, often before a schema check or a tool that understands the file's meaning, such as actionlint or ansible-lint. It is a fixed-catalogue detector: a project enables, disables and tunes the rules and cannot add one.
+
+## How it is conformant
+
+Every finding carries its rule's id, set once as the module's `ID` constant: `2:6 warning truthy value should be one of [false, true] (truthy)` in `standard`, `colored` and `auto`, `a.yml:2:6: [warning] ... (truthy)` in `parsable`, and `::warning file=a.yml,line=2,col=6::2:6 [truthy] ...` in `github` (ran, version 1.38.0). Brackets and parentheses delimit the id rather than join to it, so it is printed unaltered under reading 6, in all five formats `--help` lists, of which `parsable` and `github` are the ones meant for another tool to read (4.3). Because yamllint fails 4.1, clause 4.2 is graded on the bundled rules.
+
+`yamllint a.yml` runs locally on one file, and `-` reads standard input (5.1, 5.2, ran); the findings are the command's own output, with exit 1 on an error-level finding (5.3), and nothing is held back for a service or tier (5.4). A YAML syntax error is reported as a finding, `3:1 error syntax error: expected ',' or ']', but got '<stream end>' (syntax)`, with exit 1 (ran), so an unparseable file does not pass. Exit codes are set in [`cli.py`](https://github.com/adrienverge/yamllint/blob/v1.38.0/yamllint/cli.py): 1 on errors, 2 on warnings only under `--strict`, otherwise 0, and 255 (`sys.exit(-1)`) when a file cannot be read (ran).
+
+## How it is not conformant
+
+Clause 4.1 fails. [`yamllint/rules/__init__.py`](https://github.com/adrienverge/yamllint/blob/v1.38.0/yamllint/rules/__init__.py) imports 23 named modules into a fixed `_RULES` table and `get()` raises `no such rule` for anything else; there are no entry points, and the [configuration](https://github.com/adrienverge/yamllint/blob/v1.38.0/docs/configuration.rst) only enables, disables and tunes those rules or `extends` another configuration. Clause 4.4 has nothing to apply to.
+
+Clause 4.2 is partial. No option selects one rule; the route is a configuration written for it, `yamllint -d '{rules: {truthy: enable}}' a.yml`, which printed only the `(truthy)` finding (ran), the case of reading 4.
+
+Resolution fails. Each rule's documentation is the docstring of its module, installed with the package, and the online [rules page](https://github.com/adrienverge/yamllint/blob/v1.38.0/docs/rules.rst) is built from those docstrings with `automodule`. yamllint prints no documentation address with a finding, its documentation states no lookup form, and it has no command that shows a rule's text (`--list-files` lists files); a docstring in a source file is not documentation under reading 12 unless a mechanism of the detector's own presents it. There is no mechanism, so 6.1, 6.2 and 6.3 fail, and 6.4 is not met.
+
+Clause 7.1 fails for the inline routes. `# yamllint disable-line`, `# yamllint disable-line rule:<id>`, `# yamllint disable` with `# yamllint enable`, and `# yamllint disable-file` on the first line are matched by fixed patterns in [`linter.py`](https://github.com/adrienverge/yamllint/blob/v1.38.0/yamllint/linter.py) and [documented](https://github.com/adrienverge/yamllint/blob/v1.38.0/docs/disable_with_comments.rst), with no setting that turns them off, and yamllint cannot host a rule that would see them. In a run, `# yamllint disable-file` silenced a file with exit 0, and a `disable-line rule:colons` on a line with no colon problem was accepted without remark (ran). No reason is asked for on a directive, and none can be given on its line: the patterns allow nothing after the `rule:` list, so `# yamllint disable-line rule:truthy reason: legacy` matched nothing and the finding was printed (ran) (7.2). The configuration's `ignore` and per-rule `ignore` patterns are configuration the project owns.
+
+Readiness is 🔴 because no bespoke rule can be written. The detector grade is 🔴 because 4.1 fails, a structural MUST under reading 1; 4.2 is partial, and 6.1, 6.2, 6.3 and 7.1 fail. yamllint declares no version of this document.
+
+## Clause by clause
+
+| Document | Clause | Result  | Evidence                                                                                                                                                          |
+| -------- | ------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | No      | Fixed `_RULES` table in [`rules/__init__.py`](https://github.com/adrienverge/yamllint/blob/v1.38.0/yamllint/rules/__init__.py); no entry points                   |
+| Detector | 4.2    | Partial | Bundled rules: no select option; `-d '{rules: {truthy: enable}}'` ran one rule (ran), reading 4                                                                   |
+| Detector | 4.3    | Yes     | `(truthy)` in standard, colored, auto and parsable, `[truthy]` in github (ran)                                                                                    |
+| Detector | 4.4    | No      | No bespoke rules for it to apply to                                                                                                                               |
+| Detector | 5.1    | Yes     | Ran locally, no infrastructure                                                                                                                                    |
+| Detector | 5.2    | Yes     | Ran on one file and on standard input                                                                                                                             |
+| Detector | 5.3    | Yes     | Findings on standard output; exit 1 on an error, including a syntax error (ran)                                                                                   |
+| Detector | 5.4    | Yes     | Every rule runs in the local package                                                                                                                              |
+| Detector | 6.1    | No      | No printed address, stated lookup form or command; docstrings unresolved, reading 12                                                                              |
+| Detector | 6.2    | No      | No mechanism, reading 14                                                                                                                                          |
+| Detector | 6.3    | No      | No mechanism resolves an id to the docstrings that ship                                                                                                           |
+| Detector | 6.4    | No      | No release check documented                                                                                                                                       |
+| Detector | 7.1    | No      | Disable comments matched in [`linter.py`](https://github.com/adrienverge/yamllint/blob/v1.38.0/yamllint/linter.py) with no switch, and no rule can see them (ran) |
+| Detector | 7.2    | No      | No reason asked for, and text after the rules voids the directive (ran)                                                                                           |
+
+## Notes for a practitioner
+
+Keep yamllint for its catalogue and put a project's own YAML rule in a host that takes one, such as [Spectral](spectral.md) or [ast-grep](ast-grep.md) with its YAML grammar. Prove a bundled rule on a fixture with a one-rule `-d` configuration, and use `-f parsable` where a tool reads the output. Run it with `--strict` if warnings must fail the build, since by default `truthy` and other warning-level findings exit 0. Forbid `# yamllint disable` comments with a search outside yamllint, since it will neither report nor refuse them; a reason for one has to go on a comment line of its own, because text after the directive voids it. Look a rule up by its id on the rules page, whose headings match the ids.
+
+## Attributes
+
+| Attribute      | Value                                                                                                                               | Source                                                                                    |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Kind           | Detector                                                                                                                            | ran                                                                                       |
+| Depth          | Syntactic and lexical (YAML tokens and events, and lines)                                                                           | [`linter.py`](https://github.com/adrienverge/yamllint/blob/v1.38.0/yamllint/linter.py)    |
+| Output formats | `standard`, `colored`, `auto`, `parsable` and `github`; no JSON or SARIF                                                            | `--help`, ran                                                                             |
+| Exit codes     | 1 on an error, including a syntax error; 2 on warnings only under `--strict`, else 0; 255 on an unreadable file; 2 on a usage error | [`cli.py`](https://github.com/adrienverge/yamllint/blob/v1.38.0/yamllint/cli.py), ran     |
+| Fix mode       | None                                                                                                                                | `--help`, ran                                                                             |
+| Unused ignores | Not reported                                                                                                                        | ran                                                                                       |
+| Licence        | GPL-3.0-or-later                                                                                                                    | [LICENSE](https://github.com/adrienverge/yamllint/blob/v1.38.0/LICENSE), package metadata |

@@ -1,0 +1,68 @@
+---
+title: cargo-mutants and Defence Before Fix
+summary: Mutation tester, not a detector; its mutation genres are fixed, failing 4.1, every finding needs the test suite, failing 4.2, and the console prints a mutant name built from file, position and change, failing 4.3; mutants::skip cannot be switched off or listed, failing 7.1
+language: Rust
+kind: tool
+readiness: 🔴
+detector: 🔴
+checked: 2026-10-10, version 27.1.0
+---
+
+# cargo-mutants
+
+{% include tool-grades.html %}
+
+cargo-mutants is a mutation tester for Rust. It edits a copy of the source tree, one change at a time, such as replacing a function's body with a value of its return type or `>` with `<`, builds and tests each mutant, and reports the mutants the test suite fails to catch ([mutation patterns at v27.1.0](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/mutants.md)). It is not a detector in the method's sense: it judges whether the tests notice a change, not whether a pattern is present in the code, and the method rules out a test as the net. In a pipeline it is the check on the checks, often run only over a diff with `--in-diff`, and it is graded here on whether it could host a defence at all.
+
+## How it is conformant
+
+The reporting clauses are met. `cargo mutants` runs locally against the project's own build and tests, `-f` takes a glob of files to examine, so one file's mutants can be tested alone, and `-D`/`--in-diff` limits the run to code a diff touched (`cargo mutants --help`, ran), which meets 5.1, 5.2 and 5.4. The command's own output carries each missed mutant and a summary: a run of 27.1.0 over one file printed six `MISSED` lines and `10 mutants tested in 20s: 6 missed, 4 caught`, and exited 2, the documented code for a missed mutant ([exit codes](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/exit-codes.md)). Fuller detail goes to `mutants.out`, with a JSON description of every mutant and outcome, a diff and a log per mutant and a text file per outcome ([the `mutants.out` directory](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/mutants-out.md)); under reading 8 the default output already prints the findings, so 5.3 is met. Of its routes for skipping code, the filters in `.cargo/mutants.toml`, `exclude_globs` and `exclude_re`, are switched off by `--no-config`, "Don't read .cargo/mutants.toml" (`--help`, ran), so that route is disableable under reading 17.
+
+## How it is not conformant
+
+Clause 4.1 fails. The mutations are a fixed set in six genres, `FnValue`, `BinaryOperator`, `UnaryOperator`, `MatchArm`, `MatchArmGuard` and `StructField` ([`mutant.rs` at v27.1.0](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/src/mutant.rs)); the options that touch them, `error_values`, `skip_calls` and the name and file filters, choose among or tune the built-in mutations ([error values](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/error-values.md), [skip calls](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/skip_calls.md)), and no documented interface adds one. Graded on the bundled genres, 4.2 fails: a finding is a mutant the tests missed, so every finding comes from running the project's test suite, which the harness definition excludes; `--list` shows the mutants a file would produce without running tests (ran), but that is the input to a finding, not the finding, and no option selects one genre, only a regular expression over mutant names (`-F`). Clause 4.3 fails. The console names a mutant by a string built from its file, line, column and change, `src/lib.rs:3:7: replace + with * in add` (ran), which is derived from the file path and position the clause forbids, and the documentation warns of "Changes to the presentation of mutant names in the console and in JSON" between versions ([stability](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/stability.md)). The nearest thing to a rule identifier, the genre, appears only in the JSON of `--list --json` and `mutants.out` (`"genre": "FnValue"`, ran) and is the name of a variant of the `Genre` enum, so it is derived under reading 5 and absent from the default output.
+
+Section 6 fails. No command looks up a genre or a mutant name, and the documentation is a book in the repository and on the website, not shipped with the installed binary. Its [mutation patterns](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/mutants.md) page names only `FnValue` as printed; the other genres are under headings such as "Binary operators", a different spelling under reading 11, so 6.1, 6.2 and 6.3 are No.
+
+Clause 7.1 fails on the inline route. `#[mutants::skip]`, on a function, `impl`, `trait`, module, file or expression, and in a `cfg_attr` whatever its condition ([skipping with an attribute](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/attrs.md)), is applied by an unconditional check in the source visitor ([`visit.rs` at v27.1.0](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/src/visit.rs)), no option turns it off, and nothing lists or counts what it skipped: a skipped function simply has no mutants in `--list` (ran). The documentation says the results of the filters "can be previewed using the `--list` option" ([skipping untestable code](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/skip.md)), but that lists what is left, not what was skipped, so under reading 18 it does not make the route detectable. cargo-mutants runs no project rule that could see it, so the route is neither disableable nor detectable. Clause 7.2 fails: the attribute takes no reason, and the documentation says only "You may want to also add a comment explaining why the item is skipped". No release check over the genres' documentation is documented (6.4, not verified).
+
+Recorded under reading 9: a source file that does not parse stopped the run with `Error: failed to parse src/other.rs` and exit 1, the same code as a usage error, so the failure is visible (ran).
+
+The detector grade is 🔴 on 4.1, 4.2 and 4.3, all structural under reading 1, with section 6, 7.1 and 7.2 failing as well. Readiness is 🔴: no bespoke rules and no stable identifier on findings.
+
+## Clause by clause
+
+| Document | Clause | Result         | Evidence                                                                                                                                                                                        |
+| -------- | ------ | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Detector | 4.1    | No             | Six fixed genres; options only select or tune them ([`mutant.rs`](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/src/mutant.rs))                                                      |
+| Detector | 4.2    | No             | Every finding needs the project's tests; `--list` shows mutants, not findings, and no option selects a genre (ran)                                                                              |
+| Detector | 4.3    | No             | Console name built from file, position and change (ran); genre in JSON only, an enum variant name ([stability](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/stability.md)) |
+| Detector | 4.4    | Not applicable | No bespoke rules to enforce an identifier on                                                                                                                                                    |
+| Detector | 5.1    | Yes            | Runs locally (ran, 27.1.0)                                                                                                                                                                      |
+| Detector | 5.2    | Yes            | `-f` glob of files; `--in-diff` (`--help`, ran)                                                                                                                                                 |
+| Detector | 5.3    | Yes            | Missed mutants and summary in the command's output; detail in `mutants.out` (ran)                                                                                                               |
+| Detector | 5.4    | Yes            | No CI-only mode                                                                                                                                                                                 |
+| Detector | 6.1    | No             | No lookup; the book names only `FnValue` as printed ([mutation patterns](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/mutants.md))                                         |
+| Detector | 6.2    | No             | Documentation in the repository and on the website only                                                                                                                                         |
+| Detector | 6.3    | No             | Same                                                                                                                                                                                            |
+| Detector | 6.4    | Not verified   | No release gate documented                                                                                                                                                                      |
+| Detector | 7.1    | No             | `#[mutants::skip]` applied unconditionally, never listed ([`visit.rs`](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/src/visit.rs); ran); config filters closed by `--no-config`     |
+| Detector | 7.2    | No             | No reason on the attribute ([attrs](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/attrs.md))                                                                                |
+
+## Notes for a practitioner
+
+Use cargo-mutants to check that the reproduction test under clause 2 of the method actually constrains the fix: run it over the files the fix touched, with `-f` or `--in-diff`, and a missed mutant in the fixed code is a test that would not go red. Build the defence itself in a detector. If you skip code with `#[mutants::skip]`, write the reason in a comment beside it and forbid the bare attribute with a rule in a detector that can see attributes, such as a Dylint lint, because cargo-mutants will neither require the reason nor show you what it skipped. Read `mutants.out/outcomes.json` when a script needs the genre of each mutant, since the console does not print it.
+
+## Attributes
+
+| Attribute      | Value                                                                                                                                        | Source                                                                                                 |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Kind           | Runner                                                                                                                                       | [how it works](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/how-it-works.md)      |
+| Depth          | Syntactic: mutations generated from a parse tree, judged by the project's tests                                                              | [`visit.rs`](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/src/visit.rs)                    |
+| Output formats | Console text; JSON from `--list --json` and in `mutants.out`; text lists per outcome; no SARIF                                               | ran                                                                                                    |
+| Exit codes     | 0 all caught, 2 missed, 3 timeout, 4 baseline failing, 5 and 6 a bad `--in-diff` diff, 70 internal error; 1 usage error and unparseable file | [exit codes](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/exit-codes.md); ran     |
+| Report file    | Yes: `mutants.out`, with the summary in the console                                                                                          | [`mutants.out`](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/book/src/mutants-out.md); ran |
+| Fix mode       | No                                                                                                                                           | ran (`--help`)                                                                                         |
+| Cache          | `--in-diff` for changed code; `--iterate` skips mutants caught before                                                                        | ran (`--help`)                                                                                         |
+| Rule listing   | `--list` lists the mutants a run would test, not the genres                                                                                  | ran                                                                                                    |
+| Licence        | MIT                                                                                                                                          | [`Cargo.toml`](https://github.com/sourcefrog/cargo-mutants/blob/v27.1.0/Cargo.toml)                    |
