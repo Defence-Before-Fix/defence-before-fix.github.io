@@ -60,6 +60,11 @@ class LinkifyTest(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(clauses.linkify(text, default="detector", rel="../"), text)
 
+    def test_a_shell_release_is_left_alone(self) -> None:
+        for text in ("Bash 5.3", "bash 5.3 parses it"):
+            with self.subTest(text=text):
+                self.assertEqual(clauses.linkify(text, default="detector", rel="../"), text)
+
     def test_a_clause_beside_a_version_is_still_linked(self) -> None:
         out = clauses.linkify("6.20.0 meets 6.2", default="detector", rel="../")
         self.assertTrue(out.startswith("6.20.0 meets [6.2](../DETECTOR-SPEC.md#62-"))
