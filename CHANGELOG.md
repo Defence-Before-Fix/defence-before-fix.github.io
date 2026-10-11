@@ -101,7 +101,12 @@ pass it.
   clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) says the remainder is any finding the summary leaves out, after every reader took
   it for extra detail about findings already printed; clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says it asks for the mechanism,
   and a bundled identifier with no page fails clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), with clause [6.4](DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation)'s Why naming [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) to
-  match. Accepted by run NNN.
+  match. [Run 36](acceptance/runs/036-defined-terms-detector-run-2.md) failed on three passages:
+  clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s remainder sentences are now two plain ones, after three readers found them hard to
+  parse; clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says what a rule "in the Detector itself" is, after three readers set it against
+  clause [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it); and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says the duty to record a gap falls on a detector that has a declaration,
+  after two readers could not tell whether an undeclared detector is bound by it. Accepted by run
+  NNN.
 
 ### 1.0.0, 2026-09-08
 

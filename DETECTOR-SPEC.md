@@ -158,10 +158,10 @@ any.
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
-carry both a usable summary and the location of the remainder. The remainder is any finding the
-summary leaves out. A summary that prints every finding, each with where it is and its
-[Identifier], leaves none out, so extra detail about those findings written elsewhere, such as a
-code snippet in a report file, is not a remainder whose location must be printed.
+carry both a usable summary and the location of the remainder. The remainder means the findings
+the summary does not print. Where the summary prints every finding, each with where it is and its
+[Identifier], there is no remainder, and a report file that only adds detail to those same
+findings, such as a code snippet, need not be named in the output.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
 report that arrives after the decision it was meant to inform.
@@ -277,8 +277,10 @@ An inline ignore comment, a per-line directive and a generated [Baseline] are al
 routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
 alone satisfies this clause: make the route disableable by configuration; or make the route
 detectable, by a [Rule] the project can write in the [Detector] itself or by a mechanical check
-the [Detector] documents. Either lets a project which decides to forbid the route enforce that
-decision. A route that can be neither switched off nor seen does not [Conform].
+the [Detector] documents. A [Rule] in the [Detector] itself is one that reports each use of the
+route, written in the [Detector]'s own [Rule] format and run by the [Detector], as a project's
+bespoke [Rule] under clause 4.1 is. Either lets a project which decides to forbid
+the route enforce that decision. A route that can be neither switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
@@ -319,7 +321,9 @@ The declaration is machine-readable, in whatever form the [Detector]'s ecosystem
 record dependencies. The same declaration is where a gap against this document is recorded once it is
 known: a [Detector] that has learnt, from its own checks or from a [Practitioner]'s
 report under the method's clause 3.2, that it fails a MUST in sections 4 to 7 MUST record that gap
-alongside the version it declares, in the same file or one it names. A declaration with a non-empty
+alongside the version it declares, in the same file or one it names. That duty falls on a
+[Detector] that has a declaration, because the gap is recorded alongside the version declared; a
+[Detector] with no declaration has no version to record a gap alongside. A declaration with a non-empty
 gap record is a statement of where the [Detector] stands and is not a claim of
 [Conformance].
 
