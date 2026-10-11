@@ -278,7 +278,14 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " fails."
+          "text": " and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fail."
         }
       ],
       "checked": "2026-10-10, version 0.35.6"
@@ -505,14 +512,28 @@
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": " and section "
+          "text": " and "
         },
         {
-          "text": "6",
-          "href": "/DETECTOR-SPEC.html#6-resolving-an-identifier"
+          "text": "6.1",
+          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": "; the name prints only under verbose in the text, JSON, XML and JUnit formats and with a constant prefix in checkstyle and GitLab, so "
+          "text": " to "
+        },
+        {
+          "text": "6.3",
+          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": ", though the release waits on no check of describe, so "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fails; the name prints only under verbose in the text, JSON, XML and JUnit formats and with a constant prefix in checkstyle and GitLab, so "
         },
         {
           "text": "4.3",
@@ -661,7 +682,21 @@
           "href": "/DETECTOR-SPEC.html#43-the-detector-must-allow-a-rule-to-carry-a-stable-identifier-and-must-print-it-with-every-finding"
         },
         {
-          "text": ", directory-only class sets fail "
+          "text": ", and with it "
+        },
+        {
+          "text": "6.1",
+          "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": "; directory-only class sets fail "
         },
         {
           "text": "5.2",
@@ -824,7 +859,7 @@
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " fails, and bundled documentation online only fails "
+          "text": " fails, bundled documentation online only fails "
         },
         {
           "text": "6.2",
@@ -838,7 +873,21 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": "."
+          "text": ", and with no identifier landing on a page "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fails; ignoreErrors entries take no reason, "
+        },
+        {
+          "text": "7.2",
+          "href": "/DETECTOR-SPEC.html#72-an-inline-suppression-route-should-require-a-written-reason"
+        },
+        {
+          "text": " partial."
         }
       ],
       "checked": "2026-10-10, version 2.3.1"
@@ -990,8 +1039,8 @@
           "text": " to "
         },
         {
-          "text": "6.3",
-          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
         },
         {
           "text": "."
@@ -1714,14 +1763,14 @@
           "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
         },
         {
-          "text": " holds through ESLint, which disables inline directives and lists what eslint-suppressions.json hid; bundled rule URLs drop the plugin namespace, so they resolve nothing and "
+          "text": " holds through ESLint, which disables inline directives and lists what eslint-suppressions.json hid; bundled rule URLs drop the plugin namespace, so they resolve nothing and only the ESLint core rules the same run prints resolve, "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " fails, and the pages are online only, failing "
+          "text": " partial, and the pages are online only, failing "
         },
         {
           "text": "6.2",
@@ -2440,21 +2489,35 @@
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": "; go tool vet help resolves every analyzer offline for "
+          "text": "; go tool vet help is the offline lookup, but five analyzers resolve to a title alone, so "
         },
         {
           "text": "6.1",
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " to "
+          "text": " and "
+        },
+        {
+          "text": "6.2",
+          "href": "/DETECTOR-SPEC.html#62-resolution-of-a-bundled-rules-identifier-must-work-from-the-installed-copy-without-network-access"
+        },
+        {
+          "text": " are partial and "
         },
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": "; plain output omits the analyzer name, which only -json carries, so "
+          "text": " and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fail; plain output omits the analyzer name, which only -json carries, so "
         },
         {
           "text": "4.3",
@@ -2905,7 +2968,7 @@
           "href": "/DETECTOR-SPEC.html#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code"
         },
         {
-          "text": " partial; -explain resolves every check offline but not the compile and staticcheck codes it also prints, documented nowhere, so "
+          "text": " partial; -explain is the offline lookup, but 53 checks resolve to a title alone and the compile and staticcheck codes it also prints are documented nowhere, so "
         },
         {
           "text": "6.1",
@@ -3215,7 +3278,14 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " fails; forbid meets "
+          "text": " and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fail; forbid closes every lint attribute, but a hand-written automatically_derived silences some lints unseen, failing "
         },
         {
           "text": "7.1",
@@ -3550,7 +3620,14 @@
           "href": "/DETECTOR-SPEC.html#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation"
         },
         {
-          "text": " partial, and needs the network, and the documentation API is not a mechanism, failing "
+          "text": " partial and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " failed, and needs the network, and the documentation API is not a mechanism, failing "
         },
         {
           "text": "6.2",
@@ -3999,6 +4076,13 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
+          "text": ", and so "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
           "text": "; the suppressions file holds no reason, leaving "
         },
         {
@@ -4241,7 +4325,14 @@
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
         },
         {
-          "text": " fail"
+          "text": " fail, and with no printed id landing on a page "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fails"
         }
       ],
       "checked": "2026-10-10, .NET SDK version 10.0.401"
@@ -4390,8 +4481,8 @@
           "text": " to "
         },
         {
-          "text": "6.3",
-          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
         }
       ],
       "checked": "2026-10-10, version 10.35.0.4138"
@@ -4609,6 +4700,13 @@
         {
           "text": "6.3",
           "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": ", and a release process with no check on it fails "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
         },
         {
           "text": "; suppression comments that cannot be closed or seen fail "
@@ -7765,7 +7863,7 @@
           "href": "/DETECTOR-SPEC.html#54-a-finding-must-not-be-reportable-only-through-a-hosted-service-licence-tier-or-ci-only-mode-the-practitioner-cannot-invoke-locally"
         },
         {
-          "text": " partial; checkov --list labels each printed id with its one-line policy title offline, meeting "
+          "text": " partial; checkov --list gives each printed id only its policy name, so "
         },
         {
           "text": "6.1",
@@ -7775,11 +7873,11 @@
           "text": " to "
         },
         {
-          "text": "6.3",
-          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
         },
         {
-          "text": "; every inline skip is printed and counted, meeting "
+          "text": " fail; a secrets allowlist comment silences a finding unseen, failing "
         },
         {
           "text": "7.1",
