@@ -29,7 +29,16 @@ version entry with no cohort line has not been accepted and is not published.
   failed on two of these passages: clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire)'s Part B now opens by saying it judges the rule's own
   scope and not an ignore placed on one instance, after a reader still failed the ignore under
   both clauses; and section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s item on the next wider rule says which rule and which rejection
-  it reaches, after two readers could not tell what its last sentence limited. Accepted by run NNN.
+  it reaches, after two readers could not tell what its last sentence limited.
+  [Run 38](acceptance/runs/038-defined-terms-method-run-3.md) failed on two passages: section [2](SPEC.md#2-when-the-method-applies)
+  names two independent attempts at writing the rule where it said "techniques tried at
+  expressing the Rule, in the vocabulary clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class) uses for a search", after two readers took
+  them for search techniques; and clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s lower bound says what "tested as a Narrowing is"
+  asks of the record and where a rejection without it goes, after two readers could not tell.
+  Section [4](SPEC.md#4-authority-which-decisions-belong-to-whom)'s item on the next wider rule is restated as one test, the Hazard sentence, after three
+  readers each named a different sentence of it; clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s level sentence, section [2](SPEC.md#2-when-the-method-applies)'s
+  "the first from the second" and clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)'s "no Rule build of their own" are reworded after one
+  reader each. Accepted by run NNN.
 
 ### 1.1.0, 2026-10-02
 
