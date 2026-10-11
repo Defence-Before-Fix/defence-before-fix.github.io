@@ -277,9 +277,9 @@ An inline ignore comment, a per-line directive and a generated [Baseline] are al
 routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
 alone satisfies this clause: make the route disableable by configuration; or make the route
 detectable, by a [Rule] the project can write in the [Detector] itself or by a mechanical check
-the [Detector] documents. That [Rule] is written by the project, in the [Detector]'s own [Rule]
-language, and reports each use of the route; the [Detector] runs it as it runs any bespoke
-[Rule] under clause 4.1. Either lets a project which decides to forbid
+the [Detector] documents. That [Rule], or that check, reports each use of the route. The project
+writes the [Rule], in the [Detector]'s own [Rule] language, and the [Detector] runs it as it runs
+any bespoke [Rule] under clause 4.1. Either lets a project which decides to forbid
 the route enforce that decision. A route that can be neither switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
@@ -319,10 +319,9 @@ for a [Detector].
 
 The declaration is machine-readable, in whatever form the [Detector]'s ecosystem uses to
 record dependencies. The same declaration is where a gap against this document is recorded once it is
-known: a [Detector] that has learnt, from its own checks or from a [Practitioner]'s
-report under the method's clause 3.2, that it fails a MUST in sections 4 to 7 MUST record that gap
-alongside the version it declares, in the same file or one it names. This duty, to record the gap
-in the declaration, falls only on a [Detector] that has one. A declaration with a non-empty
+known: a [Detector] that declares a version and has learnt, from its own checks or from a
+[Practitioner]'s report under the method's clause 3.2, that it fails a MUST in sections 4 to 7
+MUST record that gap alongside that version, in the same file or one it names. A declaration with a non-empty
 gap record is a statement of where the [Detector] stands and is not a claim of
 [Conformance].
 

@@ -125,7 +125,13 @@ pass it.
   sentence, which all five readers could not square with "a Rule the project can write in the
   Detector itself": it now says the project writes that rule, in the detector's own rule
   language, and the detector runs it. Clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s sentence on the gap duty is shorter, after one
-  reader found it hard to square with the MUST before it. Accepted by run NNN.
+  reader found it hard to square with the MUST before it.
+  [Run 42](acceptance/runs/042-defined-terms-detector-run-4.md) failed on two passages: clause
+  [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s gap MUST names a detector that declares a version as its subject, in place of a
+  sentence after it narrowing the duty, which two readers set against the MUST; and clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)
+  says that the rule or the mechanical check reports each use of the route and that the project
+  writes the rule, after two readers could not tell who writes it or what the check is.
+  Accepted by run NNN.
 
 ### 1.0.0, 2026-09-08
 
