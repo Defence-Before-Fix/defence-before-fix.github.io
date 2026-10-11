@@ -79,9 +79,8 @@ capitalised term links to its definition, and every one this document borrows is
 | [Bundled rule]     | A [Rule] a [Detector] ships rather than one the project wrote                                      |
 | [Rule harness]     | The route by which one [Rule] is run against supplied code on its own                              |
 
-A [Rule] the [Toolchain] runs as [Blocking] alongside its [Defences], but whose documentation
-is missing, is not yet a [Defence]; where clauses 4.2, 5.1 and 8.1 say [Defence], they
-include it.
+In clauses 4.2, 5.1 and 8.1, [Defence] also covers a [Rule] the [Toolchain] runs as [Blocking]
+alongside its [Defences] whose documentation is missing.
 
 The three terms below are this document's own, defined here rather than borrowed.
 
@@ -95,7 +94,7 @@ A [Defence] a shipped [Toolchain] carries and enables by default in every [Consu
 
 #### Project record
 
-The one place a project writes down every judgement the method specification delegates to it, whether a [Calibration], an [Exception] or a convention.
+The place a project writes down the judgements the method specification delegates to it: [Calibrations], [Exceptions] and conventions, whichever it has made.
 
 The distinction between a [Bundled defence] and a project's own is significant throughout. A bundled
 [Defence] is authored once and runs in codebases its author will never see, so everything a
@@ -129,7 +128,7 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
 [Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
-its sections 4 to 7, and every one applies; in brief, they are six. The [Detector] hosts
+its sections 4 to 7, and every one applies, not only the six summarised here. The [Detector] hosts
 bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
@@ -449,9 +448,8 @@ counts only what the shipped [Toolchain] itself supplies, never a script or conf
 project's own [Rules] in the listing of section 5 or the decisions in its [Project record], the
 artefact is graded on the mechanism, the middle column of the section 3 table, and not on the
 content. The two
-verdicts MUST be graded and declared separately, and neither implies the other. Section 8, which
-section 9 adds where the [Toolchain] is one the project ships, bears on the artefact grade
-only; clause 5.3 is its project-level counterpart.
+verdicts MUST be graded and declared separately, and neither implies the other. Section 8 bears on
+the artefact grade only; clause 5.3 is its project-level counterpart.
 
 **Why**: the two questions have different readers. A contributor to the artefact wants to know
 whether the project practises what it ships; a [Consuming project] wants to know what it
@@ -517,6 +515,7 @@ does not have to build them alone.
 [bundled rule]: DETECTOR-SPEC.md#bundled-rule
 [bundled rules]: DETECTOR-SPEC.md#bundled-rule
 [calibration]: SPEC.md#calibration
+[calibrations]: SPEC.md#calibration
 [class]: SPEC.md#class
 [conform]: SPEC.md#conform
 [conformance]: SPEC.md#conform
@@ -530,6 +529,7 @@ does not have to build them alone.
 [detector]: SPEC.md#detector
 [detectors]: SPEC.md#detector
 [exception]: SPEC.md#exception
+[exceptions]: SPEC.md#exception
 [fixture]: SPEC.md#fixture
 [hazard]: SPEC.md#hazard
 [identifier]: SPEC.md#identifier

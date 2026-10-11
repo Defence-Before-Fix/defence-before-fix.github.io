@@ -205,7 +205,16 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   section [8](TOOLING-SPEC.md#8-self-audit) says it is the section [9](TOOLING-SPEC.md#9-conformance) addition for a shipped toolchain that bears on the
   artefact grade only, after three readers took the two as contradicting each other; and the
   Project record entry says it is one place for every kind of judgement, after two readers
-  graded clause [6.1](TOOLING-SPEC.md#61-the-toolchain-must-define-a-location-for-the-project-record-and-must-read-it-itself) as met in part for want of a location for each kind. Accepted by run NNN.
+  graded clause [6.1](TOOLING-SPEC.md#61-the-toolchain-must-define-a-location-for-the-project-record-and-must-read-it-itself) as met in part for want of a location for each kind.
+  [Run 46](acceptance/runs/046-defined-terms-toolchain-run-5.md) failed on four of these
+  passages: section [2](TOOLING-SPEC.md#2-terminology)'s sentence no longer says such a rule is not yet a defence, only that
+  Defence in clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access), [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) also covers it, after three readers read its two halves as
+  contradicting each other; the Project record entry is as it was, ending "whichever it has made",
+  after a reader again graded clause [6.1](TOOLING-SPEC.md#61-the-toolchain-must-define-a-location-for-the-project-record-and-must-read-it-itself) as met in part, this time for want of every kind in one
+  place; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) says every MUST applies "not only the six summarised here", after two
+  readers still could not tell whether the six were the whole; and clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately)'s sentence on
+  section [8](TOOLING-SPEC.md#8-self-audit) is as it was, since the rewording did not stop two readers setting it against
+  section [9](TOOLING-SPEC.md#9-conformance). Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
