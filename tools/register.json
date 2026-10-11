@@ -1787,6 +1787,105 @@
       "checked": "2026-10-10, version 8.71.1"
     },
     {
+      "slug": "py-qa-ci",
+      "name": "py-qa-ci",
+      "page": "/tools/py-qa-ci.html",
+      "language": "Python",
+      "kind": "toolchain",
+      "readiness": {
+        "mark": "🟢",
+        "level": "green"
+      },
+      "detector": {
+        "mark": "🔴",
+        "level": "red"
+      },
+      "toolchain": {
+        "mark": "🟡",
+        "level": "amber"
+      },
+      "project": {
+        "mark": "🟡",
+        "level": "amber"
+      },
+      "notes": [
+        {
+          "text": "Pylint hosts bespoke rules with a single-rule harness that runs one message alone, so readiness is green; the resolver works offline and the record rejects a generic justification; but Ruff carries the 562 rules of the default selection as defences and cannot host a bespoke rule, so detector "
+        },
+        {
+          "text": "4.1",
+          "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
+        },
+        {
+          "text": " fails structurally and toolchain "
+        },
+        {
+          "text": "4.1",
+          "href": "/TOOLING-SPEC.html#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification"
+        },
+        {
+          "text": " fails, as declared; Ruff's invalid-syntax resolves to nothing, so detector "
+        },
+        {
+          "text": "6.3",
+          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " fail; @typing.no_type_check silences mypy unseen, so detector "
+        },
+        {
+          "text": "7.1",
+          "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
+        },
+        {
+          "text": " fails, and with a Pylint pragma written after other text in its comment it escapes the suppression lane, so toolchain "
+        },
+        {
+          "text": "4.3",
+          "href": "/TOOLING-SPEC.html#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record"
+        },
+        {
+          "text": " fails; -p does not narrow a project check, so toolchain "
+        },
+        {
+          "text": "4.4",
+          "href": "/TOOLING-SPEC.html#44-the-toolchains-own-invocation-must-satisfy-the-detector-specifications-reporting-clauses-for-every-defence-it-routes"
+        },
+        {
+          "text": " fails; a project Pylint rule's message id resolves to nothing, toolchain "
+        },
+        {
+          "text": "4.2",
+          "href": "/TOOLING-SPEC.html#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access"
+        },
+        {
+          "text": " partial; the agent summary counts the Ruff and mypy defences and is not written on install, "
+        },
+        {
+          "text": "7.1",
+          "href": "/TOOLING-SPEC.html#71-the-toolchain-should-generate-a-summary-of-the-active-defences-suitable-for-an-agents-context"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "7.2",
+          "href": "/TOOLING-SPEC.html#72-the-toolchain-should-deliver-that-summary-into-the-project-automatically"
+        },
+        {
+          "text": " partial; declares method 1.1.0, detector 1.0.0 and toolchain 0.2.0 at both levels with two gaps recorded"
+        }
+      ],
+      "checked": "2026-10-11, release v0.4.1 at commit 2881c4e"
+    },
+    {
       "slug": "bandit",
       "name": "Bandit",
       "page": "/tools/bandit.html",
@@ -3007,6 +3106,105 @@
         }
       ],
       "checked": "2026-10-10, version 2026.2.1 (v0.8.1)"
+    },
+    {
+      "slug": "rust-qa-ci",
+      "name": "rust-qa-ci",
+      "page": "/tools/rust-qa-ci.html",
+      "language": "Rust",
+      "kind": "toolchain",
+      "readiness": {
+        "mark": "🟡",
+        "level": "amber"
+      },
+      "detector": {
+        "mark": "🔴",
+        "level": "red"
+      },
+      "toolchain": {
+        "mark": "🟡",
+        "level": "amber"
+      },
+      "project": {
+        "mark": "🟡",
+        "level": "amber"
+      },
+      "notes": [
+        {
+          "text": "One entry point over Clippy, Dylint and ast-grep, with a resolver, a derived listing and a justified, budgeted record, all run; Clippy is routed defences and can host no rule of the project's own, so detector "
+        },
+        {
+          "text": "4.1",
+          "href": "/DETECTOR-SPEC.html#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it"
+        },
+        {
+          "text": " fails structurally and toolchain "
+        },
+        {
+          "text": "4.1",
+          "href": "/TOOLING-SPEC.html#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification"
+        },
+        {
+          "text": " with it; Clippy's single-rule route is its level flags ("
+        },
+        {
+          "text": "4.2",
+          "href": "/TOOLING-SPEC.html#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access"
+        },
+        {
+          "text": " partial), and its default output names a lint on its first finding only, hyphenated where the manifest sets the level ("
+        },
+        {
+          "text": "4.3",
+          "href": "/TOOLING-SPEC.html#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record"
+        },
+        {
+          "text": " partial); Clippy and Dylint reach one file only by filtering a crate's run ("
+        },
+        {
+          "text": "5.2",
+          "href": "/TOOLING-SPEC.html#52-the-listing-must-be-derived-from-the-active-configuration"
+        },
+        {
+          "text": " partial); rustc's error codes and ast-grep's own codes print beside a rule-doc pointer that resolves nothing, so detector "
+        },
+        {
+          "text": "6.3",
+          "href": "/DETECTOR-SPEC.html#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "6.4",
+          "href": "/DETECTOR-SPEC.html#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation"
+        },
+        {
+          "text": " and toolchain "
+        },
+        {
+          "text": "4.2",
+          "href": "/TOOLING-SPEC.html#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access"
+        },
+        {
+          "text": " fail; a hand-written automatically_derived hid a blocking Clippy finding through the whole gate, and an allow in an included file not ending .rs and an ast-grep ignore in a JavaScript file went unseen, so detector "
+        },
+        {
+          "text": "7.1",
+          "href": "/DETECTOR-SPEC.html#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable"
+        },
+        {
+          "text": " and toolchain "
+        },
+        {
+          "text": "4.3",
+          "href": "/TOOLING-SPEC.html#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record"
+        },
+        {
+          "text": " fail; declares method 1.1.0, detector 1.0.0 and toolchain 0.2.0 as partial, with four gaps recorded"
+        }
+      ],
+      "checked": "2026-10-11, release v0.4.0 at commit ad2af58"
     },
     {
       "slug": "cargo-deny",
