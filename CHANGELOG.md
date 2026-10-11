@@ -114,8 +114,12 @@ pass it.
   clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s remainder sentences are now two plain ones, after three readers found them hard to
   parse; clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) says what a rule "in the Detector itself" is, after three readers set it against
   clause [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it); and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says the duty to record a gap falls on a detector that has a declaration,
-  after two readers could not tell whether an undeclared detector is bound by it. Accepted by run
-  NNN.
+  after two readers could not tell whether an undeclared detector is bound by it.
+  [Run 39](acceptance/runs/039-defined-terms-detector-run-3.md) failed on clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s new
+  sentence, which all five readers could not square with "a Rule the project can write in the
+  Detector itself": it now says the project writes that rule, in the detector's own rule
+  language, and the detector runs it. Clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s sentence on the gap duty is shorter, after one
+  reader found it hard to square with the MUST before it. Accepted by run NNN.
 
 ### 1.0.0, 2026-09-08
 
