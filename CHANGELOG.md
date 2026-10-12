@@ -92,7 +92,10 @@ pass it.
   text, every keyed item five of five: two readers needed two readings of clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s
   sentence on a report that only adds detail, which is now a sentence of its own with its subject
   stated; three readers named clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)'s paragraph on a project's own rule, which this
-  change does not touch and `acceptance/ROUTED.md` now lists. Accepted by run NNN.
+  change does not touch and `acceptance/ROUTED.md` now lists. Accepted by
+  [run 66](acceptance/runs/066-detector-route-rule-run-3.md), every keyed item five of five; its
+  one finding is that same clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) paragraph, named again by three readers, which stays in
+  `acceptance/ROUTED.md` for a change of its own.
 
 ### 1.0.0, 2026-09-08
 
