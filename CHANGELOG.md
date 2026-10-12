@@ -114,7 +114,7 @@ pass it.
   in `acceptance/ROUTED.md` for changes of their own. [Run
   71](acceptance/runs/071-semantic-detectors-run-14.md), under the rules of pull request 22,
   failed on this clause's first paragraph, which two readers could not place, and on misses in
-  clauses [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) and [6.1](DETECTOR-SPEC.md#61-every-finding-must-carry-the-route-to-its-remediation-docs) in text the change had not touched; the paragraph then gained a sentence
+  clauses [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) and [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) in text the change had not touched; the paragraph then gained a sentence
   naming the configuration whose kind is named, and [run
   74](acceptance/runs/074-semantic-detectors-run-15.md) failed on that sentence, three readers
   unable to tell which configuration it meant. The sentence is withdrawn: the verdict names the
