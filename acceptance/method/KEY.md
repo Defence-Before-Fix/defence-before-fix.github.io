@@ -29,6 +29,8 @@ no bullet making an assertion listed below as wrong, is a correct restatement.
   practitioner's own authority (section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom)).
 - Fix the original defect conventionally, with a test that reproduces it, once the defence is in
   place (sections [2](../../SPEC.md#2-when-the-method-applies) and [6](../../SPEC.md#6-relationship-to-test-driven-development)).
+- Write down, for any code the rule is narrowed to exclude, why the hazard cannot arise there,
+  and take the exclusion to the owner where that sentence cannot be written ([3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire), Part B).
 
 Wrong if it asserts: the practitioner fixes the reported instance first and defends afterwards;
 a test may serve as the detector; an agent may baseline the remaining instances; only a semantic
