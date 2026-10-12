@@ -159,8 +159,8 @@ any.
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
-carry both a usable summary and the location of the remainder. The remainder is the findings
-the summary leaves out. Where the output prints every finding, each with where it is and its
+carry a usable summary and, where the summary leaves any finding out, the location of the
+remainder. The remainder is the findings the summary leaves out. Where the output prints every finding, each with where it is and its
 [Identifier], there is no remainder. A fuller report written elsewhere, such as a page with a
 code snippet for each finding, only adds detail to findings the output already carries; it is
 not a remainder, and the output need not name it.
@@ -335,11 +335,12 @@ with a non-empty gap record is a statement of where the [Detector] stands and is
 [Conformance].
 
 The declaration is optional, and so the duty above falls only on a [Detector] that has one; a
-gap a [Practitioner] finds is recorded under the method's clause 3.2 in any case. It is how a
-maintainer claims [Conformance]; it is not a condition of it. A [Detector] that predates this document, or whose maintainer has never read
-it, MAY be graded [Conforming] on evidence: anyone may grade it, by checking it against each
-clause of sections 4 to 7, and a verdict on any [Detector], declared or not, rests on that
-check and not on the claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
+gap a [Practitioner] finds is recorded in their own project's record under the method's clause
+3.2 in any case. The declaration is how a maintainer claims [Conformance]; it is not a condition
+of it, and a [Detector] without one can still be found to [Conform]. A [Detector] that predates
+this document, or whose maintainer has never read it, MAY be graded [Conforming] on evidence:
+anyone may grade it, by checking it against each clause of sections 4 to 7, and a verdict on
+any [Detector], declared or not, rests on that check and not on the claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
 the reader still runs the [Rule harness].
 
 The shape is illustrative rather than prescribed. In a Composer manifest:
