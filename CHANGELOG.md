@@ -18,8 +18,8 @@ version entry with no cohort line has not been accepted and is not published.
   because it breaches the toolchain specification's own obligations it is recorded against the toolchain's
   claim as well, where clause [3.2](SPEC.md#32-build-the-net) says, and still blocks that claim under section [7](SPEC.md#7-conformance) until fixed.
   Prompted by a review reading that found the two clauses giving one case two names. Also section
-  [2](SPEC.md#2-when-the-method-applies): a sentence after the one requiring the defence before the fix points to section [3](SPEC.md#3-the-method)'s six clauses in
-  order and names the first, working out the defect's class under clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class), without changing what
+  [2](SPEC.md#2-when-the-method-applies): a sentence after the one requiring the defence before the fix says the method begins at clause
+  [3.1](SPEC.md#31-attribute-the-defect-to-a-class), working out the defect's class, and follows the order of section [3](SPEC.md#3-the-method)'s clauses, without changing what
   that requirement covers, because a reader in run [88](acceptance/runs/088-gap-terms-method-run-2.md) relying on section
   [2](SPEC.md#2-when-the-method-applies) missed the attribution step on a keyed question. Earlier runs on this change: [34](acceptance/runs/034-gap-terms-method-run-1.md),
   [88](acceptance/runs/088-gap-terms-method-run-2.md). Accepted by run NNN. Patch version when released.

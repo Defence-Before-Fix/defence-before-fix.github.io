@@ -170,9 +170,9 @@ Defence Before Fix applies to a [Defect] when that [Defect] can be attributed to
 idiom or configuration that a [Detector] can be made to recognise.
 
 When it can, building the [Defence] is not optional and MUST be attempted before the [Defect] is
-fixed. This is the substance of the method rather than a preliminary to it. Section 3 sets out
-the method's six clauses in order, and the first, clause 3.1, is working out what [Class] the
-[Defect] belongs to.
+fixed. This is the substance of the method rather than a preliminary to it. The method begins at
+clause 3.1, working out what [Class] the [Defect] belongs to, and follows the order of section 3's
+clauses.
 
 When it cannot, the [Defect] is outside the method's scope and is fixed conventionally. Not every
 [Defect] is an [Instance] of a detectable pattern, and forcing a [Rule] where no pattern exists
