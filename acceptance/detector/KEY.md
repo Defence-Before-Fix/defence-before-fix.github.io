@@ -40,14 +40,15 @@ Wrong readings the text invites, which count against the document on one reader:
   conformance is judged on evidence and a declaration is optional, is explanation: an answer
   that gives it, or gives it instead of a plain yes, states element (2).
 - **2b.** Required: (1) the two things, both named: let the project switch the route off in its
-  configuration, or make the route detectable (by a rule the project can write, or by a
-  mechanical check the detector documents; naming either means of detection, or just
-  "detectable", states that alternative); an answer naming only one of the two things misses
-  this element; (2) yes, either one alone is enough. Wrong if it says the detector must remove or forbid the
-  route, or must require a reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD). Key quotation, [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each one it
-  MUST do at least one of two things, and either alone satisfies this clause: make the route
-  disableable by configuration; or make the route detectable, by a Rule the project can write in
-  the Detector itself or by a mechanical check the Detector documents". An answer need not say
+  configuration, or make the route detectable (by a bespoke rule the project writes for the
+  detector, or by a mechanical check the detector documents; naming either means of detection,
+  or just "detectable", states that alternative); an answer naming only one of the two things
+  misses this element; (2) yes, either one alone is enough. Wrong if it says the detector must
+  remove or forbid the route, or must require a reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD). Key quotation,
+  [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each one it MUST do at least one of two things, and either alone satisfies this
+  clause: make the route disableable by configuration; or make the route detectable, by a
+  bespoke Rule the project writes for the Detector under clause [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it) or by a mechanical check the
+  Detector documents". An answer need not say
   that the detector is not required to remove or forbid the route; that follows from element (2)
   and the question does not ask it.
 - **2c.** Required: (1) with the rule, in the installed copy; (2) at a version tracked together
