@@ -160,9 +160,9 @@ any.
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
 carry a usable summary and, where the summary leaves any finding out, the location of the
 remainder. A summary is usable when each finding in it carries where it is and its
-[Identifier]. The remainder is the findings the summary leaves out: where the output prints
-every finding there is none, and a fuller report written elsewhere, such as a page with a code
-snippet for each finding, is not one and need not be named.
+[Identifier]. The remainder is the findings the summary leaves out. Where the output prints
+every finding, there is no remainder. A fuller report written elsewhere, such as a page with a
+code snippet for each finding, is not a remainder, and the output need not name it.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
 report that arrives after the decision it was meant to inform.
