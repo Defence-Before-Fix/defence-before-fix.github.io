@@ -102,8 +102,7 @@ pass it.
 ### Unreleased
 
 - New obligation, clause [8.2](DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades): a verdict on a detector MUST name the kind, semantic, syntactic
-  or textual, of each configuration it grades, as the detector has it without any hosted service
-  or licence tier. It is not a level of conformance and does not change the verdict; it is
+  or textual, of each configuration it grades. It is not a level of conformance and does not change the verdict; it is
   stated because method clause [3.2](SPEC.md#32-build-the-net) now requires a rule to be written in the strongest kind
   of detector that can express it, and a verdict of conforming alone presents a textual detector
   as an equal host. Section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) still adds no obligation to the method a practitioner
@@ -112,7 +111,14 @@ pass it.
   message. Runs 20, 22, 24, 26, 28 and 30 were made on an earlier text of this change under the
   earlier acceptance rules and failed on passages the change had not touched, as
   `acceptance/CHANGES.md` records; the passages those runs named in untouched text are listed
-  in `acceptance/ROUTED.md` for changes of their own. Accepted by run NNN.
+  in `acceptance/ROUTED.md` for changes of their own. [Run
+  71](acceptance/runs/071-semantic-detectors-run-14.md), under the rules of pull request 22,
+  failed on this clause's first paragraph, which two readers could not place, and on misses in
+  clauses [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) and [6.1](DETECTOR-SPEC.md#61-every-finding-must-carry-the-route-to-its-remediation-docs) in text the change had not touched; the paragraph then gained a sentence
+  naming the configuration whose kind is named, and [run
+  74](acceptance/runs/074-semantic-detectors-run-15.md) failed on that sentence, three readers
+  unable to tell which configuration it meant. The sentence is withdrawn: the verdict names the
+  kind of each configuration it grades. Accepted by run NNN.
 - Clarity, no obligation changed: four passages that cold readers of an unrelated change read as
   the document pulling against itself or could not follow, each listed in `acceptance/ROUTED.md`.
   Clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s detectable route is now a bespoke rule the project writes for the detector under
