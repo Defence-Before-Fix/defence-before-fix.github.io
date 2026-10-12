@@ -178,7 +178,7 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   already given", two readers unable to tell which verdict or what a grader does without one.
   Clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) says nothing of undocumented rules now, section [2](TOOLING-SPEC.md#2-terminology)'s closing paragraph being where
   that is said; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) name the verdict as one given under the detector
-  specification's section 8 and say that without one the restated sentences are the test.
+  specification's conformance section and say that without one the restated sentences are the test.
   Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
