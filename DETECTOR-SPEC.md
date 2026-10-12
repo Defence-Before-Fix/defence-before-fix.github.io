@@ -39,6 +39,7 @@ definition; the ones this document leans on most are, in short:
 | -------------- | ------------------------------------------------------------------------------ |
 | [Detector]     | A tool that reads code without executing it and reports what it finds          |
 | [Rule]         | One check a [Detector] evaluates                                               |
+| [Message]      | The text a [Rule] prints when it fires                                         |
 | [Identifier]   | The stable name printed with a finding that leads to its documentation         |
 | [Practitioner] | Whoever is doing the work, a person or an [Agent]                              |
 | [Toolchain]    | Everything a project assembles to run its checks through, [Detectors] included |
@@ -334,9 +335,9 @@ with a non-empty gap record is a statement of where the [Detector] stands and is
 The declaration is optional, and so the duty above falls only on a [Detector] that has one; a
 gap a [Practitioner] finds is recorded under the method's clause 3.2 in any case. It is how a
 maintainer claims [Conformance]; it is not a condition of it. A [Detector] that predates this document, or whose maintainer has never read
-it, MAY be graded [Conforming] on evidence by anyone who exercises the clauses above against
-it, and a verdict on any [Detector], declared or not, rests on that exercise and not on the
-claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
+it, MAY be graded [Conforming] on evidence: anyone may grade it, by checking it against each
+clause of sections 4 to 7, and a verdict on any [Detector], declared or not, rests on that
+check and not on the claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
 the reader still runs the [Harness].
 
 The shape is illustrative rather than prescribed. In a Composer manifest:

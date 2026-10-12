@@ -82,7 +82,12 @@ pass it.
   mechanism and not for every page, a missing page failing clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), and that a
   documentation path printed in the message is not enough on its own, after three readers of
   run 54 set that sentence against the mechanism. Prompted by runs 32 to 54 on the defined-terms
-  change, in which two or more readers quoted each passage. Accepted by run NNN.
+  change, in which two or more readers quoted each passage.
+  [Run 60](acceptance/runs/060-detector-route-rule-run-1.md) failed on two findings in the
+  revised text, every keyed item within threshold: two readers could not find Message defined,
+  so section [2](DETECTOR-SPEC.md#2-terminology)'s table gains a Message row; and two readers stopped at clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s
+  "anyone who exercises the clauses above", which now says anyone may grade a detector by
+  checking it against each clause of sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression). Accepted by run NNN.
 
 ### 1.0.0, 2026-09-08
 
