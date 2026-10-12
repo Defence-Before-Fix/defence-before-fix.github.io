@@ -204,7 +204,9 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   were made under the acceptance rules before pull request 22 and failed, each on passages the
   change had not touched or on a rewording made after the run before; those rewordings were
   withdrawn when the rules changed, and the passages are listed in `acceptance/ROUTED.md`.
-  Accepted by run NNN.
+  Under the rules of pull request 22, [run 55](acceptance/runs/055-defined-terms-toolchain-run-8.md)
+  failed on passages the toolchain contradictions change rewrites, since merged here. Accepted
+  by [run 87](acceptance/runs/087-defined-terms-toolchain-run-9.md).
 - Clarity, no obligation changed: four passages that cold readers of an unrelated change read as
   the document pulling against itself, each listed in `acceptance/ROUTED.md`. Section [9](TOOLING-SPEC.md#9-conformance)'s
   conformance sentence now says that section [8](TOOLING-SPEC.md#8-self-audit) bears on a shipping project's artefact grade
