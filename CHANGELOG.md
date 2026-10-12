@@ -179,7 +179,11 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   Clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) says nothing of undocumented rules now, section [2](TOOLING-SPEC.md#2-terminology)'s closing paragraph being where
   that is said; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) name the verdict as one given under the detector
   specification's conformance section and say that without one the restated sentences are the test.
-  Accepted by run NNN.
+  [Run 83](acceptance/runs/083-toolchain-contradictions-run-11.md) failed on section [2](TOOLING-SPEC.md#2-terminology)'s
+  closing paragraph and on clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) set against it, three readers asking whether an
+  undocumented blocking rule has to appear in the listing. The paragraph now answers: nothing
+  the document asks of defences, the listing included, is asked of such a rule, and a toolchain
+  that runs one has failed clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) whether or not its listing shows it. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
