@@ -1,7 +1,7 @@
 # Run 60: DETECTOR-SPEC.md, detector route rule, first run
 
 - **Document**: DETECTOR-SPEC.md
-- **Pull request**: not yet opened at the time of the run; it is to be opened from branch
+- **Pull request**: [23](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23), opened after the run from branch
   `editor/detector-route-rule`. The readers read commit ed30e69. Change: clause 7.1's detectable
   route is a bespoke rule the project writes for the detector under clause 4.1, with a paragraph
   on what detectable means; clause 8.1's gap duty falls only on a detector that declares a
@@ -135,4 +135,7 @@ FAIL, on findings A and B alone; every keyed item passed its threshold.
 
 ## Answer sheets
 
-Posted on the pull request: LINK TO BE ADDED.
+Posted on the pull request in three comments:
+[the command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6124578731),
+[the answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6124580496) and
+[the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6124582261).
