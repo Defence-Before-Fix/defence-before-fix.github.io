@@ -118,7 +118,7 @@ pass it.
   passages are listed in `acceptance/ROUTED.md`. Under the rules of pull request 22, [run
   54](acceptance/runs/054-defined-terms-detector-run-8.md) failed on clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s gap-record
   MUST, set against the paragraph the rename altered, and on misses in clauses [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) and
-  [6.1](DETECTOR-SPEC.md#61-every-finding-must-carry-the-route-to-its-remediation-docs) in text the change had not touched, all three since rewritten by the detector route rule
+  [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) in text the change had not touched, all three since rewritten by the detector route rule
   change merged here; [run 69](acceptance/runs/069-defined-terms-detector-run-9.md) failed on
   clause [4.2](DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)'s first paragraph and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s second, each in a paragraph whose link the
   rename altered; and [run 75](acceptance/runs/075-defined-terms-detector-run-10.md) failed on
