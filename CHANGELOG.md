@@ -167,7 +167,12 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   paragraph had parted from its table. Clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) now give one test: a
   grader checks the restated sentences and takes a verdict already given on the detector under
   the detector specification as settled; the new paragraph sits at the end of section [2](TOOLING-SPEC.md#2-terminology), after
-  the Project record entry. Accepted by run NNN.
+  the Project record entry. [Run 81](acceptance/runs/081-toolchain-contradictions-run-9.md)
+  failed on clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them), two readers setting "every Defence active" against the new sentence that the
+  listing covers every blocking rule, documented or not: a listing of defences said to cover
+  what is not one. Clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) now says such a rule is not yet a defence, that clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) fails it,
+  and that the listing can show it with the gap showing; section [2](TOOLING-SPEC.md#2-terminology)'s paragraph names
+  clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) as the clauses that catch it. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 

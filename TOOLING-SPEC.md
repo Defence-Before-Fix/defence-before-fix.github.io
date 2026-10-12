@@ -81,9 +81,9 @@ A [Defence] a shipped [Toolchain] carries and enables by default in every [Consu
 
 The place a project writes down the judgements the method specification delegates to it: [Calibrations], [Exceptions] and conventions.
 
-A [Blocking] [Rule] whose documentation is missing is not yet a [Defence]. It is what clauses
-4.2, 5.1 and 8.1 exist to catch, so where those clauses reach a [Toolchain]'s [Rules] they reach
-every [Blocking] [Rule] it runs, documented or not.
+A [Blocking] [Rule] whose documentation is missing is not yet a [Defence]. Clauses 4.2 and 8.1
+exist to catch it, so where they reach a [Toolchain]'s [Rules] they reach every [Blocking]
+[Rule] it runs, documented or not.
 
 The distinction between a [Bundled defence] and a project's own is significant throughout. A bundled
 [Defence] is authored once and runs in codebases its author will never see, so everything a
@@ -263,8 +263,8 @@ kind of property that lives in the [Toolchain] and nowhere else.
 The [Toolchain] MUST list every [Defence] active in the project without
 running it. The listing MUST include each [Defence]'s [Identifier] and a terse
 statement of what it forbids or requires. It MUST provide the route to each one's full documentation.
-The listing covers every [Blocking] [Rule] the [Toolchain] runs, documented or not, and a
-[Rule] whose route to documentation is missing is listed with that gap showing.
+A [Blocking] [Rule] whose route to documentation is missing is not yet a [Defence]: clause 4.2
+fails it, and the listing can show it with that gap showing.
 
 **Why**: method specification clause 8.5. An [Agent] arriving at a codebase has no colleague to ask.
 Without a listing, a project's standards can only be learned by violating them one at a time.
