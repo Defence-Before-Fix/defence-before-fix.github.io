@@ -26,11 +26,13 @@ no bullet making an assertion listed below as wrong, is a correct restatement.
   defences on its own source ([8.1](../../TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation), [8.2](../../TOOLING-SPEC.md#82-a-shipped-toolchain-must-run-its-own-bundled-defences-on-its-own-source)).
 - Make everything the method requires of a practitioner possible without the project building
   the mechanism first (section [1](../../TOOLING-SPEC.md#1-what-this-document-is-for), the governing principle).
+- Not describe partial conformance as conformance (section [9](../../TOOLING-SPEC.md#9-conformance)).
 
 Wrong if it asserts: the toolchain must be a single product; a declaration is required to
 conform; the agent summary (section [7](../../TOOLING-SPEC.md#7-agent-context)) is a MUST. A bullet that calls agent support or the
-self-audit a further condition "where it applies", or says a declaration is not a condition,
-asserts no obligation and is neither correct nor wrong. So is a bullet that states how
+self-audit a further condition "where it applies", says that section [7](../../TOOLING-SPEC.md#7-agent-context) is recommended or a
+SHOULD, or says a declaration is not a condition, asserts no obligation and is neither correct
+nor wrong. So is a bullet that states how
 conformance is measured rather than what is required: the toolchain judged as one assembled
 whole at the project level (sections [1](../../TOOLING-SPEC.md#1-what-this-document-is-for) and [9](../../TOOLING-SPEC.md#9-conformance)), the project-level verdict a single grade
 (section [9](../../TOOLING-SPEC.md#9-conformance)), or a shipped artefact graded separately ([9.1](../../TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately)).
