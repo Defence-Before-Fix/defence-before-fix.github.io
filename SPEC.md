@@ -179,7 +179,9 @@ Defence Before Fix applies to a [Defect] when that [Defect] can be attributed to
 idiom or configuration that a [Detector] can be made to recognise.
 
 When it can, building the [Defence] is not optional and MUST be attempted before the [Defect] is
-fixed. This is the substance of the method rather than a preliminary to it.
+fixed. The order is section 3's: attribute the [Defect] to a [Class], build the [Rule], prove
+that it fires, run the [Sweep], then fix every [Instance]. This is the substance of the method
+rather than a preliminary to it.
 
 When it cannot, the [Defect] is outside the method's scope and is fixed conventionally. Not every
 [Defect] is an [Instance] of a detectable pattern, and forcing a [Rule] where no pattern exists
@@ -576,8 +578,9 @@ Where a [Detector] makes [Fixture]-based testing impractical, an acceptance or s
 demonstrates the [Rule] firing is an acceptable substitute.
 
 [Fixtures] are part of the [Rule] and are versioned with it, under the co-location requirement in
-clause 3.6. A [Fixture] is input to the [Rule]'s test, not part of the code the [Defence] enforces:
-the [Sweep] excludes it under clause 3.4, and the enforced run does not report it, so there is no
+clause 3.6. A [Fixture] is input to the [Rule]'s test, not part of the code the [Defence] enforces.
+The red run of Part A may report it; that is the proof. The [Sweep] excludes it under clause 3.4,
+and the green run under clause 3.5 does not report it as an [Instance], so there is no
 circularity in a [Fixture] that deliberately fails the [Rule] it proves. Writing the [Fixture] is the [Practitioner]'s own decision under section 4, not something
 to refer upwards.
 
@@ -908,8 +911,8 @@ evidence is gone and the opportunity closes with it.
 [Conformance].
 
 **A [Remediation] [Conforms]** if all six clauses of section 3 were followed for that [Defect], and
-the verdict that they were rests on reproduction, as this section closes by requiring, not on the
-report.
+the verdict that they were rests on reproduction, not on the
+report; the closing paragraph of this section says what reproduction requires.
 
 **A [Defence] [Conforms]** if it satisfies clauses 3.1, 3.2, 3.3, 3.5 and 3.6: it is drawn to a
 [Class] within both bounds and not to the reported [Instance], it is evaluated by reading code, it
