@@ -147,4 +147,4 @@ passage is named by two or more readers.
 
 ## Answer sheets
 
-Posted on the pull request: LINK TO BE ADDED.
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125344415); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125343899); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125344785).

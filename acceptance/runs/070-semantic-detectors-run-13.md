@@ -231,4 +231,4 @@ None at the time of marking; what to change is the editor's decision.
 
 ## Answer sheets
 
-Answer sheets, prompt, command and marker instruction: LINK TO PULL REQUEST COMMENT
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125136762); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125136402); the prompt, [part 1](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125137201) and [part 2](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125137748).

@@ -142,4 +142,4 @@ Detector has in a configuration that needs no hosted service and no licence tier
 
 ## Answer sheets
 
-Posted on the pull request: LINK TO BE ADDED.
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125140101); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125139595); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125140560).

@@ -167,4 +167,4 @@ clause 8.2's first paragraph, which the change wrote.
 
 ## Answer sheets
 
-Posted on the pull request: LINK TO BE ADDED.
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125138630); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125138207); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/14#issuecomment-6125139111).
