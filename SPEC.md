@@ -422,8 +422,10 @@ There are two kinds of gap and they lead to different work. The language having 
 [Detector] and no practical bespoke one is the gap above, and the [Class] waits for one. The project's [Toolchain]
 lacking a mechanism the [toolchain specification](TOOLING-SPEC.md) requires, such as a [Rule harness] or an
 [Identifier] resolver, is a mechanism gap, and it does not put the [Class] out of reach: the
-[Practitioner] builds the [Rule], uses the substitutes clauses 3.3 and 3.6 already allow, and records
-the mechanism gap alongside it. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
+[Practitioner] builds the [Rule], uses the substitutes clauses 3.3 and 3.6 already allow (clause
+3.3's acceptance or smoke check where a [Fixture]-based test is impractical, and clause 3.6's
+[Identifier] in a form that can be followed without a resolver), and records the mechanism gap
+alongside it. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
 own obligations, such as a [Toolchain] that cannot run its [Defences] on its own source, is recorded
 against the [Toolchain]'s claim under section 7 as well, because that is the fact its [Owner] needs.
 Where that record lives is the [Toolchain]'s own [Conformance] declaration, under the
@@ -701,8 +703,10 @@ For a [Bundled defence], the project whose entry point demonstrates it is any pr
 [Toolchain] is genuinely installed into, the [Consuming project] included, since that is
 where the [Rule] will be enforced. A mechanism gap that stops the [Toolchain] running its own entry
 point on its own source moves the demonstration to such a project; it does not weaken it. The
-substitutes clause 3.2 allows, for proving under clause 3.3 and for resolution under clause 3.6, do
-not extend to this clause: the demonstration here is through an entry point or it is not made. A
+substitutes clause 3.2 allows for a mechanism gap, the smoke check that stands in for a
+[Fixture]-based test under clause 3.3 and the [Identifier] that can be followed without a
+resolver under clause 3.6, do not extend to this clause: the demonstration here is through an
+entry point or it is not made. A
 project created for the purpose, with the [Toolchain] installed into it from the source under
 test, is such a project, so a [Toolchain] with no consumer yet is not excused.
 
