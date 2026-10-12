@@ -6,7 +6,7 @@ change, naming its pull request. The process is not a specification and is not v
 change to it is not tested by a cohort. Changes to the three specifications are recorded in
 [CHANGELOG.md](../CHANGELOG.md).
 
-- Pull request PRNUM: the method key's 2a says how an answer is marked when it says that the
+- [Pull request #26](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/26): the method key's 2a says how an answer is marked when it says that the
   defect handed is fixed after some steps and, elsewhere, that every instance is swept and fixed,
   without saying which comes first. The question asks in what order, so the order is the point of
   element (2), and such an answer does not state it. The key now says that "the fix" in element
