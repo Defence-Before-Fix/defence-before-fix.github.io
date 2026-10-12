@@ -8,7 +8,9 @@ editor reads this list before cutting a release.
 
 A finding is open until a change that reworks its passage passes a cohort, when the line names
 that run and moves below the rule, or until the editor closes it with a reason recorded here. A
-finding raised again by a later run is noted on its line, not listed twice.
+finding raised again by a later run is noted on its line, not listed twice. The rows below were
+raised by runs 31 to 52 under the earlier rules, on untouched text of the change those runs
+tested, and are listed here so that they are not lost.
 
 ## Open
 
@@ -24,8 +26,7 @@ finding raised again by a later run is noted on its line, not listed twice.
 | `DETECTOR-SPEC.md` | 8.1         | "MUST record that gap alongside the version it declares" against "The declaration is optional."                                                                                      | runs 39, 42             | `editor/detector-route-rule`           |
 | `DETECTOR-SPEC.md` | 5.3         | "the location of the remainder": what the remainder is when the summary prints every finding                                                                                         | run 32                  | `editor/detector-route-rule`           |
 | `SPEC.md`          | 1 (Owner)   | The default Owner sentences: whether whoever instructed the Practitioner may take section 4's decisions, and the bracketed verb "Suppress" among nouns                               | runs 41, 47, 50         | open                                   |
-| `SPEC.md`          | 4           | "the Rule MAY merge at full width with that case recorded as a known Instance awaiting the Owner" against "provided the Rule does not become Blocking until every Instance is fixed" | run 50 (one reader, 29) | open; a method question for the editor |
-| `SPEC.md`          | 2 and 3.1   | "technique" used for a way of writing the Rule in section 2 and for a way of searching in clause 3.1                                                                                 | runs 29, 38             | pull request 14 rewords both           |
+| `SPEC.md`          | 4           | "the Rule MAY merge at full width with that case recorded as a known Instance awaiting the Owner" against "provided the Rule does not become Blocking until every Instance is fixed" | run 50                  | open; a method question for the editor |
 
 ## Closed
 

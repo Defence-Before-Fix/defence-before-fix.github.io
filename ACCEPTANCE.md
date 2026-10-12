@@ -51,8 +51,8 @@ makes it wrong; the question asks for exactly that and nothing the key does not 
 asks for nothing the question does not. Each reader answers all of them.
 
 1. **Restatement.** In their own words, what the document asks of its subject, in at most six
-   bullets. Keyed against the list of MUST clauses: a bullet is correct when it names an
-   obligation the document actually states.
+   bullets. Keyed against the key's list of the document's obligations: a bullet is correct when
+   it names one of them.
 
 2. **Load-bearing statements.** Three or more questions, fixed per document, each asking for a
    short answer and the sentence or sentences of the document it rests on, quoted. Each has one
@@ -97,34 +97,41 @@ answer sheets, and the facts the record needs that the sheets cannot show. Its m
 unless the editor shows that a rule here was misapplied, and a re-mark says which rule and why.
 
 Every mark is given by a rule in this file or in the key, as follows. Where neither settles a
-mark, the marker gives the reader the benefit of the doubt, records the point in the run record,
-and the editor settles it by a change to this file or to the key before the next run. A run
-record states no judgement that is not written here or in the key; a judgement an earlier run
-recorded is not a rule.
+mark, the marker records the point in the run record and marks it as the open-point rule below
+says, and the editor settles it in this file or in the key, as [Changing the test](#changing-the-test)
+allows, before the next run. A run record states no judgement that is not written here or in
+the key; a judgement an earlier run recorded is not a rule.
 
 - **Keyed items.** Question 1 as a whole is one keyed item, and so is each item of question 2
-  and each answer of question 3 for which the key gives an intended answer.
+  and each answer of question 3 for which the key gives an accepted grade or answer.
 - **Reading an answer.** An answer is read for its sense, not its wording: a paraphrase, a
   synonym, or a defined term used in its defined sense states what it means. A reader quotes the
-  document when it gives consecutive words of the document, in the document's order and of any
-  length, in quotation marks or a block quote, verbatim apart from letter case, quotation-mark or
-  apostrophe style, and markdown link or emphasis markup.
+  document when it gives, in quotation marks or a block quote, a run of six or more consecutive
+  words of the document in the document's order, verbatim apart from letter case, quotation-mark
+  or apostrophe style, and markdown link or emphasis markup; a quotation that drops or changes a
+  word quotes the document by its longest such run.
 - **Question 1** is correct when at least four bullets each name an obligation the key lists and
-  no bullet asserts one the key marks wrong.
+  no bullet asserts one the key marks wrong. Several bullets that name different clauses of one
+  line of the key's list each count. A bullet asserting an obligation that is in neither list is
+  recorded as an open point for the key and is not counted either way.
 - **Question 2.** An answer is the reader's sentences and its quotation read together. It is
   correct when it states every element the key lists as required for that item, in the
   document's words or the reader's own, asserts nothing the key marks wrong, and quotes the
   document. An element stated only in the quotation is stated. Anything in the key beyond the
   required elements and the wrong assertions is explanation for the marker, and an answer is
   never marked down for leaving it out.
-- **Question 3.** Each item is correct when its grade is one the key accepts and its reasoning
-  mentions what the key says it must mention for that grade. A grade the key accepts without a
-  condition is correct whatever the reasoning.
+- **Question 3.** Each item is correct when its grade is one the key accepts and, where the key
+  sets a condition on the reasoning for that grade, the reasoning meets it. A grade the key
+  accepts with no condition is correct whatever the reasoning. A grade given on a stated
+  condition is read as the grade for the case the fixture presents, where the key says which
+  case that is; otherwise the item is unanswered.
 - **A miss that counts against the document.** The key names, for question 1 and for each item
-  of question 3, the wrong readings the text invites. A miss of that kind blocks whatever the
-  count, since one reader in five taking that reading means one agent in five acting on it. Every
+  of question 3, the wrong readings the text invites, each as a grade or answer together with
+  what the reasoning states or leaves out. A miss that matches one blocks whatever the count,
+  since one reader in five taking that reading means one agent in five acting on it, and it
+  blocks wherever the text lies, because the keyed questions are what prove the document. Every
   other single miss under questions 1 and 3 is the reader's and is tolerated by the threshold
-  below; a second reader making the same miss is a failed threshold, not a judgement.
+  below; a second miss on the same item fails the threshold, and no judgement is needed.
 - **An unanswered question.** Each keyed item left unanswered is a miss. Question 4 left
   unanswered counts as no passage named.
 - **Question 4.** A reader names a passage when it quotes words of the document or gives a clause
@@ -134,12 +141,15 @@ recorded is not a rule.
   name lie in the same paragraph; a heading, a list item, a table row and a terminology entry are
   each a paragraph of their own. A passage named by two or more readers of the run is a finding.
 - **Where a finding lies.** The record says, for each finding, whether it lies in text the change
-  wrote or altered: a sentence or paragraph the pull request adds, rewords or moves, read against
-  the branch it targets. A finding there blocks the change. A finding anywhere else is a finding
-  against the document, not against the change: it is recorded in
-  [acceptance/ROUTED.md](acceptance/ROUTED.md), routed to a change of its own, and does not
-  block. The change is judged on what it changed; the document is proved by the keyed questions,
-  which every run answers over the whole of it.
+  wrote or altered: a paragraph in which the pull request, read against the branch it targets,
+  adds, rewords, moves or deletes a sentence, or changes a word, a term or a link. A finding
+  there blocks the change. A finding anywhere else is a finding against the document, not
+  against the change: it is recorded in [acceptance/ROUTED.md](acceptance/ROUTED.md), routed to a
+  change of its own, and does not block. The change is judged on what it changed; the document
+  is proved by the keyed questions, which every run answers over the whole of it.
+- **Open points.** An open point in marking an answer is marked for the reader. An open point on
+  whether a reader named a passage, or whether two readers named the same one, counts the
+  passage. An open point on where a finding lies treats it as the change's own text.
 
 ## Pass criteria
 
@@ -166,26 +176,37 @@ fresh cohort names by fewer than two is clear.
 
 ## Changing the test
 
-Nothing in this test is changed to let a run through. A threshold, a question, a key or a
-fixture is changed only before a run's readers start, never changes a mark already given, and
-is recorded with its reason: a threshold, a question or the rules here by a change to this
-process, a key by step 4 of `CONTRIBUTING.md` when the text it quotes is reworded or when a
-load-bearing obligation is added, and each in [acceptance/CHANGES.md](acceptance/CHANGES.md). A
-question is reworded only so that it asks for what its key requires, and a key's required
+Nothing in this test is changed to let a particular run through. A threshold, a question, a
+key, a fixture or a rule here is changed only before a run's readers start, never changes a mark
+already given, and is changed in one of three ways, each recorded with its reason:
+
+- A key's quotation follows the text it quotes, and a key gains an item for a new load-bearing
+  obligation, with the question that asks for it, under step 4 of `CONTRIBUTING.md`, in the
+  specification pull request that makes the change; `acceptance/README.md` says what that may
+  and may not do.
+- A threshold, a fixture, a rule here, what an existing key item requires, or the wording of a
+  question changes by a change to this process, with its own pull request.
+- An open point a run recorded is settled by either route, whichever it needs.
+
+A question is reworded only so that it asks for what its key requires, and a key's required
 elements are never more than its question asks for. A run made after such a change is a fresh
-run under the new rules, not a re-mark of an old one. The one time a threshold was relaxed to
-let a change through, after three runs, the relaxation was reversed on the editor's instruction
-and is recorded here so that it is not tried again. Removing the clarity rating and the request
-for suggestions was not that: it changed what the cohort is asked, not how strictly an answer is
-marked.
+run under the new rules, not a re-mark of an old one. The test for a change to a rule is what
+the rule measured: a rule that measured something other than whether a cold reader could follow
+the text is a defect in this file and is corrected, and the correction says what the rule
+measured instead; a rule that measured that, and found the text wanting, is not touched, and the
+text is fixed. The one time a threshold was relaxed to let a change through, after three runs,
+the relaxation was reversed on the editor's instruction and is recorded here so that it is not
+tried again. Removing the clarity rating and the request for suggestions was not that: it
+changed what the cohort is asked, not how strictly an answer is marked.
 
 ## After a failure
 
-Fix the text the findings name and run a fresh cohort; readers are never reused. A keyed miss is
-fixed in the text that carries the obligation, wherever the change left it. A finding on text the
-change wrote or altered is fixed there. A finding elsewhere goes to `acceptance/ROUTED.md` and
-is not fixed in this change. The number of runs it took is recorded; a document that needed three
-runs is telling its editor something.
+Fix the text the run's misses and findings name and run a fresh cohort; readers are never reused.
+A keyed miss is fixed in the text that carries the obligation, wherever it lies, since the keyed
+questions prove the document and a document one reader in five misreads is not merged to, whoever
+wrote the sentence. A finding on text the change wrote or altered is fixed there. A finding
+elsewhere goes to `acceptance/ROUTED.md` and is not fixed in this change. The number of runs it
+took is recorded; a document that needed three runs is telling its editor something.
 
 ## When it runs
 
@@ -217,8 +238,8 @@ returned it, the exact prompt every reader received, the command the readers wer
 and the instruction a delegated marker was given are posted in one or more comments on the pull
 request, linked from the record and never edited, hidden or deleted after posting.
 
-The changelog line for the change names the record. CI refuses a specification change whose pull
-request adds no run file; it checks for at least one, and a pull request that changes two
+The changelog line for the change names every run made on it, the passing run last. CI refuses a
+specification change whose pull request adds no run file; it checks for at least one, and a pull request that changes two
 documents adds a run for each. Each published version's changelog entry carries the lines of the
 changes it contains, so a version's cohort record is the set of runs those lines name. A version
 with no such line has not been accepted and MUST NOT be described as published. The question sets
@@ -232,15 +253,17 @@ reads that list before cutting a release.
 ## Changes to this process
 
 The process files are this file, `acceptance/README.md`, `acceptance/runs/README.md`,
-`acceptance/ROUTED.md`, `CONTRIBUTING.md` and the checks that enforce them: `tools/changes.py`,
-the key-quotation checks in `spec-qa.py`, the CI workflow and the pull request template. A change
-to any of them, or to a question set, is a change to this process. They are not specifications,
-and a change to them is not tested by a cohort: the cohort measures whether a low-strength reader
-can follow a specification, and the process is followed by the editor. Such a change names the
-runs or the case that showed the need for it, and goes through steps 1, 3 and 6 of
-`CONTRIBUTING.md`, with no scope, key or cohort step; its review reads every process file it
+`CONTRIBUTING.md` and the checks that enforce them: `tools/changes.py`, the key-quotation checks
+in `spec-qa.py`, the CI workflow and the pull request template. A change to any of them is a
+change to this process, and so is a change to a threshold, a fixture, the wording of a question
+or what a key item requires, as [Changing the test](#changing-the-test) says. They are not
+specifications, and a change to them is not tested by a cohort: the cohort measures whether a
+low-strength reader can follow a specification, and the process is followed by the editor. Such
+a change names the runs or the case that showed the need for it, and goes through steps 1, 3 and
+6 of `CONTRIBUTING.md`, with no scope, key or cohort step; its review reads every process file it
 changes. It applies to every run whose readers start after it merges; a run made before then may
 be made under it, following all of it at a commit named in the record before the readers start.
 It is recorded by a line added at the top of [acceptance/CHANGES.md](acceptance/CHANGES.md),
-naming its pull request, not in the changelog, which is for the three specifications. A change to
-a key or a fixture follows `acceptance/README.md`.
+naming its pull request, not in the changelog, which is for the three specifications.
+`acceptance/ROUTED.md` and `acceptance/runs/` are records, not process files: a specification
+pull request writes to them.

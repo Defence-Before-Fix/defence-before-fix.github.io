@@ -57,33 +57,34 @@ Wrong readings the text invites, which count against the document on one reader:
 
 ## 3. Application: the ledger remediation
 
-| Clause                                                                                    | Accepted grades    | Condition on the reasoning, and what the fixture supports                                                                                                                                                                                                             |
-| ----------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)                                   | Yes, Partial or No | No condition. Class, hazard and the next wider rule are named; Partial or No is the reading that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for              |
-| [3.2](../../SPEC.md#32-build-the-net)                                                     | Yes                | A rule in the project's static analyser, reading code, not a test                                                                                                                                                                                                     |
-| [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)                             | Yes                | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                                                                            |
-| [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)                        | No or Partial      | The reasoning names the instance left unfixed behind an inline ignore on the agent's own authority; five findings were recorded                                                                                                                                       |
-| [3.5](../../SPEC.md#35-enforce-permanently-and-block)                                     | Partial or No      | The reasoning names the suppression no recorded decision covers; the rule is otherwise permanent and blocking. [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers" |
-| [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) | No or Partial      | The reasoning names the documentation on a wiki, not versioned with the rule; the message is terse and carries an identifier                                                                                                                                          |
+| Clause                                                                                    | Accepted grades    | Condition on the reasoning                                                                | What the fixture supports                                                                                                                                                                                                                   |
+| ----------------------------------------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)                                   | Yes, Partial or No | None                                                                                      | Class, hazard and the next wider rule are named; Partial or No is the reading that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for  |
+| [3.2](../../SPEC.md#32-build-the-net)                                                     | Yes                | None                                                                                      | A rule in the project's static analyser, reading code, not a test                                                                                                                                                                           |
+| [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)                             | Yes                | None                                                                                      | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                                                  |
+| [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)                        | No or Partial      | Mentions the instance left unfixed, the inline ignore, or `Report::render()`              | Five findings were recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority                                                                                                                         |
+| [3.5](../../SPEC.md#35-enforce-permanently-and-block)                                     | Partial or No      | Mentions the suppression, the inline ignore, or that no recorded decision covers it       | The rule is permanent and blocking, but the suppression was not a recorded decision. [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers" |
+| [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) | No or Partial      | Mentions the wiki, or that the documentation is not versioned or co-located with the rule | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule                                                                                                                          |
 
 Section [7](../../SPEC.md#7-conformance): the **remediation does not conform**; a reader is correct who says so and names
 [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) or [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) among the clauses not followed. The **defence does not conform** either; a reader is
 correct who says so and names [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) among the reasons, or [3.5](../../SPEC.md#35-enforce-permanently-and-block)'s unrecorded suppression, which
-section [7](../../SPEC.md#7-conformance)'s definition of a conforming defence also requires to be absent.
+section [7](../../SPEC.md#7-conformance)'s definition of a conforming defence also requires to be absent. Other clauses named
+alongside are not marked.
 
 Section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom): the **inline ignore on `Report::render()`** was the owner's decision, not the
-practitioner's. A reader who names it is correct, with or without the decision to leave the
-wider rule unbuilt, which section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom) also gives to the owner. A reader who names only the wider
-rule, or neither, is wrong.
+practitioner's. A reader who names it is correct; any other decision named alongside it is not
+marked. A reader who names only the decision to leave the wider rule unbuilt, or neither, is
+wrong.
 
 Wrong readings the text invites, which count against the document on one reader:
 
-- [3.5](../../SPEC.md#35-enforce-permanently-and-block) graded Yes because the rule fails the build, which has not applied the clause's opening
-  sentence on unrecorded suppression.
-- [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) graded Yes because the URL resolves, which has read the versioning sentence of [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)
-  differently.
-- The defence graded as conforming because the sweep is what failed, where the reasoning quotes
-  section [7](../../SPEC.md#7-conformance)'s definition of a conforming defence.
+- [3.5](../../SPEC.md#35-enforce-permanently-and-block) graded Yes with reasoning that says the rule blocks, or is permanent, and does not mention
+  the suppression.
+- [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) graded Yes with reasoning that says the identifier resolves, or the URL works, and does not
+  mention versioning or co-location.
+- The defence graded as conforming with reasoning that says only the sweep failed and that
+  quotes section [7](../../SPEC.md#7-conformance)'s definition of a conforming defence.
 
 A reader who grades [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) Yes has misread the fixture, which is the reader's miss. A reader who
 attributes the suppression to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) rather than [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) has read the narrowing passage of [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) as

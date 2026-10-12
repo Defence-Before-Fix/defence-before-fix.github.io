@@ -6,7 +6,7 @@ not a specification and is not versioned, and a change to it is not tested by a 
 to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
 
 - Pull request NNN: the test is made to prove what it exists to prove, the clarity of the
-  document to a cold reader, after thirty-four runs on two changes (19 to 30, 31 to 33 and 35
+  document to a cold reader, after thirty-three runs on two changes (19 to 30, 31 to 33 and 35
   to 52) in which keyed answers reached five of five and the runs still failed. Four defects in
   the process were found. Keys required elements the question never asked for (detector 2b's
   "need not remove or forbid", detector 2c's "at a version tracked together", and on pull
@@ -33,4 +33,4 @@ to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
   traceable-miss row is narrower and the confusion row is applied to the change rather than
   the document; both are recorded here as the reason the earlier rules could not converge, and
   neither changes a mark already given. Prompted by runs 19 to 30 on pull request 14 and runs
-  31 to 52 on the defined-terms change.
+  31 to 33 and 35 to 52 on the defined-terms change.

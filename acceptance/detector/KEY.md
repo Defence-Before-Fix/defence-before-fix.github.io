@@ -33,13 +33,12 @@ Wrong readings the text invites, which count against the document on one reader:
 ## 2. Load-bearing statements
 
 - **2a.** Required: (1) a detector conforms when it satisfies every MUST in sections [4](../../DETECTOR-SPEC.md#4-authoring-rules) to [7](../../DETECTOR-SPEC.md#7-suppression);
-  (2) yes, a detector that predates the document can conform, because conformance is judged on
-  the evidence and a declaration is not a condition of it. Wrong if it says a declaration is
+  (2) yes, a detector that predates the document can conform. Wrong if it says a declaration is
   required, or that partial satisfaction is conformance. Key quotation, section [8](../../DETECTOR-SPEC.md#8-conformance): "A Detector
   Conforms if it satisfies every MUST in sections [4](../../DETECTOR-SPEC.md#4-authoring-rules) to [7](../../DETECTOR-SPEC.md#7-suppression)." Supporting, [8.1](../../DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps): "A maintainer
-  MAY declare the version of this document the detector conforms to". "Judged on evidence", "the
-  declaration is optional" or "graded on evidence by anyone" each state the reason in element
-  (2); one of them is enough.
+  MAY declare the version of this document the detector conforms to". The reason, that
+  conformance is judged on evidence and a declaration is optional, is explanation: an answer
+  that gives it, or gives it instead of a plain yes, states element (2).
 - **2b.** Required: (1) it must let the project switch the route off in its configuration, or
   make the route detectable (by a rule the project can write, or by a mechanical check the
   detector documents; naming either means of detection, or just "detectable", states this);
@@ -61,7 +60,7 @@ Wrong readings the text invites, which count against the document on one reader:
 
 ## 3. Application: Lintomatic 4.2
 
-| Clause                                                                                                                                                              | Accepted grade | Condition on the reasoning, and what the fixture supports                                                                                                                                                                                                                         |
+| Clause                                                                                                                                                              | Accepted grade | What the fixture supports (no row carries a condition on the reasoning)                                                                                                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)                                                        | Yes            | Project rules via the `Rule` interface, first class in every report                                                                                                                                                                                                               |
 | [4.2](../../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)                                                  | Yes            | `check --only <identifier> <path>` runs one rule, bundled or project, with a distinguishing exit code                                                                                                                                                                             |
@@ -87,9 +86,9 @@ reason that it is a SHOULD, or that the MUST which fails is [6.3](../../DETECTOR
 
 Wrong readings the text invites, which count against the document on one reader:
 
-- [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) graded Partial on the grounds that thirty-eight of forty resolve, which has read the
-  clause as admitting a proportion.
-- [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) graded No because the comment takes no reason, where the reasoning quotes [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) or [7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason),
+- [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) graded Partial with reasoning that says most, or thirty-eight of forty, bundled rules
+  resolve, which has read the clause as admitting a proportion.
+- [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) graded No with reasoning that says the comment takes no reason and quotes [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) or [7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason),
   which has read [7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)'s SHOULD into [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable).
 
 A reader who grades [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) Yes because they missed the last paragraph of the fixture has misread the

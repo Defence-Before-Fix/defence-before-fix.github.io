@@ -48,11 +48,18 @@ Everything else in a key is explanation for the marker and never marks an answer
 
 A key quotes the document. When a clause is reworded, the key line that quotes it is updated in
 the same commit, and the change is one the acceptance run itself then tests. A key that no longer
-matches the document is a defect in this directory, not a reason to mark a reader wrong. A key
-update under step 4 of `CONTRIBUTING.md` changes a quotation to follow the text, or adds a keyed
-item for a new load-bearing obligation; it does not change what an existing item requires. A
-change to what an item requires, or to a question, is a change to the process and is recorded in
-[CHANGES.md](CHANGES.md) with its reason, before the readers of the next run start.
+matches the document is a defect in this directory, not a reason to mark a reader wrong.
+
+A key, a question set or a fixture changes in one of two ways, as `ACCEPTANCE.md` says under
+"Changing the test", and always before the readers of the next run start:
+
+- **In a specification pull request, under step 4 of `CONTRIBUTING.md`**: a quotation follows
+  the text it quotes, or a keyed item is added for a new load-bearing obligation together with
+  the question that asks for it. The pull request's own changelog line records it. Such an
+  update does not change what an existing item requires, nor an existing question's wording.
+- **In a process change, with its own pull request**: what an existing item requires, the
+  wording of a question, a fixture, or the rules of marking. It is recorded in
+  [CHANGES.md](CHANGES.md) with its reason.
 
 Questions are fixed so that runs can be compared across versions. Adding a keyed question is
 allowed when a new clause is load-bearing; removing or softening one to make a run pass is not;
