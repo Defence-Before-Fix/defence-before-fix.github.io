@@ -174,4 +174,4 @@ wrote and is routed.
 
 ## Answer sheets
 
-Posted on the pull request: LINK PLACEHOLDER.
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6125343069); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6125342588); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6125343418).

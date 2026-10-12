@@ -151,4 +151,4 @@ five readers) lies in text the change wrote, and blocks.
 
 ## Answer sheets
 
-Posted on the pull request: LINK PLACEHOLDER.
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6125143108); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6125142546); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/23#issuecomment-6125143449).
