@@ -39,7 +39,7 @@ version entry with no cohort line has not been accepted and is not published.
   19 and 29 failed on statement 2d, and every run failed on passages the change had not
   touched, as `acceptance/CHANGES.md` records; the change was then reduced to the text above,
   and the passages those runs named in untouched text are listed in `acceptance/ROUTED.md` for
-  changes of their own. Accepted by run NNN.
+  changes of their own. Accepted by [run 70](acceptance/runs/070-semantic-detectors-run-13.md).
 
 ### 1.1.0, 2026-10-02
 
@@ -118,7 +118,8 @@ pass it.
   naming the configuration whose kind is named, and [run
   74](acceptance/runs/074-semantic-detectors-run-15.md) failed on that sentence, three readers
   unable to tell which configuration it meant. The sentence is withdrawn: the verdict names the
-  kind of each configuration it grades. Accepted by run NNN.
+  kind of each configuration it grades. Accepted by [run
+  79](acceptance/runs/079-semantic-detectors-run-16.md).
 - Clarity, no obligation changed: four passages that cold readers of an unrelated change read as
   the document pulling against itself or could not follow, each listed in `acceptance/ROUTED.md`.
   Clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s detectable route is now a bespoke rule the project writes for the detector under
