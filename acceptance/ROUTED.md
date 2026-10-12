@@ -1,8 +1,8 @@
 # Passages routed out of a cohort
 
-A finding is a passage two or more readers of one cohort named as confusing, under question 4,
-that lies outside the text the change being tested wrote or altered. `ACCEPTANCE.md` routes such
-a finding here rather than blocking the change whose cohort raised it, so that each change is
+A finding is a passage two or more readers of one cohort named as confusing under question 4.
+`ACCEPTANCE.md` routes here a finding that lies outside the text the change being tested wrote
+or altered, rather than blocking the change whose cohort raised it, so that each change is
 judged on what it changed and the document is still made clearer, one change at a time. The
 editor reads this list before cutting a release.
 

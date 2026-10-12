@@ -7,8 +7,8 @@ update the quotation here in the same commit. `ACCEPTANCE.md` says how each item
 
 ## 1. Restatement
 
-A bullet is correct when it names one of these obligations. Four or more correct bullets, and no
-bullet asserting one the list of wrong assertions below marks wrong, is a correct restatement.
+A bullet is correct when it names one of these obligations. Four or more correct bullets, with
+no bullet making an assertion listed below as wrong, is a correct restatement.
 
 - Support bespoke rules written by the project ([4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)).
 - Provide a harness that runs a single rule against supplied code ([4.2](../../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)).
@@ -39,10 +39,11 @@ Wrong readings the text invites, which count against the document on one reader:
   MAY declare the version of this document the detector conforms to". The reason, that
   conformance is judged on evidence and a declaration is optional, is explanation: an answer
   that gives it, or gives it instead of a plain yes, states element (2).
-- **2b.** Required: (1) it must let the project switch the route off in its configuration, or
-  make the route detectable (by a rule the project can write, or by a mechanical check the
-  detector documents; naming either means of detection, or just "detectable", states this);
-  (2) yes, either one alone is enough. Wrong if it says the detector must remove or forbid the
+- **2b.** Required: (1) the two things, both named: let the project switch the route off in its
+  configuration, or make the route detectable (by a rule the project can write, or by a
+  mechanical check the detector documents; naming either means of detection, or just
+  "detectable", states that alternative); an answer naming only one of the two things misses
+  this element; (2) yes, either one alone is enough. Wrong if it says the detector must remove or forbid the
   route, or must require a reason ([7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason) is SHOULD). Key quotation, [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable): "For each one it
   MUST do at least one of two things, and either alone satisfies this clause: make the route
   disableable by configuration; or make the route detectable, by a Rule the project can write in

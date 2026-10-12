@@ -7,8 +7,8 @@ update the quotation here in the same commit. `ACCEPTANCE.md` says how each item
 
 ## 1. Restatement
 
-A bullet is correct when it names one of these obligations. Four or more correct bullets, and no
-bullet asserting one the list of wrong assertions below marks wrong, is a correct restatement.
+A bullet is correct when it names one of these obligations. Four or more correct bullets, with
+no bullet making an assertion listed below as wrong, is a correct restatement.
 
 - Attribute the defect to a class, bounded on both sides, with the hazard stated ([3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)).
 - Express the class as a rule in a detector that reads code, never a test ([3.2](../../SPEC.md#32-build-the-net)).
@@ -69,7 +69,8 @@ Wrong readings the text invites, which count against the document on one reader:
 The three answers the question then asks for, each with the condition its reason must meet:
 
 - **The remediation under section [7](../../SPEC.md#7-conformance).** Accepted answer: does not conform. Condition: the reason
-  names [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) or [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) among the clauses not followed; other clauses named alongside are not marked.
+  names [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance), [3.5](../../SPEC.md#35-enforce-permanently-and-block) or [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) among the clauses not followed; other clauses named alongside are not
+  marked.
 - **The defence alone.** Accepted answer: does not conform. Condition: the reason names [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation), or
   [3.5](../../SPEC.md#35-enforce-permanently-and-block)'s unrecorded suppression, which section [7](../../SPEC.md#7-conformance)'s definition of a conforming defence also
   requires to be absent; other clauses named alongside are not marked.

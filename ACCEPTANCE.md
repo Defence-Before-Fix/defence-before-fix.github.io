@@ -141,8 +141,8 @@ rule.
 - **Where a finding lies.** The record says, for each finding, whether it lies in text the change
   wrote or altered: a paragraph in which the pull request, read against its merge base with the
   branch it targets, adds, rewords, moves or deletes a sentence, or changes a word, a term or a
-  link; or a paragraph the readers naming the finding set against such a paragraph. A finding
-  there blocks the change. A finding anywhere else is a finding against the document, not
+  link; or a paragraph that any reader naming the finding sets against such a paragraph. A
+  finding there blocks the change. A finding anywhere else is a finding against the document, not
   against the change: it is recorded in [acceptance/ROUTED.md](acceptance/ROUTED.md), routed to a
   change of its own, and does not block. The change is judged on what it changed; the document
   is proved by the keyed questions, which every run answers over the whole of it.
@@ -178,15 +178,18 @@ fresh cohort names by fewer than two is clear.
 
 Nothing in this test is changed to let a particular run through. A threshold, a question, a
 key, a fixture or a rule here is changed only before a run's readers start, never changes a mark
-already given, and is changed in one of three ways, each recorded with its reason:
+already given, and is changed by one of two routes, each recorded with its reason:
 
-- A key's quotation follows the text it quotes, and a key gains an item for a new load-bearing
-  obligation, with the question that asks for it, under step 4 of `CONTRIBUTING.md`, in the
-  specification pull request that makes the change; `acceptance/README.md` says what that may
-  and may not do.
-- A threshold, a fixture, a rule here, what an existing key item requires, or the wording of a
-  question changes by a change to this process, with its own pull request.
-- An open point a run recorded is settled by either route, whichever it needs.
+- In the specification pull request that changes the text, under step 4 of `CONTRIBUTING.md`:
+  a key's quotation follows the text it quotes; a key gains an item, with the question that asks
+  for it, for a new load-bearing obligation; and where the change alters or removes the
+  obligation an existing item tests, the item and its question follow the text, since that is
+  the text changing and not the test. `acceptance/README.md` says what that may and may not do.
+- By a change to this process, with its own pull request: a threshold, a fixture, a rule here,
+  what an existing key item requires of an unchanged obligation, or the wording of a question.
+
+An open point a run recorded is settled by whichever route it needs, before the next run of the
+pull request whose run recorded it; a run of another pull request is not held up by it.
 
 A question is reworded only so that it asks for what its key requires, and a key's required
 elements are never more than its question asks for. A run made after such a change is a fresh
@@ -214,9 +217,9 @@ a document that needed three runs is telling its editor something.
 On the final text of each pull request, after the editor's rewrite and any key update, one cohort
 per changed document. It is the last gate before the merge to `next`, so that every change on
 `next` is one the cohort has accepted, and the release branch needs no cohort of its own unless it
-changes specification text. A fresh cohort runs after every change to the pull request's own
+changes specification text. A fresh cohort runs after every change to the changed document's
 text that follows a run, and after every void run; a text that failed is never run again
-unchanged. A version number or date that `PUBLISHING.md` or step 5 of `CONTRIBUTING.md` has the
+unchanged, and a commit that adds the run record or the changelog line changes no document. A version number or date that `PUBLISHING.md` or step 5 of `CONTRIBUTING.md` has the
 editor set is not such a change, and neither is a merge of `next` into the branch that brings in
 text another cohort accepted and alters no sentence this change wrote.
 
@@ -245,8 +248,7 @@ request that changes two documents adds a run for each. Each published version's
 carries the lines of the changes it contains, so a version's cohort record is the set of runs
 those lines name. A version with no such line has not been accepted and MUST NOT be described as
 published. The question sets and answer keys live under `acceptance/` in this repository so that
-a run can be repeated and
-compared.
+a run can be repeated and compared.
 
 `acceptance/ROUTED.md` lists every finding routed from a run, open until a change that fixes
 its passage passes a cohort, or until the editor closes it with a recorded reason. The editor

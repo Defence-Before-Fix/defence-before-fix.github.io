@@ -7,8 +7,8 @@ update the quotation here in the same commit. `ACCEPTANCE.md` says how each item
 
 ## 1. Restatement
 
-A bullet is correct when it names one of these obligations. Four or more correct bullets, and no
-bullet asserting one the list of wrong assertions below marks wrong, is a correct restatement.
+A bullet is correct when it names one of these obligations. Four or more correct bullets, with
+no bullet making an assertion listed below as wrong, is a correct restatement.
 
 - Route defences only through detectors that conform to the detector specification, wrapping
   permitted ([4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)).
@@ -69,9 +69,11 @@ Wrong readings the text invites, which count against the document on one reader:
 The four answers the question then asks for, each with the condition its reason must meet:
 
 - **Conformance under section [9](../../TOOLING-SPEC.md#9-conformance).** Accepted answer: does not conform. Condition: the reason
-  names [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) or [4.2](../../TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) among the failing clauses; other clauses named alongside are not marked.
+  names [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification), [4.2](../../TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) or [6.2](../../TOOLING-SPEC.md#62-every-exception-in-the-project-record-must-carry-a-written-justification-that-names-the-hazard-and-the-scope-and-the-toolchain-must-reject-a-generic-one) among the failing clauses; other clauses named alongside are not
+  marked.
 - **Conformance with agent support.** Accepted answer: no. Condition: the reason says that
-  section [7](../../TOOLING-SPEC.md#7-agent-context) is not met, or that there is no summary.
+  section [7](../../TOOLING-SPEC.md#7-agent-context) is not met, or that there is no summary, or that the toolchain does not conform
+  under section [9](../../TOOLING-SPEC.md#9-conformance) at all.
 - **Whether section [8](../../TOOLING-SPEC.md#8-self-audit) applies.** Accepted answer: it does not. Condition: the reason says that
   Zigpipe ships nothing to other projects, or that section [8](../../TOOLING-SPEC.md#8-self-audit) bears on zig-qa's own artefact
   grade and not on Zigpipe.

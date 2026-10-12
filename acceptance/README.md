@@ -32,12 +32,15 @@ in [CHANGES.md](CHANGES.md).
 
 A key says, for each keyed item, exactly what is marked and nothing a marker has to guess:
 
-- **Question 1**: the obligations a bullet may name, and the assertions that make a bullet wrong.
+- **Question 1**: the obligations a bullet may name, the assertions that make a bullet wrong,
+  and the wrong readings the text invites, if any.
 - **Question 2**: for each item, the elements an answer is required to state, numbered, one for
   each part of the question; the assertions that make an answer wrong; and the sentence or
-  sentences of the document the answer rests on, quoted verbatim. The required elements are
-  what the question asks for, no more: an element the question does not ask for is not
-  required, however load-bearing, until the question is reworded to ask for it.
+  sentences of the document the answer rests on, quoted verbatim, which show the marker where
+  the elements come from and which `spec-qa.py` checks against the document; a reader's
+  quotation need not be that one. The required elements are what the question asks for, no
+  more: an element the question does not ask for is not required, however load-bearing, until
+  the question is reworded to ask for it.
 - **Question 3**: for each item, the grade or grades accepted, any condition on the reasoning,
   and the wrong readings the text invites, which count against the document when one reader
   takes them.
@@ -55,9 +58,12 @@ A key, a question set or a fixture changes by one of two routes, as `ACCEPTANCE.
 recorded is settled by whichever route it needs:
 
 - **In a specification pull request, under step 4 of `CONTRIBUTING.md`**: a quotation follows
-  the text it quotes, or a keyed item is added for a new load-bearing obligation together with
-  the question that asks for it. The pull request's own changelog line records it. Such an
-  update does not change what an existing item requires, nor an existing question's wording.
+  the text it quotes; a keyed item is added for a new load-bearing obligation together with the
+  question that asks for it; or, where the change alters or removes the obligation an existing
+  item tests, that item and its question follow the text, which is the text changing and not
+  the test. The pull request's own changelog line records it. Such an update does not change
+  what an item requires of an obligation the change leaves as it was, nor the wording of a
+  question whose obligation is unchanged.
 - **In a process change, with its own pull request**: what an existing item requires, the
   wording of a question, a fixture, or the rules of marking. It is recorded in
   [CHANGES.md](CHANGES.md) with its reason.

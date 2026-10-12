@@ -69,8 +69,8 @@ survives, the change is yours.
    changed document. Its record is committed under `acceptance/runs/`, the `Unreleased`
    changelog line names it, and CI refuses a specification change that lacks one. For an
    obligation, the editor sets the document's header to `<next version>-dev, unpublished` in the
-   same commit if it still names a published version. A change to the pull request's own text
-   after the run means a fresh run, as ACCEPTANCE.md says under "When it runs". A finding the
+   same commit if it still names a published version. A change to the document's text after the
+   run means a fresh run, as ACCEPTANCE.md says under "When it runs". A finding the
    run routes to `acceptance/ROUTED.md` is not fixed in this pull request.
 6. **Merge** into `next` by merge commit, and the branch is deleted.
 
