@@ -39,7 +39,6 @@ definition; the ones this document leans on most are, in short:
 | -------------- | ------------------------------------------------------------------------------ |
 | [Detector]     | A tool that reads code without executing it and reports what it finds          |
 | [Rule]         | One check a [Detector] evaluates                                               |
-| [Message]      | The text a [Rule] prints when it fires, carrying its [Identifier]              |
 | [Identifier]   | The stable name printed with a finding that leads to its documentation         |
 | [Practitioner] | Whoever is doing the work, a person or an [Agent]                              |
 | [Toolchain]    | Everything a project assembles to run its checks through, [Detectors] included |
@@ -158,10 +157,7 @@ any.
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
-carry both a usable summary and the location of the remainder. The remainder means the findings
-the summary does not print. Where the summary prints every finding, each with where it is and its
-[Identifier], there is no remainder, and a report file that only adds detail to those same
-findings, such as a code snippet, need not be named in the output.
+carry both a usable summary and the location of the remainder.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
 report that arrives after the decision it was meant to inform.
@@ -187,16 +183,13 @@ Two cases, by who wrote the [Rule]:
 | The project's own | The project                    | Print the [Identifier] unaltered; the lookup is the [Toolchain]'s to give |
 
 In both, the mechanism is keyed on **the [Identifier] exactly as printed**. A command, an index
-file or a URL are all acceptable forms. This clause asks for the mechanism, not for every page:
-where the mechanism works but a [Bundled rule]'s [Identifier] has no documentation to resolve to,
-that fails clause 6.3, not this clause. Each case in turn:
+file or a URL are all acceptable forms. Each case in turn:
 
 **For a [Bundled rule]**, the [Detector] supplies the documentation and the
 lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier]
 presented alone, because the reader who needs it most has the [Identifier] from a log, a
-ticket or a colleague and not the [Message]. A documentation path printed in the [Message] is
-therefore not enough: it helps only a reader who has the [Message], and the [Identifier] alone
-still leads nowhere.
+ticket or a colleague and not the [Message]. A [Message] that carries its own
+documentation path resolves that [Message], not the [Identifier].
 
 **For a project's own [Rule]**, the [Detector] cannot know the documentation, so what
 it owes is the half it can give: the [Identifier] printed unaltered under clause 4.3, and no
@@ -204,7 +197,7 @@ transformation of it. Where the [Identifier] is itself a URL, as method clause 3
 the [Detector] prints that URL and has done what this clause asks. What this clause forbids is
 a documentation path printed alongside a shorter [Identifier] that cannot be looked up on its
 own. The lookup for such
-a [Rule], from the [Identifier] to its documentation on disk, is an obligation on the project's assembled [Toolchain], under clause 4.2
+a [Rule] is an obligation on the project's assembled [Toolchain], under clause 4.2
 of the [toolchain specification](TOOLING-SPEC.md), and a [Detector] that offers it as well has
 gone further than this clause asks.
 
@@ -243,7 +236,7 @@ An automated check over every [Identifier] a [Bundled rule] can print, applying 
 family list or pattern of clause 6.5 where one is used, that blocks the release when any of them
 lands on no page.
 
-**Why**: clause 6.3 is the clause most easily believed to be satisfied whilst being broken, because
+**Why**: clause 6.1 is the clause most easily believed to be satisfied whilst being broken, because
 the documentation is written by the same person who wrote the [Rule] and its absence is
 invisible from the inside. Where the [Detector] is shipped inside a [Toolchain],
 the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a MUST for the [Toolchain]; a
@@ -277,9 +270,8 @@ An inline ignore comment, a per-line directive and a generated [Baseline] are al
 routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
 alone satisfies this clause: make the route disableable by configuration; or make the route
 detectable, by a [Rule] the project can write in the [Detector] itself or by a mechanical check
-the [Detector] documents. A [Rule] "in the [Detector] itself" is a bespoke [Rule] under clause
-4.1. Either lets a project which decides to forbid
-the route enforce that decision. A route that can be neither switched off nor seen does not [Conform].
+the [Detector] documents. Either lets a project which decides to forbid the route enforce that
+decision. A route that can be neither switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
@@ -318,9 +310,9 @@ for a [Detector].
 
 The declaration is machine-readable, in whatever form the [Detector]'s ecosystem uses to
 record dependencies. The same declaration is where a gap against this document is recorded once it is
-known: a [Detector] that declares a version and has learnt, from its own checks or from a
-[Practitioner]'s report under the method's clause 3.2, that it fails a MUST in sections 4 to 7
-MUST record that gap alongside that version, in the same file or one it names. A declaration with a non-empty
+known: a [Detector] that has learnt, from its own checks or from a [Practitioner]'s
+report under the method's clause 3.2, that it fails a MUST in sections 4 to 7 MUST record that gap
+alongside the version it declares, in the same file or one it names. A declaration with a non-empty
 gap record is a statement of where the [Detector] stands and is not a claim of
 [Conformance].
 

@@ -47,42 +47,23 @@ link is there for depth and is not a prerequisite for the sentence that carries 
 ## 2. Terminology
 
 Terms from the method specification and the [detector specification](DETECTOR-SPEC.md) carry over unchanged. Every
-capitalised term links to its definition, and every one this document borrows is, in short:
+capitalised term links to its definition; the ones this document leans on most are, in short:
 
-| Term               | In one line                                                                                        |
-| ------------------ | -------------------------------------------------------------------------------------------------- |
-| [Toolchain]        | Whatever a project assembles to run its checks through, measured at the project level              |
-| [Detector]         | A tool that reads code without executing it and reports what it finds                              |
-| [Runner]           | A tool that executes code, a test suite or a compilation, and reports what happened                |
-| [Rule]             | One check a [Detector] evaluates                                                                   |
-| [Rule author]      | Whoever writes a [Rule]: a [Detector]'s maintainer, a [Toolchain]'s maintainer or the project      |
-| [Defect]           | Any observed problem worth acting on                                                               |
-| [Class]            | The pattern, style, idiom or configuration that permitted a [Defect]                               |
-| [Instance]         | One occurrence of a [Class]                                                                        |
-| [Hazard]           | The harm a [Class] causes, which is not necessarily a failure                                      |
-| [Fixture]          | Code written to carry the [Hazard] deliberately, so that a [Rule] can be proven to fire            |
-| [Defence]          | A [Rule] with its documentation, in force and [Blocking]                                           |
-| [Message]          | The text a [Rule] prints when it fires, carrying its [Identifier]                                  |
-| [Identifier]       | The stable name printed with a finding that leads to its documentation                             |
-| [Remediation docs] | The documentation a [Message] points to: what the [Rule] is about, why, and how to fix a violation |
-| [Remediation]      | The work done on one [Defect] under the method, its fix included                                   |
-| [Blocking]         | Fails the run rather than issuing a [Warning]                                                      |
-| [Warning]          | A report that does not block                                                                       |
-| [Suppression]      | Any means of stopping a [Rule] reporting an [Instance] that carries the [Hazard]                   |
-| [Baseline]         | A recorded set of existing [Instances] a [Rule] is configured not to report                        |
-| [Exception]        | A recorded, justified decision to leave an [Instance] unfixed or a [Rule] unapplied                |
-| [Calibration]      | A project-level ruling on a threshold or parameter the method leaves open                          |
-| [Practitioner]     | Whoever is doing the work, a person or an [Agent]                                                  |
-| [Agent]            | A [Practitioner] that is an automated system                                                       |
-| [Owner]            | The human who decides what the codebase may keep                                                   |
-| [Conform]          | To satisfy every mandatory requirement of what is claimed; satisfying most is not [Conformance]    |
-| [Bundled rule]     | A [Rule] a [Detector] ships rather than one the project wrote                                      |
-| [Rule harness]     | The route by which one [Rule] is run against supplied code on its own                              |
+| Term           | In one line                                                                         |
+| -------------- | ----------------------------------------------------------------------------------- |
+| [Detector]     | A tool that reads code without executing it and reports what it finds               |
+| [Runner]       | A tool that executes code, a test suite or a compilation, and reports what happened |
+| [Rule]         | One check a [Detector] evaluates                                                    |
+| [Defence]      | A [Rule] with its documentation, in force and [Blocking]                            |
+| [Identifier]   | The stable name printed with a finding that leads to its documentation              |
+| [Blocking]     | Fails the run rather than issuing a [Warning]                                       |
+| [Exception]    | A recorded, justified decision to leave an [Instance] unfixed or a [Rule] unapplied |
+| [Practitioner] | Whoever is doing the work, a person or an [Agent]                                   |
+| [Owner]        | The human who decides what the codebase may keep                                    |
+| [Bundled rule] | A [Rule] a [Detector] ships rather than one the project wrote                       |
+| [Rule harness] | The route by which one [Rule] is run against supplied code on its own               |
 
-In clauses 4.2, 5.1 and 8.1, [Defence] also covers a [Rule] whose documentation is missing but
-whose firing fails the [Toolchain]'s run.
-
-The three terms below are this document's own, defined here rather than borrowed.
+These are additional.
 
 #### Consuming project
 
@@ -94,7 +75,7 @@ A [Defence] a shipped [Toolchain] carries and enables by default in every [Consu
 
 #### Project record
 
-The place a project writes down the judgements the method specification delegates to it: [Calibrations], [Exceptions] and conventions, whichever it has made.
+The place a project writes down the judgements the method specification delegates to it: [Calibrations], [Exceptions] and conventions.
 
 The distinction between a [Bundled defence] and a project's own is significant throughout. A bundled
 [Defence] is authored once and runs in codebases its author will never see, so everything a
@@ -127,9 +108,8 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 ### 4.1 Every detector the toolchain routes a defence through MUST conform to the [detector specification](DETECTOR-SPEC.md)
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
-[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
-its sections 4 to 7, and every one applies, not only the six summarised here. The [Detector] hosts
-bespoke [Rules]. It runs one [Rule] on its own against supplied
+[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs, in brief,
+are six. The [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
 resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
@@ -176,12 +156,9 @@ clause 3.2. A gap recorded is not a gap closed.
 This clause widens the [detector specification](DETECTOR-SPEC.md)'s reach: that document resolves
 [Bundled rules] only, and this one covers every [Identifier] the project can see, the project's
 own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Defences]
-print to [Remediation docs] on disk. One [Identifier] that does not resolve fails this clause,
-however many others do. The mechanism is keyed on the
+print to [Remediation docs] on disk. The mechanism is keyed on the
 [Identifier] exactly as printed, and it covers the project's own [Rules] and
-every [Bundled defence]. A command, an index file, or a listing that gives each [Identifier] the
-path of its documentation are all acceptable forms, as clause 6.1 of the
-[detector specification](DETECTOR-SPEC.md) allows for a [Detector]. Those [Remediation docs] MUST ship
+every [Bundled defence]. Those [Remediation docs] MUST ship
 with the project or with the [Toolchain], at a version tracked together. The
 [Toolchain] MUST also give that documentation a place to live, so that a
 [Rule author] adding a [Rule] knows where its documentation goes.
@@ -192,9 +169,8 @@ only the prohibition, specifically enough to act on, as method clause 8.4 requir
 This clause closes what the [detector specification](DETECTOR-SPEC.md) leaves open. That document holds a
 [Detector] to on-disk resolution of its own [Bundled rules] and
 no further, because it cannot know a project's documentation. A third-party [Detector]'s
-native catalogue, which the [Toolchain] orchestrates without claiming as its own, is not
-re-shipped here: an [Identifier] the [Detector] resolves under that document's clause 6 meets
-this clause, and one that nothing resolves fails it.
+native catalogue, which the [Toolchain] orchestrates without claiming as its own, is
+resolved under that document's clause 6 and is not re-shipped here.
 
 **Why**: method specification clauses 3.6 and 8.3. The [Identifier] has to resolve for the
 reader, which for an [Agent] means mechanically and on disk, and the project's own
@@ -203,7 +179,7 @@ reader, which for an [Agent] means mechanically and on disk, and the project's o
 has a [Message] that names a pattern without leading anywhere, which method clause 3.6 says
 does not [Conform].
 
-### 4.3 The toolchain MUST forbid every suppression route that bypasses the project record, by disabling it or by a defence of its own
+### 4.3 The toolchain MUST forbid, through a defence of its own, every suppression route that bypasses the project record
 
 A [Conforming] [Toolchain] MUST disable every [Suppression]
 route that bypasses the [Project record], or MUST run a [Blocking]
@@ -211,9 +187,7 @@ route that bypasses the [Project record], or MUST run a [Blocking]
 silenced through it without an entry appearing in the [Project record]: an inline
 [Suppression] comment, a per-line ignore and a silently generated [Baseline] all do. The
 obligation covers every such route in every [Detector] the [Toolchain] routes a
-[Defence] through. The routes are the ones each [Detector] offers: where a [Detector]'s only
-route is an ignore comment, this clause is met for that [Detector] once the comment is disabled
-or a [Blocking] [Defence] fails on its use, and nothing is owed for a route it does not have. Irreducible cases MUST be directed to the [Project record],
+[Defence] through. Irreducible cases MUST be directed to the [Project record],
 where clause 6.2 requires a justification.
 
 The [detector specification](DETECTOR-SPEC.md) permits a [Detector] to ship such a route provided
@@ -442,12 +416,7 @@ As a project, it follows the method with its own assembled [Toolchain], like any
 project, and is graded against this document and section 7 of the method specification on that
 basis. As an artefact, what it ships is graded for its consumers: a [Detector] against
 [the detector specification](DETECTOR-SPEC.md), a [Toolchain] against this document as it stands
-when installed into a [Consuming project] with nothing else built around it. That grade
-counts only what the shipped [Toolchain] itself supplies, never a script or configuration a
-[Consuming project] adds. Where a clause concerns content only a project can supply, such as the
-project's own [Rules] in the listing of section 5 or the decisions in its [Project record], the
-artefact is graded on the mechanism, the middle column of the section 3 table, and not on the
-content. The two
+when installed into a [Consuming project] with nothing else built around it. The two
 verdicts MUST be graded and declared separately, and neither implies the other. Section 8 bears on
 the artefact grade only; clause 5.3 is its project-level counterpart.
 
@@ -467,16 +436,12 @@ carries both levels of clause 9.1 in that declaration, each named separately.
 The same declaration is where a gap is recorded once it is known. A project or artefact that has
 learnt that it fails a MUST of the document it declares against MUST record that gap alongside the
 version, in the same file or one it names. It may learn that from its own self-audit under section 8
-or from a [Practitioner]'s report under the method's clause 3.2. This duty, to record the gap in
-the declaration, falls only on a project or artefact that has one. A declaration with a non-empty gap record is
+or from a [Practitioner]'s report under the method's clause 3.2. A declaration with a non-empty gap record is
 a statement of where the project stands and is not a claim of [Conformance]. A mechanism gap
 is by its nature one the [Toolchain] could not detect for itself, so the record is the only
 place its [Owner] and its consumers can learn of it.
 
-The declaration is optional. A project or artefact with no declaration therefore has no gap record
-under this clause. Method clause 3.2's duty to record a gap is a separate one, and applies with a
-declaration or without one: the gap is recorded as that clause says, in the [Project record]
-where the [Toolchain] defines one. A [Toolchain] assembled before this document existed, or by a
+The declaration is optional. A [Toolchain] assembled before this document existed, or by a
 project that has never read it, MAY be graded [Conforming] on evidence by anyone who exercises
 the clauses above against it. A verdict on any [Toolchain], declared or not, rests on that
 exercise and not on the claim.
@@ -514,7 +479,6 @@ does not have to build them alone.
 [bundled defences]: #bundled-defence
 [bundled rule]: DETECTOR-SPEC.md#bundled-rule
 [bundled rules]: DETECTOR-SPEC.md#bundled-rule
-[calibration]: SPEC.md#calibration
 [calibrations]: SPEC.md#calibration
 [class]: SPEC.md#class
 [conform]: SPEC.md#conform
@@ -535,7 +499,6 @@ does not have to build them alone.
 [identifier]: SPEC.md#identifier
 [identifiers]: SPEC.md#identifier
 [instance]: SPEC.md#instance
-[instances]: SPEC.md#instance
 [message]: SPEC.md#message
 [owner]: SPEC.md#owner
 [practitioner]: SPEC.md#practitioner

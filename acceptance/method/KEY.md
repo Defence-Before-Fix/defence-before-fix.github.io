@@ -49,9 +49,9 @@ Wrong readings the text invites, which count against the document on one reader:
 - **2c.** Required: (1) all six clauses of section [3](../../SPEC.md#3-the-method) were followed for that defect; (2) the verdict
   rests on reproduction, the reviewer rerunning the defence, not on the report. Wrong if it
   accepts the pull request description or the practitioner's report as the verdict, or says
-  that most clauses suffice. Key quotations, section [7](../../SPEC.md#7-conformance): "A remediation Conforms if all six clauses
+  that most clauses suffice. Key quotations, section [7](../../SPEC.md#7-conformance): "A Remediation Conforms if all six clauses
   of section [3](../../SPEC.md#3-the-method) were followed for that Defect, and the verdict that they were rests on
-  reproduction"; "A verdict on a remediation or a Defence MUST rest on reproduction, not on the
+  reproduction"; "A verdict on a Remediation or a Defence MUST rest on reproduction, not on the
   report". "Reproduction" or "reproducing the runs" states element (2); the red and green runs
   need not be named.
 
