@@ -24,11 +24,16 @@ no bullet making an assertion listed below as wrong, is a correct restatement.
   same way as the defences ([6.1](../../TOOLING-SPEC.md#61-the-toolchain-must-define-a-location-for-the-project-record-and-must-read-it-itself) to [6.3](../../TOOLING-SPEC.md#63-the-project-record-must-be-enumerable-by-the-same-means-as-the-defences)).
 - A shipped toolchain also fails its release on undocumented bundled defences and runs its own
   defences on its own source ([8.1](../../TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation), [8.2](../../TOOLING-SPEC.md#82-a-shipped-toolchain-must-run-its-own-bundled-defences-on-its-own-source)).
+- Make everything the method requires of a practitioner possible without the project building
+  the mechanism first (section [1](../../TOOLING-SPEC.md#1-what-this-document-is-for), the governing principle).
 
 Wrong if it asserts: the toolchain must be a single product; a declaration is required to
 conform; the agent summary (section [7](../../TOOLING-SPEC.md#7-agent-context)) is a MUST. A bullet that calls agent support or the
 self-audit a further condition "where it applies", or says a declaration is not a condition,
-asserts no obligation and is neither correct nor wrong.
+asserts no obligation and is neither correct nor wrong. So is a bullet that states how
+conformance is measured rather than what is required: the toolchain judged as one assembled
+whole at the project level (sections [1](../../TOOLING-SPEC.md#1-what-this-document-is-for) and [9](../../TOOLING-SPEC.md#9-conformance)), the project-level verdict a single grade
+(section [9](../../TOOLING-SPEC.md#9-conformance)), or a shipped artefact graded separately ([9.1](../../TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately)).
 
 Wrong readings the text invites, which count against the document on one reader: none named.
 
@@ -69,8 +74,9 @@ Wrong readings the text invites, which count against the document on one reader:
 The four answers the question then asks for, each with the condition its reason must meet:
 
 - **Conformance under section [9](../../TOOLING-SPEC.md#9-conformance).** Accepted answer: does not conform. Condition: the reason
-  names [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification), [4.2](../../TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) or [6.2](../../TOOLING-SPEC.md#62-every-exception-in-the-project-record-must-carry-a-written-justification-that-names-the-hazard-and-the-scope-and-the-toolchain-must-reject-a-generic-one) among the failing clauses; other clauses named alongside are not
-  marked.
+  names [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification), [4.2](../../TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) or [6.2](../../TOOLING-SPEC.md#62-every-exception-in-the-project-record-must-carry-a-written-justification-that-names-the-hazard-and-the-scope-and-the-toolchain-must-reject-a-generic-one) among the failing clauses, or points to the grades the reader gave above, as "the
+  clauses graded No", where those grades have one of the three at No or Partial; other clauses
+  named alongside are not marked.
 - **Conformance with agent support.** Accepted answer: no. Condition: the reason says that
   section [7](../../TOOLING-SPEC.md#7-agent-context) is not met, or that there is no summary, or that the toolchain does not conform
   under section [9](../../TOOLING-SPEC.md#9-conformance) at all.
