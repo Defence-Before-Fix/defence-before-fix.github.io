@@ -37,13 +37,22 @@ Wrong readings the text invites, which count against the document on one reader:
 
 - **2a.** Required: (1) the four steps before the fix: attribute the defect to a class, express
   the class as a rule in a detector, prove the rule fires, and sweep the codebase; (2) in that
-  order, with the fix after the sweep. Wrong if it has the fix before the rule, or the sweep
-  before the proof, or a test as the detector. Key quotations, section [3](../../SPEC.md#3-the-method): "Six clauses, in
+  order, with the fix after the sweep. Wrong if it has the fix before the rule, the fix before
+  the sweep, or the sweep before the proof, or a test as the detector. Key quotations, section [3](../../SPEC.md#3-the-method): "Six clauses, in
   order."; [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance): "The Practitioner MUST run the Rule across the entire codebase and record the
   total Instance count before fixing anything, and MUST then fix every Instance found rather
   than only the one". An answer that names the steps by their clause numbers in order states
   both elements; one that says only that section [3](../../SPEC.md#3-the-method)'s six clauses are followed in order,
-  naming no step, does not state element (1).
+  naming no step, does not state element (1). In element (2), "the fix" is the fix of the
+  defect the practitioner was handed. The question asks in what order, so element (2) is
+  stated only where the answer's sentences or quotations put the sweep before that fix; naming
+  the steps by their clause numbers in order, as above, does, since clause [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) sweeps before
+  fixing anything. "Sweep and fix every instance" does not by itself put the sweep before that
+  fix, so an answer that says in one sentence or part of a sentence that the defect is fixed after some
+  steps, and in another that every instance is swept and fixed, without saying which of the two
+  comes first, does not state element (2). A quotation that puts the sweep before any fix, such
+  as clause [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)'s "before fixing anything", states it, except that an answer whose own sentences
+  put the fix before the sweep is wrong, whatever it quotes.
 - **2b.** Required: (1) the owner of the codebase, the human who holds that authority; (2) no,
   an agent may not do so on its own authority. Wrong if it lets the practitioner or an agent
   decide because the count was small, because the project recorded no owner, or at all. Key
