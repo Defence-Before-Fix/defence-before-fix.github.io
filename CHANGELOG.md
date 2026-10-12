@@ -10,6 +10,37 @@ version entry with no cohort line has not been accepted and is not published.
 
 ## Method specification (SPEC.md)
 
+### Unreleased
+
+- New obligation, clause [3.2](SPEC.md#32-build-the-net): a rule the practitioner writes MUST be written in the strongest
+  kind of detector that can express it, semantic, else syntactic, else textual, judged by the
+  configuration it runs in; enabling an existing rule or tightening its thresholds is not writing
+  one, and giving an existing rule a pattern of the project's own, or changing the pattern of one
+  the project wrote, is. A weaker kind is allowed only on two grounds, that the stronger cannot
+  express the rule or that the language has no detector of that kind which accepts bespoke
+  rules; a stronger configuration of a detector the project runs counts, and one only a hosted
+  service or licence tier provides does not. The remediation docs of a rule the practitioner
+  writes MUST name its detector and kind, and where the kind is weaker than semantic the grounds
+  MUST be recorded there and in the description of the commit that adds or moves the rule or
+  first records them, naming the stronger detectors considered. The practitioner judges the
+  grounds; a project MAY require the owner's sign-off by recording that requirement where it
+  records its calibrations, which section [4](SPEC.md#4-authority-which-decisions-belong-to-whom) and the section [3](SPEC.md#3-the-method) map note. Clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)'s
+  list of what the remediation docs state defers to what clause [3.2](SPEC.md#32-build-the-net) adds. Section
+  [1](SPEC.md#1-terminology) defines textual, syntactic and semantic by whether a rule can ask the type of any
+  expression and what any name refers to across the whole program, naming mypy as semantic only
+  with `check_untyped_defs`. Section [2](SPEC.md#2-when-the-method-applies) and clause [3.2](SPEC.md#32-build-the-net) send a class that no extensible
+  detector of a kind the language has can express within clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s bounds to a bespoke
+  detector or a toolchain gap, not to "no pattern exists". Section [7](SPEC.md#7-conformance)'s conforming defence
+  carries the kind, and Appendix A carries the requirement. Prompted by project rules hosted in
+  ast-grep, where the language already had a semantic host, that decided by names: they reported
+  unrelated calls of the same name, and clause [3.2](SPEC.md#32-build-the-net) said any detector qualified whatever its
+  category. The method question set gains load-bearing statement 2d. Runs 19, 21, 23, 25, 27
+  and 29 were made on an earlier text of this change under the earlier acceptance rules: runs
+  19 and 29 failed on statement 2d, and every run failed on passages the change had not
+  touched, as `acceptance/CHANGES.md` records; the change was then reduced to the text above,
+  and the passages those runs named in untouched text are listed in `acceptance/ROUTED.md` for
+  changes of their own. Accepted by [run 70](acceptance/runs/070-semantic-detectors-run-13.md).
+
 ### 1.1.0, 2026-10-02
 
 - New obligation, section [2](SPEC.md#2-when-the-method-applies): a defect whose fix is deferred MUST be recorded where the project's
@@ -67,6 +98,66 @@ Published before the acceptance test in `ACCEPTANCE.md` existed; 1.0.1 is the fi
 pass it.
 
 ## Detector specification (DETECTOR-SPEC.md)
+
+### Unreleased
+
+- New obligation, clause [8.2](DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades): a verdict on a detector MUST name the kind, semantic, syntactic
+  or textual, of each configuration it grades. It is not a level of conformance and does not change the verdict; it is
+  stated because method clause [3.2](SPEC.md#32-build-the-net) now requires a rule to be written in the strongest kind
+  of detector that can express it, and a verdict of conforming alone presents a textual detector
+  as an equal host. Section [9](DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) still adds no obligation to the method a practitioner
+  follows and names this one as binding whoever gives a verdict on a detector, a practitioner
+  included when they give one, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss carries the three terms and the
+  message. Runs 20, 22, 24, 26, 28 and 30 were made on an earlier text of this change under the
+  earlier acceptance rules and failed on passages the change had not touched, as
+  `acceptance/CHANGES.md` records; the passages those runs named in untouched text are listed
+  in `acceptance/ROUTED.md` for changes of their own. [Run
+  71](acceptance/runs/071-semantic-detectors-run-14.md), under the rules of pull request 22,
+  failed on this clause's first paragraph, which two readers could not place, and on misses in
+  clauses [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) and [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) in text the change had not touched; the paragraph then gained a sentence
+  naming the configuration whose kind is named, and [run
+  74](acceptance/runs/074-semantic-detectors-run-15.md) failed on that sentence, three readers
+  unable to tell which configuration it meant. The sentence is withdrawn: the verdict names the
+  kind of each configuration it grades. Accepted by [run
+  79](acceptance/runs/079-semantic-detectors-run-16.md).
+- Clarity, no obligation changed: four passages that cold readers of an unrelated change read as
+  the document pulling against itself or could not follow, each listed in `acceptance/ROUTED.md`.
+  Clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s detectable route is now a bespoke rule the project writes for the detector under
+  clause [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), after six runs read "a Rule the project can write in the Detector itself" as the
+  project editing the detector's own source, and a new paragraph says what detectable means and
+  what each of the two ways is. Clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s duty to record a known gap falls only on a detector
+  that declares a version, and says so beside "The declaration is optional", with the method's
+  clause [3.2](SPEC.md#32-build-the-net) record applying either way. Clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) says what the remainder is, and that
+  there is none where the output prints every finding. Clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says it asks for the
+  mechanism and not for every page, a missing page failing clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), and that a
+  documentation path printed in the message is not enough on its own, after three readers of
+  run 54 set that sentence against the mechanism. Prompted by runs 32 to 54 on the defined-terms
+  change, in which two or more readers quoted each passage.
+  [Run 60](acceptance/runs/060-detector-route-rule-run-1.md) failed on two findings in the
+  revised text, every keyed item within threshold: two readers could not find Message defined,
+  so section [2](DETECTOR-SPEC.md#2-terminology)'s table gains a Message row; and two readers stopped at clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s
+  "anyone who exercises the clauses above", which now says anyone may grade a detector by
+  checking it against each clause of sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression).
+  [Run 63](acceptance/runs/063-detector-route-rule-run-2.md) failed on one finding in the revised
+  text, every keyed item five of five: two readers needed two readings of clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s
+  sentence on a report that only adds detail, which is now a sentence of its own with its subject
+  stated; three readers named clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)'s paragraph on a project's own rule, which this
+  change does not touch and `acceptance/ROUTED.md` now lists.
+  [Run 66](acceptance/runs/066-detector-route-rule-run-3.md) passed, every keyed item five of
+  five, its one finding being that same clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) paragraph, named again by three readers,
+  which stays in `acceptance/ROUTED.md` for a change of its own. Run 69, a cohort of the
+  defined-terms change on this document with this change merged in, then had two readers set
+  clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s "MUST carry both a usable summary and the location of the remainder" against its
+  "need not name it", and two readers stop at clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s gap sentence and its MAY: clause
+  [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now owes the location only where the summary leaves a finding out, and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says
+  where a practitioner's record of a gap lives and that a detector without a declaration can
+  still be found to conform. [Run 73](acceptance/runs/073-detector-route-rule-run-4.md) failed
+  on clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s "usable summary" and on clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s second paragraph; clause
+  [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now says what a usable summary is and what the remainder is, and clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) states
+  the two ways a route is detectable in one paragraph. [Run
+  77](acceptance/runs/077-detector-route-rule-run-5.md) failed on the remainder sentence alone,
+  four readers unable to tell what "is not one" referred to; it is now three plain sentences.
+  Accepted by [run 78](acceptance/runs/078-detector-route-rule-run-6.md).
 
 ### 1.0.0, 2026-09-08
 

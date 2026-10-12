@@ -43,4 +43,4 @@ Clause [4.1](../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-writ
 
 ## Notes for a practitioner
 
-Ruff cannot host a bespoke defence, so use it for the industry's known hazards and pair it with a second detector that accepts project rules, such as Pylint or a Flake8 plugin, for the class that the method turns up. Enable `PGH004` and `RUF100`, and forbid the specific `# noqa: CODE` form in the configuration of that second detector or in review policy, since Ruff can neither switch it off nor see it.
+Ruff cannot host a bespoke defence, so use it for the industry's known hazards and pair it with a second detector that accepts project rules for the class that the method turns up, chosen as method clause [3.2](../SPEC.md#32-build-the-net) requires: a mypy plugin where its hooks can express the rule, and a weaker kind such as Pylint or a Flake8 plugin only with the reason recorded. Enable `PGH004` and `RUF100`, and forbid the specific `# noqa: CODE` form in the configuration of that second detector or in review policy, since Ruff can neither switch it off nor see it.

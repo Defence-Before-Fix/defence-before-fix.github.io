@@ -1,16 +1,23 @@
 # Answer key for SPEC.md
 
-Marked against the document at the version named in the changelog entry that records the run.
-Quotations below are from the document; when a clause is reworded, update the quotation here in
-the same commit.
+Marked against the document at the commit the readers read, with this key, its question set and
+fixture at that same commit. Quotations below are from the document; when a clause is reworded,
+update the quotation here in the same commit. `ACCEPTANCE.md` says how each item is marked;
+`acceptance/README.md` says what each part of this key is for.
 
 ## 1. Restatement
 
-A bullet is correct when it names one of these obligations. Four or more correct bullets, and no
-bullet asserting an obligation the document does not state, is a correct restatement.
+A bullet is correct when it names one of these obligations. Four or more correct bullets, with
+no bullet making an assertion listed below as wrong, is a correct restatement.
 
 - Attribute the defect to a class, bounded on both sides, with the hazard stated ([3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)).
 - Express the class as a rule in a detector that reads code, never a test ([3.2](../../SPEC.md#32-build-the-net)).
+- Write the rule in the strongest kind of detector that can express it, semantic, else
+  syntactic, else textual, name the detector and its kind on the rule's remediation docs, and
+  record the grounds where it is in a weaker kind ([3.2](../../SPEC.md#32-build-the-net)). This line and the one above are
+  separate obligations of the same clause, and a bullet naming each counts once for each. A
+  bullet that says a rule goes in a semantic detector, without saying that a weaker kind is
+  never allowed, names this obligation.
 - Prove the rule fires, against the instance or a fixture, in a commit of its own ([3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)).
 - Sweep the whole codebase, record the count, then fix every instance ([3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)).
 - Make the rule permanent and blocking in the project's checks ([3.5](../../SPEC.md#35-enforce-permanently-and-block)).
@@ -18,62 +25,114 @@ bullet asserting an obligation the document does not state, is a correct restate
   with the rule ([3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)).
 - Record a defect whose fix is deferred where the project's other decisions are enumerable, rather
   than only mentioning it (section [2](../../SPEC.md#2-when-the-method-applies)).
+- Take a baseline, a suppression or an instance left unfixed to the owner, never on the
+  practitioner's own authority (section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom)).
+- Fix the original defect conventionally, with a test that reproduces it, once the defence is in
+  place (sections [2](../../SPEC.md#2-when-the-method-applies) and [6](../../SPEC.md#6-relationship-to-test-driven-development)).
+- Write down, for any code the rule is narrowed to exclude, why the hazard cannot arise there,
+  and take the exclusion to the owner where that sentence cannot be written ([3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire), Part B).
 
 Wrong if it asserts: the practitioner fixes the reported instance first and defends afterwards;
-a test may serve as the detector; an agent may baseline the remaining instances.
+a test may serve as the detector; an agent may baseline the remaining instances; only a semantic
+detector may host a rule, or no weaker kind is ever allowed. A bullet that
+says the verdict on a remediation rests on reproduction (section [7](../../SPEC.md#7-conformance)) describes the reviewer,
+not the practitioner, and is neither correct nor wrong.
+
+Wrong readings the text invites, which count against the document on one reader: none named.
 
 ## 2. Load-bearing statements
 
-- **2a.** Attribute the defect to a class, express it as a detector rule, prove the rule fires,
-  then sweep and fix every instance, in that order. Key quotations, section [3](../../SPEC.md#3-the-method): "Six clauses, in
+- **2a.** Required: (1) the four steps before the fix: attribute the defect to a class, express
+  the class as a rule in a detector, prove the rule fires, and sweep the codebase; (2) in that
+  order, with the fix after the sweep. Wrong if it has the fix before the rule, or the sweep
+  before the proof, or a test as the detector. Key quotations, section [3](../../SPEC.md#3-the-method): "Six clauses, in
   order."; [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance): "The Practitioner MUST run the Rule across the entire codebase and record the
   total Instance count before fixing anything, and MUST then fix every Instance found rather
-  than only the one". An answer that has the fix before the rule, or the sweep before the proof,
-  is wrong.
-- **2b.** The owner of the codebase, always a human; an agent may not. Key quotation, section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom):
-  "An Agent MUST NOT Baseline, suppress or knowingly leave an Instance unfixed on its own
-  authority, whatever the Instance count turns out to be." An answer that lets the practitioner
-  decide because the count was small, or because the project recorded no rule, is wrong (the
-  default owner paragraph in the terminology entry for Owner still requires a recorded decision).
-- **2c.** All six clauses of section [3](../../SPEC.md#3-the-method) were followed for that defect, and the verdict rests on the
-  reviewer reproducing the red and green runs, not on the report. Key quotations, section [7](../../SPEC.md#7-conformance): "A
-  remediation Conforms if all six clauses of section [3](../../SPEC.md#3-the-method) were followed for that Defect, and the
-  verdict that they were rests on reproduction"; "A verdict on a remediation or a Defence MUST
-  rest on reproduction, not on the report". An answer that accepts the pull request description
-  as the verdict is wrong, and so is one that states the six clauses and says nothing of
-  reproduction.
+  than only the one". An answer that names the steps by their clause numbers in order states
+  both elements; one that says only that section [3](../../SPEC.md#3-the-method)'s six clauses are followed in order,
+  naming no step, does not state element (1).
+- **2b.** Required: (1) the owner of the codebase, the human who holds that authority; (2) no,
+  an agent may not do so on its own authority. Wrong if it lets the practitioner or an agent
+  decide because the count was small, because the project recorded no owner, or at all. Key
+  quotation, section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom): "An Agent MUST NOT Baseline, suppress or knowingly leave an Instance
+  unfixed on its own authority, whatever the Instance count turns out to be." "The owner" names
+  the defined term and states that the decision is a human's; an answer need not add "a human"
+  to be correct. The default-owner sentences of the terminology entry for Owner still require a
+  recorded decision, so an answer naming whoever instructed the practitioner, for a project that
+  has recorded nobody, names the owner and is correct.
+- **2c.** Required: (1) all six clauses of section [3](../../SPEC.md#3-the-method) were followed for that defect; (2) the verdict
+  rests on reproduction, the reviewer rerunning the defence, not on the report. Wrong if it
+  accepts the pull request description or the practitioner's report as the verdict, or says
+  that most clauses suffice. Key quotations, section [7](../../SPEC.md#7-conformance): "A remediation Conforms if all six clauses
+  of section [3](../../SPEC.md#3-the-method) were followed for that Defect, and the verdict that they were rests on
+  reproduction"; "A verdict on a remediation or a Defence MUST rest on reproduction, not on the
+  report". "Reproduction" or "reproducing the runs" states element (2); the red and green runs
+  need not be named.
+- **2d.** Required: (1) the strongest kind of detector that can express the rule, in the order
+  semantic, else syntactic, else textual; (2) the two grounds for a weaker kind, both: the
+  stronger kind cannot express the rule, or the language has no detector of the stronger kind
+  that accepts bespoke rules; (3) the grounds, which of the two holds and why, recorded in both
+  places, on the rule's remediation docs and in the description of a commit. Wrong if it says
+  any detector is as good as another, that a weaker kind may be used for a reason other than
+  the two grounds, that a weaker kind is never allowed, that the owner must always approve a
+  weaker kind (the practitioner judges it unless the project requires the owner's sign-off), or
+  that the two places are alternatives. Key quotations, [3.2](../../SPEC.md#32-build-the-net): "A Rule the Practitioner writes MUST be
+  written in the strongest kind of Detector that can express it: a Semantic one, else a
+  Syntactic one, else a Textual one."; "A weaker kind is allowed only where the stronger kind
+  cannot express the Rule within clause [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)'s bounds, or where the language has no Detector of
+  the stronger kind that accepts bespoke Rules; those are the two grounds."; "Where that kind is weaker than Semantic,
+  the Practitioner MUST also record the grounds in two places, both of them: on the Rule's
+  Remediation docs, and in the description of a commit." Supporting: "On the Remediation docs of
+  a Rule they write, the Practitioner MUST name the Detector and its kind." Naming the stronger
+  detectors considered, and which commit it is, is explanation: an answer that gives it, or
+  leaves it out, is not marked on it. An answer that names the kinds in order without the words
+  "strongest" or "that can express it" states element (1).
 
 ## 3. Application: the ledger remediation
 
-| Clause                                                                                    | Intended verdict   | Reasoning the fixture supports                                                                                                                                                                                                                                 |
-| ----------------------------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)                                   | Yes, Partial or No | Class, hazard and the next wider rule are named; Partial or No is accepted where the reader notes that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for |
-| [3.2](../../SPEC.md#32-build-the-net)                                                     | Yes                | A rule in the project's static analyser, reading code, not a test                                                                                                                                                                                              |
-| [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)                             | Yes                | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                                                                     |
-| [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)                        | No or Partial      | Five findings recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority; Partial accepted where the reasoning names that suppression                                                                                    |
-| [3.5](../../SPEC.md#35-enforce-permanently-and-block)                                     | Partial or No      | The rule is permanent and blocking, but the suppression was not a recorded decision; [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers"                    |
-| [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) | No or Partial      | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule; Partial accepted where the reasoning quotes the versioning sentence                                                                        |
+| Clause                                                                                    | Accepted grades    | Condition on the reasoning                                                                | What the fixture supports                                                                                                                                                                                                                                                                                                                                                                       |
+| ----------------------------------------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class)                                   | Yes, Partial or No | None                                                                                      | Class, hazard and the next wider rule are named; Partial or No is the reading that no independent search technique is recorded, which step 2 and the record [3.1](../../SPEC.md#31-attribute-the-defect-to-a-class) requires both call for                                                                                                                                                      |
+| [3.2](../../SPEC.md#32-build-the-net)                                                     | Partial or No      | None                                                                                      | A rule in the project's static analyser, reading code, not a test, but the wiki page of commit D names neither the detector nor its kind; [3.2](../../SPEC.md#32-build-the-net): "On the Remediation docs of a Rule they write, the Practitioner MUST name the Detector and its kind." The fixture does not say what the analyser can see, so no grounds for a weaker kind are shown to be owed |
+| [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire)                             | Yes, Partial or No | For Partial or No: attributes the inline ignore to this clause, a fair reading of Part B  | Commit B is red on the fixture and the originating instance and survives as its own commit                                                                                                                                                                                                                                                                                                      |
+| [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance)                        | No or Partial      | Mentions the instance left unfixed, the inline ignore, or `Report::render()`              | Five findings were recorded, but one instance was left unfixed behind an inline ignore on the agent's own authority                                                                                                                                                                                                                                                                             |
+| [3.5](../../SPEC.md#35-enforce-permanently-and-block)                                     | Partial or No      | Mentions the suppression, the inline ignore, or that no recorded decision covers it       | The rule is permanent and blocking, but the suppression was not a recorded decision. [3.5](../../SPEC.md#35-enforce-permanently-and-block): "neither does a Rule whose green run depends on a Suppression that no recorded decision covers"                                                                                                                                                     |
+| [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) | No or Partial      | Mentions the wiki, or that the documentation is not versioned or co-located with the rule | The message is terse and carries an identifier, but the documentation lives on a wiki, not versioned with the rule                                                                                                                                                                                                                                                                              |
 
-Section [7](../../SPEC.md#7-conformance): the **remediation does not conform**, because [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) and [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) were not followed. The
-**defence does not conform** either, because [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) fails; a reader who says the defence conforms
-because the sweep is what failed has missed [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) and that counts against the document only if the
-reasoning quotes the section [7](../../SPEC.md#7-conformance) definition of a conforming defence.
+The three answers the question then asks for, each with the condition its reason must meet:
 
-Section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom): the **inline ignore on `Report::render()`** was the owner's decision, not the
-practitioner's. An answer naming instead the decision not to build the wider rule is half right:
-that is also listed in section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom) as the owner's to take, and an answer naming both is correct.
-An answer naming neither is wrong.
+- **The remediation under section [7](../../SPEC.md#7-conformance).** Accepted answer: does not conform. Condition: the reason
+  names [3.2](../../SPEC.md#32-build-the-net), [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance), [3.5](../../SPEC.md#35-enforce-permanently-and-block) or [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) among the clauses not followed; other clauses named alongside are not
+  marked.
+- **The defence alone.** Accepted answer: does not conform. Condition: the reason names [3.2](../../SPEC.md#32-build-the-net),
+  [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation), or [3.5](../../SPEC.md#35-enforce-permanently-and-block)'s unrecorded suppression, which section [7](../../SPEC.md#7-conformance)'s definition of a conforming defence
+  also requires to be absent; other clauses named alongside are not marked.
+- **The decision section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom) says was not the practitioner's.** Accepted answer: the inline ignore on
+  `Report::render()`, which was the owner's decision. Condition: none; any other decision named
+  alongside it is not marked. An answer naming only the decision to leave the wider rule unbuilt,
+  or naming none, is wrong.
 
-A reader who grades [3.5](../../SPEC.md#35-enforce-permanently-and-block) Yes because the rule fails the build has not applied the clause's opening
-sentence on unrecorded suppression, and that counts against the document. A reader who grades
-[3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) Yes because the URL resolves has read the versioning sentence of [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation)
-differently, which counts against the document; a reader who grades [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) Yes has misread the
-fixture. A reader who attributes the suppression to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) rather than [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) has read the narrowing
-passage of [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) as covering it, which is a fair reading and is not marked wrong.
+Wrong readings the text invites, which count against the document on one reader:
+
+- [3.5](../../SPEC.md#35-enforce-permanently-and-block) graded Yes with reasoning that says the rule blocks, or is permanent, and does not mention
+  the suppression.
+- [3.6](../../SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) graded Yes with reasoning that says the identifier resolves, or the URL works, and does not
+  mention versioning or co-location.
+- The defence graded as conforming with reasoning that says only the sweep failed and that
+  quotes section [7](../../SPEC.md#7-conformance)'s definition of a conforming defence.
+- [3.2](../../SPEC.md#32-build-the-net) graded Yes with reasoning that says the rule is in a detector that reads code, or not a
+  test, and does not mention the detector's kind or the naming of the detector on the
+  remediation docs, which has read [3.2](../../SPEC.md#32-build-the-net) without its naming sentence. A reader who grades [3.2](../../SPEC.md#32-build-the-net)
+  Partial or No only because no grounds for a weaker kind are recorded has the grade on a
+  ground the fixture does not show, and is correct on the grade.
+
+A reader who grades [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance) Yes has misread the fixture, which is the reader's miss, whether or not
+the inline ignore was attributed to [3.3](../../SPEC.md#33-prove-the-net-by-making-the-rule-fire) instead.
 
 ## 4. Confusion
 
-No keyed answer. Record every passage quoted. Two or more readers quoting the same passage is a
-finding that blocks until the text is changed and a fresh cohort no longer quotes it. What to
-change is the editor's decision; the reader is not asked and any suggestion it volunteers is
-discarded unread.
+No keyed answer. Record every passage named, as `ACCEPTANCE.md` defines naming and the same
+passage. A passage named by two or more readers of the run is a finding: it blocks the change
+where it lies in text the change wrote or altered, and is routed to `acceptance/ROUTED.md`
+otherwise. What to change is the editor's decision; the reader is not asked and any suggestion
+it volunteers is discarded unread.

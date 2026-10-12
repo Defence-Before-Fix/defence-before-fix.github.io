@@ -13,8 +13,18 @@ it. Do not decide in advance whether that is possible, attempt it. If you cannot
 for it, say so and fix the Defect conventionally.
 
 Write a custom Rule that detects the Class, in a tool that reads code rather than running it.
-Draw it so that it catches more than the single Instance you started from, but never so broadly
-that it matches code which does not carry the Hazard.
+Put it in a Semantic Detector, one in which a Rule can ask the type of any expression and
+what any name refers to, across the whole program; failing that, one that sees syntax; and only
+then one that sees text. Use a weaker one only where the stronger one cannot express the Rule,
+or the language has none that takes custom Rules: none the project runs, in any configuration
+it can use without a hosted service or a licence tier, and none its ecosystem offers without
+one either. Name the Detector and its kind in the Rule's documentation. Where you use a weaker one,
+write down which of those two grounds holds, and why, naming the stronger Detectors you
+considered, there and in the description of the commit that adds the Rule, moves it to another
+Detector, or first records the grounds, and where the project requires its Owner's sign-off
+on a weaker one, get it and record it with the grounds. Draw
+the Rule so that it catches more than the single Instance you started from, but never so
+broadly that it matches code which does not carry the Hazard.
 
 Do not trust the Rule as your only way of finding Instances. Search independently as well, by
 text search and by reading the code, and check the Rule catches what you found by hand. Make that
