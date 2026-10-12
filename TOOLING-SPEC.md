@@ -88,7 +88,7 @@ The distinction between a [Bundled defence] and a project's own is significant t
 
 Throughout this document, a [Blocking] [Rule] whose documentation is missing is not yet a
 [Defence]. Clause 5.1 does not require it to be listed, because that clause lists [Defences].
-Clauses 4.2 and 8.1 reach every [Blocking] [Rule] a [Toolchain] runs, documented or not, and a
+Clause 4.2 reaches every [Blocking] [Rule] a [Toolchain] runs, documented or not, and a
 [Toolchain] that runs such a [Rule] fails clause 4.2.
 
 ## 3. The division of responsibility

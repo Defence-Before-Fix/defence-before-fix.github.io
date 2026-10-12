@@ -191,7 +191,10 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   restated sentences as where to look first and a grader without the detector specification
   checking only them and saying so; section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says the same; the paragraph says in plain
   sentences that clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) does not require such a rule to be listed and that clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) and
-  [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) reach it. Accepted by run NNN.
+  [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) reach it. [Run 85](acceptance/runs/085-toolchain-contradictions-run-13.md) failed on that
+  paragraph's "Clauses 4.2 and 8.1 reach every Blocking Rule", two readers setting it against
+  clause [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation)'s exclusion of a third-party detector's native catalogue; the paragraph names
+  clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) alone. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
