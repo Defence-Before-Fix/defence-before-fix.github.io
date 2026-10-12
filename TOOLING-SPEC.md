@@ -41,8 +41,9 @@ part of its [Toolchain] and are judged as such.
 
 **How to read this document.** A [Toolchain] can be graded from this document alone, on the
 evidence a project shows. Where a clause rests on the [detector specification](DETECTOR-SPEC.md),
-as clauses 4.1, 4.2 and 4.4 do, it restates what the grader checks, and a verdict the [Detector]
-already holds under that document's section 8 counts too. The
+as clauses 4.1, 4.2 and 4.4 do, it says what it holds the [Detector] to and restates the parts
+most often failed; a grader without that document to hand checks what is restated and says so.
+The
 table in section 2 glosses every term it borrows. Each clause states its obligation in its heading
 and first sentence, and the **Why** paragraph beneath is reasoning, not a further requirement. A
 link is there for depth and is not a prerequisite for the sentence that carries it.
@@ -86,10 +87,9 @@ The distinction between a [Bundled defence] and a project's own is significant t
 [Practitioner] needs in order to act on it has to travel with it.
 
 Throughout this document, a [Blocking] [Rule] whose documentation is missing is not yet a
-[Defence], and nothing this document asks of [Defences], clause 5.1's listing included, is asked
-of it. It is what clauses 4.2 and 8.1 exist to catch: where they reach a [Toolchain]'s [Rules]
-they reach every [Blocking] [Rule] it runs, documented or not, and a [Toolchain] that runs such
-a [Rule] has failed clause 4.2 whether or not its listing shows it.
+[Defence]. Clause 5.1 does not require it to be listed, because that clause lists [Defences].
+Clauses 4.2 and 8.1 reach every [Blocking] [Rule] a [Toolchain] runs, documented or not, and a
+[Toolchain] that runs such a [Rule] fails clause 4.2.
 
 ## 3. The division of responsibility
 
@@ -119,17 +119,17 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
 [Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
-its sections 4 to 7, and this clause holds the [Detector] to every one of them. A grader of this
-clause checks the sentences that follow, which restate the ones most often failed. Where the
-[Detector] has already been graded against that document, under its section 8, that verdict
-counts too: a [Detector] found not to [Conform] fails this clause whether or not the sentences
-that follow show why. Where it has not, the sentences that follow are the test. The
+its sections 4 to 7, and this clause holds the [Detector] to every one of them: a [Detector]
+that fails any of them, after wrapping, fails this clause. The sentences that follow restate
+the ones most often failed, so that a grader knows where to look first; they are not the whole
+test, and a grader without that document to hand can check only them, and says so in the
+verdict. The
 [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
 resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
-It makes any inline [Suppression] route detectable or disableable. A [Detector] that fails any
-one of them, after wrapping, fails this clause. Three points govern how that is met.
+It makes any inline [Suppression] route detectable or disableable. Three points govern how that
+is met.
 
 1. **Wrapping is permitted.** The [Toolchain] MAY supply a mechanism the
    [Detector] lacks by wrapping it, with a [Harness] script or a
