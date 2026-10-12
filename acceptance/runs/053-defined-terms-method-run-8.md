@@ -2,7 +2,7 @@
 
 - **Document**: SPEC.md
 
-- **Pull request**: not yet opened; it will be opened on branch `editor/defined-terms`. The
+- **Pull request**: [24](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24), opened later from branch `editor/defined-terms`. The
   readers were given commit 8e91f8a, at which the text is returned to the original change,
   be546ea (Remediation defined, Harness renamed Rule harness). The change, read against its merge
   base with `next`, 9e914fe, adds the Remediation terminology entry and its link definition;
@@ -177,4 +177,4 @@ None at the time of marking; what to change is the editor's decision.
 
 ## Answer sheets
 
-Answer sheets, prompt, command and marker instruction: LINK TO PULL REQUEST COMMENT
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125395288); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125394821); the prompt, [part 1](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125395713) and [part 2](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125396060).

@@ -2,7 +2,7 @@
 
 - **Document**: SPEC.md
 
-- **Pull request**: not yet opened; it will be opened on branch `editor/defined-terms`. The
+- **Pull request**: [24](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24), opened later from branch `editor/defined-terms`. The
   readers were given commit 48f6e7c. The change, read against its merge base with `next`,
   9e914fe, adds the Remediation terminology entry and its link definition; links "remediation"
   as [Remediation] in clauses 3.1, 3.3, 3.6, sections 4, 5, 6 and 7 and the 1.1.0 changelog row;
@@ -192,4 +192,4 @@ None at the time of marking; what to change is the editor's decision.
 
 ## Answer sheets
 
-Answer sheets, prompt, command and marker instruction: LINK TO PULL REQUEST COMMENT
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125401146); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125400820); the prompt, [part 1](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125401658) and [part 2](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125402150).

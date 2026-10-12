@@ -2,7 +2,7 @@
 
 - **Document**: DETECTOR-SPEC.md
 
-- **Pull request and commit read**: the pull request is not yet opened; it will be opened from
+- **Pull request and commit read**: the pull request is [24](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24), opened later from
   branch `editor/defined-terms`. The readers were given the question set, the document and the
   fixture at 8e91f8a ("the text returned to the original change"). The change, read against
   9e914fe, its merge base with `next`, renames the defined term Harness to Rule harness: the
@@ -167,4 +167,4 @@ finding 1, clause 8.1's gap-record MUST set against the paragraph the change alt
 
 ## Answer sheets
 
-Answer sheets: LINK TO THE PULL REQUEST COMMENT, to be added when the pull request is opened.
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125396813); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125396439); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125397292).

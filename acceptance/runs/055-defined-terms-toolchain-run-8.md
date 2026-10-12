@@ -2,7 +2,7 @@
 
 - **Document**: TOOLING-SPEC.md
 
-- **Pull request**: not yet opened; it will be opened on branch `editor/defined-terms`. The
+- **Pull request**: [24](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24), opened later from branch `editor/defined-terms`. The
   readers were given 8e91f8a, the text returned to the original change (Harness renamed Rule
   harness; [Remediation] and [Remediation docs] linked). The text the change wrote or altered is
   `git diff 9e914fe 8e91f8a -- TOOLING-SPEC.md`, 9e914fe being the merge base with `next`: the
@@ -172,4 +172,4 @@ None at the time of marking; what to change is the editor's decision.
 
 **FAIL**, on the 4.2 threshold and on F1.
 
-Answer sheets: [LINK TO THE PULL REQUEST COMMENT WITH THE POSTED SHEETS]
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125398160); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125397751); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125398563).

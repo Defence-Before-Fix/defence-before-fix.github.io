@@ -2,7 +2,7 @@
 
 - **Document**: DETECTOR-SPEC.md
 
-- **Pull request and commit read**: the pull request is not yet opened; it will be opened from
+- **Pull request and commit read**: the pull request is [24](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24), opened later from
   branch `editor/defined-terms`. The readers were given the question set, the document and the
   fixture at b8ffb28 ("Merge branch 'editor/detector-route-rule' into editor/defined-terms").
   Since run 54 the branch has merged `editor/detector-route-rule` (pull request 23, accepted by
@@ -157,4 +157,4 @@ and each blocks.
 
 ## Answer sheets
 
-Answer sheets: LINK TO THE PULL REQUEST COMMENT, to be added when the pull request is opened.
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125406516); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125405992); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/24#issuecomment-6125407114).
