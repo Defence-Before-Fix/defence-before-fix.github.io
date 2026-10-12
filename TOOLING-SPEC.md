@@ -440,7 +440,7 @@ removes the only value the word has.
 
 As a project, it follows the method with its own assembled [Toolchain], like any other
 project: that [Toolchain] is graded against this document, under section 9, and the project's
-remediations against section 7 of the method specification, as any project's are. As an artefact, what it ships is graded for its consumers: a [Detector] against
+[Remediations](SPEC.md#remediation) against section 7 of the method specification, as any project's are. As an artefact, what it ships is graded for its consumers: a [Detector] against
 [the detector specification](DETECTOR-SPEC.md), a [Toolchain] against this document, on what the
 shipped [Toolchain] itself supplies once installed into a [Consuming project], counting nothing
 the [Consuming project] adds around it. The two
