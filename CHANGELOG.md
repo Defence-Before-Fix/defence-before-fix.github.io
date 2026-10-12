@@ -107,7 +107,7 @@ pass it.
   the two ways a route is detectable in one paragraph. [Run
   77](acceptance/runs/077-detector-route-rule-run-5.md) failed on the remainder sentence alone,
   four readers unable to tell what "is not one" referred to; it is now three plain sentences.
-  Accepted by run NNN.
+  Accepted by [run 78](acceptance/runs/078-detector-route-rule-run-6.md).
 
 ### 1.0.0, 2026-09-08
 
