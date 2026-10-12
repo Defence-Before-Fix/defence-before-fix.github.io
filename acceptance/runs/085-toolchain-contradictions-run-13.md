@@ -1,7 +1,7 @@
 # Run 85: TOOLING-SPEC.md, toolchain contradictions, thirteenth run
 
 - **Document**: TOOLING-SPEC.md
-- **Pull request**: not yet opened at the time of the run; it is to be opened from branch
+- **Pull request**: [25](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/25), opened later from branch
   `editor/toolchain-contradictions`. The readers read commit 58924a8. Change: section 9 against
   clause 9.1 on section 8; clauses 4.2 and 8.1 on a blocking rule whose documentation is missing;
   clause 9.2's gap duty against the optional declaration; clause 4.3's heading against its body;
@@ -165,4 +165,4 @@ FAIL, on findings A and B; every keyed item passed its threshold.
 
 ## Answer sheets
 
-Posted on the pull request: LINK TO BE ADDED.
+Posted on the pull request: [answer sheets](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/25#issuecomment-6125972905); [command, models, marker instruction and agent definition](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/25#issuecomment-6125972491); [the prompt](https://github.com/Defence-Before-Fix/defence-before-fix.github.io/pull/25#issuecomment-6125973283).
