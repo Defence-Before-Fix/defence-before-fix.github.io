@@ -93,8 +93,8 @@ Wrong readings the text invites, which count against the document on one reader:
 - [6.2](../../TOOLING-SPEC.md#62-every-exception-in-the-project-record-must-carry-a-written-justification-that-names-the-hazard-and-the-scope-and-the-toolchain-must-reject-a-generic-one) graded Yes with reasoning that says a justification is required or an empty one rejected
   and does not mention a generic justification, which has not read the sentence on one.
 - Section [8](../../TOOLING-SPEC.md#8-self-audit) said to apply to Zigpipe with reasoning that says its tooling includes a shipped
-  package, which has read "where the Toolchain is one the project ships" (section [9](../../TOOLING-SPEC.md#9-conformance)) as
-  reaching the consuming project.
+  package, which has read "where the project also ships a Detector or a Toolchain" (section [9](../../TOOLING-SPEC.md#9-conformance))
+  as reaching the consuming project.
 - [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) graded Yes with reasoning that says Lintomatic mostly or largely conforms and quotes [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification),
   which has read it as admitting a proportion.
 - The declaration said to affect the verdict, with reasoning that Zigpipe cannot be graded without

@@ -111,15 +111,16 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
 [Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
-its sections 4 to 7, and every one of them applies; the six summarised here are the ones most
-often failed, and a verdict on this clause taken from this document alone rests on them. The
+its sections 4 to 7, and this clause holds the [Detector] to every one of them. The sentences
+that follow summarise the ones most often failed, so that a reader with this document alone can
+see what the clause mostly turns on; they are a summary, not the test. The
 [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
 resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
 It makes any inline [Suppression] route detectable or disableable. A [Detector] that fails any
-one of that document's MUSTs, after wrapping, fails this clause. Three points govern how that is
-met.
+one of that document's MUSTs, summarised here or not, fails this clause after wrapping. Three
+points govern how that is met.
 
 1. **Wrapping is permitted.** The [Toolchain] MAY supply a mechanism the
    [Detector] lacks by wrapping it, with a [Harness] script or a
@@ -138,8 +139,9 @@ met.
    Behind the table is one question. With the wrapping in place, does the [Detector]
    meet every MUST of sections 4 to 7 of the [detector specification](DETECTOR-SPEC.md),
    exercised as its clause 8.1 describes? If yes, this clause holds. If no, it fails, however
-   much else the [Detector] does well, and whether or not a clause below names the same gap
-   again. Wrapping can add a mechanism; it cannot excuse a gap. What this clause judges is the
+   much else the [Detector] does well, and whether or not a later clause of this document, such
+   as clause 4.2 on resolution, names the same gap again. Wrapping can add a mechanism; it
+   cannot excuse a gap. What this clause judges is the
    wrapped pair; the [Detector]'s own grade under that document, as an artefact on its own, is a
    separate verdict that the wrapping does not change. Satisfying most of that document is not
    [Conformance] to it, any more than satisfying most of this one is.
@@ -149,7 +151,7 @@ met.
    It MAY still run as one of the [Toolchain]'s checks, as a formatter or a
    [Runner] does.
 
-**Why**: the six clauses of the method are carried out in a [Detector], and everything this
+**Why**: the method's clauses 3.1 to 3.6 are carried out in a [Detector], and everything this
 document adds presumes those clauses can be followed there. A [Toolchain] that lists, records
 and resolves beautifully around a [Detector] in which no [Rule] can be written or proven
 has governed nothing. The wrapping is permitted because a [Practitioner] cannot tell where a
@@ -163,9 +165,10 @@ This clause widens the [detector specification](DETECTOR-SPEC.md)'s reach: that 
 [Bundled rules] only, and this one covers every [Identifier] the project can see, the project's
 own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Defences]
 print to [Remediation docs] on disk. One [Identifier] that does not resolve fails this clause,
-however many others do. Here [Defence] reaches every [Blocking] [Rule] the [Toolchain] runs,
-bundled or the project's own, whether or not its documentation exists: a [Rule] whose
-documentation is missing is the failure this clause names, not a [Rule] outside it. The mechanism
+however many others do. A [Defence] is a [Rule] with its documentation, as section 2 says, so a
+[Blocking] [Rule] the [Toolchain] runs whose documentation is missing is not yet a [Defence]:
+that [Rule] is the failure this clause names, not a [Rule] outside its reach, and the clause
+reaches every [Blocking] [Rule] the [Toolchain] runs, bundled or the project's own. The mechanism
 is keyed on the
 [Identifier] exactly as printed, and it covers the project's own [Rules] and
 every [Bundled defence]. Those [Remediation docs] MUST ship
@@ -376,9 +379,9 @@ mistake rather than after it, which is why they are worth stating even as SHOULD
 
 The [Toolchain] MUST run an automated check that blocks its own release. The check covers
 every [Identifier] printed by a [Rule] the [Toolchain] authors or bundles
-as its own [Defence], whatever kind of [Detector] carries it, and it reaches every such [Rule]
-whether or not its documentation exists: a missing page is the failure the check is there to
-find. Where a documentation
+as its own, whatever kind of [Detector] carries it. A [Bundled defence] is a [Rule] with its
+documentation, so a [Rule] shipped that way whose page is missing is not yet one; it is what
+this check exists to find, and the check reaches every such [Rule]. Where a documentation
 page covers a family of [Identifiers] by a pattern, as clause 6.5 of the
 [detector specification](DETECTOR-SPEC.md) allows, this audit MUST apply the pattern to every
 [Identifier] printed and confirm it lands on that page. A member added to the
@@ -416,13 +419,15 @@ own [Defences] already run on its own source, because that is the only source th
 ## 9. Conformance
 
 **A project's [Toolchain] [Conforms]** if every MUST in sections 4 to 6 holds across the
-assembled parts, wherever each part came from; where the [Toolchain] is one the project
-ships, every MUST in section 8 bears on its artefact grade under clause 9.1, not on this one. The
-project-level verdict is a single grade; which part of the
-[Toolchain] satisfied each clause is evidence for that grade, not a second grade.
+assembled parts, wherever each part came from; where the project also ships a [Detector] or a
+[Toolchain], every MUST in section 8 bears on the artefact grade of clause 9.1 and not on this
+project grade. The project-level verdict is a single grade; which part of the
+[Toolchain] satisfied each clause is evidence for that grade, not a second grade. The artefact
+a project ships is graded on its own, and that grade is the second level clause 9.1 names; a
+project that ships nothing has only the one.
 
 **A [Toolchain] [Conforms] with [Agent] support** if, in addition, it does each thing section 7
-recommends.
+of this document recommends.
 
 Partial [Conformance] MUST NOT be described as [Conformance]. A [Toolchain] that satisfies most of this
 document is in a normal and respectable condition; it is not [Conforming], and describing it as such
@@ -436,8 +441,10 @@ basis. As an artefact, what it ships is graded for its consumers: a [Detector] a
 [the detector specification](DETECTOR-SPEC.md), a [Toolchain] against this document, on what the
 shipped [Toolchain] itself supplies once installed into a [Consuming project], counting nothing
 the [Consuming project] adds around it. The two
-verdicts MUST be graded and declared separately, and neither implies the other. Section 8 bears on
-the artefact grade only; clause 5.3 is its project-level counterpart.
+verdicts MUST be graded and declared separately, and neither implies the other. The two levels
+are the project grade of section 9, which every project has, and the artefact grade, which only
+a project that ships has. Section 8 bears on the artefact grade only; clause 5.3 is its
+project-level counterpart.
 
 **Why**: the two questions have different readers. A contributor to the artefact wants to know
 whether the project practises what it ships; a [Consuming project] wants to know what it

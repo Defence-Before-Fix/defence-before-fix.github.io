@@ -119,7 +119,15 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   fixture does not describe; section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says the document defers to the detector specification
   only in clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification); clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) says what the artefact grade counts; and section [9](TOOLING-SPEC.md#9-conformance)'s agent-support
   sentence says section [7](TOOLING-SPEC.md#7-agent-context) recommends, after two readers set "additionally satisfies" against
-  that section's SHOULDs. Accepted by run NNN.
+  that section's SHOULDs. [Run 58](acceptance/runs/058-toolchain-contradictions-run-2.md) failed
+  on four findings in the revised text, every keyed item five of five: four readers set clause
+  [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access)'s "whether or not its documentation exists" against the Defence row again, so clauses
+  [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) now say that a blocking rule whose documentation is missing is not yet a
+  defence and is the failure each names; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) says its six sentences are a summary and
+  not the test, and its Why names the method's clauses [3.1](SPEC.md#31-attribute-the-defect-to-a-class) to [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) rather than "six clauses";
+  section [9](TOOLING-SPEC.md#9-conformance) says every project has one project grade and that section [8](TOOLING-SPEC.md#8-self-audit) bears on a shipping
+  project's separate artefact grade, clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) names the two levels, and the agent-support
+  sentence says which document's section [7](TOOLING-SPEC.md#7-agent-context) it means. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
