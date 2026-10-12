@@ -187,7 +187,7 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   84](acceptance/runs/084-toolchain-contradictions-run-12.md) failed on clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification), three
   readers unable to tell whether "every one of them" or the restated sentences set the test, and
   on the paragraph again, one reader still asking whether such a rule is listed and one unable
-  to place "they". Clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) now has one test, every MUST of sections 4 to 7, with the
+  to place "they". Clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) now has one test, every MUST of the detector specification's authoring, reporting, resolving and suppression sections, with the
   restated sentences as where to look first and a grader without the detector specification
   checking only them and saying so; section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says the same; the paragraph says in plain
   sentences that clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) does not require such a rule to be listed and that clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) and
