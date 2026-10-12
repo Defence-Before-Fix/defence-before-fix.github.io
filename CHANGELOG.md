@@ -111,8 +111,15 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   the toolchain's own. Clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) says every MUST of the detector specification's sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression)
   applies and the six it lists are a summary, and its point 2 says the wrapped pair is what the
   clause judges whilst the detector's own grade is a separate verdict. Prompted by runs 33 to 52
-  and 55 on the defined-terms change, in which two or more readers quoted each passage. Accepted
-  by run NNN.
+  and 55 on the defined-terms change, in which two or more readers quoted each passage.
+  [Run 57](acceptance/runs/057-toolchain-contradictions-run-1.md) failed on the first wording: every reader set clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access)'s
+  "a defence with a gap" against the Defence row, so the sentence now says Defence there
+  reaches every blocking rule whether or not its documentation exists; clause [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-every-suppression-route-that-bypasses-the-project-record-by-disabling-it-or-by-a-defence-of-its-own) says the
+  routes are the ones each detector offers, after two readers graded it Partial for routes the
+  fixture does not describe; section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says the document defers to the detector specification
+  only in clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification); clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) says what the artefact grade counts; and section [9](TOOLING-SPEC.md#9-conformance)'s agent-support
+  sentence says section [7](TOOLING-SPEC.md#7-agent-context) recommends, after two readers set "additionally satisfies" against
+  that section's SHOULDs. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 

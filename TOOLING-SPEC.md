@@ -39,7 +39,9 @@ building the mechanism first. A [Toolchain] that leaves the project to construct
 moved the obligation rather than met it. Where the project builds the means itself, those scripts are
 part of its [Toolchain] and are judged as such.
 
-**How to read this document.** It is self-contained for grading a [Toolchain]. The
+**How to read this document.** It is self-contained for grading a [Toolchain], apart from clause
+4.1, which holds each [Detector] to the [detector specification](DETECTOR-SPEC.md) and summarises
+that document's MUSTs. The
 table in section 2 glosses every term it borrows. Each clause states its obligation in its heading
 and first sentence, and the **Why** paragraph beneath is reasoning, not a further requirement. A
 link is there for depth and is not a prerequisite for the sentence that carries it.
@@ -110,7 +112,8 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
 [Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
 its sections 4 to 7, and every one of them applies; the six summarised here are the ones most
-often failed. The [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
+often failed, and a verdict on this clause taken from this document alone rests on them. The
+[Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
 resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
@@ -160,9 +163,10 @@ This clause widens the [detector specification](DETECTOR-SPEC.md)'s reach: that 
 [Bundled rules] only, and this one covers every [Identifier] the project can see, the project's
 own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Defences]
 print to [Remediation docs] on disk. One [Identifier] that does not resolve fails this clause,
-however many others do. A [Blocking] [Rule] whose documentation is missing is the case this
-clause exists to catch: it is graded here as a [Defence] with a gap, not left out as no
-[Defence] at all. The mechanism is keyed on the
+however many others do. Here [Defence] reaches every [Blocking] [Rule] the [Toolchain] runs,
+bundled or the project's own, whether or not its documentation exists: a [Rule] whose
+documentation is missing is the failure this clause names, not a [Rule] outside it. The mechanism
+is keyed on the
 [Identifier] exactly as printed, and it covers the project's own [Rules] and
 every [Bundled defence]. Those [Remediation docs] MUST ship
 with the project or with the [Toolchain], at a version tracked together. The
@@ -175,8 +179,9 @@ only the prohibition, specifically enough to act on, as method clause 8.4 requir
 This clause closes what the [detector specification](DETECTOR-SPEC.md) leaves open. That document holds a
 [Detector] to on-disk resolution of its own [Bundled rules] and
 no further, because it cannot know a project's documentation. A third-party [Detector]'s
-native catalogue, which the [Toolchain] orchestrates without claiming as its own, is
-resolved under that document's clause 6 and is not re-shipped here.
+native catalogue, which the [Toolchain] orchestrates without claiming as its own, is not
+re-shipped here: an [Identifier] the [Detector] resolves under that document's clause 6 meets
+this clause, and one that nothing resolves fails it.
 
 **Why**: method specification clauses 3.6 and 8.3. The [Identifier] has to resolve for the
 reader, which for an [Agent] means mechanically and on disk, and the project's own
@@ -193,7 +198,10 @@ route that bypasses the [Project record], or MUST run a [Blocking]
 silenced through it without an entry appearing in the [Project record]: an inline
 [Suppression] comment, a per-line ignore and a silently generated [Baseline] all do. The
 obligation covers every such route in every [Detector] the [Toolchain] routes a
-[Defence] through. Irreducible cases MUST be directed to the [Project record],
+[Defence] through. The routes are the ones each [Detector] offers: where a [Detector]'s only
+route is an ignore comment, this clause is met for that [Detector] once the comment is disabled
+or a [Blocking] [Defence] fails on its use, and nothing is owed for a route it does not have.
+Irreducible cases MUST be directed to the [Project record],
 where clause 6.2 requires a justification.
 
 The [detector specification](DETECTOR-SPEC.md) permits a [Detector] to ship such a route provided
@@ -368,9 +376,9 @@ mistake rather than after it, which is why they are worth stating even as SHOULD
 
 The [Toolchain] MUST run an automated check that blocks its own release. The check covers
 every [Identifier] printed by a [Rule] the [Toolchain] authors or bundles
-as its own [Defence], whatever kind of [Detector] carries it; a [Bundled defence] whose
-documentation is missing is still a [Bundled defence] for this clause, and that gap is what the
-check exists to find. Where a documentation
+as its own [Defence], whatever kind of [Detector] carries it, and it reaches every such [Rule]
+whether or not its documentation exists: a missing page is the failure the check is there to
+find. Where a documentation
 page covers a family of [Identifiers] by a pattern, as clause 6.5 of the
 [detector specification](DETECTOR-SPEC.md) allows, this audit MUST apply the pattern to every
 [Identifier] printed and confirm it lands on that page. A member added to the
@@ -413,7 +421,8 @@ ships, every MUST in section 8 bears on its artefact grade under clause 9.1, not
 project-level verdict is a single grade; which part of the
 [Toolchain] satisfied each clause is evidence for that grade, not a second grade.
 
-**A [Toolchain] [Conforms] with [Agent] support** if it additionally satisfies section 7.
+**A [Toolchain] [Conforms] with [Agent] support** if, in addition, it does each thing section 7
+recommends.
 
 Partial [Conformance] MUST NOT be described as [Conformance]. A [Toolchain] that satisfies most of this
 document is in a normal and respectable condition; it is not [Conforming], and describing it as such
@@ -424,8 +433,9 @@ removes the only value the word has.
 As a project, it follows the method with its own assembled [Toolchain], like any other
 project, and is graded against this document and section 7 of the method specification on that
 basis. As an artefact, what it ships is graded for its consumers: a [Detector] against
-[the detector specification](DETECTOR-SPEC.md), a [Toolchain] against this document as it stands
-when installed into a [Consuming project] with nothing else built around it. The two
+[the detector specification](DETECTOR-SPEC.md), a [Toolchain] against this document, on what the
+shipped [Toolchain] itself supplies once installed into a [Consuming project], counting nothing
+the [Consuming project] adds around it. The two
 verdicts MUST be graded and declared separately, and neither implies the other. Section 8 bears on
 the artefact grade only; clause 5.3 is its project-level counterpart.
 
