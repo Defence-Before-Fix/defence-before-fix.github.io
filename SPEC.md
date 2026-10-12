@@ -1,6 +1,6 @@
 # Defence Before Fix: Method Specification
 
-**Version**: 1.1.0, published 2026-10-02
+**Version**: 1.2.0-dev, unpublished
 **Companion to**: [the detector specification](DETECTOR-SPEC.md), version 1.0.0, and [the toolchain specification](TOOLING-SPEC.md), version 0.2.0
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
@@ -29,7 +29,7 @@ US spelling: **Defense Before Fix**. Abbreviated [DBF] throughout.
 
 ## Status of this document
 
-This is version 1.1.0 of the specification. It is normative: section 3 defines the method,
+This is version 1.2.0-dev of the specification. It is normative: section 3 defines the method,
 section 4 states who decides what, and section 7 defines what [Conformance] means and who may claim
 it.
 
@@ -126,11 +126,11 @@ A report on code that does not carry the [Hazard].
 
 #### Narrowing
 
-Reducing a [Rule]'s scope so it stops reporting code that does not carry the [Hazard]. If the code left out does carry the [Hazard], the reduction is not a [Narrowing] but a [Suppression].
+Reducing a [Rule]'s scope so it stops reporting code that does not carry the [Hazard]. [Narrowing] that excludes code which does carry the [Hazard] is a [Suppression].
 
 #### Suppression
 
-Any means of preventing a [Rule] from reporting an [Instance] that carries the [Hazard]: an ignore comment, an ignore entry, a [Baseline], or a reduction of the [Rule]'s scope that excludes it.
+Any means of preventing a [Rule] from reporting an [Instance] that carries the [Hazard]: an ignore comment, an ignore entry, a [Baseline], or a [Narrowing] that excludes it.
 
 #### Baseline
 
@@ -162,7 +162,7 @@ A [Practitioner] that is an automated system. Everything said of a [Practitioner
 
 #### Owner
 
-Whoever holds authority over a project's [Exceptions] and [Calibrations]. The [Owner] is always a human. The project decides who, and clause 8.7 requires the answer to be findable. Where the project has recorded nobody, the [Owner] is the human who instructed the [Practitioner]. If an [Agent] gave that instruction, the [Owner] is the first human up the chain of instructions that led to it. [Escalation] goes to the [Owner], who takes the decisions section 4 gives the [Owner]. One limit applies to that default. The default [Owner] is usually the person under the same deadline as the [Practitioner], so a decision they take under section 4 to keep an [Instance] unfixed, [Suppress], [Baseline] or remove a [Rule] MUST be recorded in the project record with its justification. That record MUST mark the decision as taken by a default [Owner] and state why nobody better placed was reachable, where the next reader can see who decided and why. Such a decision SHOULD be revisited by someone not under that deadline before the next release. A project that wants the separation section 4 describes names an [Owner]; the default exists so work is not blocked, not to certify that a second judgement was applied.
+Whoever holds authority over a project's [Exceptions] and [Calibrations]. Always a human. The project decides who, and clause 8.7 requires the answer to be findable. Where the project has recorded nobody, the [Owner] is whoever instructed the [Practitioner], and [Escalation] goes there. One limit applies to that default. The default [Owner] is usually the person under the same deadline as the [Practitioner], so a decision they take under section 4 to keep an [Instance] unfixed, [Suppress], [Baseline] or remove a [Rule] MUST be recorded in the project record with its justification. That record MUST mark the decision as taken by a default [Owner] and state why nobody better placed was reachable, where the next reader can see who decided and why. Such a decision SHOULD be revisited by someone not under that deadline before the next release. A project that wants the separation section 4 describes names an [Owner]; the default exists so work is not blocked, not to certify that a second judgement was applied.
 
 #### Escalation
 
@@ -182,9 +182,7 @@ Defence Before Fix applies to a [Defect] when that [Defect] can be attributed to
 idiom or configuration that a [Detector] can be made to recognise.
 
 When it can, building the [Defence] is not optional and MUST be attempted before the [Defect] is
-fixed. The order is section 3's: attribute the [Defect] to a [Class], build the [Rule], prove
-that it fires, run the [Sweep], then fix every [Instance]. This is the substance of the method
-rather than a preliminary to it.
+fixed. This is the substance of the method rather than a preliminary to it.
 
 When it cannot, the [Defect] is outside the method's scope and is fixed conventionally. Not every
 [Defect] is an [Instance] of a detectable pattern, and forcing a [Rule] where no pattern exists
@@ -194,14 +192,12 @@ produces [Detectors] that fire on innocent code, which is worse than having no [
 rather than deciding in advance whether it is expressible. Failing to write a [Rule] that satisfies
 clause 3.1's bounds is itself the evidence that the [Defect] is out of scope, and it is cheaper and
 more reliable than a judgement made before trying. The conclusion that no pattern exists MUST be
-stated in one sentence, naming at least two independent ways of writing the [Rule] that were
-tried, and recorded where the project's other decisions are enumerable under clause 8.7, not
-only with the fix. Two ways of writing the [Rule] are independent when they would miss different
-things. That is the test clause 3.1 applies to its search techniques, but a way of writing the
-[Rule] is not a technique, which clause 3.1 defines as a way of searching for [Instances].
-That conclusion is the cheapest way out of the method and the only one that would otherwise
-leave no trace; enumerating it is how an [Owner] sees an [Agent] routing around the method, and
-naming the ways tried is what lets them judge whether the attempt was one.
+stated in one sentence, naming at least two independent techniques tried at expressing the
+[Rule], in the vocabulary clause 3.1 uses for a search, and recorded where the project's
+other decisions are enumerable under clause 8.7, not only with the fix. It is the cheapest way
+out of the method and the only one that would otherwise leave no trace; enumerating it is how an
+[Owner] sees an [Agent] routing around the method, and naming the techniques is what lets
+them judge whether the attempt was one.
 
 There are three ways out of the method and they are recorded differently. No pattern exists: the
 [Defect] is out of scope under this section, and only the sentence above is recorded. A pattern exists but the
@@ -222,8 +218,8 @@ puts it in front of them. Reporting it in conversation does not satisfy this: th
 ends, and with it the only trace that the [Defect] was ever seen.
 
 **Why**: each of the three ways out costs the [Practitioner] something to take and leaves
-something an [Owner] can read: a recorded sentence naming two ways of writing the [Rule] that
-were tried, or a [Toolchain] gap. Deferral costs nothing, and without this record it would leave nothing, which makes it
+something an [Owner] can read: a recorded sentence naming two techniques tried, or a [Toolchain]
+gap. Deferral costs nothing, and without this record it would leave nothing, which makes it
 cheaper still than the sentence above and unseen from outside. A [Defect] mentioned once and
 never written down cannot be told apart from a [Defect] nobody found, so neither the [Class] nor
 the [Defence] it implies is ever reached.
@@ -232,14 +228,14 @@ the [Defence] it implies is ever reached.
 
 Six clauses, in order. In brief, before the detail:
 
-| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                                                                                     | Goes to the [Owner] under section 4                                                                                                                  |
-| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built, whether a [Runner] check pins the reported behaviour | Leaving the next wider [Rule] unbuilt, unless the [Hazard] cannot arise in the code it would add; leaving the [Rule] narrower than the search showed |
-| 3.2    | Express the [Class] as a [Rule] in the strongest kind of [Detector] that can express it, never a test       | The [Rule], its [Detector] and kind, why it is in a weaker kind than [Semantic] where it is, and any [Toolchain] gap that stopped a bespoke one      | Whether a [Class] that could be defended is left undefended, and a weaker kind where the project requires the [Owner]'s sign-off                     |
-| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                                                                               | Any exclusion whose sentence cannot be written: that is [Suppression]                                                                                |
-| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                                                                                    | Any [Instance] left unfixed, and any [Baseline]                                                                                                      |
-| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point, and the recorded decision behind any [Suppression]                                                  | Removing or disabling the [Rule], and any [Suppression] added to it                                                                                  |
-| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                                                                               | Nothing                                                                                                                                              |
+| Clause | The [Practitioner] MUST                                                                                     | The record shows                                                                                                                                     | Goes to the [Owner] under section 4                                                                                              |
+| ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 3.1    | Name the [Class] the [Defect] belongs to, bounded both ways, after an independent search                    | The [Class], the [Hazard] sentence, the two search techniques, the next wider [Rule] not built, whether a [Runner] check pins the reported behaviour | Whether the next wider [Rule] is built, and whether the [Rule] stays narrower than the search showed                             |
+| 3.2    | Express the [Class] as a [Rule] in the strongest kind of [Detector] that can express it, never a test       | The [Rule], its [Detector] and kind, why it is in a weaker kind than [Semantic] where it is, and any [Toolchain] gap that stopped a bespoke one      | Whether a [Class] that could be defended is left undefended, and a weaker kind where the project requires the [Owner]'s sign-off |
+| 3.3    | Make the [Rule] fire, on the [Instance] or a [Fixture], in a commit of its own                              | The red run, and the sentence behind every [Narrowing]                                                                                               | Any exclusion whose sentence cannot be written: that is [Suppression]                                                            |
+| 3.4    | [Sweep] the whole codebase, record the count, then fix every [Instance]                                     | The count, corroborated, and what was fixed by hand or by pattern                                                                                    | Any [Instance] left unfixed, and any [Baseline]                                                                                  |
+| 3.5    | Make the [Rule] permanent and [Blocking] in the project's own checks                                        | The green run through the project's entry point, and the recorded decision behind any [Suppression]                                                  | Removing or disabling the [Rule], and any [Suppression] added to it                                                              |
+| 3.6    | Print a terse [Message] with a stable [Identifier] that resolves to documentation versioned with the [Rule] | The [Remediation docs]                                                                                                                               | Nothing                                                                                                                          |
 
 The fourth column is what an [Agent] or other [Practitioner] MUST NOT decide alone, clause by
 clause; section 4 states the full list and governs where the two differ.
@@ -319,23 +315,23 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   too narrowly and MUST be widened, unless the independent search below has found no other
   [Instance] and the [Practitioner] records that the [Class] is genuinely singular today. A
   [Rule] that matches exactly one thing is an [Instance] [Detector] wearing a [Rule]'s clothes.
-  A [Rule] drawn to the exact value or name found in the [Defect] also matches exactly one thing,
-  however it is written. Where it stays because the search found nothing wider, the record MUST also name the
-  next wider [Rule], the one with the [Instance]'s distinguishing detail dropped, and state why it
-  was rejected. The reason is one sentence: why the [Hazard] cannot arise in the code the wider
-  [Rule] would add. A search confirms it, as clause 3.3 requires for the sentence behind a
-  [Narrowing]. Where the [Practitioner] is not sure, the decision goes to the [Owner] under section 4.
+  A [Rule] drawn to the exact value or name found in the [Defect] is the same [Narrowing] however
+  it is spelt, and where it stays because the search found nothing wider, the record MUST also name the next
+  wider [Rule], the one with the [Instance]'s distinguishing detail dropped, and state why it was
+  rejected. That rejection is tested as a [Narrowing] is under clause 3.3: a sentence stating why the
+  [Hazard] cannot arise in the code the wider [Rule] would add, confirmed by search, with uncertainty
+  routed upwards under section 4.
 - **Upper bound.** If the [Rule] matches code that does not carry the [Hazard], the [Class] is drawn
   too broadly and MUST be narrowed. [False positives] destroy a [Defence]'s credibility faster than a
   missing [Rule] does. One report on code that does not carry the [Hazard] is enough; there is no
   tolerated rate.
 
-**The bounds say how broad the [Class] is. Its level is a separate question: does the [Class]
-name the failure the report describes, or the mechanism in the code that caused it?**
-Where the [Defect] was reported as a behaviour, such as a check that reported clean having run
-nothing, or a process that stopped before its work, a [Detector] usually cannot read that failure.
-The [Class] it can read sits one level lower: the mechanism of this [Instance], not the failure
-the report opens with. That [Class] is the right one to build, because no [Detector] reads "this check still produces
+**Both bounds measure breadth within one level; the level itself is a separate question, answered
+against the report.**
+Where the [Defect] was reported as a behaviour, a check that reported clean having run nothing, a
+process that stopped before its work, the [Class] a [Detector] can read usually sits one level
+below that [Hazard]: the mechanism of this [Instance], not the failure the report opens with.
+That [Class] is the right one to build, because no [Detector] reads "this check still produces
 its signal". It is not the whole answer. The record MUST state whether the reported behaviour is also
 pinned by a check a [Runner] executes, under section 6, either one added with this remediation or
 an existing one named, and where neither is offered, why not. A [Class] drawn at the mechanism with
@@ -359,24 +355,22 @@ second technique that turns up new [Instances] means a third is owed; a second t
 new means the search is done. That is a test the [Practitioner] can apply and record without a
 threshold, and it is the standard clause 3.4 refers back to.
 
-A technique, here and wherever this specification uses the word, is a way of searching the
-codebase for [Instances]. Two techniques are
-independent when they would miss different things. A text search for the token and a reading of
-the code that consumes the value are independent, and asking someone who knows the system is a
-third. Two text searches for two spellings of the same token are one technique, because they miss
-the same things. For a [Class] defined by how code is spelt, though, searching for each other
-common spelling of the idiom is a technique of its own, because there the spelling is the [Class]
-itself.
-
-A technique counts only if it does not run the [Detector] under proof in any configuration and
-would exist unchanged had the [Rule] never been written, because this search exists to check the
-[Rule]. A run of the [Rule], however wide, is therefore never a technique. Such a run belongs to
-the proof of clause 3.3 or the [Sweep] of clause 3.4, and a clean one shows nothing about whether
-this search is saturated.
-
+Two techniques are independent when they would miss different things. A text search for the token
+and a reading of the code paths that consume the value are independent; two text searches for two
+spellings of the same token are one technique; asking someone who knows the system is a third. For a
+[Class] defined by how code is spelt, writing the idiom the other ways it is commonly spelt and searching
+the codebase for each of them is a technique, because a search for one spelling misses every other;
+whether the [Rule] catches those spellings is the confirmation step, not the technique. The
+[Rule] itself is never one of the techniques, because the search exists to check the [Rule].
+A clean run of the [Rule] is therefore not evidence of saturation either: "the [Rule] found nothing
+the reading had missed" is one technique and a [Rule] run, not two techniques, and the stopping
+criterion cannot be applied to it.
 The record MUST name both techniques, chosen before the [Rule] is run against the codebase, and
-MUST state what each found that the other could not have checked. Where a later technique shows
-that two earlier checks shared a blind spot, they were one technique, and a third is owed.
+MUST state what each found that the other could not have checked. A technique counts only if it does
+not invoke the [Detector] under proof in any configuration and would exist unchanged had the
+[Rule] never been written; a [Sweep]-shaped run of the [Rule], however comprehensive it looks, is
+never one of the two. Where a later technique shows that two earlier checks shared a blind spot, they
+were one technique, and a third is owed.
 
 That turns the single-[Instance] case into something checkable rather than a matter of taste. If an
 independent search finds [Instances] the [Rule] missed, the [Class] was drawn too narrowly and the [Rule]
@@ -472,24 +466,13 @@ A gap is recorded in the project record where the [Toolchain] defines one, as th
 then the only requirement is that somebody deciding what to invest in the [Toolchain] would find
 it. A gap recorded where nobody looks has been forgotten with extra steps.
 
-There are two kinds of gap and they lead to different work. The first is the [Toolchain] gap
-of the paragraphs above: the language has no extensible [Detector] of a kind that can express the
-[Rule] within clause 3.1's bounds, and no bespoke one is practical, so the [Class] waits for one.
-The second is a mechanism gap: the project's [Toolchain] lacks a mechanism the
-[toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an [Identifier]
-resolver. A mechanism gap does not put the [Class] out of reach. The [Practitioner] still builds
-the [Rule] and records the mechanism gap alongside it. Where the missing mechanism would have
-served clause 3.3 or 3.6, the [Practitioner] uses a substitute only where that clause allows one,
-and only for what it stands in for. Clause 3.3's acceptance or smoke check that demonstrates the
-[Rule] firing is allowed only where
-a [Detector] makes [Fixture]-based testing impractical, and it stands in only for the
-[Fixture]-based test that clause's test-first paragraph asks for. Part A's red run, and Part C's
-proof using [Fixture] code where the pattern is absent, are still owed, and the smoke check may
-be the run that makes either, run on the code that proof names: the originating [Instance] for
-Part A, [Fixture] code for Part C. Clause 3.6's [Identifier]
-in a form that can be followed without a resolver, such as an anchor in a documentation file,
-stands in only for the resolver. Every other obligation of those clauses still applies in full.
-A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
+There are two kinds of gap and they lead to different work. The language having no extensible
+[Detector] of a kind that can express the [Rule] within clause 3.1's bounds, and no practical
+bespoke one, is the gap above, and the [Class] waits for one. The project's [Toolchain]
+lacking a mechanism the [toolchain specification](TOOLING-SPEC.md) requires, such as a proving harness or an
+[Identifier] resolver, is a mechanism gap, and it does not put the [Class] out of reach: the
+[Practitioner] builds the [Rule], uses the substitutes clauses 3.3 and 3.6 already allow, and records
+the mechanism gap alongside it. A mechanism gap that is also a breach of the [toolchain specification](TOOLING-SPEC.md)'s
 own obligations, such as a [Toolchain] that cannot run its [Defences] on its own source, is recorded
 against the [Toolchain]'s claim under section 7 as well, because that is the fact its [Owner] needs.
 Where that record lives is the [Toolchain]'s own [Conformance] declaration, under the
@@ -544,11 +527,6 @@ claim the remediation [Conforms]. How the project merges is its own business und
 what must survive the merge is not.
 
 **Part B: [Narrowing].**
-
-**An inline ignore comment, an ignore entry or a [Baseline] left over an [Instance] that carries the [Hazard] is not judged under this clause.**
-Leaving an [Instance] that carries the [Hazard] in place behind one is not a [Narrowing], whatever
-note accompanies it. It is a [Suppression] of the [Instance]. Clauses 3.4 and 3.5 and section 4
-govern it, and it does not fail this clause.
 
 **The decision comes first, and it turns on one sentence.** Can the [Practitioner] write down why
 the [Hazard] cannot arise in the code being excluded? If they can, the exclusion is a [Narrowing],
@@ -638,10 +616,9 @@ Where a [Detector] makes [Fixture]-based testing impractical, an acceptance or s
 demonstrates the [Rule] firing is an acceptable substitute.
 
 [Fixtures] are part of the [Rule] and are versioned with it, under the co-location requirement in
-clause 3.6. A [Fixture] is input to the [Rule]'s test, not part of the code the [Defence] enforces.
-The red run of Part A may report it; that is the proof. The [Sweep] excludes it under clause 3.4,
-and the green run under clause 3.5 does not report it as an [Instance]. So there is no circularity in a [Fixture]
-that deliberately fails the [Rule] it proves. Writing the [Fixture] is the [Practitioner]'s own decision under section 4, not something
+clause 3.6. A [Fixture] is input to the [Rule]'s test, not part of the code the [Defence] enforces:
+the [Sweep] excludes it under clause 3.4, and the enforced run does not report it, so there is no
+circularity in a [Fixture] that deliberately fails the [Rule] it proves. Writing the [Fixture] is the [Practitioner]'s own decision under section 4, not something
 to refer upwards.
 
 Where they sit within the repository is the project's business. **Absent a convention, put them
@@ -715,8 +692,8 @@ been seen. "All examined" with nothing behind it is a claim, not a record.
 stops only when the next [Instance] needs a decision they lack the authority to make, and section 4
 says which decisions those are; a hundred [Instances], or a thousand, is work rather than a
 decision. A [Baseline] of the existing [Instances], so that the [Rule] blocks only new ones, MAY
-be adopted where fixing every [Instance] is genuinely unfeasible. That is rare: fixing every
-[Instance] becomes unfeasible only when the change it needs is very large indeed. **No threshold is given here deliberately.** Any figure would be
+be adopted where fixing every [Instance] is genuinely unfeasible, and the scale at which that
+becomes true is tremendous. **No threshold is given here deliberately.** Any figure would be
 calibrated to the [Toolchain] of the moment rather than to anything durable, and the honest measure is
 the size of the change rather than the hours it would take, since the hours depend entirely on what
 is doing the work.
@@ -769,17 +746,14 @@ that invocation covers, and see the [Rule] reported there. A [Toolchain] that wr
 [Detectors] in its own command is asking for that command to be used, and a [Practitioner]
 who bypasses it has proven the [Rule] and not the [Defence].
 
-A [Bundled defence] is a [Defence] that a shipped [Toolchain] enables by default in every
-project that installs it from somebody else. Its enforcement can be demonstrated through the
-entry point of any project the [Toolchain] is genuinely installed into, whether the [Toolchain]'s
-own or somebody else's, since that is where the [Rule] will be enforced. A project created for the
-purpose, with the [Toolchain] installed into it from the source under test, is such a project, so
-a [Toolchain] with no consumer yet is not excused. Where a mechanism gap, as clause 3.2 defines
-it, stops the [Toolchain] running its own entry point on its own source, the demonstration is made
-through the entry point of another project the [Toolchain] is genuinely installed into, and is
-owed there in full. Clause 3.2 lets the [Practitioner] use the substitutes it names for clauses
-3.3 and 3.6, under the conditions it sets; it allows none for this clause.
-The demonstration here is through an entry point or it is not made.
+For a [Bundled defence], the project whose entry point demonstrates it is any project the
+[Toolchain] is genuinely installed into, the [Consuming project] included, since that is
+where the [Rule] will be enforced. A mechanism gap that stops the [Toolchain] running its own entry
+point on its own source moves the demonstration to such a project; it does not weaken it. The
+substitutes clause 3.2 allows, for proving under clause 3.3 and for resolution under clause 3.6, do
+not extend to this clause: the demonstration here is through an entry point or it is not made. A
+project created for the purpose, with the [Toolchain] installed into it from the source under
+test, is such a project, so a [Toolchain] with no consumer yet is not excused.
 
 **Why**: the purpose is that the mistakes of the past become structurally impossible to repeat, and
 a [Warning] is not structure. A [Warning] is a suggestion, and suggestions decay under deadline
@@ -790,8 +764,7 @@ pressure, which is the condition under which the original [Defect] was written.
 The failure [Message] MUST be terse, and it MUST carry a stable [Identifier] that resolves to
 [Remediation docs] shipped with the project.
 
-That documentation MUST state three things, besides what clause 3.2 adds for a [Rule] the
-[Practitioner] writes: what the [Rule] is about, why it exists, and how to
+That documentation MUST state three things: what the [Rule] is about, why it exists, and how to
 fix a violation correctly using the project's preferred approach.
 
 A [Practitioner] who finds that an existing [Rule]'s printed [Identifier] does not resolve records
@@ -808,9 +781,9 @@ something else. The documentation carries the reasoning and the remedy; it is re
 somebody who has decided to understand the [Rule], and it is maintained as the project's thinking
 develops. Anything that would grow over time belongs in the documentation.
 
-**A [Rule]'s documentation MUST be versioned with the [Rule].** The two are one artefact: they
-live in the same repository and are committed together, or in a library the project depends on at
-a clearly tracked version. A [Rule] carries knowledge specific to the project it defends, and its
+**A [Rule] and its documentation are one artefact and MUST be versioned as one.** They live in the
+same repository and are committed together, or in a library the project depends on at a clearly
+tracked version. A [Rule] carries knowledge specific to the project it defends, and its
 documentation is where most of that knowledge actually sits, so anything that lets the two drift
 apart destroys the value of both. The same applies to a [Rule]'s [Fixtures] under clause 3.3.
 
@@ -854,19 +827,18 @@ they do not.
   3.4).
 - The wording of the failure [Message] and the [Remediation docs] (clause 3.6).
 
-**Decisions that MUST go to the [Owner]**, which the [Practitioner] never takes alone:
+**Decisions that MUST go to whoever owns the codebase:**
 
 - Adopting a [Baseline], in whole or in part (clause 3.4).
 - Suppressing an [Instance], or removing or disabling an existing [Rule] (clauses 3.4 and 3.5).
 - Accepting a known [Instance] as unfixed for any reason.
 - Deciding that a [Class] will not be defended at all, where a [Rule] for it is achievable.
-- Leaving unbuilt the next wider [Rule] that clause 3.1 requires the [Practitioner] to name,
-  unless they have written why the [Hazard] cannot arise in the code it would add and confirmed it
-  by search, as clause 3.1 requires. That no [Instance] of it exists today is not enough. It is a
-  reason not to widen unasked, not authority to leave the wider [Rule] out, and recording it as a
-  known gap does not make it the [Practitioner]'s decision. This bullet covers only that one wider
-  [Rule], already named on the record. It does not reopen a [Class] whose bounds a [Hazard]
-  sentence has settled.
+- Leaving unbuilt the next wider [Rule] that clause 3.1 required the [Practitioner] to name, where
+  it was rejected because no [Instance] of it exists today rather than because the [Hazard] cannot
+  arise there. The absence of an [Instance] is the [Practitioner]'s reason not to widen unasked; it
+  is not authority to exclude the extension, and recording it as a known gap does not change whose
+  decision it is. This does not reopen a [Class] whose bounds a [Hazard] sentence has settled, and
+  it reaches no further than the one wider [Rule] already on the record.
 - Leaving a [Rule] narrower than an independent search under clause 3.1 showed it should be, where
   the reason is that the wider check is harder to build without [False positives] rather
   than that the [Hazard] is absent from what it would add. The [Instances] the search found are
@@ -879,8 +851,8 @@ knowingly leave an [Instance] unfixed on its own authority, whatever the [Instan
 be.
 
 **The default position is that none of these are permitted at all.** [Suppressions], [Baselines] and
-every other means of evading a [Defence] are not practices with a threshold governing their use; they are
-[Exceptions] to the method, and the standing answer is no. An [Exception] exists only where the [Owner] has
+every other means of evading a [Defence] are not techniques with a threshold governing their use; they are
+[Exceptions] to the method, and the standing answer is no. An [Exception] exists only where a human has
 discussed it, agreed it and documented it for that project. Nothing an [Agent] concludes on its own
 creates one.
 
@@ -977,13 +949,12 @@ evidence is gone and the opportunity closes with it.
 the verdict that they were rests on reproduction, as this section closes by requiring, not on the
 report.
 
-**A [Defence] [Conforms]** if it satisfies each of clauses 3.1, 3.2, 3.3, 3.5 and 3.6 in full.
-In brief: it is drawn to a [Class] within both bounds and not to the reported [Instance], it is
-evaluated by reading code, in the kind of [Detector] clause 3.2 requires, it was proven to fire
-against either the originating [Instance] or [Fixture] code, it is a permanent part of the
-project's checks and fails rather than warns, every [Suppression] it carries is covered by a
-recorded decision, and its [Message] is terse and resolves to [Remediation docs] versioned
-alongside it. A [Defence] can [Conform] whilst the [Sweep] is incomplete; what that describes is a
+**A [Defence] [Conforms]** if it satisfies clauses 3.1, 3.2, 3.3, 3.5 and 3.6: it is drawn to a
+[Class] within both bounds and not to the reported [Instance], it is evaluated by reading code, in
+the kind of [Detector] clause 3.2 requires, it was proven to fire against either the originating
+[Instance] or [Fixture] code, it fails rather
+than warns, and its [Message] is terse and resolves to [Remediation docs] versioned alongside
+it. A [Defence] can [Conform] whilst the [Sweep] is incomplete; what that describes is a
 [Conforming] [Defence] over a codebase with known [Instances], which section 4 requires to be
 recorded, not a [Conforming] remediation.
 
@@ -1121,7 +1092,7 @@ re-open it.
 
 ## 9. Citation
 
-> Edmonds, Joseph. *Defence Before Fix*, version 1.1.0. First published 22 February 2026.
+> Edmonds, Joseph. *Defence Before Fix*, version 1.2.0-dev. First published 22 February 2026.
 > <https://ltscommerce.dev>
 
 ## Appendix A: Instructing an agent
@@ -1220,6 +1191,7 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 [conformance]: #conform
 [conforming]: #conform
 [conforms]: #conform
+[consuming project]: TOOLING-SPEC.md#consuming-project
 [coverage]: #coverage
 [dbf]: #dbf
 [defect]: #defect

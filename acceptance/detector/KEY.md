@@ -21,9 +21,12 @@ no bullet making an assertion listed below as wrong, is a correct restatement.
 - Resolve a printed identifier to documentation; for bundled rules from the installed copy,
   offline, with the documentation shipped and versioned with the rule ([6.1](../../DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) to [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together)).
 - Make any inline suppression route detectable or disableable ([7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)).
+- A verdict on the detector names its kind, semantic, syntactic or textual, in each
+  configuration it grades ([8.2](../../DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades)); the obligation is on whoever gives the verdict, as section
+  [9](../../DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) says, and a bullet that puts it on the detector, or on a verdict, names it.
 
-Wrong if it asserts: the detector must enforce a project's suppression policy; the detector must
-declare a version to conform; the detector must list a project's active defences or produce an
+Wrong if it asserts: the detector must be semantic, or of any one kind, to conform; the detector
+must enforce a project's suppression policy; the detector must declare a version to conform; the detector must list a project's active defences or produce an
 agent summary (those belong to the toolchain specification). A bullet that states what
 conformance means, or restates a SHOULD as advice, asserts no obligation and is neither correct
 nor wrong.
@@ -77,7 +80,8 @@ Wrong readings the text invites, which count against the document on one reader:
 
 No grade above carries a condition on the reasoning: the accepted grade is correct whatever the
 reasoning, and a reader who adds a caveat about what the fixture does not say and still gives
-the accepted grade is correct.
+the accepted grade is correct. The fixture does not say what Lintomatic can see: a reader who
+names its kind as unknown, or names none, is not marked on it.
 
 The two answers the question then asks for, each with the condition its reason must meet:
 
@@ -92,6 +96,9 @@ Wrong readings the text invites, which count against the document on one reader:
   resolve, which has read the clause as admitting a proportion.
 - [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) graded No with reasoning that says the comment takes no reason and quotes [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) or [7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason),
   which has read [7.2](../../DETECTOR-SPEC.md#72-an-inline-suppression-route-should-require-a-written-reason)'s SHOULD into [7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable).
+- The section [8](../../DETECTOR-SPEC.md#8-conformance) verdict made to turn on Lintomatic's kind, with reasoning that a detector of some
+  kind cannot conform or that the kind is a level of conformance, which has read [8.2](../../DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades) as
+  changing the verdict: "the kind is not a level of Conformance and does not change the verdict".
 
 A reader who grades [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together) Yes because they missed the last paragraph of the fixture has misread the
 fixture, which is the reader's miss.

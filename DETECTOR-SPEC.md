@@ -1,6 +1,6 @@
 # Defence Before Fix: Detector Specification
 
-**Version**: 1.0.0, published 2026-09-08
+**Version**: 1.1.0-dev, unpublished
 **Companion to**: [the method specification](SPEC.md), version 1.1.0, and [the toolchain specification](TOOLING-SPEC.md), version 0.2.0
 **Author**: [Joseph Edmonds](https://ltscommerce.dev), [Edmonds Commerce](https://edmondscommerce.co.uk)
 **Coined**: 22 February 2026, in [the original article](https://ltscommerce.dev/articles/defence-before-fix-static-analysis)
@@ -159,10 +159,7 @@ any.
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
-still carry a usable summary, each finding in it with where it is and its [Identifier]. The
-summary need not list every finding. If it leaves any finding out, the output MUST also say where
-the rest can be read. Output that lists every finding meets this clause, even where extra detail,
-such as a code snippet, is written only to a file the output does not name.
+carry both a usable summary and the location of the remainder.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
 report that arrives after the decision it was meant to inform.
@@ -188,27 +185,23 @@ Two cases, by who wrote the [Rule]:
 | The project's own | The project                    | Print the [Identifier] unaltered; the lookup is the [Toolchain]'s to give |
 
 In both, the mechanism is keyed on **the [Identifier] exactly as printed**. A command, an index
-file or a URL are all acceptable forms. This clause asks for the mechanism, not for every page.
-Where the mechanism works but a [Bundled rule]'s [Identifier] has no documentation to resolve
-to, that fails clause 6.3, not this clause; for a project's own [Rule], the missing
-documentation is the project's to write. Each case in turn:
+file or a URL are all acceptable forms. Each case in turn:
 
 **For a [Bundled rule]**, the [Detector] supplies the documentation and the
 lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier]
 presented alone, because the reader who needs it most has the [Identifier] from a log, a
-ticket or a colleague and not the [Message]. Printing a documentation path in the [Message] is
-not enough. It helps only a reader who has the [Message]; the [Identifier] alone still leads
-nowhere.
+ticket or a colleague and not the [Message]. A [Message] that carries its own
+documentation path resolves that [Message], not the [Identifier].
 
-**For a project's own [Rule]**, the [Detector] cannot know the documentation, so this clause
-asks of it only the half it can give: the [Identifier] printed unaltered, as clause 4.3 already
-requires, with no transformation of it. For such a [Rule], that is everything this clause asks of
-the [Detector]; the resolving itself is done by the project's [Toolchain], not by the [Detector].
-Where the project has chosen a URL as the [Identifier], the [Detector] prints that URL unaltered
-like any other [Identifier]. What this clause forbids is a documentation path printed alongside a
-shorter [Identifier] that cannot be looked up on its own. A [Detector] that offers the lookup as
-well has gone further than this clause asks. The [toolchain specification](TOOLING-SPEC.md) states
-the [Toolchain]'s side, in its clause 4.2; it is not needed to judge a [Detector] here.
+**For a project's own [Rule]**, the [Detector] cannot know the documentation, so what
+it owes is the half it can give: the [Identifier] printed unaltered under clause 4.3, and no
+transformation of it. Where the [Identifier] is itself a URL, as method clause 3.6 allows,
+the [Detector] prints that URL and has done what this clause asks. What this clause forbids is
+a documentation path printed alongside a shorter [Identifier] that cannot be looked up on its
+own. The lookup for such
+a [Rule] is an obligation on the project's assembled [Toolchain], under clause 4.2
+of the [toolchain specification](TOOLING-SPEC.md), and a [Detector] that offers it as well has
+gone further than this clause asks.
 
 **Why**: method specification clause 8.3 requires the [Identifier] to resolve without a human.
 An index keyed on anything else does not resolve it. This is the most commonly failed clause in this
@@ -217,11 +210,6 @@ document and it fails in a specific way: documentation exists, is genuinely good
 given. The lookup they can actually perform is the only one that counts.
 
 ### 6.2 Resolution of a bundled rule's identifier MUST work from the installed copy, without network access
-
-Resolution reads the documentation that clause 6.3 requires to ship with the [Rule], at a version
-tracked together with it, and the installed copy is where that documentation is. This clause asks
-that the lookup reach what is there without network access. A page missing from that
-documentation fails clause 6.3, not this clause.
 
 **Why**: an [Agent] working offline, behind a proxy, or against a URL that has since moved needs
 the answer to be on disk. A dependency the project already installed is on disk by definition. A
@@ -250,7 +238,7 @@ An automated check over every [Identifier] a [Bundled rule] can print, applying 
 family list or pattern of clause 6.5 where one is used, that blocks the release when any of them
 lands on no page.
 
-**Why**: clause 6.3 is the clause most easily believed to be satisfied whilst being broken, because
+**Why**: clause 6.1 is the clause most easily believed to be satisfied whilst being broken, because
 the documentation is written by the same person who wrote the [Rule] and its absence is
 invisible from the inside. Where the [Detector] is shipped inside a [Toolchain],
 the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a MUST for the [Toolchain]; a
@@ -280,21 +268,12 @@ nothing to run.
 
 ### 7.1 A detector MAY offer an inline suppression route, but MUST make it detectable or disableable
 
-An inline ignore comment, a per-line directive and a generated [Baseline] are all inline
-[Suppression] routes, and the [Detector] MAY ship them. For each route it ships, it need not
-remove or forbid the route, but it MUST do at least one of two things: let the project switch the
-route off in the [Detector]'s configuration, or make the route detectable. Either alone satisfies
-this clause; neither requires the [Detector] to remove or forbid the route. A route that can be
-neither switched off nor detected does not [Conform].
-
-A route is detectable when the project can find every use of it, in one of two ways. The first is
-a [Rule] the project writes for itself, under clause 4.1, and the [Detector] runs; the [Detector]
-need not ship the [Rule] itself. That way works only where such a [Rule] can match every use of
-the route: for an ignore comment or a per-line directive, each place it is written in the code;
-for a generated [Baseline], each of its entries. A [Detector] whose [Rules] never see comments, for example, cannot make an
-ignore comment detectable this way. The second is a mechanical check that the [Detector] itself documents, such as a
-text search it documents for the route's spelling. Switching the route off or detecting it is what
-lets a project that decides to forbid the route enforce that decision.
+An inline ignore comment, a per-line directive and a generated [Baseline] are all such
+routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
+alone satisfies this clause: make the route disableable by configuration; or make the route
+detectable, by a [Rule] the project can write in the [Detector] itself or by a mechanical check
+the [Detector] documents. Either lets a project which decides to forbid the route enforce that
+decision. A route that can be neither switched off nor seen does not [Conform].
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
@@ -317,8 +296,7 @@ minute at the moment they have the reason in mind, and it is the only thing that
 
 ## 8. Conformance
 
-**A [Detector] [Conforms]** if it satisfies every MUST in sections 4 to 7. It is judged on the
-evidence, and a declaration under clause 8.1 is optional.
+**A [Detector] [Conforms]** if it satisfies every MUST in sections 4 to 7.
 
 Partial [Conformance] MUST NOT be described as [Conformance]. A [Detector]
 that satisfies most of this document is in a normal and respectable condition; it is not
@@ -333,18 +311,18 @@ for a [Detector].
 ### 8.1 A maintainer MAY declare the version of this document the detector conforms to, and the declaration records known gaps
 
 The declaration is machine-readable, in whatever form the [Detector]'s ecosystem uses to
-record dependencies. The same declaration is where a known gap is recorded. A gap is a MUST in
-sections 4 to 7 that the [Detector] does not satisfy. Once its maintainer knows of a gap, from the
-[Detector]'s own checks or from a [Practitioner]'s report under the method's clause 3.2, a
-[Detector] that declares a version MUST record the gap alongside that version, in the same file
-as the declaration or in a file the declaration names. A declaration is the maintainer's claim.
-One that records no gap claims [Conformance]; one that records a gap does not, and says where the
-[Detector] stands. A [Detector] with no declaration claims nothing, either way.
+record dependencies. The same declaration is where a gap against this document is recorded once it is
+known: a [Detector] that has learnt, from its own checks or from a [Practitioner]'s
+report under the method's clause 3.2, that it fails a MUST in sections 4 to 7 MUST record that gap
+alongside the version it declares, in the same file or one it names. A declaration with a non-empty
+gap record is a statement of where the [Detector] stands and is not a claim of
+[Conformance].
 
-A [Detector] that predates this document, or whose maintainer has never read it, MAY be graded
-[Conforming] on evidence: a declaration is optional. Anyone may grade a [Detector], by checking it
-against the clauses above. The verdict rests on that check, not on what a declaration claims,
-whether or not the [Detector] has one. A declaration tells the reader what the maintainer believes and what they know to be missing;
+The declaration is optional. It is how a maintainer claims [Conformance]; it is not a
+condition of it. A [Detector] that predates this document, or whose maintainer has never read
+it, MAY be graded [Conforming] on evidence by anyone who exercises the clauses above against
+it, and a verdict on any [Detector], declared or not, rests on that exercise and not on the
+claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
 the reader still runs the [Harness].
 
 The shape is illustrative rather than prescribed. In a Composer manifest:
