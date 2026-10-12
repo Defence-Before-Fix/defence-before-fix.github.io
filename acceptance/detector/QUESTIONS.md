@@ -10,14 +10,15 @@ In your own words and in at most six bullets, what does this document require of
 
 ## 2. Load-bearing statements
 
-Answer each in one sentence, followed by the sentence of the document you are relying on, quoted.
+Answer each part of each question in a sentence or two, then quote the sentence or sentences of
+the document you are relying on.
 
 - 2a. What does it mean for a detector to conform, and can a detector that was written before
   this document existed, and has never heard of it, conform?
 - 2b. A detector ships an inline ignore comment. What must the detector do about that route for
-  it to conform?
-- 2c. Where must the documentation for a bundled rule's identifier live, and must it be
-  reachable without network access?
+  it to conform, and is doing one of those things enough?
+- 2c. Where must the documentation for a bundled rule's identifier live, at what version, and
+  must it be reachable without network access?
 
 ## 3. Application
 

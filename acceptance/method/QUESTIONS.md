@@ -11,7 +11,8 @@ do when they are handed a defect?
 
 ## 2. Load-bearing statements
 
-Answer each in one sentence, followed by the sentence of the document you are relying on, quoted.
+Answer each part of each question in a sentence or two, then quote the sentence or sentences of
+the document you are relying on.
 
 - 2a. What does a practitioner do before fixing the defect they were handed, and in what order?
 - 2b. Who may adopt a baseline or suppress an instance, and may an agent do so on its own

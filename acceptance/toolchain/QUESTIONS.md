@@ -11,7 +11,8 @@ toolchain?
 
 ## 2. Load-bearing statements
 
-Answer each in one sentence, followed by the sentence of the document you are relying on, quoted.
+Answer each part of each question in a sentence or two, then quote the sentence or sentences of
+the document you are relying on.
 
 - 2a. At what level is toolchain conformance measured, and what is the toolchain?
 - 2b. A project's tooling is assembled from a third-party detector, a first-party package and
