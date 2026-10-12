@@ -158,10 +158,10 @@ any.
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
 carry a usable summary and, where the summary leaves any finding out, the location of the
-remainder. The remainder is the findings the summary leaves out. Where the output prints every finding, each with where it is and its
-[Identifier], there is no remainder. A fuller report written elsewhere, such as a page with a
-code snippet for each finding, only adds detail to findings the output already carries; it is
-not a remainder, and the output need not name it.
+remainder. A summary is usable when each finding in it carries where it is and its
+[Identifier]. The remainder is the findings the summary leaves out. Where the output prints
+every finding, there is no remainder. A fuller report written elsewhere, such as a page with a
+code snippet for each finding, is not a remainder, and the output need not name it.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
 report that arrives after the decision it was meant to inform.
@@ -280,14 +280,12 @@ detectable, by a bespoke [Rule] the project writes for the [Detector] under clau
 mechanical check the [Detector] documents. Either lets a project which decides to forbid the
 route enforce that decision. A route that can be neither switched off nor seen does not [Conform].
 
-A route is detectable when the project can find every use of it. The first way is a bespoke
-[Rule]: the project registers a [Rule] of its own, as clause 4.1 provides for, that matches the
-route wherever it is used, and the [Detector] runs it like any other bespoke [Rule]; the
-[Detector] ships no such [Rule] itself, and need not. That way is open only where the
-[Detector]'s [Rules] can see the route: a [Detector] whose [Rules] never see comments cannot make
-an ignore comment detectable this way. The second way is a mechanical check the [Detector]
-documents, such as a text search for the route's spelling that the [Detector]'s documentation
-gives.
+A route is detectable when the project can find every use of it, in either of two ways: by a
+bespoke [Rule] the project registers under clause 4.1 that matches the route wherever it is
+used, which the [Detector] runs like any other bespoke [Rule] and need not ship itself; or by a
+mechanical check the [Detector] documents, such as a text search for the route's spelling. The
+first way needs the [Detector]'s [Rules] to be able to match the route's text, so a [Detector]
+whose [Rules] never see comments offers only the second for an ignore comment.
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
