@@ -21,9 +21,13 @@ no bullet making an assertion listed below as wrong, is a correct restatement.
   than only mentioning it (section [2](../../SPEC.md#2-when-the-method-applies)).
 - Take a baseline, a suppression or an instance left unfixed to the owner, never on the
   practitioner's own authority (section [4](../../SPEC.md#4-authority-which-decisions-belong-to-whom)).
+- Fix the original defect conventionally, with a test that reproduces it, once the defence is in
+  place (sections [2](../../SPEC.md#2-when-the-method-applies) and [6](../../SPEC.md#6-relationship-to-test-driven-development)).
 
 Wrong if it asserts: the practitioner fixes the reported instance first and defends afterwards;
-a test may serve as the detector; an agent may baseline the remaining instances.
+a test may serve as the detector; an agent may baseline the remaining instances. A bullet that
+says the verdict on a remediation rests on reproduction (section [7](../../SPEC.md#7-conformance)) describes the reviewer,
+not the practitioner, and is neither correct nor wrong.
 
 Wrong readings the text invites, which count against the document on one reader: none named.
 
@@ -36,7 +40,8 @@ Wrong readings the text invites, which count against the document on one reader:
   order."; [3.4](../../SPEC.md#34-sweep-the-codebase-then-fix-every-instance): "The Practitioner MUST run the Rule across the entire codebase and record the
   total Instance count before fixing anything, and MUST then fix every Instance found rather
   than only the one". An answer that names the steps by their clause numbers in order states
-  both elements.
+  both elements; one that says only that section [3](../../SPEC.md#3-the-method)'s six clauses are followed in order,
+  naming no step, does not state element (1).
 - **2b.** Required: (1) the owner of the codebase, the human who holds that authority; (2) no,
   an agent may not do so on its own authority. Wrong if it lets the practitioner or an agent
   decide because the count was small, because the project recorded no owner, or at all. Key
