@@ -48,6 +48,11 @@ Changes are recorded in the changelog at the end.
 The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are to be interpreted as described in
 RFC 2119.
 
+Every capitalised term links to its definition. A term this section does not define, such as
+[Rule harness], [Bundled defence] or [Consuming project], links to its entry in the
+[detector specification](DETECTOR-SPEC.md) or the [toolchain specification](TOOLING-SPEC.md), and
+the sentence that carries it says what the reader needs without the link.
+
 #### DBF
 
 The acronym for Defence Before Fix, used as shorthand for this method and for anything built under it. A [DBF] [Rule] is a [Rule] as this specification defines it; a [DBF] [Toolchain] is one that [Conforms] to the [Toolchain] specification; a [DBF] project is one that [Conforms] to section 7.
@@ -701,9 +706,11 @@ that invocation covers, and see the [Rule] reported there. A [Toolchain] that wr
 [Detectors] in its own command is asking for that command to be used, and a [Practitioner]
 who bypasses it has proven the [Rule] and not the [Defence].
 
-For a [Bundled defence], the project whose entry point demonstrates it is any project the
-[Toolchain] is genuinely installed into, the [Consuming project] included, since that is
-where the [Rule] will be enforced. A mechanism gap that stops the [Toolchain] running its own entry
+A [Bundled defence] is one a shipped [Toolchain] carries into every project that installs it,
+and a [Consuming project] is such a project; both terms are the [toolchain specification](TOOLING-SPEC.md)'s.
+For a [Bundled defence], the entry point through which it is demonstrated is that of any
+project the [Toolchain] is genuinely installed into, the [Consuming project] included, since that
+is where the [Rule] will be enforced. A mechanism gap that stops the [Toolchain] running its own entry
 point on its own source moves the demonstration to such a project; it does not weaken it. The
 substitutes clause 3.2 allows for a mechanism gap, the smoke check that stands in for a
 [Fixture]-based test under clause 3.3 and the [Identifier] that can be followed without a
