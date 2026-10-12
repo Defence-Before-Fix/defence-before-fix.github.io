@@ -8,7 +8,7 @@ update the quotation here in the same commit. `ACCEPTANCE.md` says how each item
 ## 1. Restatement
 
 A bullet is correct when it names one of these obligations. Four or more correct bullets, and no
-bullet asserting an obligation the document does not state, is a correct restatement.
+bullet asserting one the list of wrong assertions below marks wrong, is a correct restatement.
 
 - Support bespoke rules written by the project ([4.1](../../DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it)).
 - Provide a harness that runs a single rule against supplied code ([4.2](../../DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)).
@@ -78,11 +78,12 @@ No grade above carries a condition on the reasoning: the accepted grade is corre
 reasoning, and a reader who adds a caveat about what the fixture does not say and still gives
 the accepted grade is correct.
 
-Section [8](../../DETECTOR-SPEC.md#8-conformance) verdict: **does not conform**; a reader is correct who says so and names [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), the
-two undocumented bundled rules, or partial conformance not counting, as the reason.
+The two answers the question then asks for, each with the condition its reason must meet:
 
-Clause [6.4](../../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation): **does not change the verdict**; a reader is correct who says so and gives as the
-reason that it is a SHOULD, or that the MUST which fails is [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together).
+- **Conformance under section [8](../../DETECTOR-SPEC.md#8-conformance).** Accepted answer: does not conform. Condition: the reason
+  names [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), the two undocumented bundled rules, or partial conformance not counting.
+- **Whether clause [6.4](../../DETECTOR-SPEC.md#64-the-detector-should-fail-its-own-release-if-a-bundled-rule-lacks-resolvable-documentation) changes the verdict.** Accepted answer: it does not. Condition: the reason
+  says that it is a SHOULD, or that the MUST which fails is [6.3](../../DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together).
 
 Wrong readings the text invites, which count against the document on one reader:
 

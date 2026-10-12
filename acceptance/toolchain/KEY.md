@@ -8,7 +8,7 @@ update the quotation here in the same commit. `ACCEPTANCE.md` says how each item
 ## 1. Restatement
 
 A bullet is correct when it names one of these obligations. Four or more correct bullets, and no
-bullet asserting an obligation the document does not state, is a correct restatement.
+bullet asserting one the list of wrong assertions below marks wrong, is a correct restatement.
 
 - Route defences only through detectors that conform to the detector specification, wrapping
   permitted ([4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)).
@@ -66,13 +66,19 @@ Wrong readings the text invites, which count against the document on one reader:
 | [6.2](../../TOOLING-SPEC.md#62-every-exception-in-the-project-record-must-carry-a-written-justification-that-names-the-hazard-and-the-scope-and-the-toolchain-must-reject-a-generic-one) | Partial or No      | Mentions that nothing rejects a generic justification, one that could be pasted onto any entry                                  | A justification is required and an empty one rejected                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | [6.3](../../TOOLING-SPEC.md#63-the-project-record-must-be-enumerable-by-the-same-means-as-the-defences)                                                                                  | Yes                | None                                                                                                                            | `zig-qa list --exceptions` uses the same format and operation as the rule listing                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-Section [9](../../TOOLING-SPEC.md#9-conformance) verdict: **does not conform**; a reader is correct who says so and names [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) or
-[4.2](../../TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) among the failing clauses. **Not with agent support**; a reader is correct who says so because
-section [7](../../TOOLING-SPEC.md#7-agent-context) is not met, there being no summary. **Section [8](../../TOOLING-SPEC.md#8-self-audit) does not apply**; a reader is correct
-who says so because Zigpipe ships nothing to other projects, or because section [8](../../TOOLING-SPEC.md#8-self-audit) bears on
-zig-qa's own artefact grade and not on Zigpipe. **The absence of a declaration does not affect
-the verdict**; a reader is correct who says so. Key quotation, [9.2](../../TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance): "The declaration is
-optional."
+The four answers the question then asks for, each with the condition its reason must meet:
+
+- **Conformance under section [9](../../TOOLING-SPEC.md#9-conformance).** Accepted answer: does not conform. Condition: the reason
+  names [4.1](../../TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) or [4.2](../../TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) among the failing clauses; other clauses named alongside are not marked.
+- **Conformance with agent support.** Accepted answer: no. Condition: the reason says that
+  section [7](../../TOOLING-SPEC.md#7-agent-context) is not met, or that there is no summary.
+- **Whether section [8](../../TOOLING-SPEC.md#8-self-audit) applies.** Accepted answer: it does not. Condition: the reason says that
+  Zigpipe ships nothing to other projects, or that section [8](../../TOOLING-SPEC.md#8-self-audit) bears on zig-qa's own artefact
+  grade and not on Zigpipe.
+- **Whether the absence of a declaration affects the verdict.** Accepted answer: it does not.
+  Condition: the reason says that the declaration is optional, or not a condition of
+  conformance, or that a verdict rests on the evidence. Key quotation, [9.2](../../TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance): "The declaration is
+  optional."
 
 Wrong readings the text invites, which count against the document on one reader:
 

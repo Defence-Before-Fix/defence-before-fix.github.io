@@ -29,7 +29,8 @@ serves that, and a rule that stops it proving that is a defect in this file, fix
   ```
 
   A reader is set aside, and its answers do not count, when its answer text is empty, when its
-  process reports an error, or when the model version it reports is not the cohort's model. A run
+  process reports an error, or when the model version it reports is not the cohort's model, the
+  one version the editor names for the run before its readers start. A run
   with a reader set aside is void: it takes a run number and has a record, and a fresh cohort
   runs. No reader is set aside for any other cause.
 
@@ -54,24 +55,17 @@ asks for nothing the question does not. Each reader answers all of them.
    bullets. Keyed against the key's list of the document's obligations: a bullet is correct when
    it names one of them.
 
-2. **Load-bearing statements.** Three or more questions, fixed per document, each asking for a
-   short answer and the sentence or sentences of the document it rests on, quoted. Each has one
-   or more parts, and the key lists the element an answer must state for each part:
-
-   - `SPEC.md`: what a practitioner does before fixing a defect, in order; who may baseline or
-     suppress, and whether an agent may; what "conforms" means for a remediation and what a
-     verdict rests on.
-   - `DETECTOR-SPEC.md`: what "conforms" means and whether a tool that predates the document can
-     conform; what a detector must do about an inline suppression route and whether one of those
-     things is enough; where a bundled rule's documentation must live, at what version, and
-     whether it must be reachable offline.
-   - `TOOLING-SPEC.md`: where conformance is measured and what the toolchain is; how a grade is
-     assigned when parts come from different sources; how many grades a project that ships
-     tooling has and whether one implies the other.
+2. **Load-bearing statements.** Three or more questions, fixed per document and listed in its
+   question set under `acceptance/`, each asking for a short answer and the sentence or
+   sentences of the document it rests on, quoted. Each has one or more parts, and the key lists
+   the element an answer must state for each part. An obligation is load-bearing, and gets a
+   question, when a reader who misreads it would act against the method; the editor decides, and
+   the pull request that adds the question says why.
 
 3. **Application.** A fixture case supplied with the questions, graded clause by clause with
-   Yes, Partial or No and one line of reasoning. Keyed against the intended verdicts, with the
-   readings the key names as ones the text invites counting against the document.
+   Yes, Partial or No and one line of reasoning, then the verdicts the question set asks for,
+   each with its reason. Keyed against the accepted grades and answers, with the readings the
+   key names as ones the text invites counting against the document.
 
 4. **Confusion.** Any passage the reader found confusing on its one reading, quoted with its
    clause number, and nothing else: not what would make it clearer, not a proposed change.
@@ -98,9 +92,10 @@ unless the editor shows that a rule here was misapplied, and a re-mark says whic
 
 Every mark is given by a rule in this file or in the key, as follows. Where neither settles a
 mark, the marker records the point in the run record and marks it as the open-point rule below
-says, and the editor settles it in this file or in the key, as [Changing the test](#changing-the-test)
-allows, before the next run. A run record states no judgement that is not written here or in
-the key; a judgement an earlier run recorded is not a rule.
+says, and the editor settles it in this file or in the key, as
+[Changing the test](#changing-the-test) allows, before the next run. A run record states no
+judgement that is not written here or in the key; a judgement an earlier run recorded is not a
+rule.
 
 - **Keyed items.** Question 1 as a whole is one keyed item, and so is each item of question 2
   and each answer of question 3 for which the key gives an accepted grade or answer.
@@ -111,20 +106,21 @@ the key; a judgement an earlier run recorded is not a rule.
   or apostrophe style, and markdown link or emphasis markup; a quotation that drops or changes a
   word quotes the document by its longest such run.
 - **Question 1** is correct when at least four bullets each name an obligation the key lists and
-  no bullet asserts one the key marks wrong. Several bullets that name different clauses of one
-  line of the key's list each count. A bullet asserting an obligation that is in neither list is
-  recorded as an open point for the key and is not counted either way.
+  no bullet asserts one the key marks wrong. Only the first six bullets are marked. Several
+  bullets that name different clauses of one line of the key's list each count; two that name
+  the same clause count once. A bullet asserting an obligation that is in neither list is not
+  counted either way, and is recorded as an open point for the key.
 - **Question 2.** An answer is the reader's sentences and its quotation read together. It is
   correct when it states every element the key lists as required for that item, in the
   document's words or the reader's own, asserts nothing the key marks wrong, and quotes the
   document. An element stated only in the quotation is stated. Anything in the key beyond the
   required elements and the wrong assertions is explanation for the marker, and an answer is
   never marked down for leaving it out.
-- **Question 3.** Each item is correct when its grade is one the key accepts and, where the key
-  sets a condition on the reasoning for that grade, the reasoning meets it. A grade the key
-  accepts with no condition is correct whatever the reasoning. A grade given on a stated
-  condition is read as the grade for the case the fixture presents, where the key says which
-  case that is; otherwise the item is unanswered.
+- **Question 3.** Each item is correct when its grade or answer is one the key accepts and,
+  where the key sets a condition on the reasoning for it, the reasoning meets it. A grade or
+  answer the key accepts with no condition is correct whatever the reasoning. A grade given on a
+  stated condition is read as the grade for the case the fixture presents, where the key says
+  which case that is; otherwise the item is unanswered.
 - **A miss that counts against the document.** The key names, for question 1 and for each item
   of question 3, the wrong readings the text invites, each as a grade or answer together with
   what the reasoning states or leaves out. A miss that matches one blocks whatever the count,
@@ -134,22 +130,26 @@ the key; a judgement an earlier run recorded is not a rule.
   below; a second miss on the same item fails the threshold, and no judgement is needed.
 - **An unanswered question.** Each keyed item left unanswered is a miss. Question 4 left
   unanswered counts as no passage named.
-- **Question 4.** A reader names a passage when it quotes words of the document or gives a clause
-  number with a description that identifies a sentence or paragraph. A remark that is not about
-  a passage of the document, such as that another document was not supplied, is recorded as a
-  note and is not a passage. Two readers name the same passage when the words or sentences they
-  name lie in the same paragraph; a heading, a list item, a table row and a terminology entry are
-  each a paragraph of their own. A passage named by two or more readers of the run is a finding.
+- **Question 4.** A reader names a passage when it quotes the document, as defined above, or
+  gives a clause number with a description or a shorter quotation that identifies a sentence or
+  paragraph. A quotation whose words occur in more than one paragraph, given with no clause
+  number, names the paragraph where they first occur. A remark that is not about a passage of
+  the document, such as that another document was not supplied, is recorded as a note and is
+  not a passage. Two readers name the same passage when the words or sentences they name lie in
+  the same paragraph; a heading, a list item, a table row and a terminology entry are each a
+  paragraph of their own. A passage named by two or more readers of the run is a finding.
 - **Where a finding lies.** The record says, for each finding, whether it lies in text the change
-  wrote or altered: a paragraph in which the pull request, read against the branch it targets,
-  adds, rewords, moves or deletes a sentence, or changes a word, a term or a link. A finding
+  wrote or altered: a paragraph in which the pull request, read against its merge base with the
+  branch it targets, adds, rewords, moves or deletes a sentence, or changes a word, a term or a
+  link; or a paragraph the readers naming the finding set against such a paragraph. A finding
   there blocks the change. A finding anywhere else is a finding against the document, not
   against the change: it is recorded in [acceptance/ROUTED.md](acceptance/ROUTED.md), routed to a
   change of its own, and does not block. The change is judged on what it changed; the document
   is proved by the keyed questions, which every run answers over the whole of it.
-- **Open points.** An open point in marking an answer is marked for the reader. An open point on
-  whether a reader named a passage, or whether two readers named the same one, counts the
-  passage. An open point on where a finding lies treats it as the change's own text.
+- **Open points.** An open point in marking an answer is marked for the reader, except that a
+  question 1 bullet on neither list is not counted, as above. An open point on whether a reader
+  named a passage, or whether two readers named the same one, counts the passage. An open point
+  on where a finding lies treats it as the change's own text.
 
 ## Pass criteria
 
@@ -164,7 +164,7 @@ is four of five.
 | A miss the key says counts against the document                                       | **None**, whatever the count                                   |
 | A passage found confusing by two or more readers, in text the change wrote or altered | **None.** It is a finding and blocks until the text is changed |
 | A passage found confusing by two or more readers, elsewhere                           | Recorded in `acceptance/ROUTED.md` and routed; does not block  |
-| Anything from one reader only                                                         | Recorded; applied at the editor's discretion; does not block   |
+| Anything else from one reader only                                                    | Recorded; applied at the editor's discretion; does not block   |
 
 The asymmetry is deliberate. A load-bearing statement is the sentence the whole document exists
 to make, and one reader in five getting it wrong means one agent in five will act on the wrong
@@ -202,11 +202,12 @@ changed what the cohort is asked, not how strictly an answer is marked.
 ## After a failure
 
 Fix the text the run's misses and findings name and run a fresh cohort; readers are never reused.
-A keyed miss is fixed in the text that carries the obligation, wherever it lies, since the keyed
-questions prove the document and a document one reader in five misreads is not merged to, whoever
-wrote the sentence. A finding on text the change wrote or altered is fixed there. A finding
-elsewhere goes to `acceptance/ROUTED.md` and is not fixed in this change. The number of runs it
-took is recorded; a document that needed three runs is telling its editor something.
+A failed keyed item is fixed in the text that carries the obligation, wherever it lies, since the
+keyed questions prove the document as a whole, whoever wrote the sentence; where that fix would
+change an obligation, it is routed to a change of its own, and this change waits for it. A
+finding on text the change wrote or altered is fixed there. A finding elsewhere goes to
+`acceptance/ROUTED.md` and is not fixed in this change. The number of runs it took is recorded;
+a document that needed three runs is telling its editor something.
 
 ## When it runs
 
@@ -239,11 +240,12 @@ and the instruction a delegated marker was given are posted in one or more comme
 request, linked from the record and never edited, hidden or deleted after posting.
 
 The changelog line for the change names every run made on it, the passing run last. CI refuses a
-specification change whose pull request adds no run file; it checks for at least one, and a pull request that changes two
-documents adds a run for each. Each published version's changelog entry carries the lines of the
-changes it contains, so a version's cohort record is the set of runs those lines name. A version
-with no such line has not been accepted and MUST NOT be described as published. The question sets
-and answer keys live under `acceptance/` in this repository so that a run can be repeated and
+specification change whose pull request adds no run file; it checks for at least one, and a pull
+request that changes two documents adds a run for each. Each published version's changelog entry
+carries the lines of the changes it contains, so a version's cohort record is the set of runs
+those lines name. A version with no such line has not been accepted and MUST NOT be described as
+published. The question sets and answer keys live under `acceptance/` in this repository so that
+a run can be repeated and
 compared.
 
 `acceptance/ROUTED.md` lists every finding routed from a run, open until a change that fixes

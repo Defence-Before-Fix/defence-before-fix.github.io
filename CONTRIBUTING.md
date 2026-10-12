@@ -29,9 +29,9 @@ review. It is a patch version when released.
 SHOULD or MAY in a numbered section or appendix. It needs everything a clarity edit needs, plus
 the five tests in SCOPE.md answered in the pull request, and it is at least a minor version when
 released. `tools/changes.py` tells the two apart mechanically and CI runs it on every pull
-request. A change to the process files ACCEPTANCE.md names, this file among them, is neither:
-ACCEPTANCE.md says how it is made, and it is recorded in `acceptance/CHANGES.md`, not in
-CHANGELOG.md.
+request. A change to the acceptance process, as ACCEPTANCE.md defines one under "Changes to
+this process", is neither: ACCEPTANCE.md says how it is made, and it is recorded in
+`acceptance/CHANGES.md`, not in CHANGELOG.md.
 
 ## What a pull request contains
 

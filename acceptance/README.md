@@ -25,8 +25,8 @@ in [CHANGES.md](CHANGES.md).
 4. The result is recorded as a file under [runs/](runs/), stating what `ACCEPTANCE.md` lists,
    with the answer sheets posted on the pull request and linked from it, and the change's
    `Unreleased` changelog line names that file. A run that fails is followed by a change to the
-   text the findings name and a fresh cohort; a finding on text the change did not write or
-   alter is added to [ROUTED.md](ROUTED.md) instead.
+   text its misses and findings name and a fresh cohort; a finding on text the change did not
+   write or alter is added to [ROUTED.md](ROUTED.md) instead.
 
 ## How a key is written
 
@@ -50,8 +50,9 @@ A key quotes the document. When a clause is reworded, the key line that quotes i
 the same commit, and the change is one the acceptance run itself then tests. A key that no longer
 matches the document is a defect in this directory, not a reason to mark a reader wrong.
 
-A key, a question set or a fixture changes in one of two ways, as `ACCEPTANCE.md` says under
-"Changing the test", and always before the readers of the next run start:
+A key, a question set or a fixture changes by one of two routes, as `ACCEPTANCE.md` says under
+"Changing the test", always before the readers of the next run start, and an open point a run
+recorded is settled by whichever route it needs:
 
 - **In a specification pull request, under step 4 of `CONTRIBUTING.md`**: a quotation follows
   the text it quotes, or a keyed item is added for a new load-bearing obligation together with

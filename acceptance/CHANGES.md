@@ -1,13 +1,14 @@
 # Changes to the acceptance process
 
-Changes to the process files that [ACCEPTANCE.md](../ACCEPTANCE.md) names, recorded here as it
-describes: a line is added at the top for each change, naming its pull request. The process is
-not a specification and is not versioned, and a change to it is not tested by a cohort. Changes
-to the three specifications are recorded in [CHANGELOG.md](../CHANGELOG.md).
+Changes to the acceptance process, as [ACCEPTANCE.md](../ACCEPTANCE.md) defines one under
+"Changes to this process", recorded here as it describes: a line is added at the top for each
+change, naming its pull request. The process is not a specification and is not versioned, and a
+change to it is not tested by a cohort. Changes to the three specifications are recorded in
+[CHANGELOG.md](../CHANGELOG.md).
 
 - Pull request NNN: the test is made to prove what it exists to prove, the clarity of the
   document to a cold reader, after thirty-three runs on two changes (19 to 30, 31 to 33 and 35
-  to 52) in which keyed answers reached five of five and the runs still failed. Four defects in
+  to 52) in which keyed answers reached five of five and the runs still failed. Five defects in
   the process were found. Keys required elements the question never asked for (detector 2b's
   "need not remove or forbid", detector 2c's "at a version tracked together", and on pull
   request 14 method 2d's order of the kinds), so readers who answered the question as put were
