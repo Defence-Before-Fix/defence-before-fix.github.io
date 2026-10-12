@@ -32,7 +32,18 @@ version entry with no cohort line has not been accepted and is not published.
   extend to it names them the same way. [Run 56](acceptance/runs/056-defined-terms-method-run-9.md) had every keyed item five of five
   and failed on one finding in a paragraph the change had touched: clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s sentence that
   the bounds measure breadth within one level now says they settle how wide the class is drawn
-  and not at which level, and what the separate question of level is. Accepted by run NNN.
+  and not at which level, and what the separate question of level is.
+  [Run 59](acceptance/runs/059-defined-terms-method-run-10.md) failed on one finding in a touched
+  paragraph, clause [3.5](SPEC.md#35-enforce-permanently-and-block)'s paragraph on a bundled defence, whose terms two readers could not
+  find defined: section [1](SPEC.md#1-terminology) now says that a term it does not define links to its entry in a
+  companion specification, and the paragraph opens by saying what the two terms are.
+  [Run 61](acceptance/runs/061-defined-terms-method-run-11.md) failed on one reader missing the
+  proof step in load-bearing statement 2a and on one finding, section [7](SPEC.md#7-conformance)'s "as this section
+  closes by requiring": section [2](SPEC.md#2-when-the-method-applies) now states the order of section [3](SPEC.md#3-the-method)'s steps, and section
+  [7](SPEC.md#7-conformance)'s sentence points at its closing paragraph instead. Accepted by
+  [run 64](acceptance/runs/064-defined-terms-method-run-12.md), every keyed item five of five
+  and no finding in text the change touched; the four findings in untouched text are listed in
+  `acceptance/ROUTED.md`.
 
 ### 1.1.0, 2026-10-02
 
