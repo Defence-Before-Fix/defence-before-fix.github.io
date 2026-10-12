@@ -143,7 +143,16 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   obligation first, then what is in scope, then the mechanism, with Remediation docs glossed in
   section [2](TOOLING-SPEC.md#2-terminology)'s table; and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says that a toolchain can be graded from this document
   alone because each clause that rests on the detector specification says in its own words what
-  that document requires. Accepted by run NNN.
+  that document requires. [Run 68](acceptance/runs/068-toolchain-contradictions-run-6.md) failed
+  on six findings in that text: readers set a URL scheme against "without network access", "MUST
+  ship with the project or with the Toolchain" against a third-party catalogue "not re-shipped
+  here", the sentence on why the clause names blocking rules against the Defence row and clause
+  [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) yet again, and clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)'s "a summary, not the test" against section [1](TOOLING-SPEC.md#1-what-this-document-is-for). Clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) now
+  says only what it requires, of the project's own rules and bundled rules alike, with no
+  sentence on defences and no list of mechanisms, and its remediation docs may ship with the
+  detector whose rule they document; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) both say the clause restates
+  the detector specification far enough to grade what a toolchain's evidence shows. Accepted by
+  run NNN.
 
 ### 0.2.0, 2026-09-08
 

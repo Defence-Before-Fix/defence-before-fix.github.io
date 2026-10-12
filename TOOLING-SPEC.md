@@ -41,7 +41,8 @@ part of its [Toolchain] and are judged as such.
 
 **How to read this document.** A [Toolchain] can be graded from this document alone. Where a
 clause rests on the [detector specification](DETECTOR-SPEC.md), as clauses 4.1, 4.2 and 4.4 do,
-the clause says in its own words what that document requires of the [Detector]. The
+it restates what that document requires of the [Detector], far enough to grade what a
+[Toolchain]'s evidence shows. The
 table in section 2 glosses every term it borrows. Each clause states its obligation in its heading
 and first sentence, and the **Why** paragraph beneath is reasoning, not a further requirement. A
 link is there for depth and is not a prerequisite for the sentence that carries it.
@@ -113,14 +114,14 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
 [Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
 its sections 4 to 7, and this clause holds the [Detector] to every one of them. The sentences
-that follow summarise the ones most often failed, so that a reader with this document alone can
-see what the clause mostly turns on; they are a summary, not the test. The
+that follow restate the ones most often failed, far enough for a reader with this document
+alone to grade what a [Toolchain]'s evidence shows. The
 [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
 resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
 It makes any inline [Suppression] route detectable or disableable. A [Detector] that fails any
-one of that document's MUSTs, summarised here or not, fails this clause after wrapping. Three
+one of that document's MUSTs, restated here or not, fails this clause after wrapping. Three
 points govern how that is met.
 
 1. **Wrapping is permitted.** The [Toolchain] MAY supply a mechanism the
@@ -163,28 +164,24 @@ clause 3.2. A gap recorded is not a gap closed.
 ### 4.2 The toolchain MUST resolve every identifier a blocking rule it routes can print, from the installed copy, without network access
 
 The [Toolchain] MUST resolve every [Identifier] its [Blocking] [Rules] print to
-[Remediation docs] on disk. The [Rules] in scope are every [Blocking] [Rule] the [Toolchain]
-runs, bundled or the project's own; a [Rule] that only warns is outside this clause. The clause
-names [Blocking] [Rules] rather than [Defences] because the failure it catches is a [Rule] that
-blocks without the documentation that would make it a [Defence]. One [Identifier] that does not
-resolve fails this clause, however many others do.
+[Remediation docs] on disk. That is every [Blocking] [Rule] the [Toolchain] runs, the project's
+own and the bundled alike. One [Identifier] that does not resolve fails this clause, however
+many others do.
 
-The [Toolchain] resolves an [Identifier] by a mechanism of its own, a command, an index file or
-a URL scheme, keyed on the [Identifier] exactly as printed. Those [Remediation docs] MUST ship
-with the project or with the [Toolchain], at a version tracked together. The
+The resolving mechanism is keyed on the [Identifier] exactly as printed. Those
+[Remediation docs] MUST ship with the project, with the [Toolchain] or with the [Detector]
+whose [Rule] they document, at a version tracked together. The
 [Toolchain] MUST also give that documentation a place to live, so that a
 [Rule author] adding a [Rule] knows where its documentation goes.
 The documentation an [Identifier] resolves to MUST state the correct construction, not
 only the prohibition, specifically enough to act on, as method clause 8.4 requires. The
 [Toolchain] supplies the place and the [Rule author] the text.
 
-This clause closes what the [detector specification](DETECTOR-SPEC.md) leaves open. That document holds a
-[Detector] to on-disk resolution of its own [Bundled rules] and
-no further, because it cannot know a project's documentation; this clause reaches the project's
-own [Rules] as well. A third-party [Detector]'s
-native catalogue, which the [Toolchain] orchestrates without claiming as its own, is not
-re-shipped here: an [Identifier] the [Detector] resolves under that document's clause 6 meets
-this clause, and one that nothing resolves fails it.
+This clause closes what the [detector specification](DETECTOR-SPEC.md) leaves open: that
+document holds a [Detector] to on-disk resolution of its own [Bundled rules] and no further,
+because it cannot know a project's documentation, and this clause reaches the project's own
+[Rules] as well. An [Identifier] a third-party [Detector] resolves under that document's clause
+6 meets this clause, and one that nothing resolves fails it.
 
 **Why**: method specification clauses 3.6 and 8.3. The [Identifier] has to resolve for the
 reader, which for an [Agent] means mechanically and on disk, and the project's own
