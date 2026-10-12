@@ -101,8 +101,9 @@ project's own, which is the half that carries its institutional knowledge.
 
 A [Rule harness] reports, for a given input, whether the [Rule] fired and what it printed, without
 executing the project's own test suite and without the other [Rules] obscuring the answer.
-This applies to every [Rule] the [Detector] runs, bundled or bespoke; a
-[Detector] failing 4.1 is graded here on its [Bundled rules].
+This applies to every [Rule] the [Detector] runs, bundled or bespoke. A [Detector] that fails
+clause 4.1 because it hosts no bespoke [Rules] is graded under this clause on its
+[Bundled rules] alone.
 
 **Why**: clause 3.3 of the method specification requires the [Rule] to be proven by making it go
 red. A [Practitioner] who can only observe a [Rule]'s behaviour by running every
