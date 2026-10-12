@@ -194,7 +194,7 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) reach it. [Run 85](acceptance/runs/085-toolchain-contradictions-run-13.md) failed on that
   paragraph's sentence naming both clauses as reaching every blocking rule, two readers setting it against
   clause [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation)'s exclusion of a third-party detector's native catalogue; the paragraph names
-  clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) alone. Accepted by run NNN.
+  clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) alone. Accepted by [run 86](acceptance/runs/086-toolchain-contradictions-run-14.md).
 
 ### 0.2.0, 2026-09-08
 
