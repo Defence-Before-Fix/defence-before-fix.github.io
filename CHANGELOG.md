@@ -160,7 +160,14 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   is what clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access), [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) exist to catch; clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) says the listing covers every
   blocking rule, documented or not, with a missing route showing; and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) and clause
   [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) both say a verdict from this document alone rests on what is restated and a grader with
-  the detector specification holds the detector to all of it. Accepted by run NNN.
+  the detector specification holds the detector to all of it. [Run
+  76](acceptance/runs/076-toolchain-contradictions-run-8.md) failed on clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)'s first
+  paragraph, all five readers unable to tell which of its two tests governs a grader without the
+  detector specification, and on section [2](TOOLING-SPEC.md#2-terminology)'s "These are additional.", which the new
+  paragraph had parted from its table. Clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) now give one test: a
+  grader checks the restated sentences and takes a verdict already given on the detector under
+  the detector specification as settled; the new paragraph sits at the end of section [2](TOOLING-SPEC.md#2-terminology), after
+  the Project record entry. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 

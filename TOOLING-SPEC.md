@@ -41,8 +41,8 @@ part of its [Toolchain] and are judged as such.
 
 **How to read this document.** A [Toolchain] can be graded from this document alone, on the
 evidence a project shows. Where a clause rests on the [detector specification](DETECTOR-SPEC.md),
-as clauses 4.1, 4.2 and 4.4 do, it restates what that document requires of the [Detector], and a
-grader with that document to hand holds the [Detector] to all of it. The
+as clauses 4.1, 4.2 and 4.4 do, it restates what the grader checks, and a verdict already given
+on the [Detector] under that document is taken as settled. The
 table in section 2 glosses every term it borrows. Each clause states its obligation in its heading
 and first sentence, and the **Why** paragraph beneath is reasoning, not a further requirement. A
 link is there for depth and is not a prerequisite for the sentence that carries it.
@@ -67,10 +67,6 @@ capitalised term links to its definition; the ones this document leans on most a
 | [Bundled rule]     | A [Rule] a [Detector] ships rather than one the project wrote                                       |
 | [Harness]          | The route by which one [Rule] is run against supplied code on its own                               |
 
-A [Blocking] [Rule] whose documentation is missing is not yet a [Defence]. It is what clauses
-4.2, 5.1 and 8.1 exist to catch, so where those clauses reach a [Toolchain]'s [Rules] they reach
-every [Blocking] [Rule] it runs, documented or not.
-
 These are additional.
 
 #### Consuming project
@@ -84,6 +80,10 @@ A [Defence] a shipped [Toolchain] carries and enables by default in every [Consu
 #### Project record
 
 The place a project writes down the judgements the method specification delegates to it: [Calibrations], [Exceptions] and conventions.
+
+A [Blocking] [Rule] whose documentation is missing is not yet a [Defence]. It is what clauses
+4.2, 5.1 and 8.1 exist to catch, so where those clauses reach a [Toolchain]'s [Rules] they reach
+every [Blocking] [Rule] it runs, documented or not.
 
 The distinction between a [Bundled defence] and a project's own is significant throughout. A bundled
 [Defence] is authored once and runs in codebases its author will never see, so everything a
@@ -117,10 +117,11 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
 [Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
-its sections 4 to 7, and this clause holds the [Detector] to every one of them. The sentences
-that follow restate the ones most often failed, and a verdict from this document alone rests on
-them; a grader with that document to hand holds the [Detector] to every one of its MUSTs,
-restated here or not. The
+its sections 4 to 7, and this clause holds the [Detector] to every one of them. A grader of this
+clause checks the sentences that follow, which restate the ones most often failed, and takes a
+verdict already given on the [Detector] under that document as settled: a [Detector] that
+document finds not to [Conform] fails this clause, whether or not the sentences that follow
+show why. The
 [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
