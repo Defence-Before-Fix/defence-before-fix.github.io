@@ -17,8 +17,8 @@ Put it in a Semantic Detector, one in which a Rule can ask the type of any expre
 what any name refers to, across the whole program; failing that, one that sees syntax; and only
 then one that sees text. Use a weaker one only where the stronger one cannot express the Rule,
 or the language has none that takes custom Rules: none the project runs, in any configuration
-it can use without a hosted service or a licence tier, and none its ecosystem offers outside
-one. Name the Detector and its kind in the Rule's documentation. Where you use a weaker one,
+it can use without a hosted service or a licence tier, and none its ecosystem offers without
+one either. Name the Detector and its kind in the Rule's documentation. Where you use a weaker one,
 write down which of those two grounds holds, and why, naming the stronger Detectors you
 considered, there and in the description of the commit that adds the Rule, moves it to another
 Detector, or first records the grounds, and where the project requires its Owner's sign-off

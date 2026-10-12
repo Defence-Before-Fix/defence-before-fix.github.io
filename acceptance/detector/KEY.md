@@ -23,10 +23,12 @@ no bullet making an assertion listed below as wrong, is a correct restatement.
 - Make any inline suppression route detectable or disableable ([7.1](../../DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)).
 - A verdict on the detector names its kind, semantic, syntactic or textual, in each
   configuration it grades ([8.2](../../DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades)); the obligation is on whoever gives the verdict, as section
-  [9](../../DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) says, and a bullet that puts it on the detector, or on a verdict, names it.
+  [9](../../DETECTOR-SPEC.md#9-relationship-to-the-other-specifications) says, and a bullet that says a verdict, or a grading, names the kind names it.
 
 Wrong if it asserts: the detector must be semantic, or of any one kind, to conform; the detector
-must enforce a project's suppression policy; the detector must declare a version to conform; the detector must list a project's active defences or produce an
+must itself state or declare its kind, which clause [8.2](../../DETECTOR-SPEC.md#82-a-verdict-on-a-detector-must-name-its-kind-in-each-configuration-it-grades) asks of the verdict and not of the
+detector; the detector must enforce a project's suppression policy; the detector must declare a
+version to conform; the detector must list a project's active defences or produce an
 agent summary (those belong to the toolchain specification). A bullet that states what
 conformance means, or restates a SHOULD as advice, asserts no obligation and is neither correct
 nor wrong.

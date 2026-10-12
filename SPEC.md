@@ -78,11 +78,11 @@ A tool that **executes** code and reports what happened: a test [Runner], a comp
 
 #### Textual
 
-Of a [Detector]: seeing the code only as text, as grep does. It sees how the code is spelt and nothing of its structure, so it cannot tell a call from a comment that names it.
+Of a [Detector]: one in which a [Rule] can ask only how the code is spelt, as grep does. It sees the text and nothing of its structure, so it cannot tell a call from a comment that names it.
 
 #### Syntactic
 
-Of a [Detector]: seeing the parse tree of the code, and at most some of the types of values, as ast-grep does. It sees the structure, but cannot always tell apart two calls of the same name on values of different types.
+Of a [Detector]: one in which a [Rule] can ask about the parse tree of the code, and at most some of the types of values, as ast-grep does. It sees the structure, but cannot always tell apart two calls of the same name on values of different types.
 
 #### Semantic
 
@@ -412,10 +412,10 @@ are examples rather than a permitted list, and a [Detector] is not disqualified 
 **Qualifying is not the same as being the right host.** A [Rule] the [Practitioner] writes MUST
 be written in the strongest kind of [Detector] that can express it: a [Semantic] one, else a
 [Syntactic] one, else a [Textual] one. A weaker kind is allowed only where the stronger kind
-cannot express the [Rule], or where the language has no [Detector] of the stronger kind that
-accepts bespoke [Rules]; those are the two grounds. For example, the stronger kind cannot express
-a [Rule] that reads a file the [Semantic] [Detector] does not parse. The kind is that of the
-configuration the [Rule] runs in. Enabling an existing [Rule], or tightening its thresholds, is
+cannot express the [Rule] within clause 3.1's bounds, or where the language has no [Detector]
+of the stronger kind that accepts bespoke [Rules]; those are the two grounds. For example, the
+stronger kind cannot express a [Rule] that reads a file the [Semantic] [Detector] does not
+parse. The kind is that of the configuration the [Rule] runs in. Enabling an existing [Rule], or tightening its thresholds, is
 not writing one, and the off-the-shelf paragraph above covers it; giving an existing [Rule] a
 pattern of the project's own, or changing the pattern of a [Rule] the project wrote, is writing
 one.
@@ -425,20 +425,20 @@ already runs one or the language's own [Detector] ecosystem offers one. A strong
 of a [Detector] the project runs counts; a [Detector] or configuration that only a hosted service or a licence tier
 provides does not. A [Detector] accepts bespoke [Rules] when the project can add its own [Rule]
 to it through a documented extension point, such as a plugin interface; it need not meet the rest
-of the [detector specification](DETECTOR-SPEC.md). If no [Detector] of the stronger kind can reach
-the construct the [Rule] is about, that is the first ground.
+of the [detector specification](DETECTOR-SPEC.md).
 
 On the [Remediation docs] of a [Rule] they write, the [Practitioner] MUST name the [Detector] and
 its kind. Where that kind is weaker than [Semantic], the [Practitioner] MUST also record the
 grounds in two places, both of them: on the [Rule]'s [Remediation docs], and in the description
-of a commit. That commit is the one that adds the [Rule], moves it to another [Detector], or first
-records the grounds. What is recorded, in both places, is which of the two grounds holds at each
+of a commit. That commit is the one that adds the [Rule] or moves it to another [Detector]; for
+a [Rule] already in place when its grounds are first written down, it is the commit that writes
+them. What is recorded, in both places, is which of the two grounds holds at each
 step down the order [Semantic], [Syntactic], [Textual], and why, naming the [Detectors] of the
 stronger kind that were considered. The [Practitioner] judges whether the grounds hold, as
-section 4 gives them the choice of [Detector]; a
-project MAY require its [Owner]'s sign-off on a weaker kind as well, by recording that
-requirement where it records its [Calibrations]; the sign-off is then recorded with the grounds,
-and where the project has recorded no such requirement none is needed.
+section 4 gives them the choice of [Detector]. A project MAY require its [Owner]'s sign-off on
+a weaker kind as well, by recording that requirement where it records its [Calibrations]; where
+it has, the [Practitioner] MUST record the sign-off with the grounds, and where the project has
+recorded no such requirement none is needed.
 
 **A worked example.** Take a [Rule] against calling a method named `context` on one type. A
 [Detector] that cannot see types reports every call named `context`, whatever type it is called
@@ -764,7 +764,8 @@ pressure, which is the condition under which the original [Defect] was written.
 The failure [Message] MUST be terse, and it MUST carry a stable [Identifier] that resolves to
 [Remediation docs] shipped with the project.
 
-That documentation MUST state three things: what the [Rule] is about, why it exists, and how to
+That documentation MUST state three things, besides what clause 3.2 adds for a [Rule] the
+[Practitioner] writes: what the [Rule] is about, why it exists, and how to
 fix a violation correctly using the project's preferred approach.
 
 A [Practitioner] who finds that an existing [Rule]'s printed [Identifier] does not resolve records
@@ -949,9 +950,11 @@ evidence is gone and the opportunity closes with it.
 the verdict that they were rests on reproduction, as this section closes by requiring, not on the
 report.
 
-**A [Defence] [Conforms]** if it satisfies clauses 3.1, 3.2, 3.3, 3.5 and 3.6: it is drawn to a
+**A [Defence] [Conforms]** if it satisfies each of clauses 3.1, 3.2, 3.3, 3.5 and 3.6 in full.
+In brief: it is drawn to a
 [Class] within both bounds and not to the reported [Instance], it is evaluated by reading code, in
-the kind of [Detector] clause 3.2 requires, it was proven to fire against either the originating
+the kind of [Detector] clause 3.2 requires and with the [Detector], its kind and any grounds
+recorded as that clause requires, it was proven to fire against either the originating
 [Instance] or [Fixture] code, it fails rather
 than warns, and its [Message] is terse and resolves to [Remediation docs] versioned alongside
 it. A [Defence] can [Conform] whilst the [Sweep] is incomplete; what that describes is a
@@ -1111,8 +1114,8 @@ This appendix restates sections 2 to 4; where the two differ, the sections gover
 > what any name refers to, across the whole program; failing that, one that sees syntax; and only
 > then one that sees text. Use a weaker one only where the stronger one cannot express the [Rule],
 > or the language has none that takes custom [Rules]: none the project runs, in any configuration
-> it can use without a hosted service or a licence tier, and none its ecosystem offers outside
-> one. Name the [Detector] and its kind in the [Rule]'s documentation. Where you use a weaker one,
+> it can use without a hosted service or a licence tier, and none its ecosystem offers without
+> one either. Name the [Detector] and its kind in the [Rule]'s documentation. Where you use a weaker one,
 > write down which of those two grounds holds, and why, naming the stronger [Detectors] you
 > considered, there and in the description of the commit that adds the [Rule], moves it to another
 > [Detector], or first records the grounds, and where the project requires its [Owner]'s sign-off

@@ -357,7 +357,8 @@ configuration the verdict grades. A configuration here is one way of setting the
 run, and one [Detector] can have several: ESLint, for example, is [Syntactic] run without type
 information and [Semantic] run with it. The kind is what a [Rule] can ask in that configuration,
 as section 2 glosses it. The kind named is the one the [Detector] has without a hosted service or
-a licence tier, since under clause 5.4 a finding reported only there does not [Conform].
+a licence tier, the same configurations the method specification's clause 3.2 counts when it
+asks for the strongest kind.
 
 This clause binds whoever gives the verdict, anyone grading a [Detector] under clause 8.1
 included, and asks nothing of the [Detector] itself; a maintainer who gives a verdict on their

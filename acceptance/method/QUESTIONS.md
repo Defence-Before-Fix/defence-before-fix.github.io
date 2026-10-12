@@ -20,7 +20,7 @@ the document you are relying on.
 - 2c. What does it mean for a remediation to conform, and on what must a reviewer's verdict on
   it rest?
 - 2d. In which kind of detector must a rule the practitioner writes be written, and in what order
-  of preference; on what grounds may a weaker kind be used; and what must the practitioner
+  are the kinds tried; on what grounds may a weaker kind be used; and what must the practitioner
   record then, and where?
 
 ## 3. Application

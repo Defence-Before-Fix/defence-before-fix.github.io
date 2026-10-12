@@ -34,11 +34,12 @@ version entry with no cohort line has not been accepted and is not published.
   carries the kind, and Appendix A carries the requirement. Prompted by project rules hosted in
   ast-grep, where the language already had a semantic host, that decided by names: they reported
   unrelated calls of the same name, and clause [3.2](SPEC.md#32-build-the-net) said any detector qualified whatever its
-  category. The method question set gains load-bearing statement 2d. Runs 19 to 30 were made on
-  an earlier text of this change under the earlier acceptance rules and failed on passages the
-  change had not touched, as `acceptance/CHANGES.md` records; the change was then reduced to
-  the text above, and the rewrites those runs prompted elsewhere in the document are listed in
-  `acceptance/ROUTED.md` for changes of their own. Accepted by run NNN.
+  category. The method question set gains load-bearing statement 2d. Runs 19, 21, 23, 25, 27
+  and 29 were made on an earlier text of this change under the earlier acceptance rules: runs
+  19 and 29 failed on statement 2d, and every run failed on passages the change had not
+  touched, as `acceptance/CHANGES.md` records; the change was then reduced to the text above,
+  and the passages those runs named in untouched text are listed in `acceptance/ROUTED.md` for
+  changes of their own. Accepted by run NNN.
 
 ### 1.1.0, 2026-10-02
 
@@ -110,8 +111,8 @@ pass it.
   included when they give one, and section [2](DETECTOR-SPEC.md#2-terminology)'s gloss carries the three terms and the
   message. Runs 20, 22, 24, 26, 28 and 30 were made on an earlier text of this change under the
   earlier acceptance rules and failed on passages the change had not touched, as
-  `acceptance/CHANGES.md` records; the rewrites those runs prompted elsewhere in the document
-  are listed in `acceptance/ROUTED.md` for changes of their own. Accepted by run NNN.
+  `acceptance/CHANGES.md` records; the passages those runs named in untouched text are listed
+  in `acceptance/ROUTED.md` for changes of their own. Accepted by run NNN.
 
 ### 1.0.0, 2026-09-08
 
