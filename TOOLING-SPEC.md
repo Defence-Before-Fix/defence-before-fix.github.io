@@ -159,16 +159,15 @@ mechanism lives, and the method does not care. It is bounded because a mechanism
 does not offer and the [Toolchain] does not add is a gap the project writes down under method
 clause 3.2. A gap recorded is not a gap closed.
 
-### 4.2 The toolchain MUST resolve every identifier a defence or a blocking rule it routes can print, from the installed copy, without network access
+### 4.2 The toolchain MUST resolve every identifier a blocking rule it routes can print, from the installed copy, without network access
 
 This clause widens the [detector specification](DETECTOR-SPEC.md)'s reach: that document resolves
 [Bundled rules] only, and this one covers every [Identifier] the project can see, the project's
-own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Defences]
-print, and every [Identifier] its other [Blocking] [Rules] print, to [Remediation docs] on disk.
-One [Identifier] that does not resolve fails this clause, however many others do. The other
-[Blocking] [Rules] are named because a [Defence] is a [Rule] with its documentation, as section
-2 says: a [Blocking] [Rule] whose documentation is missing is not yet a [Defence], and it is
-exactly the failure this clause exists to catch. The mechanism
+own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Blocking] [Rules]
+print to [Remediation docs] on disk. One [Identifier] that does not resolve fails this clause,
+however many others do. The clause names [Blocking] [Rules] rather than [Defences] because the
+failure it catches is a [Rule] that blocks without the documentation that would make it a
+[Defence]. The mechanism
 is keyed on the
 [Identifier] exactly as printed, and it covers the project's own [Rules] and
 every [Bundled defence]. Those [Remediation docs] MUST ship
@@ -379,9 +378,8 @@ mistake rather than after it, which is why they are worth stating even as SHOULD
 
 The [Toolchain] MUST run an automated check that blocks its own release. The check covers
 every [Identifier] printed by a [Rule] the [Toolchain] authors or bundles
-as its own, whatever kind of [Detector] carries it. A [Bundled defence] is a [Rule] with its
-documentation, so a [Rule] shipped that way whose page is missing is not yet one; it is what
-this check exists to find, and the check reaches every such [Rule]. Where a documentation
+as its own, whatever kind of [Detector] carries it, and a missing page is what the check exists
+to find. Where a documentation
 page covers a family of [Identifiers] by a pattern, as clause 6.5 of the
 [detector specification](DETECTOR-SPEC.md) allows, this audit MUST apply the pattern to every
 [Identifier] printed and confirm it lands on that page. A member added to the
@@ -436,8 +434,8 @@ removes the only value the word has.
 ### 9.1 A project that ships a detector or a toolchain has two levels of conformance, graded separately
 
 As a project, it follows the method with its own assembled [Toolchain], like any other
-project, and is graded against this document and section 7 of the method specification on that
-basis. As an artefact, what it ships is graded for its consumers: a [Detector] against
+project: that [Toolchain] is graded against this document, under section 9, and the project's
+remediations against section 7 of the method specification, as any project's are. As an artefact, what it ships is graded for its consumers: a [Detector] against
 [the detector specification](DETECTOR-SPEC.md), a [Toolchain] against this document, on what the
 shipped [Toolchain] itself supplies once installed into a [Consuming project], counting nothing
 the [Consuming project] adds around it. The two
