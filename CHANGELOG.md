@@ -172,7 +172,14 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   listing covers every blocking rule, documented or not: a listing of defences said to cover
   what is not one. Clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) now says such a rule is not yet a defence, that clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) fails it,
   and that the listing can show it with the gap showing; section [2](TOOLING-SPEC.md#2-terminology)'s paragraph names
-  clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) as the clauses that catch it. Accepted by run NNN.
+  clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) as the clauses that catch it. [Run 82](acceptance/runs/082-toolchain-contradictions-run-10.md)
+  failed on that clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) sentence again, two readers asking whether an empty route meets the MUST
+  and whether "can show" means such a rule need not appear, and on clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)'s "a verdict
+  already given", two readers unable to tell which verdict or what a grader does without one.
+  Clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) says nothing of undocumented rules now, section [2](TOOLING-SPEC.md#2-terminology)'s closing paragraph being where
+  that is said; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) name the verdict as one given under the detector
+  specification's section 8 and say that without one the restated sentences are the test.
+  Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
