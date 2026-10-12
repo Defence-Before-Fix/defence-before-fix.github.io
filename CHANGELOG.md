@@ -17,7 +17,11 @@ version entry with no cohort line has not been accepted and is not published.
   which clause [3.2](SPEC.md#32-build-the-net) keeps for a language with no extensible detector and no practical bespoke one;
   it still blocks the toolchain's claim under section [7](SPEC.md#7-conformance) until fixed, as a breach of the toolchain
   specification's own obligations. Prompted by a review reading that found the two clauses giving
-  one case two names. Accepted by run NNN. Patch version when released.
+  one case two names. Also section [2](SPEC.md#2-when-the-method-applies): a sentence after the one requiring the defence before the fix
+  says that building it is section [3](SPEC.md#3-the-method)'s six clauses in order, beginning with attributing the defect
+  to a class, then the rule, its proof and the sweep, because a reader in run [88](acceptance/runs/088-gap-terms-method-run-2.md) relying on section
+  [2](SPEC.md#2-when-the-method-applies) missed the attribution step on a keyed question. Earlier runs on this change: [34](acceptance/runs/034-gap-terms-method-run-1.md),
+  [88](acceptance/runs/088-gap-terms-method-run-2.md). Accepted by run NNN. Patch version when released.
 
 ### 1.1.0, 2026-10-02
 
