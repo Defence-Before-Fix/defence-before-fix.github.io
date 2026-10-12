@@ -39,10 +39,10 @@ building the mechanism first. A [Toolchain] that leaves the project to construct
 moved the obligation rather than met it. Where the project builds the means itself, those scripts are
 part of its [Toolchain] and are judged as such.
 
-**How to read this document.** A [Toolchain] can be graded from this document alone. Where a
-clause rests on the [detector specification](DETECTOR-SPEC.md), as clauses 4.1, 4.2 and 4.4 do,
-it restates what that document requires of the [Detector], far enough to grade what a
-[Toolchain]'s evidence shows. The
+**How to read this document.** A [Toolchain] can be graded from this document alone, on the
+evidence a project shows. Where a clause rests on the [detector specification](DETECTOR-SPEC.md),
+as clauses 4.1, 4.2 and 4.4 do, it restates what that document requires of the [Detector], and a
+grader with that document to hand holds the [Detector] to all of it. The
 table in section 2 glosses every term it borrows. Each clause states its obligation in its heading
 and first sentence, and the **Why** paragraph beneath is reasoning, not a further requirement. A
 link is there for depth and is not a prerequisite for the sentence that carries it.
@@ -66,6 +66,10 @@ capitalised term links to its definition; the ones this document leans on most a
 | [Owner]            | The human who decides what the codebase may keep                                                    |
 | [Bundled rule]     | A [Rule] a [Detector] ships rather than one the project wrote                                       |
 | [Harness]          | The route by which one [Rule] is run against supplied code on its own                               |
+
+A [Blocking] [Rule] whose documentation is missing is not yet a [Defence]. It is what clauses
+4.2, 5.1 and 8.1 exist to catch, so where those clauses reach a [Toolchain]'s [Rules] they reach
+every [Blocking] [Rule] it runs, documented or not.
 
 These are additional.
 
@@ -114,15 +118,15 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
 [Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
 its sections 4 to 7, and this clause holds the [Detector] to every one of them. The sentences
-that follow restate the ones most often failed, far enough for a reader with this document
-alone to grade what a [Toolchain]'s evidence shows. The
+that follow restate the ones most often failed, and a verdict from this document alone rests on
+them; a grader with that document to hand holds the [Detector] to every one of its MUSTs,
+restated here or not. The
 [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
 resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
 It makes any inline [Suppression] route detectable or disableable. A [Detector] that fails any
-one of that document's MUSTs, restated here or not, fails this clause after wrapping. Three
-points govern how that is met.
+one of them, after wrapping, fails this clause. Three points govern how that is met.
 
 1. **Wrapping is permitted.** The [Toolchain] MAY supply a mechanism the
    [Detector] lacks by wrapping it, with a [Harness] script or a
@@ -258,6 +262,8 @@ kind of property that lives in the [Toolchain] and nowhere else.
 The [Toolchain] MUST list every [Defence] active in the project without
 running it. The listing MUST include each [Defence]'s [Identifier] and a terse
 statement of what it forbids or requires. It MUST provide the route to each one's full documentation.
+The listing covers every [Blocking] [Rule] the [Toolchain] runs, documented or not, and a
+[Rule] whose route to documentation is missing is listed with that gap showing.
 
 **Why**: method specification clause 8.5. An [Agent] arriving at a codebase has no colleague to ask.
 Without a listing, a project's standards can only be learned by violating them one at a time.

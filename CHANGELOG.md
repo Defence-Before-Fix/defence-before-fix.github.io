@@ -151,8 +151,16 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   says only what it requires, of the project's own rules and bundled rules alike, with no
   sentence on defences and no list of mechanisms, and its remediation docs may ship with the
   detector whose rule they document; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) both say the clause restates
-  the detector specification far enough to grade what a toolchain's evidence shows. Accepted by
-  run NNN.
+  the detector specification far enough to grade what a toolchain's evidence shows.
+  [Run 72](acceptance/runs/072-toolchain-contradictions-run-7.md) failed on four findings: four
+  readers set the Defence row and clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) against clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) once more, asking whether an
+  undocumented blocking rule is a defence and is listed, and two set section [1](TOOLING-SPEC.md#1-what-this-document-is-for)'s "graded
+  from this document alone" against clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)'s "restated here or not". Section [2](TOOLING-SPEC.md#2-terminology) now says,
+  under its table, that a blocking rule whose documentation is missing is not yet a defence and
+  is what clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access), [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) exist to catch; clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) says the listing covers every
+  blocking rule, documented or not, with a missing route showing; and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) and clause
+  [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) both say a verdict from this document alone rests on what is restated and a grader with
+  the detector specification holds the detector to all of it. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 
