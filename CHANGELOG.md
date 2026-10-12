@@ -102,8 +102,8 @@ pass it.
   [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now owes the location only where the summary leaves a finding out, and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says
   where a practitioner's record of a gap lives and that a detector without a declaration can
   still be found to conform. [Run 73](acceptance/runs/073-detector-route-rule-run-4.md) failed
-  on clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s "usable summary" and on clause [7.1](DETECTOR-SPEC.md#71-every-route-that-silences-a-finding-must-be-detectable)'s second paragraph; clause
-  [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now says what a usable summary is and what the remainder is, and clause [7.1](DETECTOR-SPEC.md#71-every-route-that-silences-a-finding-must-be-detectable) states
+  on clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s "usable summary" and on clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s second paragraph; clause
+  [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now says what a usable summary is and what the remainder is, and clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) states
   the two ways a route is detectable in one paragraph. [Run
   77](acceptance/runs/077-detector-route-rule-run-5.md) failed on the remainder sentence alone,
   four readers unable to tell what "is not one" referred to; it is now three plain sentences.
