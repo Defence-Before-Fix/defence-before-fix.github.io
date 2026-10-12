@@ -68,6 +68,47 @@ pass it.
 
 ## Detector specification (DETECTOR-SPEC.md)
 
+### Unreleased
+
+- Clarity, no obligation changed: four passages that cold readers of an unrelated change read as
+  the document pulling against itself or could not follow, each listed in `acceptance/ROUTED.md`.
+  Clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s detectable route is now a bespoke rule the project writes for the detector under
+  clause [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), after six runs read "a Rule the project can write in the Detector itself" as the
+  project editing the detector's own source, and a new paragraph says what detectable means and
+  what each of the two ways is. Clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s duty to record a known gap falls only on a detector
+  that declares a version, and says so beside "The declaration is optional", with the method's
+  clause [3.2](SPEC.md#32-build-the-net) record applying either way. Clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) says what the remainder is, and that
+  there is none where the output prints every finding. Clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says it asks for the
+  mechanism and not for every page, a missing page failing clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), and that a
+  documentation path printed in the message is not enough on its own, after three readers of
+  run 54 set that sentence against the mechanism. Prompted by runs 32 to 54 on the defined-terms
+  change, in which two or more readers quoted each passage.
+  [Run 60](acceptance/runs/060-detector-route-rule-run-1.md) failed on two findings in the
+  revised text, every keyed item within threshold: two readers could not find Message defined,
+  so section [2](DETECTOR-SPEC.md#2-terminology)'s table gains a Message row; and two readers stopped at clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s
+  "anyone who exercises the clauses above", which now says anyone may grade a detector by
+  checking it against each clause of sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression).
+  [Run 63](acceptance/runs/063-detector-route-rule-run-2.md) failed on one finding in the revised
+  text, every keyed item five of five: two readers needed two readings of clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s
+  sentence on a report that only adds detail, which is now a sentence of its own with its subject
+  stated; three readers named clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)'s paragraph on a project's own rule, which this
+  change does not touch and `acceptance/ROUTED.md` now lists.
+  [Run 66](acceptance/runs/066-detector-route-rule-run-3.md) passed, every keyed item five of
+  five, its one finding being that same clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) paragraph, named again by three readers,
+  which stays in `acceptance/ROUTED.md` for a change of its own. Run 69, a cohort of the
+  defined-terms change on this document with this change merged in, then had two readers set
+  clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s "MUST carry both a usable summary and the location of the remainder" against its
+  "need not name it", and two readers stop at clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s gap sentence and its MAY: clause
+  [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now owes the location only where the summary leaves a finding out, and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says
+  where a practitioner's record of a gap lives and that a detector without a declaration can
+  still be found to conform. [Run 73](acceptance/runs/073-detector-route-rule-run-4.md) failed
+  on clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s "usable summary" and on clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s second paragraph; clause
+  [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now says what a usable summary is and what the remainder is, and clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) states
+  the two ways a route is detectable in one paragraph. [Run
+  77](acceptance/runs/077-detector-route-rule-run-5.md) failed on the remainder sentence alone,
+  four readers unable to tell what "is not one" referred to; it is now three plain sentences.
+  Accepted by [run 78](acceptance/runs/078-detector-route-rule-run-6.md).
+
 ### 1.0.0, 2026-09-08
 
 First version, split out of toolchain specification 0.1.0 on the same day. States what a detector,
