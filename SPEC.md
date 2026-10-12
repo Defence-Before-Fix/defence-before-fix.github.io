@@ -317,11 +317,13 @@ Two bounds apply, and both are checkable during the work rather than matters of 
   missing [Rule] does. One report on code that does not carry the [Hazard] is enough; there is no
   tolerated rate.
 
-**Both bounds measure breadth within one level; the level itself is a separate question, answered
-against the report.**
+**The two bounds settle how wide the [Class] is drawn, not at which level of abstraction.** Each
+compares the [Rule] with a wider or a narrower [Rule] for the same kind of code. Which level the
+[Class] is drawn at, the behaviour the report describes or the mechanism in the code that produces
+it, is a separate question, answered from what the report describes.
 Where the [Defect] was reported as a behaviour, a check that reported clean having run nothing, a
 process that stopped before its work, the [Class] a [Detector] can read usually sits one level
-below that [Hazard]: the mechanism of this [Instance], not the failure the report opens with.
+below that behaviour: the mechanism of this [Instance], not the failure the report opens with.
 That [Class] is the right one to build, because no [Detector] reads "this check still produces
 its signal". It is not the whole answer. The record MUST state whether the reported behaviour is also
 pinned by a check a [Runner] executes, under section 6, either one added with this [Remediation] or

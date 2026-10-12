@@ -29,7 +29,10 @@ version entry with no cohort line has not been accepted and is not published.
   of five and failed on one finding in a paragraph the change had touched: clause [3.2](SPEC.md#32-build-the-net)'s
   sentence on the substitutes a mechanism gap allows now names them, the smoke check of
   clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) and the followable identifier of clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation), and clause [3.5](SPEC.md#35-enforce-permanently-and-block)'s sentence that they do not
-  extend to it names them the same way. Accepted by run NNN.
+  extend to it names them the same way. [Run 56](acceptance/runs/056-defined-terms-method-run-9.md) had every keyed item five of five
+  and failed on one finding in a paragraph the change had touched: clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s sentence that
+  the bounds measure breadth within one level now says they settle how wide the class is drawn
+  and not at which level, and what the separate question of level is. Accepted by run NNN.
 
 ### 1.1.0, 2026-10-02
 
