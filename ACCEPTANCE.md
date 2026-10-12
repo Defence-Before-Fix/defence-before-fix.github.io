@@ -134,15 +134,17 @@ rule.
   gives a clause number with a description or a shorter quotation that identifies a sentence or
   paragraph. A quotation whose words occur in more than one paragraph, given with no clause
   number, names the paragraph where they first occur. A remark that is not about a passage of
-  the document, such as that another document was not supplied, is recorded as a note and is
-  not a passage. Two readers name the same passage when the words or sentences they name lie in
+  the document, such as that another document was not supplied or that a term is defined only
+  in another document, is recorded as a note and is not a passage, however much of the document
+  it quotes to locate the reference. Two readers name the same passage when the words or sentences they name lie in
   the same paragraph; a heading, a list item, a table row and a terminology entry are each a
   paragraph of their own. A passage named by two or more readers of the run is a finding.
 - **Where a finding lies.** The record says, for each finding, whether it lies in text the change
   wrote or altered: a paragraph in which the pull request, read against its merge base with the
   branch it targets, adds, rewords, moves or deletes a sentence, or changes a word, a term or a
-  link; or a paragraph that any reader naming the finding sets against such a paragraph. A
-  finding there blocks the change. A finding anywhere else is a finding against the document, not
+  link; a paragraph the pull request parts from what it refers to, by inserting a paragraph
+  between them or moving either; or a paragraph that any reader naming the finding sets against
+  such a paragraph. A finding there blocks the change. A finding anywhere else is a finding against the document, not
   against the change: it is recorded in [acceptance/ROUTED.md](acceptance/ROUTED.md), routed to a
   change of its own, and does not block. The change is judged on what it changed; the document
   is proved by the keyed questions, which every run answers over the whole of it.
