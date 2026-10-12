@@ -108,13 +108,15 @@ any row and the failure mode is visible too: either half alone leaves the [Pract
 ### 4.1 Every detector the toolchain routes a defence through MUST conform to the [detector specification](DETECTOR-SPEC.md)
 
 A [Toolchain] MUST NOT route a [Defence] through a [Detector] that does not
-[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs, in brief,
-are six. The [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
+[Conform] to [the detector specification](DETECTOR-SPEC.md). That document's MUSTs are those of
+its sections 4 to 7, and every one of them applies; the six summarised here are the ones most
+often failed. The [Detector] hosts bespoke [Rules]. It runs one [Rule] on its own against supplied
 code. It prints a stable [Identifier] with every finding. It runs locally, down to one file, with
 the result in the command's own output and nothing reportable only through a hosted service. It
 resolves every [Identifier] a [Bundled rule] can print to documentation shipped with it, offline.
 It makes any inline [Suppression] route detectable or disableable. A [Detector] that fails any
-one of those, after wrapping, fails this clause. Three points govern how that is met.
+one of that document's MUSTs, after wrapping, fails this clause. Three points govern how that is
+met.
 
 1. **Wrapping is permitted.** The [Toolchain] MAY supply a mechanism the
    [Detector] lacks by wrapping it, with a [Harness] script or a
@@ -134,8 +136,9 @@ one of those, after wrapping, fails this clause. Three points govern how that is
    meet every MUST of sections 4 to 7 of the [detector specification](DETECTOR-SPEC.md),
    exercised as its clause 8.1 describes? If yes, this clause holds. If no, it fails, however
    much else the [Detector] does well, and whether or not a clause below names the same gap
-   again. Wrapping can add a mechanism; it cannot excuse a gap. The [Detector]'s own verdict
-   under that document is unchanged by the wrapping. Satisfying most of that document is not
+   again. Wrapping can add a mechanism; it cannot excuse a gap. What this clause judges is the
+   wrapped pair; the [Detector]'s own grade under that document, as an artefact on its own, is a
+   separate verdict that the wrapping does not change. Satisfying most of that document is not
    [Conformance] to it, any more than satisfying most of this one is.
 
 3. **What cannot be wrapped.** A [Detector] that cannot host a bespoke [Rule] at all
@@ -156,7 +159,10 @@ clause 3.2. A gap recorded is not a gap closed.
 This clause widens the [detector specification](DETECTOR-SPEC.md)'s reach: that document resolves
 [Bundled rules] only, and this one covers every [Identifier] the project can see, the project's
 own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Defences]
-print to [Remediation docs] on disk. The mechanism is keyed on the
+print to [Remediation docs] on disk. One [Identifier] that does not resolve fails this clause,
+however many others do. A [Blocking] [Rule] whose documentation is missing is the case this
+clause exists to catch: it is graded here as a [Defence] with a gap, not left out as no
+[Defence] at all. The mechanism is keyed on the
 [Identifier] exactly as printed, and it covers the project's own [Rules] and
 every [Bundled defence]. Those [Remediation docs] MUST ship
 with the project or with the [Toolchain], at a version tracked together. The
@@ -179,7 +185,7 @@ reader, which for an [Agent] means mechanically and on disk, and the project's o
 has a [Message] that names a pattern without leading anywhere, which method clause 3.6 says
 does not [Conform].
 
-### 4.3 The toolchain MUST forbid, through a defence of its own, every suppression route that bypasses the project record
+### 4.3 The toolchain MUST forbid every suppression route that bypasses the project record, by disabling it or by a defence of its own
 
 A [Conforming] [Toolchain] MUST disable every [Suppression]
 route that bypasses the [Project record], or MUST run a [Blocking]
@@ -362,7 +368,9 @@ mistake rather than after it, which is why they are worth stating even as SHOULD
 
 The [Toolchain] MUST run an automated check that blocks its own release. The check covers
 every [Identifier] printed by a [Rule] the [Toolchain] authors or bundles
-as its own [Defence], whatever kind of [Detector] carries it. Where a documentation
+as its own [Defence], whatever kind of [Detector] carries it; a [Bundled defence] whose
+documentation is missing is still a [Bundled defence] for this clause, and that gap is what the
+check exists to find. Where a documentation
 page covers a family of [Identifiers] by a pattern, as clause 6.5 of the
 [detector specification](DETECTOR-SPEC.md) allows, this audit MUST apply the pattern to every
 [Identifier] printed and confirm it lands on that page. A member added to the
@@ -400,8 +408,9 @@ own [Defences] already run on its own source, because that is the only source th
 ## 9. Conformance
 
 **A project's [Toolchain] [Conforms]** if every MUST in sections 4 to 6 holds across the
-assembled parts, wherever each part came from, and, where the [Toolchain] is one the project
-ships, every MUST in section 8 as well. The project-level verdict is a single grade; which part of the
+assembled parts, wherever each part came from; where the [Toolchain] is one the project
+ships, every MUST in section 8 bears on its artefact grade under clause 9.1, not on this one. The
+project-level verdict is a single grade; which part of the
 [Toolchain] satisfied each clause is evidence for that grade, not a second grade.
 
 **A [Toolchain] [Conforms] with [Agent] support** if it additionally satisfies section 7.
@@ -433,15 +442,17 @@ record dependencies, the version of the method specification it follows and the 
 document or the [detector specification](DETECTOR-SPEC.md) it [Conforms] to. A project that ships an artefact
 carries both levels of clause 9.1 in that declaration, each named separately.
 
-The same declaration is where a gap is recorded once it is known. A project or artefact that has
-learnt that it fails a MUST of the document it declares against MUST record that gap alongside the
-version, in the same file or one it names. It may learn that from its own self-audit under section 8
-or from a [Practitioner]'s report under the method's clause 3.2. A declaration with a non-empty gap record is
-a statement of where the project stands and is not a claim of [Conformance]. A mechanism gap
-is by its nature one the [Toolchain] could not detect for itself, so the record is the only
-place its [Owner] and its consumers can learn of it.
+The same declaration is where a gap is recorded once it is known. A project or artefact that
+declares a version and has learnt that it fails a MUST of the document it declares against MUST
+record that gap alongside that version, in the same file or one it names. It may learn that from
+its own self-audit under section 8 or from a [Practitioner]'s report under the method's clause
+3.2. A declaration with a non-empty gap record is a statement of where the project stands and is
+not a claim of [Conformance]. A mechanism gap is by its nature one the [Toolchain] could not
+detect for itself, so the record is the only place its [Owner] and its consumers can learn of it.
 
-The declaration is optional. A [Toolchain] assembled before this document existed, or by a
+The declaration is optional, and so the duty above falls only on a project or artefact that has
+one; a gap a [Practitioner] finds is recorded under the method's clause 3.2 in any case, whether
+or not the project declares. A [Toolchain] assembled before this document existed, or by a
 project that has never read it, MAY be graded [Conforming] on evidence by anyone who exercises
 the clauses above against it. A verdict on any [Toolchain], declared or not, rests on that
 exercise and not on the claim.
