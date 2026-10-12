@@ -87,7 +87,12 @@ pass it.
   revised text, every keyed item within threshold: two readers could not find Message defined,
   so section [2](DETECTOR-SPEC.md#2-terminology)'s table gains a Message row; and two readers stopped at clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s
   "anyone who exercises the clauses above", which now says anyone may grade a detector by
-  checking it against each clause of sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression). Accepted by run NNN.
+  checking it against each clause of sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression).
+  [Run 63](acceptance/runs/063-detector-route-rule-run-2.md) failed on one finding in the revised
+  text, every keyed item five of five: two readers needed two readings of clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s
+  sentence on a report that only adds detail, which is now a sentence of its own with its subject
+  stated; three readers named clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)'s paragraph on a project's own rule, which this
+  change does not touch and `acceptance/ROUTED.md` now lists. Accepted by run NNN.
 
 ### 1.0.0, 2026-09-08
 
