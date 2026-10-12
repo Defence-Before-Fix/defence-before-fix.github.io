@@ -1,10 +1,11 @@
 # Acceptance question sets
 
 The question sets and answer keys that [ACCEPTANCE.md](../ACCEPTANCE.md) requires. One directory per
-specification document, each holding the fixed questions a
-[cold reader](../ACCEPTANCE.md#the-cohort) answers and the key an editor marks against. The
-fixture cases the application question uses live in `fixtures/`, the record of every run lives in
-`runs/`, and changes to the acceptance process itself are recorded in [CHANGES.md](CHANGES.md).
+specification document, each holding the fixed questions a cold reader answers and the key an
+editor marks against. The fixture cases the application question uses live in `fixtures/`, the
+record of every run lives in `runs/`, findings routed out of a run to a change of their own are
+listed in [ROUTED.md](ROUTED.md), and changes to the acceptance process itself are recorded
+in [CHANGES.md](CHANGES.md).
 
 | Document           | Questions                                        | Key                                  |
 | ------------------ | ------------------------------------------------ | ------------------------------------ |
@@ -16,17 +17,35 @@ fixture cases the application question uses live in `fixtures/`, the record of e
 
 1. The editor identifies which documents the change touched. Only those are tested.
 2. For each, an odd number of fresh low-strength readers, at least five, each isolated as
-   `ACCEPTANCE.md` describes, each receive the document's current text, its `QUESTIONS.md`, and
-   the fixture the questions name. Nothing else: no key, no changelog, no critique findings, no
-   other reader's answers.
+   `ACCEPTANCE.md` describes, receive the document's current text, its `QUESTIONS.md`, and the
+   fixture the questions name. Nothing else: no key, no changelog, no critique findings, no other
+   reader's answers.
 3. The editor, or a separate marker the editor delegates to, marks each answer sheet against
    `KEY.md` under the marking rules in `ACCEPTANCE.md` and applies its pass criteria.
 4. The result is recorded as a file under [runs/](runs/), stating what `ACCEPTANCE.md` lists,
    with the answer sheets posted on the pull request and linked from it, and the change's
-   `Unreleased` changelog line names that file.
-   A run that fails is followed by a change to the text, never to the questions beyond the
-   rewording [the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up) allows, and a
-   fresh cohort.
+   `Unreleased` changelog line names that file. A run that fails is followed by a change to the
+   text its misses and findings name and a fresh cohort; a finding on text the change did not
+   write or alter is added to [ROUTED.md](ROUTED.md) instead.
+
+## How a key is written
+
+A key says, for each keyed item, exactly what is marked and nothing a marker has to guess:
+
+- **Question 1**: the obligations a bullet may name, the assertions that make a bullet wrong,
+  and the wrong readings the text invites, if any.
+- **Question 2**: for each item, the elements an answer is required to state, numbered, one for
+  each part of the question; the assertions that make an answer wrong; and the sentence or
+  sentences of the document the answer rests on, quoted verbatim, which show the marker where
+  the elements come from and which `spec-qa.py` checks against the document; a reader's
+  quotation need not be that one. The required elements are what the question asks for, no
+  more: an element the question does not ask for is not required, however load-bearing, until
+  the question is reworded to ask for it.
+- **Question 3**: for each item, the grade or grades accepted, any condition on the reasoning,
+  and the wrong readings the text invites, which count against the document when one reader
+  takes them.
+
+Everything else in a key is explanation for the marker and never marks an answer down.
 
 ## Keeping the keys honest
 
@@ -34,15 +53,24 @@ A key quotes the document. When a clause is reworded, the key line that quotes i
 the same commit, and the change is one the acceptance run itself then tests. A key that no longer
 matches the document is a defect in this directory, not a reason to mark a reader wrong.
 
+A key, a question set or a fixture changes by one of two routes, as `ACCEPTANCE.md` says under
+"Changing the test", always before the readers of the next run start, and an open point a run
+recorded is settled by whichever route it needs:
+
+- **In a specification pull request, under step 4 of `CONTRIBUTING.md`**: a quotation follows
+  the text it quotes; a keyed item is added for a new load-bearing obligation together with the
+  question that asks for it; or, where the change alters or removes the obligation an existing
+  item tests, that item and its question follow the text, which is the text changing and not
+  the test. The pull request's own changelog line records it. Such an update does not change
+  what an item requires of an obligation the change leaves as it was, nor the wording of a
+  question whose obligation is unchanged.
+- **In a process change, with its own pull request**: what an existing item requires, the
+  wording of a question, a fixture, or the rules of marking. It is recorded in
+  [CHANGES.md](CHANGES.md) with its reason.
+
 Questions are fixed so that runs can be compared across versions. Adding a keyed question is
-allowed when a new clause is load-bearing; removing or softening one to make a run pass is not,
-and rewording one is allowed only as [the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up)
-allows: where the new wording asks the same thing with the same certainty, on the editor's
-decision for that rewording, from the next run whose readers start after it is committed, and
-recorded in [CHANGES.md](CHANGES.md) with the old and the new wording and, for each part the new
-wording adds, the element of the unchanged key it asks for, or a statement that it asks for none.
-A process change may remove a limit a key puts on which misses count against the document, as
-[the section on the bar](../ACCEPTANCE.md#the-bar-only-moves-up) allows.
+allowed when a new clause is load-bearing; removing or softening one to make a run pass is not;
+rewording one is allowed so that it asks for what its key requires, and for no other reason.
 The reader may quote a passage it found confusing; it is never asked to rate the document, say
 what would make a passage clearer, or propose a change: the cohort confirms comprehension and
 does not design the text.

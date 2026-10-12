@@ -29,9 +29,9 @@ review. It is a patch version when released.
 SHOULD or MAY in a numbered section or appendix. It needs everything a clarity edit needs, plus
 the five tests in SCOPE.md answered in the pull request, and it is at least a minor version when
 released. `tools/changes.py` tells the two apart mechanically and CI runs it on every pull
-request. A change to the process files ACCEPTANCE.md names, this file among them, is neither:
-ACCEPTANCE.md says how it is made, and it is recorded in `acceptance/CHANGES.md`, not in
-CHANGELOG.md.
+request. A change to the acceptance process, as ACCEPTANCE.md defines one under "Changes to
+this process", is neither: ACCEPTANCE.md says how it is made, and it is recorded in
+`acceptance/CHANGES.md`, not in CHANGELOG.md.
 
 ## What a pull request contains
 
@@ -41,9 +41,6 @@ CHANGELOG.md.
   request template lays them out.
 - The observed case that prompted it, for either kind. A clarity edit still has a reason: a
   reader who took the passage the wrong way.
-- Where a specification's Appendix A changed, the files `python3 build-agent-surfaces.py`
-  writes, rebuilt with it and committed with the change; CI runs it with `--check` and fails
-  when they are stale.
 - `python3 spec-qa.py` clean and the unit tests passing, which CI checks for you.
 
 A pull request is a suggestion, not a demand. The documents have one editor, who keeps ownership
@@ -63,23 +60,23 @@ survives, the change is yours.
 3. **Review and rewrite.** An independent review of the diff against the whole document, by a
    reviewer who did not draft the change, then the editor's rewrite, pushed to the pull request
    branch where the contributor allows it or to an editor's branch that supersedes it. The pull
-   request names the reviewer and links or contains the review. A wording change, as
-   ACCEPTANCE.md defines it under "When it runs", means a fresh run.
+   request names the reviewer and links or contains the review.
 4. **Keys.** Where the change touches a sentence an acceptance key quotes, or adds a load-bearing
-   obligation, the editor updates the key before the cohort runs, never after.
-5. **The cohort.** The acceptance test in ACCEPTANCE.md runs on the final text. Its record is
-   committed under `acceptance/runs/`, the `Unreleased` changelog line names it, and CI refuses
-   a specification change that lacks one. For an obligation, the editor sets the document's
-   header to `<next version>-dev, unpublished`, and the status paragraph and citation that state
-   its version to `<next version>-dev`, in the same commit if the header still names a published
-   version. A wording change after the run means a fresh run.
+   obligation, the editor updates the key before the cohort runs, never after. The key's
+   required elements stay what its question asks for; `acceptance/README.md` says what a key
+   update may and may not do.
+5. **The cohort.** The acceptance test in ACCEPTANCE.md runs on the final text, one cohort per
+   changed document. Its record is committed under `acceptance/runs/`, the `Unreleased`
+   changelog line names it, and CI refuses a specification change that lacks one. For an
+   obligation, the editor sets the document's header to `<next version>-dev, unpublished` in the
+   same commit if it still names a published version. A change to the document's text after the
+   run means a fresh run, as ACCEPTANCE.md says under "When it runs". A finding the
+   run routes to `acceptance/ROUTED.md` is not fixed in this pull request.
 6. **Merge** into `next` by merge commit, and the branch is deleted.
 
 Steps 2 to 5 are the editor's, not CI's, and they happen in batches. The editor may have an
-agent draft or review, and may delegate marking as ACCEPTANCE.md allows, in which case the
-marker's verdict is final unless the editor shows a rule was misapplied, as ACCEPTANCE.md says;
-every other decision in these steps stays the editor's. A quiet pull request is not a declined
-one; a declined one says so.
+agent draft, review or mark, as ACCEPTANCE.md allows for marking; every decision in these steps
+stays the editor's. A quiet pull request is not a declined one; a declined one says so.
 
 ## Versions and releases
 
