@@ -21,7 +21,8 @@ src/db.zig:88:3  proj.no-raw-sql  Query built by string concatenation
 Fuller detail, including a snippet, is written to `.lintomatic/report.html`. The one-line form is
 printed whether or not the HTML report is enabled.
 
-`lintomatic check --only <identifier> <path>` runs a single rule. It accepts any rule name,
+`lintomatic check --only <identifier> <path>` runs a single rule and prints its findings as
+`check` does. It accepts any rule name,
 bundled or project, and exits 1 when the rule fires, 0 when it does not, and 2 when the rule name
 is unknown.
 

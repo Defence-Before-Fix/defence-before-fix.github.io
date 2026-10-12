@@ -39,6 +39,7 @@ definition; the ones this document leans on most are, in short:
 | -------------- | ------------------------------------------------------------------------------ |
 | [Detector]     | A tool that reads code without executing it and reports what it finds          |
 | [Rule]         | One check a [Detector] evaluates                                               |
+| [Message]      | The text a [Rule] prints when it fires                                         |
 | [Identifier]   | The stable name printed with a finding that leads to its documentation         |
 | [Practitioner] | Whoever is doing the work, a person or an [Agent]                              |
 | [Toolchain]    | Everything a project assembles to run its checks through, [Detectors] included |
@@ -55,9 +56,9 @@ Whoever writes a [Rule]. May be the [Detector]'s maintainer, a [Toolchain]'s mai
 
 A [Rule] the [Detector] ships, or fetches on the [Practitioner]'s behalf from a source the [Detector]'s maintainer controls. Its [Rule author] will never see the codebases it runs in, so everything a [Practitioner] needs in order to act on it has to travel with it.
 
-#### Harness
+#### Rule harness
 
-The route by which one [Rule] is run against supplied code and its findings observed, without the project's own test suite and without every other [Rule] running alongside it.
+The route by which one [Rule] is run against supplied code and its findings observed, without the project's own test suite and without every other [Rule] running alongside it. It is not the environment an [Agent] runs in, which this document never means by the word *harness*.
 
 The distinction between a [Bundled rule] and a project's own [Rule] matters throughout.
 The [Detector] owns the documentation of the first and can be held to shipping it; it cannot
@@ -72,7 +73,7 @@ Each mechanism the method needs has two halves. Stating only one of them is what
 | Requirement                          | The [Detector] MUST provide                             | The [Rule author] supplies                              |
 | ------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------- |
 | Bespoke [Rules]                      | The authoring and registration route                    | The [Rules]                                             |
-| The red proof                        | A [Harness]                                             | The [Fixture] and the red run                           |
+| The red proof                        | A [Rule harness]                                        | The [Fixture] and the red run                           |
 | Running the [Rule]                   | A local invocation, including subsets                   | Running it                                              |
 | The [Identifier]                     | A place to carry it, and printing it with every finding | Choosing it once                                        |
 | Resolution of a [Bundled rule]       | The lookup, and the documentation, on disk              | Nothing                                                 |
@@ -98,10 +99,9 @@ project's own, which is the half that carries its institutional knowledge.
 
 ### 4.2 The detector MUST provide a harness that runs a single rule against supplied code
 
-A [Harness] reports, for a given input, whether the [Rule] fired and what it printed, without
+A [Rule harness] reports, for a given input, whether the [Rule] fired and what it printed, without
 executing the project's own test suite and without the other [Rules] obscuring the answer.
-This applies to every [Rule] the [Detector] runs, bundled or bespoke; a
-[Detector] failing 4.1 is graded here on its [Bundled rules].
+This applies to every [Rule] the [Detector] runs, bundled or bespoke.
 
 **Why**: clause 3.3 of the method specification requires the [Rule] to be proven by making it go
 red. A [Practitioner] who can only observe a [Rule]'s behaviour by running every
@@ -157,7 +157,11 @@ any.
 ### 5.3 The result MUST reach the practitioner in the output of the command they ran
 
 Where the [Detector] writes fuller detail elsewhere, the invoked command's own output MUST
-carry both a usable summary and the location of the remainder.
+carry a usable summary and, where the summary leaves any finding out, the location of the
+remainder. A summary is usable when each finding in it carries where it is and its
+[Identifier]. The remainder is the findings the summary leaves out. Where the output prints
+every finding, there is no remainder. A fuller report written elsewhere, such as a page with a
+code snippet for each finding, is not a remainder, and the output need not name it.
 
 **Why**: method specification clause 8.2. A report the [Practitioner] has to go and find is a
 report that arrives after the decision it was meant to inform.
@@ -183,13 +187,16 @@ Two cases, by who wrote the [Rule]:
 | The project's own | The project                    | Print the [Identifier] unaltered; the lookup is the [Toolchain]'s to give |
 
 In both, the mechanism is keyed on **the [Identifier] exactly as printed**. A command, an index
-file or a URL are all acceptable forms. Each case in turn:
+file or a URL are all acceptable forms. This clause asks for the mechanism, not for every page:
+where the mechanism works but a [Bundled rule]'s [Identifier] has no documentation to resolve
+to, that fails clause 6.3, not this clause. Each case in turn:
 
 **For a [Bundled rule]**, the [Detector] supplies the documentation and the
 lookup, and clauses 6.2 and 6.3 say where. The mechanism MUST resolve an [Identifier]
 presented alone, because the reader who needs it most has the [Identifier] from a log, a
-ticket or a colleague and not the [Message]. A [Message] that carries its own
-documentation path resolves that [Message], not the [Identifier].
+ticket or a colleague and not the [Message]. A documentation path printed in the [Message] is
+therefore not enough on its own: it helps only a reader who has the [Message], and the
+[Identifier] alone still leads nowhere.
 
 **For a project's own [Rule]**, the [Detector] cannot know the documentation, so what
 it owes is the half it can give: the [Identifier] printed unaltered under clause 4.3, and no
@@ -236,7 +243,7 @@ An automated check over every [Identifier] a [Bundled rule] can print, applying 
 family list or pattern of clause 6.5 where one is used, that blocks the release when any of them
 lands on no page.
 
-**Why**: clause 6.1 is the clause most easily believed to be satisfied whilst being broken, because
+**Why**: clause 6.3 is the clause most easily believed to be satisfied whilst being broken, because
 the documentation is written by the same person who wrote the [Rule] and its absence is
 invisible from the inside. Where the [Detector] is shipped inside a [Toolchain],
 the [toolchain specification](TOOLING-SPEC.md)'s self-audit makes this check a MUST for the [Toolchain]; a
@@ -269,9 +276,16 @@ nothing to run.
 An inline ignore comment, a per-line directive and a generated [Baseline] are all such
 routes. The [Detector] MAY ship them. For each one it MUST do at least one of two things, and either
 alone satisfies this clause: make the route disableable by configuration; or make the route
-detectable, by a [Rule] the project can write in the [Detector] itself or by a mechanical check
-the [Detector] documents. Either lets a project which decides to forbid the route enforce that
-decision. A route that can be neither switched off nor seen does not [Conform].
+detectable, by a bespoke [Rule] the project writes for the [Detector] under clause 4.1 or by a
+mechanical check the [Detector] documents. Either lets a project which decides to forbid the
+route enforce that decision. A route that can be neither switched off nor seen does not [Conform].
+
+A route is detectable when the project can find every use of it, in either of two ways: by a
+bespoke [Rule] the project registers under clause 4.1 that matches the route wherever it is
+used, which the [Detector] runs like any other bespoke [Rule] and need not ship itself; or by a
+mechanical check the [Detector] documents, such as a text search for the route's spelling. The
+first way needs the [Detector]'s [Rules] to be able to match the route's text, so a [Detector]
+whose [Rules] never see comments offers only the second for an ignore comment.
 
 **Why**: the method specification's position is that [Suppression] is an [Owner]
 decision under its clause 3.4 and section 4, and an [Owner] cannot decide something they are
@@ -310,18 +324,20 @@ for a [Detector].
 
 The declaration is machine-readable, in whatever form the [Detector]'s ecosystem uses to
 record dependencies. The same declaration is where a gap against this document is recorded once it is
-known: a [Detector] that has learnt, from its own checks or from a [Practitioner]'s
-report under the method's clause 3.2, that it fails a MUST in sections 4 to 7 MUST record that gap
-alongside the version it declares, in the same file or one it names. A declaration with a non-empty
-gap record is a statement of where the [Detector] stands and is not a claim of
+known: a [Detector] that declares a version and has learnt, from its own checks or from a
+[Practitioner]'s report under the method's clause 3.2, that it fails a MUST in sections 4 to 7
+MUST record that gap alongside that version, in the same file or one it names. A declaration
+with a non-empty gap record is a statement of where the [Detector] stands and is not a claim of
 [Conformance].
 
-The declaration is optional. It is how a maintainer claims [Conformance]; it is not a
-condition of it. A [Detector] that predates this document, or whose maintainer has never read
-it, MAY be graded [Conforming] on evidence by anyone who exercises the clauses above against
-it, and a verdict on any [Detector], declared or not, rests on that exercise and not on the
-claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
-the reader still runs the [Harness].
+The declaration is optional, and so the duty above falls only on a [Detector] that has one; a
+gap a [Practitioner] finds is recorded in their own project's record under the method's clause
+3.2 in any case. The declaration is how a maintainer claims [Conformance]; it is not a condition
+of it, and a [Detector] without one can still be found to [Conform]. A [Detector] that predates
+this document, or whose maintainer has never read it, MAY be graded [Conforming] on evidence:
+anyone may grade it, by checking it against each clause of sections 4 to 7, and a verdict on
+any [Detector], declared or not, rests on that check and not on the claim. A declaration tells the reader what the maintainer believes and what they know to be missing;
+the reader still runs the [Rule harness].
 
 The shape is illustrative rather than prescribed. In a Composer manifest:
 
@@ -385,7 +401,6 @@ does not have to.
 [detector]: SPEC.md#detector
 [detectors]: SPEC.md#detector
 [fixture]: SPEC.md#fixture
-[harness]: #harness
 [hazards]: SPEC.md#hazard
 [identifier]: SPEC.md#identifier
 [identifiers]: SPEC.md#identifier
@@ -395,6 +410,7 @@ does not have to.
 [project record]: TOOLING-SPEC.md#project-record
 [rule]: SPEC.md#rule
 [rule author]: #rule-author
+[rule harness]: #rule-harness
 [rules]: SPEC.md#rule
 [suppression]: SPEC.md#suppression
 [toolchain]: SPEC.md#toolchain

@@ -10,6 +10,41 @@ version entry with no cohort line has not been accepted and is not published.
 
 ## Method specification (SPEC.md)
 
+### Unreleased
+
+- Clarity, no obligation changed: remediation is a defined term in section [1](SPEC.md#1-terminology), the work done on
+  one defect under the method, its fix included, whether or not every clause of section [3](SPEC.md#3-the-method) was
+  followed, and every use links to it; section [8](SPEC.md#8-operating-a-defence-under-ai-assisted-development)'s "remediation loop", a different sense, reads
+  "correction loop". Clauses [3.2](SPEC.md#32-build-the-net) and [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) name the detector specification's rule harness where
+  they said "proving harness" and "rule-testing harnesses". Prompted by a review that found
+  section [7](SPEC.md#7-conformance) defining when a remediation conforms without the word being defined, and "harness"
+  read as the environment an agent runs in. Runs [31](acceptance/runs/031-defined-terms-method-run-1.md),
+  [35](acceptance/runs/035-defined-terms-method-run-2.md), [38](acceptance/runs/038-defined-terms-method-run-3.md),
+  [41](acceptance/runs/041-defined-terms-method-run-4.md), [44](acceptance/runs/044-defined-terms-method-run-5.md),
+  [47](acceptance/runs/047-defined-terms-method-run-6.md) and [50](acceptance/runs/050-defined-terms-method-run-7.md)
+  were made under the acceptance rules before pull request 22 and failed, each on passages the
+  change had not touched or on a rewording made after the run before; those rewordings were
+  withdrawn when the rules changed, and the passages are listed in `acceptance/ROUTED.md`.
+  [Run 53](acceptance/runs/053-defined-terms-method-run-8.md), the first under those rules, had every keyed item five
+  of five and failed on one finding in a paragraph the change had touched: clause [3.2](SPEC.md#32-build-the-net)'s
+  sentence on the substitutes a mechanism gap allows now names them, the smoke check of
+  clause [3.3](SPEC.md#33-prove-the-net-by-making-the-rule-fire) and the followable identifier of clause [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation), and clause [3.5](SPEC.md#35-enforce-permanently-and-block)'s sentence that they do not
+  extend to it names them the same way. [Run 56](acceptance/runs/056-defined-terms-method-run-9.md) had every keyed item five of five
+  and failed on one finding in a paragraph the change had touched: clause [3.1](SPEC.md#31-attribute-the-defect-to-a-class)'s sentence that
+  the bounds measure breadth within one level now says they settle how wide the class is drawn
+  and not at which level, and what the separate question of level is.
+  [Run 59](acceptance/runs/059-defined-terms-method-run-10.md) failed on one finding in a touched
+  paragraph, clause [3.5](SPEC.md#35-enforce-permanently-and-block)'s paragraph on a bundled defence, whose terms two readers could not
+  find defined: section [1](SPEC.md#1-terminology) now says that a term it does not define links to its entry in a
+  companion specification, and the paragraph opens by saying what the two terms are.
+  [Run 61](acceptance/runs/061-defined-terms-method-run-11.md) failed on one reader missing the
+  proof step in load-bearing statement 2a and on one finding, section [7](SPEC.md#7-conformance)'s "as this section
+  closes by requiring": section [2](SPEC.md#2-when-the-method-applies) now states the order of section [3](SPEC.md#3-the-method)'s steps, and section
+  [7](SPEC.md#7-conformance)'s sentence points at its closing paragraph instead. Accepted by
+  [run 64](acceptance/runs/064-defined-terms-method-run-12.md), every keyed item five of five
+  and no finding in text the change touched; the four findings in untouched text are listed in
+  `acceptance/ROUTED.md`.
+
 ### 1.1.0, 2026-10-02
 
 - New obligation, section [2](SPEC.md#2-when-the-method-applies): a defect whose fix is deferred MUST be recorded where the project's
@@ -68,6 +103,67 @@ pass it.
 
 ## Detector specification (DETECTOR-SPEC.md)
 
+### Unreleased
+
+- Clarity, no obligation changed: the term Harness is renamed Rule harness, and its entry in
+  section [2](DETECTOR-SPEC.md#2-terminology) says it is not the environment an agent runs in, which the document never means by the
+  word; clause [4.2](DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code), the section [3](DETECTOR-SPEC.md#3-the-division-of-responsibility) table and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) use the new name. Prompted by a review
+  that found "harness" read as the environment an agent runs in. Runs
+  [32](acceptance/runs/032-defined-terms-detector-run-1.md), [36](acceptance/runs/036-defined-terms-detector-run-2.md),
+  [39](acceptance/runs/039-defined-terms-detector-run-3.md), [42](acceptance/runs/042-defined-terms-detector-run-4.md),
+  [45](acceptance/runs/045-defined-terms-detector-run-5.md), [48](acceptance/runs/048-defined-terms-detector-run-6.md) and
+  [51](acceptance/runs/051-defined-terms-detector-run-7.md) were made under the acceptance rules before pull
+  request 22 and failed, each on passages the change had not touched or on a rewording made
+  after the run before; those rewordings were withdrawn when the rules changed, and the
+  passages are listed in `acceptance/ROUTED.md`. Under the rules of pull request 22, [run
+  54](acceptance/runs/054-defined-terms-detector-run-8.md) failed on clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s gap-record
+  MUST, set against the paragraph the rename altered, and on misses in clauses [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) and
+  [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) in text the change had not touched, all three since rewritten by the detector route rule
+  change merged here; [run 69](acceptance/runs/069-defined-terms-detector-run-9.md) failed on
+  clause [4.2](DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)'s first paragraph and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s second, each in a paragraph whose link the
+  rename altered; and [run 75](acceptance/runs/075-defined-terms-detector-run-10.md) failed on
+  the sentence clause [4.2](DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) had gained on a detector that fails clause [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), which readers took as a
+  waiver. That sentence is removed. Accepted by [run
+  80](acceptance/runs/080-defined-terms-detector-run-11.md).
+- Clarity, no obligation changed: four passages that cold readers of an unrelated change read as
+  the document pulling against itself or could not follow, each listed in `acceptance/ROUTED.md`.
+  Clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s detectable route is now a bespoke rule the project writes for the detector under
+  clause [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), after six runs read "a Rule the project can write in the Detector itself" as the
+  project editing the detector's own source, and a new paragraph says what detectable means and
+  what each of the two ways is. Clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s duty to record a known gap falls only on a detector
+  that declares a version, and says so beside "The declaration is optional", with the method's
+  clause [3.2](SPEC.md#32-build-the-net) record applying either way. Clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) says what the remainder is, and that
+  there is none where the output prints every finding. Clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) says it asks for the
+  mechanism and not for every page, a missing page failing clause [6.3](DETECTOR-SPEC.md#63-a-bundled-rules-documentation-must-ship-with-the-rule-at-a-version-tracked-together), and that a
+  documentation path printed in the message is not enough on its own, after three readers of
+  run 54 set that sentence against the mechanism. Prompted by runs 32 to 54 on the defined-terms
+  change, in which two or more readers quoted each passage.
+  [Run 60](acceptance/runs/060-detector-route-rule-run-1.md) failed on two findings in the
+  revised text, every keyed item within threshold: two readers could not find Message defined,
+  so section [2](DETECTOR-SPEC.md#2-terminology)'s table gains a Message row; and two readers stopped at clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s
+  "anyone who exercises the clauses above", which now says anyone may grade a detector by
+  checking it against each clause of sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression).
+  [Run 63](acceptance/runs/063-detector-route-rule-run-2.md) failed on one finding in the revised
+  text, every keyed item five of five: two readers needed two readings of clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s
+  sentence on a report that only adds detail, which is now a sentence of its own with its subject
+  stated; three readers named clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation)'s paragraph on a project's own rule, which this
+  change does not touch and `acceptance/ROUTED.md` now lists.
+  [Run 66](acceptance/runs/066-detector-route-rule-run-3.md) passed, every keyed item five of
+  five, its one finding being that same clause [6.1](DETECTOR-SPEC.md#61-the-detector-must-provide-a-mechanism-that-resolves-a-printed-identifier-to-its-documentation) paragraph, named again by three readers,
+  which stays in `acceptance/ROUTED.md` for a change of its own. Run 69, a cohort of the
+  defined-terms change on this document with this change merged in, then had two readers set
+  clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s "MUST carry both a usable summary and the location of the remainder" against its
+  "need not name it", and two readers stop at clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s gap sentence and its MAY: clause
+  [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now owes the location only where the summary leaves a finding out, and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps) says
+  where a practitioner's record of a gap lives and that a detector without a declaration can
+  still be found to conform. [Run 73](acceptance/runs/073-detector-route-rule-run-4.md) failed
+  on clause [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran)'s "usable summary" and on clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s second paragraph; clause
+  [5.3](DETECTOR-SPEC.md#53-the-result-must-reach-the-practitioner-in-the-output-of-the-command-they-ran) now says what a usable summary is and what the remainder is, and clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable) states
+  the two ways a route is detectable in one paragraph. [Run
+  77](acceptance/runs/077-detector-route-rule-run-5.md) failed on the remainder sentence alone,
+  four readers unable to tell what "is not one" referred to; it is now three plain sentences.
+  Accepted by [run 78](acceptance/runs/078-detector-route-rule-run-6.md).
+
 ### 1.0.0, 2026-09-08
 
 First version, split out of toolchain specification 0.1.0 on the same day. States what a detector,
@@ -95,6 +191,121 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
 
 ## Toolchain specification (TOOLING-SPEC.md)
 
+### Unreleased
+
+- Clarity, no obligation changed: the section [2](TOOLING-SPEC.md#2-terminology) table and clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) say Rule harness where
+  they said Harness, following the detector specification's rename; the section [3](TOOLING-SPEC.md#3-the-division-of-responsibility) table's
+  correct-construction row says the project supplies the remediation docs content, and the
+  uses of "remediation" in clause [4.5](TOOLING-SPEC.md#45-the-toolchains-entry-point-must-run-detectors-before-runners-and-must-stop-on-a-detector-failure) link to the method specification's new term. Prompted by the
+  same review. Runs [33](acceptance/runs/033-defined-terms-toolchain-run-1.md),
+  [37](acceptance/runs/037-defined-terms-toolchain-run-2.md), [40](acceptance/runs/040-defined-terms-toolchain-run-3.md),
+  [43](acceptance/runs/043-defined-terms-toolchain-run-4.md), [46](acceptance/runs/046-defined-terms-toolchain-run-5.md),
+  [49](acceptance/runs/049-defined-terms-toolchain-run-6.md) and [52](acceptance/runs/052-defined-terms-toolchain-run-7.md)
+  were made under the acceptance rules before pull request 22 and failed, each on passages the
+  change had not touched or on a rewording made after the run before; those rewordings were
+  withdrawn when the rules changed, and the passages are listed in `acceptance/ROUTED.md`.
+  Under the rules of pull request 22, [run 55](acceptance/runs/055-defined-terms-toolchain-run-8.md)
+  failed on passages the toolchain contradictions change rewrites, since merged here. Accepted
+  by [run 87](acceptance/runs/087-defined-terms-toolchain-run-9.md).
+- Clarity, no obligation changed: four passages that cold readers of an unrelated change read as
+  the document pulling against itself, each listed in `acceptance/ROUTED.md`. Section [9](TOOLING-SPEC.md#9-conformance)'s
+  conformance sentence now says that section [8](TOOLING-SPEC.md#8-self-audit) bears on a shipping project's artefact grade
+  under clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately), not on its project grade, which is what clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) already said and the
+  answer key assumed. Clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) says that one identifier that does not resolve fails it and
+  that a blocking rule whose documentation is missing is graded as a defence with a gap, and
+  clause [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) says the same of a bundled defence, after readers took section [2](TOOLING-SPEC.md#2-terminology)'s Defence row to
+  put such a rule outside both clauses. Clause [9.2](TOOLING-SPEC.md#92-the-declaration-is-the-claim-and-the-known-gap-record-not-a-condition-of-conformance)'s duty to record a known gap in the
+  declaration falls only on a project or artefact that declares a version, and says so beside
+  "The declaration is optional", with the method's clause [3.2](SPEC.md#32-build-the-net) record applying either way.
+  Clause [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-every-suppression-route-that-bypasses-the-project-record-by-disabling-it-or-by-a-defence-of-its-own)'s heading names both ways its body allows, disabling the route or a defence of
+  the toolchain's own. Clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) says every MUST of the detector specification's sections [4](DETECTOR-SPEC.md#4-authoring-rules) to [7](DETECTOR-SPEC.md#7-suppression)
+  applies and the six it lists are a summary, and its point 2 says the wrapped pair is what the
+  clause judges whilst the detector's own grade is a separate verdict. Prompted by runs 33 to 52
+  and 55 on the defined-terms change, in which two or more readers quoted each passage.
+  [Run 57](acceptance/runs/057-toolchain-contradictions-run-1.md) failed on the first wording: every reader set clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access)'s
+  "a defence with a gap" against the Defence row, so the sentence now says Defence there
+  reaches every blocking rule whether or not its documentation exists; clause [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-every-suppression-route-that-bypasses-the-project-record-by-disabling-it-or-by-a-defence-of-its-own) says the
+  routes are the ones each detector offers, after two readers graded it Partial for routes the
+  fixture does not describe; section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says the document defers to the detector specification
+  only in clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification); clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) says what the artefact grade counts; and section [9](TOOLING-SPEC.md#9-conformance)'s agent-support
+  sentence says section [7](TOOLING-SPEC.md#7-agent-context) recommends, after two readers set "additionally satisfies" against
+  that section's SHOULDs. [Run 58](acceptance/runs/058-toolchain-contradictions-run-2.md) failed
+  on four findings in the revised text, every keyed item five of five: four readers set clause
+  [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access)'s "whether or not its documentation exists" against the Defence row again, so clauses
+  [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) now say that a blocking rule whose documentation is missing is not yet a
+  defence and is the failure each names; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) says its six sentences are a summary and
+  not the test, and its Why names the method's clauses [3.1](SPEC.md#31-attribute-the-defect-to-a-class) to [3.6](SPEC.md#36-make-the-failure-message-terse-and-point-it-at-real-documentation) rather than "six clauses";
+  section [9](TOOLING-SPEC.md#9-conformance) says every project has one project grade and that section [8](TOOLING-SPEC.md#8-self-audit) bears on a shipping
+  project's separate artefact grade, clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) names the two levels, and the agent-support
+  sentence says which document's section [7](TOOLING-SPEC.md#7-agent-context) it means.
+  [Run 62](acceptance/runs/062-toolchain-contradictions-run-3.md) failed on the same clause
+  [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) sentence, every keyed item five of five: four readers could not settle whether the
+  clause covers its defences or every blocking rule, so its heading and its obligation sentence
+  now name both, a defence or a blocking rule it routes, and the body says why the blocking
+  rules are named. [Run 65](acceptance/runs/065-toolchain-contradictions-run-4.md) failed on it
+  a third time, three readers unable to square a clause on defences with rules that are not
+  yet one, so the heading and the obligation now name blocking rules alone, with one sentence
+  on why, and clause [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) drops its sentence on the same contrast; clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) says which
+  document grades what, after two readers asked which section [7](TOOLING-SPEC.md#7-agent-context) the project grade rests on.
+  [Run 67](acceptance/runs/067-toolchain-contradictions-run-5.md) failed on clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access)'s first
+  paragraph, three readers each stopping at a different sentence of it, and on section [1](TOOLING-SPEC.md#1-what-this-document-is-for)'s
+  "How to read this document" set against clause [4.4](TOOLING-SPEC.md#44-the-toolchains-own-invocation-must-satisfy-the-detector-specifications-reporting-clauses-for-every-defence-it-routes): the paragraph is rewritten in three, the
+  obligation first, then what is in scope, then the mechanism, with Remediation docs glossed in
+  section [2](TOOLING-SPEC.md#2-terminology)'s table; and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says that a toolchain can be graded from this document
+  alone because each clause that rests on the detector specification says in its own words what
+  that document requires. [Run 68](acceptance/runs/068-toolchain-contradictions-run-6.md) failed
+  on six findings in that text: readers set a URL scheme against "without network access", "MUST
+  ship with the project or with the Toolchain" against a third-party catalogue "not re-shipped
+  here", the sentence on why the clause names blocking rules against the Defence row and clause
+  [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) yet again, and clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)'s "a summary, not the test" against section [1](TOOLING-SPEC.md#1-what-this-document-is-for). Clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) now
+  says only what it requires, of the project's own rules and bundled rules alike, with no
+  sentence on defences and no list of mechanisms, and its remediation docs may ship with the
+  detector whose rule they document; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) both say the clause restates
+  the detector specification far enough to grade what a toolchain's evidence shows.
+  [Run 72](acceptance/runs/072-toolchain-contradictions-run-7.md) failed on four findings: four
+  readers set the Defence row and clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) against clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) once more, asking whether an
+  undocumented blocking rule is a defence and is listed, and two set section [1](TOOLING-SPEC.md#1-what-this-document-is-for)'s "graded
+  from this document alone" against clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)'s "restated here or not". Section [2](TOOLING-SPEC.md#2-terminology) now says,
+  under its table, that a blocking rule whose documentation is missing is not yet a defence and
+  is what clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access), [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) exist to catch; clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) says the listing covers every
+  blocking rule, documented or not, with a missing route showing; and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) and clause
+  [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) both say a verdict from this document alone rests on what is restated and a grader with
+  the detector specification holds the detector to all of it. [Run
+  76](acceptance/runs/076-toolchain-contradictions-run-8.md) failed on clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)'s first
+  paragraph, all five readers unable to tell which of its two tests governs a grader without the
+  detector specification, and on section [2](TOOLING-SPEC.md#2-terminology)'s "These are additional.", which the new
+  paragraph had parted from its table. Clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) now give one test: a
+  grader checks the restated sentences and takes a verdict already given on the detector under
+  the detector specification as settled; the new paragraph sits at the end of section [2](TOOLING-SPEC.md#2-terminology), after
+  the Project record entry. [Run 81](acceptance/runs/081-toolchain-contradictions-run-9.md)
+  failed on clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them), two readers setting "every Defence active" against the new sentence that the
+  listing covers every blocking rule, documented or not: a listing of defences said to cover
+  what is not one. Clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) now says such a rule is not yet a defence, that clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) fails it,
+  and that the listing can show it with the gap showing; section [2](TOOLING-SPEC.md#2-terminology)'s paragraph names
+  clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) and [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) as the clauses that catch it. [Run 82](acceptance/runs/082-toolchain-contradictions-run-10.md)
+  failed on that clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) sentence again, two readers asking whether an empty route meets the MUST
+  and whether "can show" means such a rule need not appear, and on clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification)'s "a verdict
+  already given", two readers unable to tell which verdict or what a grader does without one.
+  Clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) says nothing of undocumented rules now, section [2](TOOLING-SPEC.md#2-terminology)'s closing paragraph being where
+  that is said; clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) name the verdict as one given under the detector
+  specification's conformance section and say that without one the restated sentences are the test.
+  [Run 83](acceptance/runs/083-toolchain-contradictions-run-11.md) failed on section [2](TOOLING-SPEC.md#2-terminology)'s
+  closing paragraph and on clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) set against it, three readers asking whether an
+  undocumented blocking rule has to appear in the listing. The paragraph now answers: nothing
+  the document asks of defences, the listing included, is asked of such a rule, and a toolchain
+  that runs one has failed clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) whether or not its listing shows it. [Run
+  84](acceptance/runs/084-toolchain-contradictions-run-12.md) failed on clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification), three
+  readers unable to tell whether "every one of them" or the restated sentences set the test, and
+  on the paragraph again, one reader still asking whether such a rule is listed and one unable
+  to place "they". Clause [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) now has one test, every MUST of the detector specification's authoring, reporting, resolving and suppression sections, with the
+  restated sentences as where to look first and a grader without the detector specification
+  checking only them and saying so; section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says the same; the paragraph says in plain
+  sentences that clause [5.1](TOOLING-SPEC.md#51-the-toolchain-must-be-able-to-list-the-defences-active-in-a-project-without-triggering-them) does not require such a rule to be listed and that clauses [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) and
+  [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) reach it. [Run 85](acceptance/runs/085-toolchain-contradictions-run-13.md) failed on that
+  paragraph's sentence naming both clauses as reaching every blocking rule, two readers setting it against
+  clause [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation)'s exclusion of a third-party detector's native catalogue; the paragraph names
+  clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) alone. Accepted by [run 86](acceptance/runs/086-toolchain-contradictions-run-14.md).
+
 ### 0.2.0, 2026-09-08
 
 Reissued the same day as 0.1.0 with sections [4](TOOLING-SPEC.md#4-the-detectors-a-toolchain-routes-defences-through) to [6](TOOLING-SPEC.md#6-the-project-record) moved to the detector specification and
@@ -120,10 +331,10 @@ since the clause says the listing MUST provide the route and [4.1](TOOLING-SPEC.
 again by a later clause; three readers of run 8 graded it so from the text. Findings applied
 across the runs: an eleven-term gloss and a reading note in sections [1](TOOLING-SPEC.md#1-what-this-document-is-for) and [2](TOOLING-SPEC.md#2-terminology); long sentences
 split; [4.1](TOOLING-SPEC.md#41-every-detector-the-toolchain-routes-a-defence-through-must-conform-to-the-detector-specification) opens by listing the detector specification's MUSTs and its point 2
-leads with a three-case table of wrapped pairs, then the one question behind it; [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) says it
-widens the detector document's reach to the project's own rules; [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-through-a-defence-of-its-own-every-suppression-route-that-bypasses-the-project-record) loses its double negative;
+leads with a three-case table of wrapped pairs, then the one question behind it; [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) says it
+widens the detector document's reach to the project's own rules; [4.3](TOOLING-SPEC.md#43-the-toolchain-must-forbid-every-suppression-route-that-bypasses-the-project-record-by-disabling-it-or-by-a-defence-of-its-own) loses its double negative;
 [5.2](TOOLING-SPEC.md#52-the-listing-must-be-derived-from-the-active-configuration) gives the derived-listing test; [6.2](TOOLING-SPEC.md#62-every-exception-in-the-project-record-must-carry-a-written-justification-that-names-the-hazard-and-the-scope-and-the-toolchain-must-reject-a-generic-one)'s heading carries the generic-justification rejection;
-[8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) is consistent with [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-defence-it-routes-can-print-from-the-installed-copy-without-network-access) on third-party catalogues. Runs 1 to 7 also asked readers what would
+[8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) is consistent with [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access) on third-party catalogues. Runs 1 to 7 also asked readers what would
 make a clause clearer and for a clarity rating; both questions were withdrawn before run 8, as
 `ACCEPTANCE.md` records.
 
