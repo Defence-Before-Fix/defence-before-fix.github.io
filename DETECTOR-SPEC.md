@@ -356,9 +356,8 @@ A verdict on a [Detector] MUST name its kind, [Semantic], [Syntactic] or [Textua
 configuration the verdict grades. A configuration here is one way of setting the [Detector] up to
 run, and one [Detector] can have several: ESLint, for example, is [Syntactic] run without type
 information and [Semantic] run with it. The kind is what a [Rule] can ask in that configuration,
-as section 2 glosses it. The kind named is the one the [Detector] has without a hosted service or
-a licence tier, the same configurations the method specification's clause 3.2 counts when it
-asks for the strongest kind.
+as section 2 glosses it. The kind named is the one the [Detector] has in a configuration that
+needs no hosted service and no licence tier.
 
 This clause binds whoever gives the verdict, anyone grading a [Detector] under clause 8.1
 included, and asks nothing of the [Detector] itself; a maintainer who gives a verdict on their
