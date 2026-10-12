@@ -137,7 +137,13 @@ make a clause clearer and for a clarity rating; both questions were withdrawn be
   yet one, so the heading and the obligation now name blocking rules alone, with one sentence
   on why, and clause [8.1](TOOLING-SPEC.md#81-a-shipped-toolchain-must-fail-its-own-release-if-a-bundled-defence-lacks-resolvable-documentation) drops its sentence on the same contrast; clause [9.1](TOOLING-SPEC.md#91-a-project-that-ships-a-detector-or-a-toolchain-has-two-levels-of-conformance-graded-separately) says which
   document grades what, after two readers asked which section [7](TOOLING-SPEC.md#7-agent-context) the project grade rests on.
-  Accepted by run NNN.
+  [Run 67](acceptance/runs/067-toolchain-contradictions-run-5.md) failed on clause [4.2](TOOLING-SPEC.md#42-the-toolchain-must-resolve-every-identifier-a-blocking-rule-it-routes-can-print-from-the-installed-copy-without-network-access)'s first
+  paragraph, three readers each stopping at a different sentence of it, and on section [1](TOOLING-SPEC.md#1-what-this-document-is-for)'s
+  "How to read this document" set against clause [4.4](TOOLING-SPEC.md#44-the-toolchains-own-invocation-must-satisfy-the-detector-specifications-reporting-clauses-for-every-defence-it-routes): the paragraph is rewritten in three, the
+  obligation first, then what is in scope, then the mechanism, with Remediation docs glossed in
+  section [2](TOOLING-SPEC.md#2-terminology)'s table; and section [1](TOOLING-SPEC.md#1-what-this-document-is-for) says that a toolchain can be graded from this document
+  alone because each clause that rests on the detector specification says in its own words what
+  that document requires. Accepted by run NNN.
 
 ### 0.2.0, 2026-09-08
 

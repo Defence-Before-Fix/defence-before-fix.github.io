@@ -39,9 +39,9 @@ building the mechanism first. A [Toolchain] that leaves the project to construct
 moved the obligation rather than met it. Where the project builds the means itself, those scripts are
 part of its [Toolchain] and are judged as such.
 
-**How to read this document.** It is self-contained for grading a [Toolchain], apart from clause
-4.1, which holds each [Detector] to the [detector specification](DETECTOR-SPEC.md) and summarises
-that document's MUSTs. The
+**How to read this document.** A [Toolchain] can be graded from this document alone. Where a
+clause rests on the [detector specification](DETECTOR-SPEC.md), as clauses 4.1, 4.2 and 4.4 do,
+the clause says in its own words what that document requires of the [Detector]. The
 table in section 2 glosses every term it borrows. Each clause states its obligation in its heading
 and first sentence, and the **Why** paragraph beneath is reasoning, not a further requirement. A
 link is there for depth and is not a prerequisite for the sentence that carries it.
@@ -51,19 +51,20 @@ link is there for depth and is not a prerequisite for the sentence that carries 
 Terms from the method specification and the [detector specification](DETECTOR-SPEC.md) carry over unchanged. Every
 capitalised term links to its definition; the ones this document leans on most are, in short:
 
-| Term           | In one line                                                                         |
-| -------------- | ----------------------------------------------------------------------------------- |
-| [Detector]     | A tool that reads code without executing it and reports what it finds               |
-| [Runner]       | A tool that executes code, a test suite or a compilation, and reports what happened |
-| [Rule]         | One check a [Detector] evaluates                                                    |
-| [Defence]      | A [Rule] with its documentation, in force and [Blocking]                            |
-| [Identifier]   | The stable name printed with a finding that leads to its documentation              |
-| [Blocking]     | Fails the run rather than issuing a [Warning]                                       |
-| [Exception]    | A recorded, justified decision to leave an [Instance] unfixed or a [Rule] unapplied |
-| [Practitioner] | Whoever is doing the work, a person or an [Agent]                                   |
-| [Owner]        | The human who decides what the codebase may keep                                    |
-| [Bundled rule] | A [Rule] a [Detector] ships rather than one the project wrote                       |
-| [Harness]      | The route by which one [Rule] is run against supplied code on its own               |
+| Term               | In one line                                                                                         |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| [Detector]         | A tool that reads code without executing it and reports what it finds                               |
+| [Runner]           | A tool that executes code, a test suite or a compilation, and reports what happened                 |
+| [Rule]             | One check a [Detector] evaluates                                                                    |
+| [Defence]          | A [Rule] with its documentation, in force and [Blocking]                                            |
+| [Identifier]       | The stable name printed with a finding that leads to its documentation                              |
+| [Remediation docs] | The documentation an [Identifier] leads to: what the [Rule] is about, why, and how to fix a finding |
+| [Blocking]         | Fails the run rather than issuing a [Warning]                                                       |
+| [Exception]        | A recorded, justified decision to leave an [Instance] unfixed or a [Rule] unapplied                 |
+| [Practitioner]     | Whoever is doing the work, a person or an [Agent]                                                   |
+| [Owner]            | The human who decides what the codebase may keep                                                    |
+| [Bundled rule]     | A [Rule] a [Detector] ships rather than one the project wrote                                       |
+| [Harness]          | The route by which one [Rule] is run against supplied code on its own                               |
 
 These are additional.
 
@@ -161,16 +162,15 @@ clause 3.2. A gap recorded is not a gap closed.
 
 ### 4.2 The toolchain MUST resolve every identifier a blocking rule it routes can print, from the installed copy, without network access
 
-This clause widens the [detector specification](DETECTOR-SPEC.md)'s reach: that document resolves
-[Bundled rules] only, and this one covers every [Identifier] the project can see, the project's
-own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Blocking] [Rules]
-print to [Remediation docs] on disk. One [Identifier] that does not resolve fails this clause,
-however many others do. The clause names [Blocking] [Rules] rather than [Defences] because the
-failure it catches is a [Rule] that blocks without the documentation that would make it a
-[Defence]. The mechanism
-is keyed on the
-[Identifier] exactly as printed, and it covers the project's own [Rules] and
-every [Bundled defence]. Those [Remediation docs] MUST ship
+The [Toolchain] MUST resolve every [Identifier] its [Blocking] [Rules] print to
+[Remediation docs] on disk. The [Rules] in scope are every [Blocking] [Rule] the [Toolchain]
+runs, bundled or the project's own; a [Rule] that only warns is outside this clause. The clause
+names [Blocking] [Rules] rather than [Defences] because the failure it catches is a [Rule] that
+blocks without the documentation that would make it a [Defence]. One [Identifier] that does not
+resolve fails this clause, however many others do.
+
+The [Toolchain] resolves an [Identifier] by a mechanism of its own, a command, an index file or
+a URL scheme, keyed on the [Identifier] exactly as printed. Those [Remediation docs] MUST ship
 with the project or with the [Toolchain], at a version tracked together. The
 [Toolchain] MUST also give that documentation a place to live, so that a
 [Rule author] adding a [Rule] knows where its documentation goes.
@@ -180,7 +180,8 @@ only the prohibition, specifically enough to act on, as method clause 8.4 requir
 
 This clause closes what the [detector specification](DETECTOR-SPEC.md) leaves open. That document holds a
 [Detector] to on-disk resolution of its own [Bundled rules] and
-no further, because it cannot know a project's documentation. A third-party [Detector]'s
+no further, because it cannot know a project's documentation; this clause reaches the project's
+own [Rules] as well. A third-party [Detector]'s
 native catalogue, which the [Toolchain] orchestrates without claiming as its own, is not
 re-shipped here: an [Identifier] the [Detector] resolves under that document's clause 6 meets
 this clause, and one that nothing resolves fails it.
