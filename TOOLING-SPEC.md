@@ -159,16 +159,16 @@ mechanism lives, and the method does not care. It is bounded because a mechanism
 does not offer and the [Toolchain] does not add is a gap the project writes down under method
 clause 3.2. A gap recorded is not a gap closed.
 
-### 4.2 The toolchain MUST resolve every identifier a defence it routes can print, from the installed copy, without network access
+### 4.2 The toolchain MUST resolve every identifier a defence or a blocking rule it routes can print, from the installed copy, without network access
 
 This clause widens the [detector specification](DETECTOR-SPEC.md)'s reach: that document resolves
 [Bundled rules] only, and this one covers every [Identifier] the project can see, the project's
 own [Rules] included. The [Toolchain] MUST resolve every [Identifier] its [Defences]
-print to [Remediation docs] on disk. One [Identifier] that does not resolve fails this clause,
-however many others do. A [Defence] is a [Rule] with its documentation, as section 2 says, so a
-[Blocking] [Rule] the [Toolchain] runs whose documentation is missing is not yet a [Defence]:
-that [Rule] is the failure this clause names, not a [Rule] outside its reach, and the clause
-reaches every [Blocking] [Rule] the [Toolchain] runs, bundled or the project's own. The mechanism
+print, and every [Identifier] its other [Blocking] [Rules] print, to [Remediation docs] on disk.
+One [Identifier] that does not resolve fails this clause, however many others do. The other
+[Blocking] [Rules] are named because a [Defence] is a [Rule] with its documentation, as section
+2 says: a [Blocking] [Rule] whose documentation is missing is not yet a [Defence], and it is
+exactly the failure this clause exists to catch. The mechanism
 is keyed on the
 [Identifier] exactly as printed, and it covers the project's own [Rules] and
 every [Bundled defence]. Those [Remediation docs] MUST ship
