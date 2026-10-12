@@ -123,7 +123,8 @@ pass it.
   clause [4.2](DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code)'s first paragraph and clause [8.1](DETECTOR-SPEC.md#81-a-maintainer-may-declare-the-version-of-this-document-the-detector-conforms-to-and-the-declaration-records-known-gaps)'s second, each in a paragraph whose link the
   rename altered; and [run 75](acceptance/runs/075-defined-terms-detector-run-10.md) failed on
   the sentence clause [4.2](DETECTOR-SPEC.md#42-the-detector-must-provide-a-harness-that-runs-a-single-rule-against-supplied-code) had gained on a detector that fails clause [4.1](DETECTOR-SPEC.md#41-the-detector-must-support-bespoke-rules-written-by-the-project-that-runs-it), which readers took as a
-  waiver. That sentence is removed. Accepted by run NNN.
+  waiver. That sentence is removed. Accepted by [run
+  80](acceptance/runs/080-defined-terms-detector-run-11.md).
 - Clarity, no obligation changed: four passages that cold readers of an unrelated change read as
   the document pulling against itself or could not follow, each listed in `acceptance/ROUTED.md`.
   Clause [7.1](DETECTOR-SPEC.md#71-a-detector-may-offer-an-inline-suppression-route-but-must-make-it-detectable-or-disableable)'s detectable route is now a bespoke rule the project writes for the detector under
