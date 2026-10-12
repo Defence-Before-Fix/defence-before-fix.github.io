@@ -22,7 +22,7 @@ version entry with no cohort line has not been accepted and is not published.
   [3.1](SPEC.md#31-attribute-the-defect-to-a-class), working out the defect's class, and that section [3](SPEC.md#3-the-method) gives the order of the steps that follow, without changing what
   that requirement covers, because a reader in run [88](acceptance/runs/088-gap-terms-method-run-2.md) relying on section
   [2](SPEC.md#2-when-the-method-applies) missed the attribution step on a keyed question. Earlier runs on this change: [34](acceptance/runs/034-gap-terms-method-run-1.md),
-  [88](acceptance/runs/088-gap-terms-method-run-2.md). Accepted by run NNN. Patch version when released.
+  [88](acceptance/runs/088-gap-terms-method-run-2.md). Accepted by run [89](acceptance/runs/089-gap-terms-method-run-3.md). Patch version when released.
 
 ### 1.1.0, 2026-10-02
 
